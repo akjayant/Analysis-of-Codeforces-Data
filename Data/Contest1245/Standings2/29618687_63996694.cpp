@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t;
+    cin >> t;
+
+    while(t--) {
+      int a, b;
+      cin >> a >> b;
+      auto g = gcd(a, b);
+      if (g == 1) {
+	cout << "Finite" << '\n';
+      } else {
+	cout << "Infinite" << '\n';
+      }
+    }
+}
