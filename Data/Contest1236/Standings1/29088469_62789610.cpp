@@ -1,0 +1,57 @@
+#include <iostream>
+#include <cmath>
+#include <cstdio>
+#include <cstdlib>
+#include <set>
+#include <map>
+#include <unordered_set>
+#include <unordered_map>
+#include <ctime>
+#include <deque>
+#include <ctime>
+#include <string>
+#include <algorithm>
+#include <vector>
+#include <bitset>
+#include <cassert>
+#include <cstring>
+#include <queue>
+#include <random>
+
+#define fi first
+#define se second
+#define ll long long
+#define pii pair<int, int>
+#define pil pair<int, long long>
+#define pli pair<long long, int>
+#define pll pair<long long, long long>
+#define mp(x, y) make_pair((x), (y))
+
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cout.tie(0); cin.tie(0);
+    
+    int n;
+    cin >> n;
+    vector<vector<int>> ans(n, vector<int>(n));
+    for (int j = 0; j < n; ++j) {
+        if (j % 2 == 0) {
+            for (int i = 0; i < n; ++i) {
+                ans[i][j] = n * j + i + 1;
+            }
+        } else {
+            for (int i = 0; i < n; ++i) {
+                ans[n - i - 1][j] = n * j + i + 1;
+            }
+        }
+    }
+    for (auto e : ans) {
+        for (auto e2 : e) {
+            cout << e2 << ' ';
+        }
+        cout << endl;
+    }
+    return 0;
+}
