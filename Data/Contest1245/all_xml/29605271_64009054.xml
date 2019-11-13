@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29605271_64009054.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>sz</name><parameter_list>(<parameter><type><name>a</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>int(a.size())</cpp:value></cpp:define>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<typedef>typedef <type><name>long</name> <name>long</name></type> <name>ll</name>;</typedef>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>MOD</name> <init>= <expr><literal type="number">1e9</literal><operator>+</operator><literal type="number">7</literal></expr></init></decl>;</decl_stmt>
+<expr_stmt><expr><name>int</name> <name><name>res</name> <index>[<expr><literal type="number">100</literal><literal type="char">'010];
+int dp (int id) {
+	if (!id) return 1;
+	if (res[id] != -1) return res[id];
+	int w = dp(id-1);
+	if (id &gt; 1) w += dp(id-2);
+	if (w &gt;= MOD) w -= MOD;
+	return res[id] = w;
+}
+
+int main() {
+	memset(res, -1, sizeof(res));
+	string s;
+	cin &gt;&gt; s;
+	int n = sz(s);
+	char l = '</literal><name>q</name><literal type="char">';
+	int c = 0;
+	s += "L";
+
+	ll ans = 1;
+	for (char x : s) {
+		if (x == '</literal><name>w</name><literal type="char">' || x == '</literal><name>m</name><literal type="char">') {
+			puts("0");
+			return 0;
+		}
+		if (x == l) c++;
+		else {
+			if (l == '</literal><literal type="string">u'</literal></expr></index></name> || l == '<name>n</name><literal type="char">'</literal></expr></expr_stmt>) ans = (ans*dp(c))%MOD;
+			c = 1;
+			l = x;
+		}
+	}
+	cout &lt;&lt; ans &lt;&lt; endl;
+}
+</unit>

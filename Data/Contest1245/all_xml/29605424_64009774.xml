@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29605424_64009774.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<decl_stmt><decl><type><name>int</name></type> <name><name>cl</name><index>[<expr><literal type="number">100004</literal></expr>]</index></name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name>t</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name>a</name></decl>,<decl><type ref="prev"/><name>b</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name>ok</name></decl>;</decl_stmt>
+
+<function><type><name>void</name></type> <name>DFS</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>u</name></decl></parameter>)</parameter_list>
+<block>{
+    <expr_stmt><expr><name><name>cl</name><index>[<expr><name>u</name></expr>]</index></name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+
+    <if>if<condition>(<expr><name><name>cl</name><index>[<expr><call><name>abs</name><argument_list>(<argument><expr><name>u</name><operator>-</operator><name>a</name></expr></argument>)</argument_list></call></expr>]</index></name><operator>==</operator><literal type="number">0</literal></expr>)</condition><then>
+        <block type="pseudo"><expr_stmt><expr><call><name>DFS</name><argument_list>(<argument><expr><call><name>abs</name><argument_list>(<argument><expr><name>u</name><operator>-</operator><name>a</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then></if>
+
+    <if>if<condition>(<expr><name><name>cl</name><index>[<expr><call><name>abs</name><argument_list>(<argument><expr><name>u</name><operator>-</operator><name>b</name></expr></argument>)</argument_list></call></expr>]</index></name><operator>==</operator><literal type="number">0</literal></expr>)</condition><then>
+        <block type="pseudo"><expr_stmt><expr><call><name>DFS</name><argument_list>(<argument><expr><call><name>abs</name><argument_list>(<argument><expr><name>u</name><operator>-</operator><name>b</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then></if>
+
+    <if>if<condition>(<expr><name>u</name><operator>+</operator><name>a</name><operator>&lt;=</operator><name>a</name><operator>+</operator><name>b</name><operator>&amp;&amp;</operator><name><name>cl</name><index>[<expr><name>u</name><operator>+</operator><name>a</name></expr>]</index></name><operator>==</operator><literal type="number">0</literal></expr>)</condition><then>
+        <block type="pseudo"><expr_stmt><expr><call><name>DFS</name><argument_list>(<argument><expr><name>u</name><operator>+</operator><name>a</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then></if>
+
+    <if>if<condition>(<expr><name>u</name><operator>+</operator><name>b</name><operator>&lt;=</operator><name>a</name><operator>+</operator><name>b</name><operator>&amp;&amp;</operator><name><name>cl</name><index>[<expr><name>u</name><operator>+</operator><name>b</name></expr>]</index></name><operator>==</operator><literal type="number">0</literal></expr>)</condition><then>
+        <block type="pseudo"><expr_stmt><expr><call><name>DFS</name><argument_list>(<argument><expr><name>u</name><operator>+</operator><name>b</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then></if>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name> <parameter_list>()</parameter_list>
+<block>{
+    <comment type="line">//freopen("main.inp","r",stdin);</comment>
+    <comment type="line">//freopen("main.out","w",stdout);</comment>
+
+    <expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%d "</literal></expr></argument>,<argument><expr><operator>&amp;</operator><name>t</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</init> <condition><expr><name>i</name><operator>&lt;=</operator><name>t</name></expr>;</condition> <incr><expr><operator>++</operator><name>i</name></expr></incr>)</control>
+    <block>{
+        <expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%d %d "</literal></expr></argument>,<argument><expr><operator>&amp;</operator><name>a</name></expr></argument>,<argument><expr><operator>&amp;</operator><name>b</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <expr_stmt><expr><call><name>memset</name><argument_list>(<argument><expr><name>cl</name></expr></argument>,<argument><expr><literal type="number">0</literal></expr></argument>,<argument><expr><sizeof>sizeof <name>cl</name></sizeof></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <expr_stmt><expr><call><name>DFS</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <expr_stmt><expr><name>ok</name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+
+        <for>for<control>(<init><decl><type><name>int</name></type> <name>j</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</init> <condition><expr><name>j</name><operator>&lt;</operator><call><name>min</name><argument_list>(<argument><expr><name>a</name></expr></argument>,<argument><expr><name>b</name></expr></argument>)</argument_list></call></expr>;</condition> <incr><expr><operator>++</operator><name>j</name></expr></incr>)</control>
+            <block type="pseudo"><if>if<condition>(<expr><name><name>cl</name><index>[<expr><name>j</name></expr>]</index></name><operator>==</operator><literal type="number">0</literal></expr>)</condition><then>
+                <block type="pseudo"><expr_stmt><expr><name>ok</name><operator>=</operator><literal type="number">0</literal></expr>;</expr_stmt></block></then></if></block></for>
+
+        <if>if<condition>(<expr><name>ok</name><operator>==</operator><literal type="number">1</literal></expr>)</condition><then>
+            <block type="pseudo"><expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"Finite\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then>
+        <else>else
+            <block type="pseudo"><expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"Infinite\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></else></if>
+    }</block></for>
+}</block></function>
+</unit>

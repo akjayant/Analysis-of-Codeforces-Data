@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1243/all/29768606_64374266.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>IOS</name></cpp:macro> <cpp:value>ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);</cpp:value></cpp:define>
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>maxn</name> <init>= <expr><literal type="number">1e5</literal> <operator>+</operator> <literal type="number">7</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>mod</name> <init>= <expr><literal type="number">1e9</literal> <operator>+</operator> <literal type="number">7</literal></expr></init></decl>;</decl_stmt>
+
+
+<decl_stmt><decl><type><name>mt19937</name></type> <name>ran</name><argument_list>( <argument><expr><call><name>time</name><argument_list>( <argument><expr><literal type="number">0</literal></expr></argument> )</argument_list></call></expr></argument>)</argument_list></decl>;</decl_stmt>
+
+
+<function><specifier>inline</specifier> <type><name>int</name></type> <name>random</name><parameter_list>( )</parameter_list> <block>{
+    <return>return <expr><call><name>abs</name><argument_list>(<argument><expr><operator>(</operator> <name>int</name> <operator>)</operator> <call><name>ran</name><argument_list>( )</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+}</block></function>
+
+<decl_stmt><decl><type><name>int</name></type> <name>k</name></decl>;</decl_stmt>
+
+<function><type><name>void</name></type> <name>input</name><parameter_list>( )</parameter_list> <block>{
+    <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>k</name></expr>;</expr_stmt>
+}</block></function>
+
+<function><type><name>void</name></type> <name>solve</name><parameter_list>( )</parameter_list> <block>{
+    <for>for <control>( <init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>k</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr> )</control> <block>{
+        <decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>;</decl_stmt>
+        <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name></expr>;</expr_stmt>
+        <decl_stmt><decl><type><name><name>vector</name> <argument_list type="generic">&lt; <argument><expr><name>int</name></expr></argument> &gt;</argument_list></name></type> <name>desk</name></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>int</name></type> <name>temp</name></decl>;</decl_stmt>
+        <for>for <control>( <init><decl><type><name>int</name></type> <name>j</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>j</name> <operator>&lt;</operator> <name>n</name></expr>;</condition> <incr><expr><name>j</name><operator>++</operator></expr></incr> )</control> <block>{
+            <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>temp</name></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>desk</name><operator>.</operator><name>push_back</name></name><argument_list>( <argument><expr><name>temp</name></expr></argument> )</argument_list></call></expr>;</expr_stmt>
+        }</block></for>
+        <expr_stmt><expr><call><name>sort</name><argument_list>( <argument><expr><call><name><name>desk</name><operator>.</operator><name>begin</name></name><argument_list>( )</argument_list></call></expr></argument>, <argument><expr><call><name><name>desk</name><operator>.</operator><name>end</name></name><argument_list>( )</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <decl_stmt><decl><type><name>int</name></type> <name>ans</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+        <for>for <control>( <init><decl><type><name>int</name></type> <name>j</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>j</name> <operator>&lt;</operator> <name>n</name></expr>;</condition> <incr><expr><name>j</name><operator>++</operator></expr></incr> )</control> <block>{
+            <expr_stmt><expr><name>ans</name> <operator>=</operator> <call><name>max</name><argument_list>( <argument><expr><name>ans</name></expr></argument>, <argument><expr><call><name>min</name><argument_list>( <argument><expr><name>n</name> <operator>-</operator> <name>j</name></expr></argument>, <argument><expr><name><name>desk</name><index>[<expr><name>j</name></expr>]</index></name></expr></argument> )</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        }</block></for>
+        <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>ans</name> <operator>&lt;&lt;</operator> <literal type="char">'\n'</literal></expr>;</expr_stmt>
+    }</block></for>
+
+}</block></function>
+
+<function><type><name>int32_t</name></type> <name>main</name><parameter_list>( )</parameter_list> <block>{
+    <decl_stmt><decl><type><name>IOS</name></type>
+    <name>input</name><argument_list>( )</argument_list></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>solve</name><argument_list>( )</argument_list></call></expr>;</expr_stmt>
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+
+}</block></function>
+</unit>

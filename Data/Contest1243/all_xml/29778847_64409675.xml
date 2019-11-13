@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1243/all/29778847_64409675.cpp"><cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;string&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;iomanip&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;cmath&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>int</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>endl</name></cpp:macro> <cpp:value>"\n"</cpp:value></cpp:define>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>long</name> <name>long</name></type> <name>INF</name> <init>= <expr><operator>(</operator><name>long</name> <name>long</name><operator>)</operator><literal type="number">1e18</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><specifier>const</specifier> <name>long</name> <name>long</name></type> <name>MOD</name> <init>= <expr><literal type="number">1</literal><literal type="char">'000'</literal><literal type="number">000</literal><literal type="char">'007; 
+
+string yn(bool f){return f?"Yes":"No";}
+string YN(bool f){return f?"YES":"NO";}
+
+void swa(string &amp;s, string &amp; t, int i, int j){
+	char a = s[i];
+	s[i] = t[j];
+	t[j] = a;
+}
+
+signed main(){
+	cin.tie(nullptr);
+	ios::sync_with_stdio(false);
+	cout&lt;&lt;fixed&lt;&lt;setprecision(10);
+	
+	const int NUM = 26;
+	
+	int k;
+	
+	cin&gt;&gt;k;
+	
+	for(int _ = 0; _ &lt; k; _++){
+		int n;
+		bool flag = true;
+		string s, t;
+		vector&lt;pair&lt;int,int&gt;&gt; ans;
+		int con[NUM] = {}, con1[NUM] = {}, con2[NUM] = {};
+		
+		cin&gt;&gt;n;
+		
+		cin&gt;&gt;s&gt;&gt;t;
+		
+		for(int i = 0; i &lt; n; i++){
+			con[s[i] - '</literal><name>a</name><literal type="char">']++;
+			con[t[i] - '</literal><name>a</name><literal type="char">']++;
+			con1[s[i] - '</literal><name>a</name><literal type="char">']++;
+			con2[t[i] - '</literal><name>a</name><literal type="char">'</literal></expr></init></decl></decl_stmt>]++;
+		}
+		
+		
+		
+		for(int i = 0; i &lt; NUM; i++){
+			if(con[i]%2){
+				flag = false;
+				break;
+			}
+		}
+		
+		if(!flag){
+			cout&lt;&lt;"No"&lt;&lt;endl;
+		} else {
+			cout&lt;&lt;"Yes"&lt;&lt;endl;
+			
+			for(int i = 0; i &lt; n; i++){
+				if(s[i] == t[i]) continue;
+				bool flag = false;
+				for(int j = i + 1; j &lt; n; j++){
+					if(s[i] == s[j]){
+						swa(s,t,j,i);
+						ans.push_back(make_pair(j,i));
+						flag = true;
+						break;
+					}
+					
+				}
+				if(flag) continue;
+				for(int j = i + 1; j &lt; n; j++){
+					if(s[i] == t[j]){
+						swa(s,t,j,j);
+						swa(s,t,j,i);
+						ans.push_back(make_pair(j,j));
+						ans.push_back(make_pair(j,i));
+						flag = true;
+						break;
+					}
+					
+				}
+				
+			}
+			// cout&lt;&lt;"&lt;&gt;"&lt;&lt;endl;
+			// cout&lt;&lt;s&lt;&lt;endl;
+			// cout&lt;&lt;t&lt;&lt;endl;
+			
+			cout&lt;&lt;ans.size()&lt;&lt;endl;
+			
+			for(pair&lt;int,int&gt; p : ans){
+				cout&lt;&lt;p.first+1&lt;&lt;" "&lt;&lt;p.second+1&lt;&lt;endl;
+			}
+		}
+		
+	}
+	
+	
+	return 0;
+}</unit>

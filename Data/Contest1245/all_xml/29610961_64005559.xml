@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29610961_64005559.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cmath&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<function><type><name>signed</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+    <decl_stmt><decl><type><name>int</name></type> <name>nbQueries</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>nbQueries</name></expr>;</expr_stmt>
+    
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>idQuery</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>idQuery</name> <operator>&lt;</operator> <name>nbQueries</name></expr>;</condition> <incr><expr><operator>++</operator> <name>idQuery</name></expr></incr>)</control>
+    <block>{
+        <decl_stmt><decl><type><name>int</name></type> <name>nbParties</name></decl>;</decl_stmt><expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>nbParties</name></expr>;</expr_stmt>
+        
+        <decl_stmt><decl><type><name>int</name></type> <name>nbA</name></decl>, <decl><type ref="prev"/><name>nbB</name></decl>, <decl><type ref="prev"/><name>nbC</name></decl>, <decl><type ref="prev"/><name>a</name></decl>, <decl><type ref="prev"/><name>b</name></decl>, <decl><type ref="prev"/><name>c</name></decl>;</decl_stmt>
+        <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>nbA</name> <operator>&gt;&gt;</operator> <name>nbB</name> <operator>&gt;&gt;</operator> <name>nbC</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name>a</name> <operator>=</operator> <name>nbA</name></expr>;</expr_stmt> <expr_stmt><expr><name>b</name> <operator>=</operator> <name>nbB</name></expr>;</expr_stmt> <expr_stmt><expr><name>c</name> <operator>=</operator> <name>nbC</name></expr>;</expr_stmt>
+        
+        <decl_stmt><decl><type><name>int</name></type> <name>nb</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>string</name></type> <name>res</name> <init>= <expr><literal type="string">""</literal></expr></init></decl>;</decl_stmt>
+        
+        <for>for <control>(<init><decl><type><name>int</name></type> <name>iPartie</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>iPartie</name> <operator>&lt;</operator> <name>nbParties</name></expr>;</condition> <incr><expr><operator>++</operator><name>iPartie</name></expr></incr>)</control>
+        <block>{
+            <decl_stmt><decl><type><name>char</name></type> <name>coup</name></decl>;</decl_stmt>
+            <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>coup</name></expr>;</expr_stmt>
+            <expr_stmt><expr><name>res</name> <operator>+=</operator> <name>coup</name></expr>;</expr_stmt>
+            
+            <if>if <condition>(<expr><name>coup</name> <operator>==</operator> <literal type="char">'R'</literal></expr>)</condition><then>
+            <block>{
+                <if>if <condition>(<expr><name>nbB</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition><then>
+                <block>{
+                    <expr_stmt><expr><name>nbB</name><operator>--</operator></expr>;</expr_stmt>
+                    <expr_stmt><expr><name>nb</name><operator>++</operator></expr>;</expr_stmt>
+                }</block></then></if>
+            }</block></then>
+            <elseif>else <if>if <condition>(<expr><name>coup</name> <operator>==</operator> <literal type="char">'P'</literal></expr>)</condition><then>
+            <block>{
+                <if>if <condition>(<expr><name>nbC</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition><then>
+                <block>{
+                    <expr_stmt><expr><name>nbC</name><operator>--</operator></expr>;</expr_stmt>
+                    <expr_stmt><expr><name>nb</name><operator>++</operator></expr>;</expr_stmt>
+                }</block></then></if>
+            }</block></then></if></elseif>
+            <else>else
+            <block>{
+                <if>if <condition>(<expr><name>nbA</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition><then>
+                <block>{
+                    <expr_stmt><expr><name>nbA</name> <operator>--</operator></expr>;</expr_stmt>
+                    <expr_stmt><expr><name>nb</name><operator>++</operator></expr>;</expr_stmt>
+                }</block></then></if>
+            }</block></else></if>
+            
+        }</block></for>
+        
+        <comment type="line">//cout &lt;&lt; nb &lt;&lt; endl;</comment>
+        
+        <if>if <condition>(<expr><name>nb</name> <operator>&gt;=</operator> <call><name>ceil</name><argument_list>(<argument><expr><operator>(</operator><name>double</name><operator>)</operator><name>nbParties</name><operator>/</operator><literal type="number">2</literal></expr></argument>)</argument_list></call></expr>)</condition><then>
+        <block>{
+            <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"YES\n"</literal></expr>;</expr_stmt>
+            <for>for <control>(<init><decl><type><name>int</name></type> <name>iPartie</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>iPartie</name> <operator>&lt;</operator> <name>nbParties</name></expr>;</condition> <incr><expr><operator>++</operator><name>iPartie</name></expr></incr>)</control>
+            <block>{
+                <if>if <condition>(<expr><name><name>res</name><index>[<expr><name>iPartie</name></expr>]</index></name> <operator>==</operator> <literal type="char">'R'</literal></expr>)</condition><then>
+                <block>{
+                    <if>if <condition>(<expr><name>b</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition><then>
+                    <block>{
+                        <expr_stmt><expr><name>b</name><operator>--</operator></expr>;</expr_stmt>
+                        <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"P"</literal></expr>;</expr_stmt>
+                    }</block></then>
+                    <else>else
+                    <block>{
+                        <if>if <condition>(<expr><name>nbC</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition><then>
+                        <block>{
+                            <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"S"</literal></expr>;</expr_stmt>
+                        
+                            <expr_stmt><expr><name>nbC</name><operator>--</operator></expr>;</expr_stmt>
+                        }</block></then>
+                            <else>else<block>{
+                            <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"R"</literal></expr>;</expr_stmt><expr_stmt><expr><name>nbB</name><operator>--</operator></expr>;</expr_stmt>}</block></else></if>
+                    }</block></else></if>
+                }</block></then>
+                <elseif>else <if>if <condition>(<expr><name><name>res</name><index>[<expr><name>iPartie</name></expr>]</index></name> <operator>==</operator> <literal type="char">'P'</literal></expr>)</condition><then>
+                <block>{
+                    <if>if <condition>(<expr><name>c</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition><then>
+                    <block>{
+                        <expr_stmt><expr><name>c</name><operator>--</operator></expr>;</expr_stmt>
+                        <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"S"</literal></expr>;</expr_stmt>
+                    }</block></then>
+                    <else>else
+                    <block>{
+                        <if>if <condition>(<expr><name>nbA</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition><then><block>{
+                            <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"R"</literal></expr>;</expr_stmt><expr_stmt><expr><name>nbA</name><operator>--</operator></expr>;</expr_stmt>}</block></then>
+                        <else>else<block>{
+                            <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"P"</literal></expr>;</expr_stmt><expr_stmt><expr><name>nbC</name><operator>--</operator></expr>;</expr_stmt>}</block></else></if>
+                    }</block></else></if>
+                }</block></then></if></elseif>
+                <else>else
+                <block>{
+                    <if>if <condition>(<expr><name>a</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition><then>
+                    <block>{
+                        <expr_stmt><expr><operator>--</operator><name>a</name></expr>;</expr_stmt>
+                        <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"R"</literal></expr>;</expr_stmt>
+                    }</block></then>
+                    <else>else
+                    <block>{
+                        <if>if <condition>(<expr><name>nbB</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition><then><block>{
+                            <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"P"</literal></expr>;</expr_stmt>
+                            <expr_stmt><expr><name>nbB</name><operator>--</operator></expr>;</expr_stmt>}</block></then>
+                        <else>else<block>{
+                            <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"S"</literal></expr>;</expr_stmt>
+                            <expr_stmt><expr><name>nbA</name><operator>--</operator></expr>;</expr_stmt>}</block></else></if>
+                    }</block></else></if>
+                }</block></else></if>
+            }</block></for>
+            <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+        }</block></then>
+        <else>else
+            <block type="pseudo"><expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"NO\n"</literal></expr>;</expr_stmt></block></else></if>
+    }</block></for>
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1236/all/29021624_62791840.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>fi</name></cpp:macro> <cpp:value>first</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>se</name></cpp:macro> <cpp:value>second</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>all</name><parameter_list>(<parameter><type><name>a</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>a.begin(), a.end()</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>rall</name><parameter_list>(<parameter><type><name>a</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>a.rbegin(), a.rend()</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>out</name><parameter_list>(<parameter><type><name>t</name></type></parameter>, <parameter><type><name>a</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>copy(all(a), ostream_iterator&lt;t&gt;(cout, " ")); cout &lt;&lt; "\n";</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>int</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<comment type="line">// #define DEBUG</comment>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+ 
+<function><type><name>void</name></type> <name>set_program</name><parameter_list>()</parameter_list> <block>{
+	<cpp:ifdef>#<cpp:directive>ifdef</cpp:directive> <name>DEBUG</name></cpp:ifdef>
+		<expr_stmt><expr><call><name>freopen</name> <argument_list>(<argument><expr><literal type="string">"test.in"</literal></expr></argument>, <argument><expr><literal type="string">"r"</literal></expr></argument>, <argument><expr><name>stdin</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<expr_stmt><expr><call><name>freopen</name> <argument_list>(<argument><expr><literal type="string">"test.out"</literal></expr></argument>, <argument><expr><literal type="string">"w"</literal></expr></argument>, <argument><expr><name>stdout</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<cpp:endif>#<cpp:directive>endif</cpp:directive></cpp:endif>
+	<expr_stmt><expr><call><name><name>ios_base</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<expr_stmt><expr><call><name><name>cin</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt> <expr_stmt><expr><call><name><name>cout</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+}</block></function>
+ 
+<comment type="line">// typedef long long ll;</comment>
+
+<comment type="line">// const int INF = 1e9 + 1;</comment>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>MOD</name> <init>= <expr><literal type="number">1e9</literal> <operator>+</operator> <literal type="number">7</literal></expr></init></decl>;</decl_stmt>
+
+<function><type><name>int</name></type> <name>bin_pow</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>a</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>k</name></decl></parameter>)</parameter_list> <block>{
+	<if>if <condition>(<expr><operator>!</operator><name>k</name></expr>)</condition><then> <block>{
+		<return>return <expr><literal type="number">1</literal></expr>;</return>
+	}</block></then></if>
+	<if>if <condition>(<expr><name>k</name> <operator>==</operator> <literal type="number">1</literal></expr>)</condition><then> <block>{
+		<return>return <expr><name>a</name></expr>;</return>
+	}</block></then></if>
+	<decl_stmt><decl><type><name>int</name></type> <name>res</name> <init>= <expr><call><name>bin_pow</name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><name>k</name> <operator>/</operator> <literal type="number">2</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+	<if>if <condition>(<expr><name>k</name> <operator>%</operator> <literal type="number">2</literal></expr>)</condition><then> <block>{
+		<return>return <expr><operator>(</operator><operator>(</operator><operator>(</operator><name>res</name> <operator>*</operator> <name>res</name><operator>)</operator> <operator>%</operator> <name>MOD</name><operator>)</operator> <operator>*</operator> <name>a</name><operator>)</operator> <operator>%</operator> <name>MOD</name></expr>;</return>
+	}</block></then> <else>else <block>{
+		<return>return <expr><operator>(</operator><name>res</name> <operator>*</operator> <name>res</name><operator>)</operator> <operator>%</operator> <name>MOD</name></expr>;</return>
+	}</block></else></if>
+}</block></function>
+ 
+<function><name>main</name><parameter_list>()</parameter_list> <block>{
+	<expr_stmt><expr><call><name>set_program</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+	<decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>, <decl><type ref="prev"/><name>m</name></decl>;</decl_stmt>
+	<expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name> <operator>&gt;&gt;</operator> <name>m</name></expr>;</expr_stmt>
+	<decl_stmt><decl><type><name>int</name></type> <name>res</name> <init>= <expr><operator>(</operator><call><name>bin_pow</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>, <argument><expr><name>m</name></expr></argument>)</argument_list></call> <operator>-</operator> <literal type="number">1</literal> <operator>+</operator> <name>MOD</name><operator>)</operator> <operator>%</operator> <name>MOD</name></expr></init></decl>;</decl_stmt>
+	<expr_stmt><expr><name>res</name> <operator>=</operator> <call><name>bin_pow</name><argument_list>(<argument><expr><name>res</name></expr></argument>, <argument><expr><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>res</name> <operator>&lt;&lt;</operator> <literal type="string">"\n"</literal></expr>;</expr_stmt>
+ 	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

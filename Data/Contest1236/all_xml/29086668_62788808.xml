@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1236/all/29086668_62788808.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;array&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;list&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;queue&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;set&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;map&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;unordered_map&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;unordered_set&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;utility&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;string&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;sstream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;random&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdio&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdlib&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstring&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;ctime&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cmath&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cassert&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;climits&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bitset&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;functional&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iomanip&gt;</cpp:file></cpp:include>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>FOR_LT</name><parameter_list>(<parameter><type><name>i</name></type></parameter>, <parameter><type><name>beg</name></type></parameter>, <parameter><type><name>end</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for (int i = beg; i &lt; end; i++)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>FOR_LE</name><parameter_list>(<parameter><type><name>i</name></type></parameter>, <parameter><type><name>beg</name></type></parameter>, <parameter><type><name>end</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for (int i = beg; i &lt;= end; i++)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>FOR_DW</name><parameter_list>(<parameter><type><name>i</name></type></parameter>, <parameter><type><name>beg</name></type></parameter>, <parameter><type><name>end</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for (int i = beg; end &lt;= i; i--)</cpp:value></cpp:define>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<decl_stmt><decl><type><name>int64_t</name></type> <name>kRem</name> <init>= <expr><literal type="number">1000000007</literal></expr></init></decl>;</decl_stmt>
+
+<function><type><name>int64_t</name></type> <name>pow_rem</name><parameter_list>(<parameter><decl><type><name>int64_t</name></type> <name>x</name></decl></parameter>, <parameter><decl><type><name>int64_t</name></type> <name>m</name></decl></parameter>, <parameter><decl><type><name>int64_t</name></type> <name>rem</name></decl></parameter>)</parameter_list>
+<block>{
+	<if>if <condition>(<expr><name>m</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+		<return>return <expr><literal type="number">1</literal></expr>;</return>
+	}</block></then></if>
+	<if>if <condition>(<expr><name>m</name> <operator>==</operator> <literal type="number">1</literal></expr>)</condition><then> <block>{
+		<return>return <expr><name>x</name></expr>;</return>
+	}</block></then></if>
+
+	<if>if <condition>(<expr><name>m</name> <operator>&amp;</operator> <literal type="number">1</literal></expr>)</condition><then> <block>{
+		<decl_stmt><decl><type><name>int64_t</name></type> <name>val</name> <init>= <expr><call><name>pow_rem</name><argument_list>(<argument><expr><name>x</name></expr></argument>, <argument><expr><name>m</name> <operator>/</operator> <literal type="number">2</literal></expr></argument>, <argument><expr><name>rem</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+		<expr_stmt><expr><name>val</name> <operator>=</operator> <name>val</name> <operator>*</operator> <name>val</name></expr>;</expr_stmt>
+		<expr_stmt><expr><name>val</name> <operator>%=</operator> <name>rem</name></expr>;</expr_stmt>
+		<expr_stmt><expr><name>val</name> <operator>*=</operator> <name>x</name></expr>;</expr_stmt>
+		<expr_stmt><expr><name>val</name> <operator>%=</operator> <name>rem</name></expr>;</expr_stmt>
+		<return>return <expr><name>val</name></expr>;</return>
+	}</block></then>
+	<else>else <block>{
+		<decl_stmt><decl><type><name>int64_t</name></type> <name>val</name> <init>= <expr><call><name>pow_rem</name><argument_list>(<argument><expr><name>x</name></expr></argument>, <argument><expr><name>m</name> <operator>/</operator> <literal type="number">2</literal></expr></argument>, <argument><expr><name>rem</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+		<expr_stmt><expr><name>val</name> <operator>=</operator> <name>val</name> <operator>*</operator> <name>val</name></expr>;</expr_stmt>
+		<expr_stmt><expr><name>val</name> <operator>%=</operator> <name>rem</name></expr>;</expr_stmt>
+		<return>return <expr><name>val</name></expr>;</return>
+	}</block></else></if>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+	<expr_stmt><expr><call><name><name>ios_base</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<expr_stmt><expr><call><name><name>cin</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><name>NULL</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+	<decl_stmt><decl><type><name>int64_t</name></type> <name>n</name></decl>, <decl><type ref="prev"/><name>m</name></decl>;</decl_stmt> <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name> <operator>&gt;&gt;</operator> <name>m</name></expr>;</expr_stmt>
+
+	<decl_stmt><decl><type><name>int64_t</name></type> <name>ans</name> <init>= <expr><call><name>pow_rem</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>, <argument><expr><name>m</name></expr></argument>, <argument><expr><name>kRem</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+	<expr_stmt><expr><name>ans</name> <operator>-=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+	<if>if <condition>(<expr><name>ans</name> <operator>&lt;</operator> <literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>ans</name> <operator>+=</operator> <name>kRem</name></expr>;</expr_stmt></block></then></if>
+
+	<expr_stmt><expr><name>ans</name> <operator>=</operator> <call><name>pow_rem</name><argument_list>(<argument><expr><name>ans</name></expr></argument>, <argument><expr><name>n</name></expr></argument>, <argument><expr><name>kRem</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+	<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>ans</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+
+	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>

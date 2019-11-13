@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1236/all/29020983_62787160.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;ext/pb_ds/assoc_container.hpp&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;ext/pb_ds/trie_policy.hpp&gt;</cpp:file></cpp:include>
+
+<comment type="line">//#pragma GCC optimize("O3")</comment>
+<comment type="line">//#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,tune=native")</comment>
+<comment type="line">//#pragma GCC optimize ("unroll-loops")</comment>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<using>using <namespace>namespace <name>__gnu_pbds</name>;</namespace></using>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>all</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>x.begin(), x.end()</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>mp</name></cpp:macro> <cpp:value>make_pair</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>X</name></cpp:macro> <cpp:value>first</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>Y</name></cpp:macro> <cpp:value>second</cpp:value></cpp:define>
+
+<using><template>template<parameter_list>&lt;<parameter><type><name>typename</name></type> <name>T</name></parameter>&gt;</parameter_list></template>
+using <name>ordered_set</name> <init>= <type><name><name>tree</name> <argument_list type="generic">&lt;<argument><expr><name>T</name></expr></argument>, <argument><expr><name>null_type</name></expr></argument>, <argument><expr><name><name>less</name><argument_list type="generic">&lt;<argument><expr><name>T</name></expr></argument>&gt;</argument_list></name></expr></argument>, <argument><expr><name>rb_tree_tag</name></expr></argument>, <argument><expr><name>tree_order_statistics_node_update</name></expr></argument>&gt;</argument_list></name></type></init>;</using>
+
+<using>using <name>ll</name> <init>= <type><name>long</name> <name>long</name></type></init>;</using>
+<using>using <name>ull</name> <init>= <type><name>unsigned</name> <name>long</name> <name>long</name></type></init>;</using>
+<using>using <name>ld</name> <init>= <type><name>long</name> <name>double</name></type></init>;</using>
+<decl_stmt><decl><type><name>mt19937_64</name></type> <name>gen</name><argument_list>(<argument><expr><literal type="number">322</literal></expr></argument>)</argument_list></decl>;</decl_stmt>
+
+<decl_stmt><decl><type><name>ll</name> <specifier>const</specifier></type> <name>mod</name> <init>= <expr><literal type="number">1e9</literal> <operator>+</operator> <literal type="number">7</literal></expr></init></decl>;</decl_stmt>
+
+<namespace>namespace <block>{
+    <function><type><name>ll</name></type> <name>mul</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>a</name></decl></parameter>, <parameter><decl><type><name>ll</name></type> <name>b</name></decl></parameter>)</parameter_list> <block>{
+        <decl_stmt><decl><type><name>ll</name></type> <name>val</name> <init>= <expr><name>a</name> <operator>*</operator> <name>b</name> <operator>-</operator> <call>(<name>ll</name>)<argument_list>(<argument><expr><operator>(</operator><name>ld</name><operator>)</operator><name>a</name> <operator>*</operator> <name>b</name> <operator>/</operator> <name>mod</name></expr></argument>)</argument_list></call> <operator>*</operator> <name>mod</name></expr></init></decl>;</decl_stmt>
+        <if>if <condition>(<expr><name>val</name> <operator>&lt;</operator> <literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>val</name> <operator>+=</operator> <name>mod</name></expr>;</expr_stmt></block></then></if>
+        <if>if <condition>(<expr><name>val</name> <operator>&gt;=</operator> <name>mod</name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>val</name> <operator>-=</operator> <name>mod</name></expr>;</expr_stmt></block></then></if>
+        <return>return <expr><name>val</name></expr>;</return>
+    }</block></function>
+    <function><type><name>ll</name></type> <name>poww</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>a</name></decl></parameter>, <parameter><decl><type><name>ll</name></type> <name>b</name></decl></parameter>)</parameter_list> <block>{
+        <decl_stmt><decl><type><name>ll</name></type> <name>val</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><name>a</name> <operator>%=</operator> <name>mod</name></expr>;</expr_stmt>
+        <while>while <condition>(<expr><name>b</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{
+            <if>if <condition>(<expr><name>b</name> <operator>%</operator> <literal type="number">2</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>val</name> <operator>=</operator> <call><name>mul</name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><name>val</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then></if>
+            <expr_stmt><expr><name>a</name> <operator>=</operator> <call><name>mul</name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><name>a</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><name>b</name> <operator>&gt;&gt;=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+        }</block></while>
+        <return>return <expr><name>val</name> <operator>%</operator> <name>mod</name></expr>;</return>
+    }</block></function>
+    <function><type><name>ll</name></type> <name>inv</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>a</name></decl></parameter>)</parameter_list> <block>{
+        <return>return <expr><call><name>poww</name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><name>mod</name> <operator>-</operator> <literal type="number">2</literal></expr></argument>)</argument_list></call></expr>;</return>
+    }</block></function>
+}</block></namespace>
+
+<decl_stmt><decl><type><name>ll</name> <specifier>const</specifier></type> <name>maxn</name> <init>= <expr><literal type="number">3e5</literal> <operator>+</operator> <literal type="number">5</literal></expr></init></decl>;</decl_stmt>
+
+<function><type><name>signed</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+    <expr_stmt><expr><call><name><name>ios_base</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt> <expr_stmt><expr><call><name><name>cin</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt> <expr_stmt><expr><call><name><name>cout</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>ll</name></type> <name>n</name></decl>, <decl><type ref="prev"/><name>m</name></decl>;</decl_stmt> <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name> <operator>&gt;&gt;</operator> <name>m</name></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>ll</name></type> <name>kek</name> <init>= <expr><call><name>poww</name><argument_list>(<argument><expr><literal type="number">2LL</literal></expr></argument>, <argument><expr><name>m</name></expr></argument>)</argument_list></call> <operator>-</operator> <literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><name>kek</name><operator>+=</operator><name>mod</name></expr>;</expr_stmt> <expr_stmt><expr><name>kek</name><operator>%=</operator><name>mod</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <call><name>poww</name><argument_list>(<argument><expr><name>kek</name></expr></argument>, <argument><expr><name>n</name></expr></argument>)</argument_list></call> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+<comment type="block">/*
+
+*/</comment></unit>

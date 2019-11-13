@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29602675_64017585.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdio&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>gc</name></cpp:macro> <cpp:value>getchar</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>il</name></cpp:macro> <cpp:value>inline</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>re</name></cpp:macro> <cpp:value>register</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>LL</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<function><template>template <parameter_list>&lt;<parameter><type><name>typename</name></type> <name>T</name></parameter>&gt;</parameter_list></template>
+<type><name>void</name></type> <name>read</name><parameter_list>(<parameter><decl><type><name>T</name> <modifier>&amp;</modifier></type><name>s</name></decl></parameter>)</parameter_list>
+<block>{
+    <expr_stmt><expr><name>s</name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>bool</name></type> <name>p</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>char</name></type> <name>ch</name></decl>;</decl_stmt>
+    <while>while <condition>(<expr><name>ch</name> <operator>=</operator> <call><name>gc</name><argument_list>()</argument_list></call></expr><operator>,</operator> <expr><name>p</name> <operator>|=</operator> <name>ch</name> <operator>==</operator> <literal type="char">'-'</literal></expr><operator>,</operator> <expr><operator>!</operator><call><name>isdigit</name><argument_list>(<argument><expr><name>ch</name></expr></argument>)</argument_list></call></expr>)</condition>
+        <block type="pseudo"><empty_stmt>;</empty_stmt></block></while>
+    <while>while <condition>(<expr><name>s</name> <operator>=</operator> <name>s</name> <operator>*</operator> <literal type="number">10</literal> <operator>+</operator> <name>ch</name> <operator>-</operator> <literal type="char">'0'</literal></expr><operator>,</operator> <expr><name>ch</name> <operator>=</operator> <call><name>gc</name><argument_list>()</argument_list></call></expr><operator>,</operator> <expr><call><name>isdigit</name><argument_list>(<argument><expr><name>ch</name></expr></argument>)</argument_list></call></expr>)</condition>
+        <block type="pseudo"><empty_stmt>;</empty_stmt></block></while>
+    <expr_stmt><expr><name>s</name> <operator>*=</operator> <ternary><condition><expr><name>p</name></expr> ?</condition><then> <expr><operator>-</operator><literal type="number">1</literal></expr> </then><else>: <expr><literal type="number">1</literal></expr></else></ternary></expr>;</expr_stmt>
+}</block></function>
+<function><type><name>int</name></type> <name>gcd</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>a</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>b</name></decl></parameter>)</parameter_list>
+<block>{
+    <return>return <expr><ternary><condition><expr><operator>!</operator><name>b</name></expr> ?</condition><then> <expr><name>a</name></expr> </then><else>: <expr><call><name>gcd</name><argument_list>(<argument><expr><name>b</name></expr></argument>, <argument><expr><name>a</name> <operator>%</operator> <name>b</name></expr></argument>)</argument_list></call></expr></else></ternary></expr>;</return>
+}</block></function>
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+    <decl_stmt><decl><type><name>int</name></type> <name>t</name></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>read</name><argument_list>(<argument><expr><name>t</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <while>while <condition>(<expr><name>t</name><operator>--</operator></expr>)</condition>
+    <block>{
+        <decl_stmt><decl><type><name>int</name></type> <name>a</name></decl>, <decl><type ref="prev"/><name>b</name></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name>read</name><argument_list>(<argument><expr><name>a</name></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><call><name>read</name><argument_list>(<argument><expr><name>b</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <if>if <condition>(<expr><call><name>gcd</name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><name>b</name></expr></argument>)</argument_list></call> <operator>!=</operator> <literal type="number">1</literal></expr>)</condition><then>
+            <block type="pseudo"><expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"Infinite\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then>
+        <else>else
+            <block type="pseudo"><expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"Finite\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></else></if>
+    }</block></while>
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29573328_64032941.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<decl_stmt><decl><type><name>string</name></type> <name>s</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>long</name> <name>long</name></type> <name><name>d</name><index>[<expr><literal type="number">1000001</literal></expr>]</index></name></decl>;</decl_stmt> <comment type="line">// [][0] - last is not in pair yet</comment>
+<decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>char</name></expr></argument>&gt;</argument_list></name></type> <name>ans</name></decl>;</decl_stmt>
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+<comment type="line">//    d[1][0] = 1;</comment>
+<comment type="line">//    d[1][1] = 0;</comment>
+<comment type="line">//    d[2][0] = 1;</comment>
+<comment type="line">//    d[2][1] = 1;</comment>
+    <decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>E</name> <init>= <expr><literal type="number">1e9</literal> <operator>+</operator> <literal type="number">7</literal></expr></init></decl>;</decl_stmt>
+<comment type="line">//    for (int i = 3; i &lt; 1000000; ++i) {</comment>
+<comment type="line">//        d[i][0] = (d[i - 1][1] + d[i - 1][0]) % E;</comment>
+<comment type="line">//        d[i][1] = d[i - 1][0] % E;</comment>
+<comment type="line">//    }</comment>
+    <expr_stmt><expr><name><name>d</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>d</name><index>[<expr><literal type="number">1</literal></expr>]</index></name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>d</name><index>[<expr><literal type="number">2</literal></expr>]</index></name> <operator>=</operator> <literal type="number">2</literal></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>d</name><index>[<expr><literal type="number">3</literal></expr>]</index></name> <operator>=</operator> <literal type="number">3</literal></expr>;</expr_stmt>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">4</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <literal type="number">200000</literal></expr>;</condition> <incr><expr><operator>++</operator><name>i</name></expr></incr>)</control> <block>{
+        <expr_stmt><expr><name><name>d</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <operator>(</operator><name><name>d</name><index>[<expr><name>i</name> <operator>-</operator> <literal type="number">1</literal></expr>]</index></name> <operator>+</operator> <name><name>d</name><index>[<expr><name>i</name> <operator>-</operator> <literal type="number">2</literal></expr>]</index></name><operator>)</operator> <operator>%</operator> <name>E</name></expr>;</expr_stmt>
+    }</block></for>
+    <comment type="line">//cout &lt;&lt; d[199999];</comment>
+    <comment type="line">//824037258</comment>
+    <comment type="line">//cout &lt;&lt; d[999999][0] &lt;&lt;  " " &lt;&lt; d[999999][1] &lt;&lt; endl;</comment>
+    <comment type="line">//cout &lt;&lt; LONG_LONG_MAX &lt;&lt; endl;</comment>
+    <comment type="line">//cout &lt;&lt; E * E &lt;&lt; endl;</comment>
+    <comment type="line">//cout &lt;&lt; d[3][0] &lt;&lt; " " &lt;&lt; d[3][1] &lt;&lt; " " &lt;&lt; d[4][0] &lt;&lt; " " &lt;&lt; d[4][1];</comment>
+    <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>s</name></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>sum</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>amount</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <if>if <condition>(<expr><name><name>s</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>==</operator> <literal type="char">'m'</literal> <operator>||</operator> <name><name>s</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>==</operator> <literal type="char">'w'</literal></expr>)</condition><then> <block>{
+        <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+        <return>return <expr><literal type="number">0</literal></expr>;</return>
+    }</block></then></if>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;=</operator> <call><name><name>s</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr>;</condition> <incr><expr><operator>++</operator><name>i</name></expr></incr>)</control> <block>{
+        <if>if <condition>(<expr><name>i</name> <operator>&lt;</operator> <call><name><name>s</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>&amp;&amp;</operator> <operator>(</operator><name><name>s</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="char">'w'</literal> <operator>||</operator> <name><name>s</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="char">'m'</literal><operator>)</operator></expr>)</condition><then> <block>{
+            <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+            <return>return <expr><literal type="number">0</literal></expr>;</return>
+        }</block></then></if>
+        <if>if <condition>(<expr><name>i</name> <operator>&lt;</operator> <call><name><name>s</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>&amp;&amp;</operator> <name><name>s</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <name><name>s</name><index>[<expr><name>i</name> <operator>-</operator> <literal type="number">1</literal></expr>]</index></name></expr>)</condition><then> <block>{
+            <expr_stmt><expr><operator>++</operator><name>amount</name></expr>;</expr_stmt>
+            <continue>continue;</continue>
+        }</block></then> <else>else <block>{
+            <if>if <condition>(<expr><operator>(</operator><name><name>s</name><index>[<expr><name>i</name> <operator>-</operator> <literal type="number">1</literal></expr>]</index></name> <operator>==</operator> <literal type="char">'n'</literal> <operator>||</operator> <name><name>s</name><index>[<expr><name>i</name> <operator>-</operator> <literal type="number">1</literal></expr>]</index></name> <operator>==</operator> <literal type="char">'u'</literal><operator>)</operator> <operator>&amp;&amp;</operator> <name>amount</name> <operator>&gt;</operator> <literal type="number">1</literal></expr>)</condition><then> <block>{
+                <decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>am</name> <init>= <expr><name><name>d</name><index>[<expr><name>amount</name></expr>]</index></name></expr></init></decl>;</decl_stmt>
+                <expr_stmt><expr><name>sum</name> <operator>*=</operator> <name>am</name></expr>;</expr_stmt>
+                <expr_stmt><expr><name>sum</name> <operator>%=</operator> <name>E</name></expr>;</expr_stmt>
+            }</block></then></if>
+            <expr_stmt><expr><name>amount</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+        }</block></else></if>
+    }</block></for>
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>sum</name> <operator>%</operator> <name>E</name></expr>;</expr_stmt>
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>

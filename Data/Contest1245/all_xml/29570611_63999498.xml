@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29570611_63999498.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<typedef>typedef <type><name>long</name> <name>long</name> <name>int</name></type> <name>ll</name>;</typedef>
+<typedef>typedef <type><name>unsigned</name> <name>long</name> <name>long</name> <name>int</name></type> <name>ull</name>;</typedef>
+
+<function><type><name>ll</name></type> <name>power</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>x</name></decl></parameter>,<parameter><decl><type><name>ll</name></type> <name>y</name></decl></parameter>,<parameter><decl><type><name>ll</name></type> <name>p</name></decl></parameter>)</parameter_list><block>{<decl_stmt><decl><type><name>ll</name></type> <name>r</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt> <expr_stmt><expr><name>x</name><operator>=</operator><name>x</name><operator>%</operator><name>p</name></expr>;</expr_stmt> <while>while<condition>(<expr><name>y</name></expr>)</condition><block>{ <if>if<condition>(<expr><name>y</name><operator>&amp;</operator><literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>r</name><operator>=</operator> <name>r</name><operator>*</operator><name>x</name><operator>%</operator><name>p</name></expr>;</expr_stmt></block></then></if> <expr_stmt><expr><name>y</name><operator>=</operator><name>y</name><operator>&gt;&gt;</operator><literal type="number">1</literal></expr>;</expr_stmt> <expr_stmt><expr><name>x</name><operator>=</operator><name>x</name><operator>*</operator><name>x</name><operator>%</operator><name>p</name></expr>;</expr_stmt> }</block></while> <return>return <expr><name>r</name></expr>;</return> }</block></function>
+<comment type="block">/*  
+#include &lt;ext/pb_ds/assoc_container.hpp&gt;
+#include &lt;ext/pb_ds/tree_policy.hpp&gt;
+using namespace __gnu_pbds;
+typedef tree&lt;int, null_type, less&lt;int&gt;, rb_tree_tag, tree_order_statistics_node_update&gt; ordered_set;*/</comment>
+
+<decl_stmt><decl><type><name>mt19937</name></type> <name>rng</name><argument_list>(<argument><expr><call><name><name>chrono</name><operator>::</operator><name>steady_clock</name><operator>::</operator><name>now</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>time_since_epoch</name><argument_list>()</argument_list></call><operator>.</operator><call><name>count</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></decl>;</decl_stmt>
+
+<function><type><name>int</name></type> <name>csrand</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>l</name><init>=<expr><literal type="number">0</literal></expr></init></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>r</name><init>=<expr><literal type="number">1e9</literal></expr></init></decl></parameter>)</parameter_list>
+<block>{
+    <decl_stmt><decl><type><name><name>uniform_int_distribution</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>uid</name><argument_list>(<argument><expr><name>l</name></expr></argument>, <argument><expr><name>r</name></expr></argument>)</argument_list></decl>;</decl_stmt>
+    <return>return <expr><call><name>uid</name><argument_list>(<argument><expr><name>rng</name></expr></argument>)</argument_list></call></expr>;</return>
+}</block></function>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>PR</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>cout&lt;&lt;#x&lt;&lt;" : "&lt;&lt;x&lt;&lt;"\n";</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>PR1</name><parameter_list>(<parameter><type><name>x</name></type></parameter>,<parameter><type><name>y</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>cout&lt;&lt;#x&lt;&lt;" : "&lt;&lt;x&lt;&lt;"  |  "&lt;&lt;#y&lt;&lt;" : "&lt;&lt;y&lt;&lt;"\n";</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>PR2</name><parameter_list>(<parameter><type><name>x</name></type></parameter>,<parameter><type><name>y</name></type></parameter>,<parameter><type><name>z</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>cout&lt;&lt;#x&lt;&lt;" : "&lt;&lt;x&lt;&lt;"  |  "&lt;&lt;#y&lt;&lt;" : "&lt;&lt;y&lt;&lt;"  |  "&lt;&lt;#z&lt;&lt;" : "&lt;&lt;z&lt;&lt;"\n";</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ED</name></cpp:macro> <cpp:value>cout&lt;&lt;'\n';</cpp:value></cpp:define>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>IO</name></cpp:macro>              <cpp:value>ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>FILEIO</name></cpp:macro>          <cpp:value>freopen("input.txt", "r", stdin);freopen("output.txt", "w", stdout);</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>all</name><parameter_list>(<parameter><type><name>v</name></type></parameter>)</parameter_list></cpp:macro>          <cpp:value>v.begin(),v.end()</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>endl</name></cpp:macro>            <cpp:value>'\n'</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>fr1</name><parameter_list>(<parameter><type><name>j</name></type></parameter>,<parameter><type><name>n</name></type></parameter>)</parameter_list></cpp:macro>        <cpp:value>for(int j=0;j&lt;n;j++)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>fr</name><parameter_list>(<parameter><type><name>n</name></type></parameter>)</parameter_list></cpp:macro>           <cpp:value>for(int i=0;i&lt;n;i++)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>PB</name></cpp:macro>              <cpp:value>push_back</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pii</name></cpp:macro>             <cpp:value>pair&lt;int,int&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pll</name></cpp:macro>             <cpp:value>pair&lt;long long int,long long int&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>F</name></cpp:macro>               <cpp:value>first</cpp:value></cpp:define>       
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>S</name></cpp:macro>               <cpp:value>second</cpp:value></cpp:define> 
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>mod</name></cpp:macro>             <cpp:value>1000000007</cpp:value></cpp:define>
+
+
+
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>N</name><init>=<expr><literal type="number">2e5</literal><operator>+</operator><literal type="number">99</literal></expr></init></decl>;</decl_stmt>
+
+
+
+<function><type><name>int32_t</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{       
+    <decl_stmt><decl><type><name>IO</name>
+    <cpp:ifndef>#<cpp:directive>ifndef</cpp:directive> <name>ONLINE_JUDGE</name></cpp:ifndef>      
+    <name>FILEIO</name>
+    <cpp:endif>#<cpp:directive>endif</cpp:directive></cpp:endif>  
+
+    <name>int</name></type> <name>t0</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>t0</name></expr>;</expr_stmt>
+    <while>while<condition>(<expr><name>t0</name><operator>--</operator></expr>)</condition>
+    <block>{
+        <decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>,<decl><type ref="prev"/><name>a</name></decl>,<decl><type ref="prev"/><name>b</name></decl>,<decl><type ref="prev"/><name>c</name></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>string</name></type> <name>s</name></decl>;</decl_stmt>
+        <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>n</name><operator>&gt;&gt;</operator><name>a</name><operator>&gt;&gt;</operator><name>b</name><operator>&gt;&gt;</operator><name>c</name><operator>&gt;&gt;</operator><name>s</name></expr>;</expr_stmt>
+            
+        <comment type="line">//   a rock</comment>
+        <comment type="line">//      b paper</comment>
+        <comment type="line">//  c scissor</comment>
+
+        <decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>char</name></expr></argument>&gt;</argument_list></name></type> <name>ans</name></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>int</name></type> <name>ct</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+        <for>for<control>(<init><decl><type><name>auto</name></type> <name>x</name><range>:<expr><name>s</name></expr></range></decl></init>)</control>
+        <block>{
+            <if>if<condition>(<expr><name>x</name><operator>==</operator><literal type="char">'R'</literal></expr>)</condition><then>
+            <block>{
+                <if>if<condition>(<expr><name>b</name><operator>&gt;</operator><literal type="number">0</literal></expr>)</condition><then>
+                <block>{
+                    <expr_stmt><expr><call><name><name>ans</name><operator>.</operator><name>PB</name></name><argument_list>(<argument><expr><literal type="char">'P'</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                    <expr_stmt><expr><name>b</name><operator>--</operator></expr>;</expr_stmt><expr_stmt><expr><name>ct</name><operator>++</operator></expr>;</expr_stmt>
+                }</block></then>
+                <else>else
+                    <block type="pseudo"><expr_stmt><expr><call><name><name>ans</name><operator>.</operator><name>PB</name></name><argument_list>(<argument><expr><literal type="char">'-'</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></else></if>
+            }</block></then>
+            <elseif>else <if>if<condition>(<expr><name>x</name><operator>==</operator><literal type="char">'P'</literal></expr>)</condition><then>
+            <block>{
+                <if>if<condition>(<expr><name>c</name><operator>&gt;</operator><literal type="number">0</literal></expr>)</condition><then>
+                <block>{
+                    <expr_stmt><expr><call><name><name>ans</name><operator>.</operator><name>PB</name></name><argument_list>(<argument><expr><literal type="char">'S'</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                    <expr_stmt><expr><name>c</name><operator>--</operator></expr>;</expr_stmt><expr_stmt><expr><name>ct</name><operator>++</operator></expr>;</expr_stmt>
+                }</block></then>
+                <else>else
+                    <block type="pseudo"><expr_stmt><expr><call><name><name>ans</name><operator>.</operator><name>PB</name></name><argument_list>(<argument><expr><literal type="char">'-'</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></else></if>
+            }</block></then></if></elseif>
+            <else>else
+            <block>{
+                <if>if<condition>(<expr><name>a</name><operator>&gt;</operator><literal type="number">0</literal></expr>)</condition><then>
+                <block>{
+                    <expr_stmt><expr><call><name><name>ans</name><operator>.</operator><name>PB</name></name><argument_list>(<argument><expr><literal type="char">'R'</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                    <expr_stmt><expr><name>a</name><operator>--</operator></expr>;</expr_stmt><expr_stmt><expr><name>ct</name><operator>++</operator></expr>;</expr_stmt>
+                }</block></then>
+                <else>else
+                    <block type="pseudo"><expr_stmt><expr><call><name><name>ans</name><operator>.</operator><name>PB</name></name><argument_list>(<argument><expr><literal type="char">'-'</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></else></if>
+            }</block></else></if>
+        }</block></for>
+        <if>if<condition>(<expr><name>ct</name><operator>&gt;=</operator><operator>(</operator><name>n</name><operator>+</operator><literal type="number">1</literal><operator>)</operator><operator>/</operator><literal type="number">2</literal></expr>)</condition><then>
+        <block>{
+            <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><literal type="string">"YES"</literal><operator>&lt;&lt;</operator><name>endl</name></expr>;</expr_stmt>
+            <for>for<control>(<init><decl><type><name>auto</name></type> <name>x</name><range>:<expr><name>ans</name></expr></range></decl></init>)</control>
+            <block>{
+                <if>if<condition>(<expr><name>x</name><operator>!=</operator><literal type="char">'-'</literal></expr>)</condition><then><block type="pseudo"><expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><name>x</name></expr>;</expr_stmt></block></then>
+                <elseif>else <if>if<condition>(<expr><name>a</name><operator>&gt;</operator><literal type="number">0</literal></expr>)</condition><then>
+                <block>{
+                    <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><literal type="string">"R"</literal></expr>;</expr_stmt>
+                    <expr_stmt><expr><name>a</name><operator>--</operator></expr>;</expr_stmt>
+                }</block></then></if></elseif>
+                <elseif>else <if>if<condition>(<expr><name>b</name><operator>&gt;</operator><literal type="number">0</literal></expr>)</condition><then>
+                <block>{
+                    <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><literal type="string">"P"</literal></expr>;</expr_stmt>
+                    <expr_stmt><expr><name>b</name><operator>--</operator></expr>;</expr_stmt>
+                }</block></then></if></elseif>
+                <else>else
+                    <block type="pseudo"><expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><literal type="string">"S"</literal></expr>;</expr_stmt></block></else></if>
+            }</block></for>
+            <expr_stmt><expr><name>ED</name></expr></expr_stmt>
+
+        }</block></then>
+        <else>else
+            <block type="pseudo"><expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><literal type="string">"NO"</literal><operator>&lt;&lt;</operator><name>endl</name></expr>;</expr_stmt></block></else></if>
+
+    }</block></while>
+
+
+
+
+}</block></function>
+</unit>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29586528_64036548.cpp"><comment type="line">// include stdc++.h slows down compilation much.</comment>
+<comment type="line">//#include&lt;bits/stdc++.h&gt;</comment>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;deque&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;assert.h&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdio&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;set&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;map&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;string&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cmath&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstring&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>USE_IOSTREAM</name></cpp:macro> \
+<cpp:value>{\
+	ios::sync_with_stdio(false);\
+	cin.tie(0);\
+	cout.tie(0);\
+}</cpp:value></cpp:define>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pii</name></cpp:macro> <cpp:value>pair&lt;int, int&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>mp</name></cpp:macro> <cpp:value>make_pair</cpp:value></cpp:define>
+
+<typedef>typedef <type><name>long</name> <name>long</name></type> <name>ll</name>;</typedef>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>FAIL_RETURN</name></cpp:macro> \
+<cpp:value>do\
+{\
+    printf("-1\n");\
+    return 0;\
+} while(0);</cpp:value></cpp:define>
+
+<decl_stmt><decl><type><name>ll</name></type> <name>MOD</name> <init>= <expr><literal type="number">1e9</literal> <operator>+</operator> <literal type="number">7</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>N</name> <init>= <expr><literal type="number">1e5</literal> <operator>+</operator> <literal type="number">7</literal></expr></init></decl>;</decl_stmt>
+
+<decl_stmt><decl><type><name>char</name></type> <name><name>s</name><index>[<expr><name>N</name></expr>]</index></name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>ll</name></type> <name><name>dp</name><index>[<expr><name>N</name></expr>]</index></name></decl>;</decl_stmt>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+	<comment type="line">// USE_IOSTREAM;</comment>
+	<cpp:ifndef>#<cpp:directive>ifndef</cpp:directive> <name>ONLINE_JUDGE</name></cpp:ifndef>
+	<comment type="line">//freopen("1.txt", "r", stdin);</comment>
+	<cpp:endif>#<cpp:directive>endif</cpp:directive></cpp:endif>
+
+    <decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%s"</literal></expr></argument>, <argument><expr><name>s</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>n</name> <operator>=</operator> <call><name>strlen</name><argument_list>(<argument><expr><name>s</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>dp</name><index>[<expr><literal type="number">1</literal></expr>]</index></name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>dp</name><index>[<expr><literal type="number">2</literal></expr>]</index></name> <operator>=</operator> <literal type="number">2</literal></expr>;</expr_stmt>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">3</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;=</operator> <name>n</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+    <block>{
+        <expr_stmt><expr><name><name>dp</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <operator>(</operator><name><name>dp</name><index>[<expr><name>i</name> <operator>-</operator> <literal type="number">1</literal></expr>]</index></name> <operator>+</operator> <name><name>dp</name><index>[<expr><name>i</name> <operator>-</operator> <literal type="number">2</literal></expr>]</index></name><operator>)</operator> <operator>%</operator> <name>MOD</name></expr>;</expr_stmt>
+    }</block></for>
+
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>n</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+    <block>{
+        <if>if <condition>(<expr><name><name>s</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="char">'m'</literal> <operator>||</operator> <name><name>s</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="char">'w'</literal></expr>)</condition><then>
+        <block>{
+            <expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"0\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <return>return <expr><literal type="number">0</literal></expr>;</return>
+        }</block></then></if>
+    }</block></for>
+
+    <decl_stmt><decl><type><name>ll</name></type> <name>ans</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>j</name></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>n</name></expr>;</condition> <incr><expr><name>i</name> <operator>=</operator> <name>j</name></expr></incr>)</control>
+    <block>{
+        <for>for <control>(<init><expr><name>j</name> <operator>=</operator> <name>i</name> <operator>+</operator> <literal type="number">1</literal></expr>;</init> <condition><expr><name>j</name> <operator>&lt;</operator> <name>n</name> <operator>&amp;&amp;</operator> <name><name>s</name><index>[<expr><name>j</name></expr>]</index></name> <operator>==</operator> <name><name>s</name><index>[<expr><name>j</name> <operator>-</operator> <literal type="number">1</literal></expr>]</index></name> <operator>&amp;&amp;</operator> <operator>(</operator><name><name>s</name><index>[<expr><name>j</name></expr>]</index></name> <operator>==</operator> <literal type="char">'n'</literal> <operator>||</operator> <name><name>s</name><index>[<expr><name>j</name></expr>]</index></name> <operator>==</operator> <literal type="char">'u'</literal><operator>)</operator></expr>;</condition> <incr><expr><name>j</name><operator>++</operator></expr></incr>)</control><block type="pseudo"><empty_stmt>;</empty_stmt></block></for>
+        <decl_stmt><decl><type><name>int</name></type> <name>len</name> <init>= <expr><name>j</name> <operator>-</operator> <name>i</name></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><name>ans</name> <operator>=</operator> <name>ans</name> <operator>*</operator> <name><name>dp</name><index>[<expr><name>len</name></expr>]</index></name> <operator>%</operator> <name>MOD</name></expr>;</expr_stmt>
+    }</block></for>
+    <expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"%lld\n"</literal></expr></argument>, <argument><expr><name>ans</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	
+	
+	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

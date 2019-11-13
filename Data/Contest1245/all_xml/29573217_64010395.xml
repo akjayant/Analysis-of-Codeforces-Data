@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29573217_64010395.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdlib&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstring&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdio&gt;</cpp:file></cpp:include>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>fo</name><parameter_list>(<parameter><type><name>a</name></type></parameter>,<parameter><type><name>b</name></type></parameter>,<parameter><type><name>c</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for (a=b; a&lt;=c; a++)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>fd</name><parameter_list>(<parameter><type><name>a</name></type></parameter>,<parameter><type><name>b</name></type></parameter>,<parameter><type><name>c</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for (a=b; a&gt;=c; a--)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>mod</name></cpp:macro> <cpp:value>1000000007</cpp:value></cpp:define>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<comment type="line">//long long jc[100001];</comment>
+<comment type="line">//long long Jc[100001];</comment>
+<comment type="line">//long long w[100001];</comment>
+<decl_stmt><decl><type><name>char</name></type> <name><name>a</name><index>[<expr><literal type="number">100001</literal></expr>]</index></name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>,<decl><type ref="prev"/><name>i</name></decl>,<decl><type ref="prev"/><name>j</name></decl>,<decl><type ref="prev"/><name>k</name></decl>,<decl><type ref="prev"/><name>l</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>ans</name></decl>,<decl><type ref="prev"/><name>sum</name></decl>,<decl><type ref="prev"/><name>s1</name></decl>,<decl><type ref="prev"/><name>s2</name></decl>,<decl><type ref="prev"/><name>S1</name></decl>,<decl><type ref="prev"/><name>S2</name></decl>;</decl_stmt>
+
+<comment type="line">//long long C(int n,int m)</comment>
+<comment type="line">//{</comment>
+<comment type="line">//	return jc[n]*Jc[m]%mod*Jc[n-m]%mod;</comment>
+<comment type="line">//}</comment>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+<comment type="line">//	freopen("c.in","r",stdin);</comment>
+	
+<comment type="line">//	w[1]=1;</comment>
+<comment type="line">//	jc[0]=1;jc[1]=1;</comment>
+<comment type="line">//	Jc[0]=1;Jc[1]=1;</comment>
+<comment type="line">//	fo(i,2,100000)</comment>
+<comment type="line">//	{</comment>
+<comment type="line">//		w[i]=mod-w[mod%i]*(mod/i)%mod;</comment>
+<comment type="line">//		</comment>
+<comment type="line">//		jc[i]=jc[i-1]*i%mod;</comment>
+<comment type="line">//		Jc[i]=Jc[i-1]*w[i]%mod;</comment>
+<comment type="line">//	}</comment>
+	
+	<expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%s"</literal></expr></argument>,<argument><expr><name>a</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<expr_stmt><expr><name>n</name><operator>=</operator><call><name>strlen</name><argument_list>(<argument><expr><name>a</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	
+	<macro><name>fo</name><argument_list>(<argument>i</argument>,<argument><literal type="number">0</literal></argument>,<argument>n-<literal type="number">1</literal></argument>)</argument_list></macro>
+	<if>if <condition>(<expr><name><name>a</name><index>[<expr><name>i</name></expr>]</index></name><operator>==</operator><literal type="char">'m'</literal> <operator>||</operator> <name><name>a</name><index>[<expr><name>i</name></expr>]</index></name><operator>==</operator><literal type="char">'w'</literal></expr>)</condition><then>
+	<block>{
+		<expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"0\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<return>return <expr><literal type="number">0</literal></expr>;</return>
+	}</block></then></if>
+	
+	<expr_stmt><expr><name>ans</name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+	<macro><name>fo</name><argument_list>(<argument>i</argument>,<argument><literal type="number">0</literal></argument>,<argument>n-<literal type="number">1</literal></argument>)</argument_list></macro>
+	<if>if <condition>(<expr><operator>(</operator><name><name>a</name><index>[<expr><name>i</name></expr>]</index></name><operator>==</operator><literal type="char">'u'</literal> <operator>||</operator> <name><name>a</name><index>[<expr><name>i</name></expr>]</index></name><operator>==</operator><literal type="char">'n'</literal><operator>)</operator> <operator>&amp;&amp;</operator> <operator>(</operator><name>i</name><operator>==</operator><literal type="number">0</literal> <operator>||</operator> <name><name>a</name><index>[<expr><name>i</name></expr>]</index></name><operator>==</operator><name><name>a</name><index>[<expr><name>i</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name><operator>)</operator></expr>)</condition><then>
+	<block type="pseudo"><expr_stmt><expr><operator>++</operator><name>sum</name></expr>;</expr_stmt></block></then>
+	<else>else
+	<block>{
+		<expr_stmt><expr><name>s1</name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt><expr_stmt><expr><name>s2</name><operator>=</operator><literal type="number">0</literal></expr>;</expr_stmt>
+		<macro><name>fo</name><argument_list>(<argument>j</argument>,<argument><literal type="number">2</literal></argument>,<argument>sum</argument>)</argument_list></macro>
+		<block>{
+			<expr_stmt><expr><name>S1</name><operator>=</operator><operator>(</operator><name>s1</name><operator>+</operator><name>s2</name><operator>)</operator><operator>%</operator><name>mod</name></expr>;</expr_stmt>
+			<expr_stmt><expr><name>S2</name><operator>=</operator><name>s1</name></expr>;</expr_stmt>
+			
+			<expr_stmt><expr><name>s1</name><operator>=</operator><name>S1</name></expr>;</expr_stmt>
+			<expr_stmt><expr><name>s2</name><operator>=</operator><name>S2</name></expr>;</expr_stmt>
+		}</block>
+		<expr_stmt><expr><name>ans</name><operator>=</operator><name>ans</name><operator>*</operator><operator>(</operator><name>s1</name><operator>+</operator><name>s2</name><operator>)</operator><operator>%</operator><name>mod</name></expr>;</expr_stmt>
+		
+		<if>if <condition>(<expr><name><name>a</name><index>[<expr><name>i</name></expr>]</index></name><operator>==</operator><literal type="char">'u'</literal> <operator>||</operator> <name><name>a</name><index>[<expr><name>i</name></expr>]</index></name><operator>==</operator><literal type="char">'n'</literal></expr>)</condition><then>
+		<block type="pseudo"><expr_stmt><expr><name>sum</name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt></block></then>
+		<else>else
+		<block type="pseudo"><expr_stmt><expr><name>sum</name><operator>=</operator><literal type="number">0</literal></expr>;</expr_stmt></block></else></if>
+	}</block></else></if>
+	<expr_stmt><expr><name>s1</name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt><expr_stmt><expr><name>s2</name><operator>=</operator><literal type="number">0</literal></expr>;</expr_stmt>
+	<macro><name>fo</name><argument_list>(<argument>j</argument>,<argument><literal type="number">2</literal></argument>,<argument>sum</argument>)</argument_list></macro>
+	<block>{
+		<expr_stmt><expr><name>S1</name><operator>=</operator><operator>(</operator><name>s1</name><operator>+</operator><name>s2</name><operator>)</operator><operator>%</operator><name>mod</name></expr>;</expr_stmt>
+		<expr_stmt><expr><name>S2</name><operator>=</operator><name>s1</name></expr>;</expr_stmt>
+		
+		<expr_stmt><expr><name>s1</name><operator>=</operator><name>S1</name></expr>;</expr_stmt>
+		<expr_stmt><expr><name>s2</name><operator>=</operator><name>S2</name></expr>;</expr_stmt>
+	}</block>
+	<expr_stmt><expr><name>ans</name><operator>=</operator><name>ans</name><operator>*</operator><operator>(</operator><name>s1</name><operator>+</operator><name>s2</name><operator>)</operator><operator>%</operator><name>mod</name></expr>;</expr_stmt>
+	
+	<expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"%I64d\n"</literal></expr></argument>,<argument><expr><name>ans</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+}</block></function></unit>

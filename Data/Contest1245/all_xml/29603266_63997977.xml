@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29603266_63997977.cpp"><cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;ext/pb_ds/assoc_container.hpp&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;ext/pb_ds/tree_policy.hpp&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<using>using <namespace>namespace <name>__gnu_pbds</name>;</namespace></using>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>llset</name></cpp:macro> <cpp:value>tree&lt;ll, null_type,less&lt;ll&gt;, rb_tree_tag,tree_order_statistics_node_update&gt;</cpp:value></cpp:define>
+<typedef>typedef <type><name>long</name> <name>long</name> <name>int</name></type> <name>ll</name>;</typedef>
+<typedef>typedef <type><name>long</name> <name>double</name></type> <name>ld</name>;</typedef>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>en</name></cpp:macro> <cpp:value>'\n'</cpp:value></cpp:define>
+<decl_stmt><decl><type><specifier>const</specifier> <name>ll</name></type> <name>mod</name> <init>= <expr><literal type="number">1e9</literal><operator>+</operator><literal type="number">7</literal></expr></init></decl>,<decl><type ref="prev"/><name>N</name> <init>= <expr><literal type="number">1e6</literal><operator>+</operator><literal type="number">7</literal></expr></init></decl>;</decl_stmt>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>calncr</name></cpp:macro> <cpp:value>for(int i=1  ;i&lt;=1e6;i++) fac[i] = (fac[i-1]*i)%mod;</cpp:value></cpp:define>
+<decl_stmt><decl><type><name>ll</name></type> <name><name>fac</name><index>[<expr><name>N</name></expr>]</index></name> <init>= <expr><block>{<expr><literal type="number">0</literal></expr>}</block></expr></init></decl>,<decl><type ref="prev"/><name><name>visit</name><index>[<expr><name>N</name></expr>]</index></name> <init>= <expr><block>{<expr><literal type="number">0</literal></expr>}</block></expr></init></decl>,<decl><type ref="prev"/><name><name>dist</name><index>[<expr><name>N</name></expr>]</index></name> <init>= <expr><block>{<expr><literal type="number">0</literal></expr>}</block></expr></init></decl>,<decl><type ref="prev"/><name><name>prnt</name><index>[<expr><name>N</name></expr>]</index></name> <init>= <expr><block>{<expr><literal type="number">0</literal></expr>}</block></expr></init></decl>, <decl><type ref="prev"/><name><name>rnk</name><index>[<expr><name>N</name></expr>]</index></name><init>=<expr><block>{<expr><literal type="number">0</literal></expr>}</block></expr></init></decl>, <decl><type ref="prev"/><name><name>garr</name><index>[<expr><name>N</name></expr>]</index></name><init>=<expr><block>{<expr><literal type="number">0</literal></expr>}</block></expr></init></decl>;</decl_stmt>
+
+<function><type><name>ll</name></type> <name>gen_base</name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name>ll</name></type> <name>before</name></decl></parameter>, <parameter><decl><type><specifier>const</specifier> <name>ll</name></type> <name>after</name></decl></parameter>)</parameter_list> <block>{
+    <decl_stmt><decl><type><name>auto</name></type> <name>seed</name> <init>= <expr><call><name><name>std</name><operator>::</operator><name>chrono</name><operator>::</operator><name>high_resolution_clock</name><operator>::</operator><name>now</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>time_since_epoch</name><argument_list>()</argument_list></call><operator>.</operator><call><name>count</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>std</name><operator>::</operator><name>mt19937</name></name></type> <name>mt_rand</name><argument_list>(<argument><expr><name>seed</name></expr></argument>)</argument_list></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>base</name> <init>= <expr><call><call><name><name>std</name><operator>::</operator><name><name>uniform_int_distribution</name><argument_list type="generic">&lt;<argument><expr><name>ll</name></expr></argument>&gt;</argument_list></name></name><argument_list>(<argument><expr><name>before</name><operator>+</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>after</name></expr></argument>)</argument_list></call><argument_list>(<argument><expr><name>mt_rand</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <return>return <expr><ternary><condition><expr><name>base</name> <operator>%</operator> <literal type="number">2</literal> <operator>==</operator> <literal type="number">0</literal></expr> ?</condition><then> <expr><name>base</name><operator>-</operator><literal type="number">1</literal></expr> </then><else>: <expr><name>base</name></expr></else></ternary></expr>;</return>
+}</block></function>
+
+<function><type><name>ll</name></type> <name>pow</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>a</name></decl></parameter>,<parameter><decl><type><name>ll</name></type> <name>b</name></decl></parameter>)</parameter_list>
+<block>{
+    <if>if<condition>(<expr><operator>!</operator><name>b</name></expr>)</condition><then>
+        <block type="pseudo"><return>return <expr><literal type="number">1</literal></expr>;</return></block></then></if>
+    <decl_stmt><decl><type><name>ll</name></type> <name>p</name> <init>= <expr><call><name>pow</name><argument_list>(<argument><expr><name>a</name></expr></argument>,<argument><expr><name>b</name><operator>/</operator><literal type="number">2</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if>if<condition>(<expr><name>b</name><operator>%</operator><literal type="number">2</literal></expr>)</condition><then>
+        <block type="pseudo"><return>return <expr><operator>(</operator><name>a</name><operator>*</operator><operator>(</operator><operator>(</operator><name>p</name><operator>*</operator><name>p</name><operator>)</operator><operator>%</operator><name>mod</name><operator>)</operator><operator>)</operator><operator>%</operator><name>mod</name></expr>;</return></block></then>
+    <else>else
+        <block type="pseudo"><return>return <expr><operator>(</operator><name>p</name><operator>*</operator><name>p</name><operator>)</operator><operator>%</operator><name>mod</name></expr>;</return></block></else></if>
+}</block></function>
+
+<function><type><name>ll</name></type> <name>modInv</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>a</name></decl></parameter>)</parameter_list>
+<block>{
+    <return>return <expr><call><name>pow</name><argument_list>(<argument><expr><name>a</name></expr></argument>,<argument><expr><name>mod</name><operator>-</operator><literal type="number">2</literal></expr></argument>)</argument_list></call></expr>;</return>
+}</block></function>
+
+<function><type><name>ll</name></type> <name>nCr</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>n</name></decl></parameter>,<parameter><decl><type><name>ll</name></type> <name>r</name></decl></parameter>)</parameter_list>
+<block>{
+    <return>return <expr><operator>(</operator><name><name>fac</name><index>[<expr><name>n</name></expr>]</index></name><operator>*</operator><call><name>modInv</name><argument_list>(<argument><expr><operator>(</operator><name><name>fac</name><index>[<expr><name>r</name></expr>]</index></name><operator>*</operator><name><name>fac</name><index>[<expr><name>n</name><operator>-</operator><name>r</name></expr>]</index></name><operator>)</operator><operator>%</operator><name>mod</name></expr></argument>)</argument_list></call><operator>)</operator><operator>%</operator><name>mod</name></expr>;</return>
+}</block></function>
+
+<function><type><name>ll</name></type> <name>_find</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>a</name></decl></parameter>)</parameter_list>
+<block>{
+    <if>if<condition>(<expr><name><name>prnt</name><index>[<expr><name>a</name></expr>]</index></name><operator>!=</operator><name>a</name></expr>)</condition><then>
+        <block type="pseudo"><expr_stmt><expr><name><name>prnt</name><index>[<expr><name>a</name></expr>]</index></name> <operator>=</operator> <call><name>_find</name><argument_list>(<argument><expr><name><name>prnt</name><index>[<expr><name>a</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then></if>
+    <return>return <expr><name><name>prnt</name><index>[<expr><name>a</name></expr>]</index></name></expr>;</return>
+}</block></function>
+
+<function><type><name>ll</name></type> <name>_union</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>a</name></decl></parameter>,<parameter><decl><type><name>ll</name></type> <name>b</name></decl></parameter>)</parameter_list>
+<block>{
+    <decl_stmt><decl><type><name>ll</name></type> <name>p</name> <init>= <expr><call><name>_find</name><argument_list>(<argument><expr><name>a</name></expr></argument>)</argument_list></call></expr></init></decl>,<decl><type ref="prev"/><name>q</name> <init>= <expr><call><name>_find</name><argument_list>(<argument><expr><name>b</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <comment type="line">//cout&lt;&lt;a&lt;&lt;" : "&lt;&lt;b&lt;&lt;" "&lt;&lt;p&lt;&lt;" "&lt;&lt;q&lt;&lt;endl;</comment>
+    <if>if<condition>(<expr><name>p</name><operator>==</operator><name>q</name></expr>)</condition><then>
+        <block type="pseudo"><return>return <expr><literal type="number">0</literal></expr>;</return></block></then></if>
+    <if>if<condition>(<expr><name><name>rnk</name><index>[<expr><name>p</name></expr>]</index></name><operator>&lt;=</operator><name><name>rnk</name><index>[<expr><name>q</name></expr>]</index></name></expr>)</condition><then><block>{
+        <expr_stmt><expr><name><name>prnt</name><index>[<expr><name>p</name></expr>]</index></name> <operator>=</operator> <name>q</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>rnk</name><index>[<expr><name>q</name></expr>]</index></name><operator>++</operator></expr>;</expr_stmt>
+    }</block></then>
+    <else>else<block>{
+        <expr_stmt><expr><name><name>prnt</name><index>[<expr><name>q</name></expr>]</index></name> <operator>=</operator> <name>p</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>rnk</name><index>[<expr><name>p</name></expr>]</index></name><operator>++</operator></expr>;</expr_stmt>
+    }</block></else></if>
+    <return>return <expr><literal type="number">1</literal></expr>;</return>
+}</block></function>
+
+<function><type><name>ll</name></type> <name>hashf</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>r</name></decl></parameter>,<parameter><decl><type><name>ll</name></type> <name>x</name></decl></parameter>,<parameter><decl><type><name>ll</name></type> <name>mod</name></decl></parameter>)</parameter_list>
+<block>{
+    <return>return <expr><operator>(</operator><name>x</name><operator>+</operator><name>r</name><operator>)</operator><operator>%</operator><name>mod</name></expr>;</return>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+    <expr_stmt><expr><call><name><name>ios_base</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>cin</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt><expr_stmt><expr><call><name><name>cout</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>fac</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+    <expr_stmt><expr><name>calncr</name></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>ll</name></type> <name>t</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>t</name></expr>;</expr_stmt>
+    <while>while<condition>(<expr><name>t</name></expr>)</condition><block>{
+        <expr_stmt><expr><name>t</name><operator>--</operator></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>ll</name></type> <name>a</name></decl>,<decl><type ref="prev"/><name>b</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>a</name><operator>&gt;&gt;</operator><name>b</name></expr>;</expr_stmt>
+    <if>if<condition>(<expr><call><name>__gcd</name><argument_list>(<argument><expr><name>a</name></expr></argument>,<argument><expr><name>b</name></expr></argument>)</argument_list></call><operator>==</operator><literal type="number">1</literal></expr>)</condition><then><block>{
+        <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><literal type="string">"Finite"</literal><operator>&lt;&lt;</operator><name>en</name></expr>;</expr_stmt>
+    }</block></then>
+    <else>else<block>{
+        <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><literal type="string">"Infinite"</literal><operator>&lt;&lt;</operator><name>en</name></expr>;</expr_stmt>
+    }</block></else></if>
+    }</block></while>
+}</block></function>
+</unit>

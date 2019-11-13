@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1236/all/29051006_62789009.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;stdio.h&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>LL</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define> 
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>FOR</name><parameter_list>(<parameter><type><name>i</name></type></parameter>,<parameter><type><name>l</name></type></parameter>,<parameter><type><name>r</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(int i = l; i &lt;= r; ++i)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>REP</name><parameter_list>(<parameter><type><name>i</name></type></parameter>,<parameter><type><name>l</name></type></parameter>,<parameter><type><name>r</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(int i = l; i &lt; r; ++i)</cpp:value></cpp:define>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>maxN</name> <init>= <expr><literal type="number">1e5</literal> <operator>+</operator> <literal type="number">123</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><specifier>const</specifier> <name>LL</name></type> <name>MOD</name> <init>= <expr><literal type="number">1e9</literal> <operator>+</operator> <literal type="number">7</literal></expr></init></decl>;</decl_stmt>
+
+<decl_stmt><decl><type><name>LL</name></type> <name>M</name></decl>,<decl><type ref="prev"/><name>N</name></decl>;</decl_stmt>
+
+<function><type><name>LL</name></type> <name>cal</name><parameter_list>(<parameter><decl><type><name>LL</name></type> <name>x</name></decl></parameter>,<parameter><decl><type><name>LL</name></type> <name>y</name></decl></parameter>)</parameter_list><block>{
+    <if>if<condition>(<expr><name>y</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><return>return <expr><literal type="number">1</literal></expr>;</return></block></then></if>
+    <if>if<condition>(<expr><name>y</name> <operator>==</operator> <literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><return>return <expr><name>x</name></expr>;</return></block></then></if>
+    <decl_stmt><decl><type><name>LL</name></type> <name>a</name> <init>= <expr><call><name>cal</name><argument_list>(<argument><expr><name>x</name></expr></argument>,<argument><expr><name>y</name><operator>/</operator><literal type="number">2</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><name>a</name> <operator>=</operator> <operator>(</operator><name>a</name> <operator>*</operator> <name>a</name><operator>)</operator> <operator>%</operator> <name>MOD</name></expr>;</expr_stmt>
+    <return>return <expr><ternary><condition><expr><name>y</name> <operator>%</operator> <literal type="number">2</literal> <operator>==</operator> <literal type="number">0</literal></expr> ?</condition><then> <expr><name>a</name></expr> </then><else>: <expr><operator>(</operator><name>a</name> <operator>*</operator> <name>x</name><operator>)</operator> <operator>%</operator> <name>MOD</name></expr></else></ternary></expr>;</return>
+}</block></function>
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list><block>{
+    <comment type="line">//freopen("A.INP","r",stdin);</comment>
+    <comment type="line">//freopen("A.OUT","w",stdout);</comment>
+
+    <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>N</name> <operator>&gt;&gt;</operator> <name>M</name></expr>;</expr_stmt>
+
+    <decl_stmt><decl><type><name>LL</name></type> <name>rr</name> <init>= <expr><call><name>cal</name><argument_list>(<argument><expr><call><name>cal</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>,<argument><expr><name>M</name></expr></argument>)</argument_list></call> <operator>-</operator> <literal type="number">1</literal></expr></argument>,<argument><expr><name>N</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <expr_stmt><expr><name>rr</name> <operator>%=</operator> <name>MOD</name></expr>;</expr_stmt>
+    <if>if<condition>(<expr><name>rr</name> <operator>&lt;</operator> <literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>rr</name> <operator>+=</operator> <name>MOD</name></expr>;</expr_stmt></block></then></if>
+
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>rr</name></expr>;</expr_stmt>
+
+
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>

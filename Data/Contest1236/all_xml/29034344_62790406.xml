@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1236/all/29034344_62790406.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<typedef>typedef <type><name>long</name> <name>long</name></type> <name>ll</name>;</typedef>
+<decl_stmt><decl><type><name>ll</name></type> <name>c</name> <init>= <expr><literal type="number">1e9</literal><operator>+</operator><literal type="number">7</literal></expr></init></decl>;</decl_stmt>
+
+<comment type="block">/* Iterative Function to calculate (x^y)%p in O(log y) */</comment>
+<function><type><name>ll</name></type> <name>power2</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>x</name></decl></parameter>, <parameter><decl><type><name>ll</name></type> <name>y</name></decl></parameter>, <parameter><decl><type><name>ll</name></type> <name>p</name></decl></parameter>)</parameter_list> 
+<block>{ 
+    <decl_stmt><decl><type><name>ll</name></type> <name>res</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>      <comment type="line">// Initialize result </comment>
+  
+    <expr_stmt><expr><name>x</name> <operator>=</operator> <name>x</name> <operator>%</operator> <name>p</name></expr>;</expr_stmt>  <comment type="line">// Update x if it is more than or  </comment>
+                <comment type="line">// equal to p </comment>
+  
+    <while>while <condition>(<expr><name>y</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition> 
+    <block>{ 
+        <comment type="line">// If y is odd, multiply x with result </comment>
+        <if>if <condition>(<expr><name>y</name> <operator>&amp;</operator> <literal type="number">1</literal></expr>)</condition><then> 
+            <block type="pseudo"><expr_stmt><expr><name>res</name> <operator>=</operator> <operator>(</operator><name>res</name><operator>*</operator><name>x</name><operator>)</operator> <operator>%</operator> <name>p</name></expr>;</expr_stmt></block></then></if> 
+  
+        <comment type="line">// y must be even now </comment>
+        <expr_stmt><expr><name>y</name> <operator>=</operator> <name>y</name><operator>&gt;&gt;</operator><literal type="number">1</literal></expr>;</expr_stmt> <comment type="line">// y = y/2 </comment>
+        <expr_stmt><expr><name>x</name> <operator>=</operator> <operator>(</operator><name>x</name><operator>*</operator><name>x</name><operator>)</operator> <operator>%</operator> <name>p</name></expr>;</expr_stmt>   
+    }</block></while> 
+    <return>return <expr><name>res</name></expr>;</return> 
+}</block></function> 
+
+<comment type="line">// ll power1(ll a,ll p, ll c){</comment>
+<comment type="line">//     ll res = 1;</comment>
+<comment type="line">//     while(p&gt;0){</comment>
+<comment type="line">//         if(p&amp;1){</comment>
+<comment type="line">//             res = (res*a)%c;</comment>
+<comment type="line">//         }</comment>
+<comment type="line">//         p=(p&gt;&gt;1);</comment>
+<comment type="line">//         a = (a*a)%;</comment>
+<comment type="line">//     }</comment>
+<comment type="line">//     return res;</comment>
+<comment type="line">// }</comment>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>argc</name></decl></parameter>, <parameter><decl><type><name>char</name> <specifier>const</specifier> <modifier>*</modifier></type><name><name>argv</name><index>[]</index></name></decl></parameter>)</parameter_list>
+<block>{
+    <decl_stmt><decl><type><name>ll</name></type> <name>n</name></decl>,<decl><type ref="prev"/><name>m</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>n</name><operator>&gt;&gt;</operator><name>m</name></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>ll</name></type> <name>t</name> <init>= <expr><call><name>power2</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>,<argument><expr><name>m</name></expr></argument>,<argument><expr><name>c</name></expr></argument>)</argument_list></call> <operator>-</operator> <literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><name>t</name> <operator>=</operator> <call><name>power2</name><argument_list>(<argument><expr><name>t</name></expr></argument>,<argument><expr><name>n</name></expr></argument>,<argument><expr><name>c</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><name>t</name><operator>&lt;&lt;</operator><literal type="string">"\n"</literal></expr>;</expr_stmt>   
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>

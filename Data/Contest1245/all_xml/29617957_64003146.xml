@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29617957_64003146.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;string&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<decl_stmt><decl><type><name>string</name></type> <name>ans</name></decl>;</decl_stmt>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+	<decl_stmt><decl><type><name>int</name></type> <name>t</name></decl>;</decl_stmt>
+	<expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>t</name></expr>;</expr_stmt>
+	<while>while <condition>(<expr><name>t</name><operator>--</operator></expr>)</condition> <block>{
+		<expr_stmt><expr><call><name><name>ans</name><operator>.</operator><name>clear</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+		<decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>, <decl><type ref="prev"/><name>r</name></decl>, <decl><type ref="prev"/><name>p</name></decl>, <decl><type ref="prev"/><name>s</name></decl>, <decl><type ref="prev"/><name>cnt</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+		<expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name> <operator>&gt;&gt;</operator> <name>r</name> <operator>&gt;&gt;</operator> <name>p</name> <operator>&gt;&gt;</operator> <name>s</name></expr>;</expr_stmt>
+		<decl_stmt><decl><type><name>string</name></type> <name>str</name></decl>;</decl_stmt>
+		<expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>str</name></expr>;</expr_stmt>
+		<decl_stmt><decl><type><name>int</name></type> <name>needR</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>, <decl><type ref="prev"/><name>needP</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>, <decl><type ref="prev"/><name>needS</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+		<for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>n</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{
+			<if>if <condition>(<expr><name><name>str</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="char">'R'</literal></expr>)</condition><then> <block>{
+				<expr_stmt><expr><name>needP</name><operator>++</operator></expr>;</expr_stmt>
+			}</block></then>
+			<elseif>else <if>if <condition>(<expr><name><name>str</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="char">'S'</literal></expr>)</condition><then> <block>{
+				<expr_stmt><expr><name>needR</name><operator>++</operator></expr>;</expr_stmt>
+			}</block></then></if></elseif>
+			<else>else <block>{
+				<expr_stmt><expr><name>needS</name><operator>++</operator></expr>;</expr_stmt>
+			}</block></else></if>
+		}</block></for>
+		<for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>n</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{
+			<if>if <condition>(<expr><name><name>str</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="char">'R'</literal></expr>)</condition><then> <block>{
+				<if>if <condition>(<expr><name>p</name></expr>)</condition><then> <block>{
+					<expr_stmt><expr><name>p</name><operator>--</operator></expr>;</expr_stmt>
+					<expr_stmt><expr><name>cnt</name><operator>++</operator></expr>;</expr_stmt>
+					<expr_stmt><expr><call><name><name>ans</name><operator>.</operator><name>push_back</name></name><argument_list>(<argument><expr><literal type="char">'P'</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+				}</block></then>
+				<else>else <block>{
+					<decl_stmt><decl><type><name>int</name></type> <name>flowR</name> <init>= <expr><name>r</name> <operator>-</operator> <name>needR</name></expr></init></decl>, <decl><type ref="prev"/><name>flowS</name> <init>= <expr><name>s</name> <operator>-</operator> <name>needS</name></expr></init></decl>;</decl_stmt>
+					<if>if <condition>(<expr><name>r</name> <operator>&amp;&amp;</operator> <name>flowR</name> <operator>&gt;=</operator> <name>flowS</name></expr>)</condition><then> <block>{
+						<expr_stmt><expr><name>r</name><operator>--</operator></expr>;</expr_stmt>
+						<expr_stmt><expr><call><name><name>ans</name><operator>.</operator><name>push_back</name></name><argument_list>(<argument><expr><literal type="char">'R'</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+					}</block></then>
+					<else>else <block>{
+						<expr_stmt><expr><name>s</name><operator>--</operator></expr>;</expr_stmt>
+						<expr_stmt><expr><call><name><name>ans</name><operator>.</operator><name>push_back</name></name><argument_list>(<argument><expr><literal type="char">'S'</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+					}</block></else></if>
+				}</block></else></if>
+				<expr_stmt><expr><name>needP</name><operator>--</operator></expr>;</expr_stmt>
+				<expr_stmt><expr><name>needP</name> <operator>=</operator> <call><name>max</name><argument_list>(<argument><expr><name>needP</name></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+			}</block></then>
+			<elseif>else <if>if<condition>(<expr><name><name>str</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="char">'S'</literal></expr>)</condition><then> <block>{
+				<if>if <condition>(<expr><name>r</name></expr>)</condition><then> <block>{
+					<expr_stmt><expr><name>r</name><operator>--</operator></expr>;</expr_stmt>
+					<expr_stmt><expr><name>cnt</name><operator>++</operator></expr>;</expr_stmt>
+					<expr_stmt><expr><call><name><name>ans</name><operator>.</operator><name>push_back</name></name><argument_list>(<argument><expr><literal type="char">'R'</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+				}</block></then>
+				<else>else <block>{
+					<decl_stmt><decl><type><name>int</name></type> <name>flowP</name> <init>= <expr><name>p</name> <operator>-</operator> <name>needP</name></expr></init></decl>, <decl><type ref="prev"/><name>flowS</name> <init>= <expr><name>s</name> <operator>-</operator> <name>needS</name></expr></init></decl>;</decl_stmt>
+					<if>if <condition>(<expr><name>p</name> <operator>&amp;&amp;</operator> <name>flowP</name> <operator>&gt;=</operator> <name>flowS</name></expr>)</condition><then> <block>{
+						<expr_stmt><expr><name>p</name><operator>--</operator></expr>;</expr_stmt>
+						<expr_stmt><expr><call><name><name>ans</name><operator>.</operator><name>push_back</name></name><argument_list>(<argument><expr><literal type="char">'P'</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+					}</block></then>
+					<else>else <block>{
+						<expr_stmt><expr><name>s</name><operator>--</operator></expr>;</expr_stmt>
+						<expr_stmt><expr><call><name><name>ans</name><operator>.</operator><name>push_back</name></name><argument_list>(<argument><expr><literal type="char">'S'</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+					}</block></else></if>
+				}</block></else></if>
+				<expr_stmt><expr><name>needR</name><operator>--</operator></expr>;</expr_stmt>
+				<expr_stmt><expr><name>needR</name> <operator>=</operator> <call><name>max</name><argument_list>(<argument><expr><name>needR</name></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+			}</block></then></if></elseif>
+			<else>else <block>{
+				<if>if <condition>(<expr><name>s</name></expr>)</condition><then> <block>{
+					<expr_stmt><expr><name>s</name><operator>--</operator></expr>;</expr_stmt>
+					<expr_stmt><expr><name>cnt</name><operator>++</operator></expr>;</expr_stmt>
+					<expr_stmt><expr><call><name><name>ans</name><operator>.</operator><name>push_back</name></name><argument_list>(<argument><expr><literal type="char">'S'</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+				}</block></then>
+				<else>else <block>{
+					<decl_stmt><decl><type><name>int</name></type> <name>flowP</name> <init>= <expr><name>p</name> <operator>-</operator> <name>needP</name></expr></init></decl>, <decl><type ref="prev"/><name>flowR</name> <init>= <expr><name>r</name> <operator>-</operator> <name>needR</name></expr></init></decl>;</decl_stmt>
+					<if>if <condition>(<expr><name>r</name> <operator>&amp;&amp;</operator> <name>flowR</name> <operator>&gt;=</operator> <name>flowP</name></expr>)</condition><then> <block>{
+						<expr_stmt><expr><name>r</name><operator>--</operator></expr>;</expr_stmt>
+						<expr_stmt><expr><call><name><name>ans</name><operator>.</operator><name>push_back</name></name><argument_list>(<argument><expr><literal type="char">'R'</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+					}</block></then>
+					<else>else <block>{
+						<expr_stmt><expr><name>p</name><operator>--</operator></expr>;</expr_stmt>
+						<expr_stmt><expr><call><name><name>ans</name><operator>.</operator><name>push_back</name></name><argument_list>(<argument><expr><literal type="char">'P'</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+					}</block></else></if>
+				}</block></else></if>
+				<expr_stmt><expr><name>needS</name><operator>--</operator></expr>;</expr_stmt>
+				<expr_stmt><expr><name>needS</name> <operator>=</operator> <call><name>max</name><argument_list>(<argument><expr><name>needS</name></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+			}</block></else></if>
+		}</block></for>
+		<if>if <condition>(<expr><name>cnt</name> <operator>&gt;=</operator> <operator>(</operator><operator>(</operator><name>n</name> <operator>+</operator> <literal type="number">1</literal><operator>)</operator> <operator>/</operator> <literal type="number">2</literal><operator>)</operator></expr>)</condition><then> <block>{
+			<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"YES"</literal> <operator>&lt;&lt;</operator> <name>endl</name> <operator>&lt;&lt;</operator> <name>ans</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+		}</block></then>
+		<else>else <block>{
+			<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"NO"</literal> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+		}</block></else></if>
+	}</block></while>
+	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

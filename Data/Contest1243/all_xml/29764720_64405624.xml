@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1243/all/29764720_64405624.cpp"><cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>int</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>forinc</name><parameter_list>(<parameter><type><name>i</name></type></parameter>,<parameter><type><name>a</name></type></parameter>,<parameter><type><name>b</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(int i=a;i&lt;=b;++i)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>fordec</name><parameter_list>(<parameter><type><name>i</name></type></parameter>,<parameter><type><name>a</name></type></parameter>,<parameter><type><name>b</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(int i=a;i&gt;=b;--i)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>forv</name><parameter_list>(<parameter><type><name>i</name></type></parameter>,<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(auto &amp;i:x)</cpp:value></cpp:define>
+<decl_stmt><decl><type><name>mt19937</name></type> <name>rng</name><argument_list>(<argument><expr><call><name><name>chrono</name><operator>::</operator><name>steady_clock</name><operator>::</operator><name>now</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>time_since_epoch</name><argument_list>()</argument_list></call><operator>.</operator><call><name>count</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></decl>;</decl_stmt>
+<function><type><name>int</name></type> <name>rnd</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>l</name></decl></parameter>,<parameter><decl><type><name>int</name></type> <name>r</name></decl></parameter>)</parameter_list>
+<block>{
+    <return>return <expr><name>l</name><operator>+</operator><call><name>rng</name><argument_list>()</argument_list></call><operator>%</operator><operator>(</operator><name>r</name><operator>-</operator><name>l</name><operator>+</operator><literal type="number">1</literal><operator>)</operator></expr>;</return>
+}</block></function>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>in</name></cpp:macro> <cpp:value>({int x=0;int c=getchar(),n=0;for(;!isdigit(c);c=getchar()) n=(c=='-');for(;isdigit(c);c=getchar()) x=x*10+c-'0';n?-x:x;})</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pii</name></cpp:macro> <cpp:value>pair&lt;int,int&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>fi</name></cpp:macro> <cpp:value>first</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>se</name></cpp:macro> <cpp:value>second</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>batbit</name><parameter_list>(<parameter><type><name>i</name></type></parameter>,<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>(x|(1ll&lt;&lt;i))</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>getbit</name><parameter_list>(<parameter><type><name>i</name></type></parameter>,<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>((x&gt;&gt;i)&amp;1)</cpp:value></cpp:define>
+
+<decl_stmt><decl><type><name>int</name></type> <name>task</name></decl>,<decl><type ref="prev"/><name>n</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>string</name></type> <name>a</name></decl>,<decl><type ref="prev"/><name>b</name></decl>;</decl_stmt>
+
+<function><name>main</name><parameter_list>()</parameter_list>
+<block>{
+   <comment type="line">// freopen("test.inp","r",stdin);</comment>
+    <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>task</name></expr>;</expr_stmt>
+    <while>while<condition>(<expr><name>task</name><operator>--</operator></expr>)</condition>
+    <block>{
+        <decl_stmt><decl><type><name>int</name></type> <name>dem</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>a</name> <operator>&gt;&gt;</operator> <name>b</name></expr>;</expr_stmt>
+        <decl_stmt><decl><type><name>string</name></type> <name>s</name><init>=<expr><literal type="char">' '</literal><operator>+</operator><name>a</name></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>string</name></type> <name>t</name><init>=<expr><literal type="char">' '</literal><operator>+</operator><name>b</name></expr></init></decl>;</decl_stmt>
+        <macro><name>forinc</name><argument_list>(<argument>i</argument>,<argument><literal type="number">1</literal></argument>,<argument>n</argument>)</argument_list></macro> <if>if<condition>(<expr><name><name>s</name><index>[<expr><name>i</name></expr>]</index></name><operator>!=</operator><name><name>t</name><index>[<expr><name>i</name></expr>]</index></name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>dem</name><operator>++</operator></expr>;</expr_stmt></block></then></if>
+        <if>if<condition>(<expr><name>dem</name><operator>==</operator><literal type="number">0</literal></expr>)</condition><then>
+        <block>{
+            <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"NO\n"</literal></expr>;</expr_stmt>
+            <continue>continue;</continue>
+        }</block></then></if>
+        <if>if<condition>(<expr><name>dem</name><operator>&gt;=</operator><literal type="number">3</literal></expr>)</condition><then>
+        <block>{
+            <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"NO\n"</literal></expr>;</expr_stmt>
+            <continue>continue;</continue>
+        }</block></then></if>
+        <if>if<condition>(<expr><name>dem</name><operator>==</operator><literal type="number">1</literal></expr>)</condition><then>
+        <block>{
+            <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"NO\n"</literal></expr>;</expr_stmt>
+            <continue>continue;</continue>
+        }</block></then></if>
+        <if>if<condition>(<expr><name>dem</name><operator>==</operator><literal type="number">2</literal></expr>)</condition><then>
+        <block>{
+            <decl_stmt><decl><type><name>int</name></type> <name>pos</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+            <macro><name>forinc</name><argument_list>(<argument>i</argument>,<argument><literal type="number">1</literal></argument>,<argument>n</argument>)</argument_list></macro> <if>if<condition>(<expr><name><name>s</name><index>[<expr><name>i</name></expr>]</index></name><operator>!=</operator><name><name>t</name><index>[<expr><name>i</name></expr>]</index></name></expr>)</condition><then>
+            <block>{
+                <expr_stmt><expr><name>pos</name><operator>=</operator><name>i</name></expr>;</expr_stmt>
+                <break>break;</break>
+            }</block></then></if>
+            <decl_stmt><decl><type><name>int</name></type> <name>pos1</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+            <macro><name>fordec</name><argument_list>(<argument>i</argument>,<argument>n</argument>,<argument><literal type="number">1</literal></argument>)</argument_list></macro> <if>if<condition>(<expr><name><name>s</name><index>[<expr><name>i</name></expr>]</index></name><operator>!=</operator><name><name>t</name><index>[<expr><name>i</name></expr>]</index></name></expr>)</condition><then>
+            <block>{
+                <expr_stmt><expr><name>pos1</name><operator>=</operator><name>i</name></expr>;</expr_stmt>
+                <break>break;</break>
+            }</block></then></if>
+            <decl_stmt><decl><type><name>bool</name></type> <name>ok</name><init>=<expr><literal type="boolean">true</literal></expr></init></decl>;</decl_stmt>
+            <expr_stmt><expr><call><name>swap</name><argument_list>(<argument><expr><name><name>s</name><index>[<expr><name>pos</name></expr>]</index></name></expr></argument>,<argument><expr><name><name>t</name><index>[<expr><name>pos1</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <macro><name>forinc</name><argument_list>(<argument>i</argument>,<argument><literal type="number">1</literal></argument>,<argument>n</argument>)</argument_list></macro> <if>if<condition>(<expr><name><name>s</name><index>[<expr><name>i</name></expr>]</index></name><operator>!=</operator><name><name>t</name><index>[<expr><name>i</name></expr>]</index></name></expr>)</condition><then>
+            <block>{
+                <expr_stmt><expr><name>ok</name><operator>=</operator><literal type="boolean">false</literal></expr>;</expr_stmt>
+                <break>break;</break>
+            }</block></then></if>
+            <expr_stmt><expr><call><name>swap</name><argument_list>(<argument><expr><name><name>s</name><index>[<expr><name>pos1</name></expr>]</index></name></expr></argument>,<argument><expr><name><name>t</name><index>[<expr><name>pos</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name>swap</name><argument_list>(<argument><expr><name><name>s</name><index>[<expr><name>pos</name></expr>]</index></name></expr></argument>,<argument><expr><name><name>t</name><index>[<expr><name>pos1</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <decl_stmt><decl><type><name>bool</name></type> <name>ok1</name><init>=<expr><literal type="boolean">true</literal></expr></init></decl>;</decl_stmt>
+            <macro><name>forinc</name><argument_list>(<argument>i</argument>,<argument><literal type="number">1</literal></argument>,<argument>n</argument>)</argument_list></macro> <if>if<condition>(<expr><name><name>s</name><index>[<expr><name>i</name></expr>]</index></name><operator>!=</operator><name><name>t</name><index>[<expr><name>i</name></expr>]</index></name></expr>)</condition><then>
+            <block>{
+                <expr_stmt><expr><name>ok1</name><operator>=</operator><literal type="boolean">false</literal></expr>;</expr_stmt>
+                <break>break;</break>
+            }</block></then></if>
+            <if>if<condition>(<expr><name>ok</name></expr>)</condition><then>
+            <block>{
+                <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"YES\n"</literal></expr> ;</expr_stmt>
+                <continue>continue;</continue>
+            }</block></then></if>
+            <if>if<condition>(<expr><name>ok1</name></expr>)</condition><then>
+            <block>{
+                <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"YES\n"</literal></expr> ;</expr_stmt>
+                <continue>continue;</continue>
+            }</block></then></if>
+            <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><literal type="string">"NO"</literal><operator>&lt;&lt;</operator><literal type="string">"\n"</literal></expr>;</expr_stmt>
+        }</block></then></if>
+    }</block></while>
+}</block></function>
+</unit>

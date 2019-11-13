@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1236/all/29040457_62787279.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<typedef>typedef <type><name>long</name> <name>long</name></type> <name>ll</name>;</typedef>
+<typedef>typedef <type><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>, <argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>pii</name>;</typedef>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>x</name></cpp:macro> <cpp:value>first</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>y</name></cpp:macro> <cpp:value>second</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>size</name><parameter_list>(<parameter><type><name>a</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>(int)a.size()</cpp:value></cpp:define>
+
+<comment type="line">// const int N = int(1e5) + 10;</comment>
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>MOD</name> <init>= <expr><call><name>int</name><argument_list>(<argument><expr><literal type="number">1e9</literal></expr></argument>)</argument_list></call> <operator>+</operator> <literal type="number">7</literal></expr></init></decl>;</decl_stmt>
+
+<function><type><name>int</name></type> <name>bigmod</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>a</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>e</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>m</name></decl></parameter>)</parameter_list> <block>{
+	<decl_stmt><decl><type><name>ll</name></type> <name>ret</name> <init>= <expr><literal type="number">1LL</literal></expr></init></decl>;</decl_stmt>
+	<decl_stmt><decl><type><name>ll</name></type> <name>aa</name> <init>= <expr><operator>(</operator><name>ll</name><operator>)</operator><name>a</name></expr></init></decl>;</decl_stmt>
+	<while>while <condition>(<expr><name>e</name></expr>)</condition> <block>{
+		<if>if <condition>(<expr><name>e</name><operator>&amp;</operator><literal type="number">1</literal></expr>)</condition><then> <block>{
+			<expr_stmt><expr><name>ret</name> <operator>*=</operator> <name>aa</name></expr>;</expr_stmt>
+			<if>if <condition>(<expr><name>ret</name> <operator>&gt;</operator> <name>m</name></expr>)</condition><then>
+				<block type="pseudo"><expr_stmt><expr><name>ret</name> <operator>%=</operator> <name>m</name></expr>;</expr_stmt></block></then></if>
+			<expr_stmt><expr><name>e</name><operator>--</operator></expr>;</expr_stmt>
+		}</block></then></if>
+		<expr_stmt><expr><name>aa</name> <operator>*=</operator> <name>aa</name></expr>;</expr_stmt>
+		<expr_stmt><expr><name>e</name> <operator>/=</operator> <literal type="number">2</literal></expr>;</expr_stmt>
+		<if>if <condition>(<expr><name>aa</name> <operator>&gt;</operator> <name>m</name></expr>)</condition><then>
+			<block type="pseudo"><expr_stmt><expr><name>aa</name> <operator>%=</operator> <name>m</name></expr>;</expr_stmt></block></then></if>
+	}</block></while>
+	<return>return <expr><operator>(</operator><name>int</name><operator>)</operator><name>ret</name></expr>;</return>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+	<cpp:ifdef>#<cpp:directive>ifdef</cpp:directive> <name>LOCAL</name></cpp:ifdef>
+	<expr_stmt><expr><call><name>freopen</name><argument_list>(<argument><expr><literal type="string">"in"</literal></expr></argument>, <argument><expr><literal type="string">"r"</literal></expr></argument>, <argument><expr><name>stdin</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<expr_stmt><expr><call><name>freopen</name><argument_list>(<argument><expr><literal type="string">"out"</literal></expr></argument>, <argument><expr><literal type="string">"w"</literal></expr></argument>, <argument><expr><name>stdout</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<cpp:endif>#<cpp:directive>endif</cpp:directive></cpp:endif>
+
+	<decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>, <decl><type ref="prev"/><name>m</name></decl>;</decl_stmt>
+	<expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name> <operator>&gt;&gt;</operator> <name>m</name></expr>;</expr_stmt>
+	<expr_stmt><expr><name>m</name> <operator>=</operator> <operator>(</operator><call><name>bigmod</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>, <argument><expr><name>m</name></expr></argument>, <argument><expr><name>MOD</name></expr></argument>)</argument_list></call> <operator>+</operator> <name>MOD</name> <operator>-</operator> <literal type="number">1</literal><operator>)</operator> <operator>%</operator> <name>MOD</name></expr>;</expr_stmt>
+	<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <call><name>bigmod</name><argument_list>(<argument><expr><name>m</name></expr></argument>, <argument><expr><name>n</name></expr></argument>, <argument><expr><name>MOD</name></expr></argument>)</argument_list></call> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+
+	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>

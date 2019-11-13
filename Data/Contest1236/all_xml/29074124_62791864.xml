@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1236/all/29074124_62791864.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdio&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdlib&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstring&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;string&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;map&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;stack&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;queue&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cmath&gt;</cpp:file></cpp:include>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>M</name></cpp:macro> <cpp:value>1000000007</cpp:value></cpp:define>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<typedef>typedef <type><name>long</name> <name>long</name></type> <name>ll</name>;</typedef>
+
+<decl_stmt><decl><type><name>ll</name></type> <name><name>ar</name><index>[<expr><literal type="number">1000010</literal></expr>]</index></name></decl>;</decl_stmt>
+
+<function><type><name>ll</name></type> <name>powr</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>a</name></decl></parameter>, <parameter><decl><type><name>ll</name></type> <name>p</name></decl></parameter>, <parameter><decl><type><name>ll</name></type> <name>m</name></decl></parameter>)</parameter_list> <block>{
+	<if>if <condition>(<expr><name>p</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+		<return>return <expr><literal type="number">1</literal></expr>;</return>
+	}</block></then></if>
+	<if>if <condition>(<expr><name>p</name><operator>%</operator><literal type="number">2</literal> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+		<decl_stmt><decl><type><name>ll</name></type> <name>x</name> <init>= <expr><call><name>powr</name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><name>p</name><operator>/</operator><literal type="number">2</literal></expr></argument>, <argument><expr><name>m</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+		<return>return 	<expr><operator>(</operator><name>x</name><operator>*</operator><name>x</name><operator>)</operator><operator>%</operator><name>m</name></expr>;</return>
+	}</block></then></if>
+	<return>return <expr><operator>(</operator><name>a</name><operator>*</operator><call><name>powr</name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><name>p</name><operator>-</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>m</name></expr></argument>)</argument_list></call> <operator>)</operator> <operator>%</operator> <name>m</name></expr>;</return>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name> <parameter_list>()</parameter_list> <block>{
+	<comment type="line">// freopen ("input.txt", "r", stdin);</comment>
+	<decl_stmt><decl><type><name>ll</name></type> <name>t</name></decl>, <decl><type ref="prev"/><name>n</name></decl>, <decl><type ref="prev"/><name>i</name></decl>, <decl><type ref="prev"/><name>ans</name></decl>, <decl><type ref="prev"/><name>a</name></decl>, <decl><type ref="prev"/><name>b</name></decl>, <decl><type ref="prev"/><name>c</name></decl>, <decl><type ref="prev"/><name>max_a</name></decl>, <decl><type ref="prev"/><name>max_c</name></decl>, <decl><type ref="prev"/><name>max_b</name></decl>, <decl><type ref="prev"/><name>m</name></decl>;</decl_stmt>
+	<comment type="line">// cin &gt;&gt; t;</comment>
+	<expr_stmt><expr><name>t</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+	<while>while <condition>(<expr><name>t</name><operator>--</operator></expr>)</condition> <block>{
+		<expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name> <operator>&gt;&gt;</operator> <name>m</name></expr>;</expr_stmt>
+		<expr_stmt><expr><name>ans</name> <operator>=</operator> <call><name>powr</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>, <argument><expr><name>m</name></expr></argument>, <argument><expr><name>M</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<expr_stmt><expr><name>ans</name> <operator>=</operator> <operator>(</operator><name>ans</name> <operator>-</operator> <literal type="number">1</literal> <operator>+</operator> <name>M</name><operator>)</operator> <operator>%</operator> <name>M</name></expr>;</expr_stmt>
+		<expr_stmt><expr><name>ans</name> <operator>=</operator> <call><name>powr</name><argument_list>(<argument><expr><name>ans</name></expr></argument>, <argument><expr><name>n</name></expr></argument>, <argument><expr><name>M</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<expr_stmt><expr><name>ans</name> <operator>=</operator> <name>ans</name> <operator>%</operator> <name>M</name></expr>;</expr_stmt>
+		<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>ans</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+	}</block></while>
+	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>

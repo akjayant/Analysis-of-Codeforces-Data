@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29573217_63996352.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdlib&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstring&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdio&gt;</cpp:file></cpp:include>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>fo</name><parameter_list>(<parameter><type><name>a</name></type></parameter>,<parameter><type><name>b</name></type></parameter>,<parameter><type><name>c</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for (a=b; a&lt;=c; a++)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>fd</name><parameter_list>(<parameter><type><name>a</name></type></parameter>,<parameter><type><name>b</name></type></parameter>,<parameter><type><name>c</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for (a=b; a&gt;=c; a--)</cpp:value></cpp:define>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<decl_stmt><decl><type><name>int</name></type> <name>T</name></decl>,<decl><type ref="prev"/><name>a</name></decl>,<decl><type ref="prev"/><name>b</name></decl>,<decl><type ref="prev"/><name>i</name></decl>,<decl><type ref="prev"/><name>j</name></decl>,<decl><type ref="prev"/><name>k</name></decl>,<decl><type ref="prev"/><name>l</name></decl>;</decl_stmt>
+
+<function><type><name>int</name></type> <name>gcd</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>n</name></decl></parameter>,<parameter><decl><type><name>int</name></type> <name>m</name></decl></parameter>)</parameter_list>
+<block>{
+	<decl_stmt><decl><type><name>int</name></type> <name>r</name><init>=<expr><name>n</name><operator>%</operator><name>m</name></expr></init></decl>;</decl_stmt>
+	
+	<while>while <condition>(<expr><name>r</name></expr>)</condition>
+	<block>{
+		<expr_stmt><expr><name>n</name><operator>=</operator><name>m</name></expr>;</expr_stmt>
+		<expr_stmt><expr><name>m</name><operator>=</operator><name>r</name></expr>;</expr_stmt>
+		<expr_stmt><expr><name>r</name><operator>=</operator><name>n</name><operator>%</operator><name>m</name></expr>;</expr_stmt>
+	}</block></while>
+	
+	<return>return <expr><name>m</name></expr>;</return>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+<comment type="line">//	freopen("a.in","r",stdin);</comment>
+	
+	<expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%d"</literal></expr></argument>,<argument><expr><operator>&amp;</operator><name>T</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<for>for <control>(<init>;</init><condition><expr><name>T</name></expr>;</condition><incr><expr><operator>--</operator><name>T</name></expr></incr>)</control>
+	<block>{
+		<expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%d%d"</literal></expr></argument>,<argument><expr><operator>&amp;</operator><name>a</name></expr></argument>,<argument><expr><operator>&amp;</operator><name>b</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		
+		<if>if <condition>(<expr><call><name>gcd</name><argument_list>(<argument><expr><name>a</name></expr></argument>,<argument><expr><name>b</name></expr></argument>)</argument_list></call><operator>==</operator><literal type="number">1</literal></expr>)</condition><then>
+		<block type="pseudo"><expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"Finite\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then>
+		<else>else
+		<block type="pseudo"><expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"Infinite\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></else></if>
+	}</block></for>
+}</block></function></unit>

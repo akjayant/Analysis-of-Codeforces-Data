@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1236/all/29050435_62789342.cpp"><cpp:pragma>#<cpp:directive>pragma</cpp:directive> <name>GCC</name> <name>optimize</name><name>(</name><cpp:literal>"Ofast"</cpp:literal><name>)</name></cpp:pragma>
+<cpp:pragma>#<cpp:directive>pragma</cpp:directive> <name>GCC</name> <name>target</name><name>(</name><cpp:literal>"avx,avx2,fma"</cpp:literal><name>)</name></cpp:pragma>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;time.h&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;stdlib.h&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;ext/pb_ds/assoc_container.hpp&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;ext/pb_ds/tree_policy.hpp&gt;</cpp:file></cpp:include>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pb</name></cpp:macro> <cpp:value>push_back</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>IOS</name></cpp:macro> <cpp:value>ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ll</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ull</name></cpp:macro> <cpp:value>unsigned long long</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>gcd</name><parameter_list>(<parameter><type><name>a</name></type></parameter>,<parameter><type><name>b</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>__gcd((a),(b))</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>lcm</name><parameter_list>(<parameter><type><name>a</name></type></parameter>,<parameter><type><name>b</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>((a)*(b))/__gcd((a),(b))</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>clr</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>x.clear()</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>vi</name></cpp:macro> <cpp:value>vector&lt;int&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>vll</name></cpp:macro> <cpp:value>vector&lt;long long&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>vvi</name></cpp:macro> <cpp:value>vector&lt;vi&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>mp</name></cpp:macro> <cpp:value>make_pair</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>hell</name></cpp:macro> <cpp:value>1000000007</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pii</name></cpp:macro> <cpp:value>pair&lt;int,int&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pll</name></cpp:macro> <cpp:value>pair&lt;ll,ll&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>vpii</name></cpp:macro> <cpp:value>vector&lt;pii&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>vpll</name></cpp:macro> <cpp:value>vector&lt;pll&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>all</name><parameter_list>(<parameter><type><name>a</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>a.begin(),a.end()</cpp:value></cpp:define>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>o_set</name></cpp:macro> <cpp:value>tree&lt;int, null_type,less&lt;int&gt;, rb_tree_tag,tree_order_statistics_node_update&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>o_setll</name></cpp:macro> <cpp:value>tree&lt;ll, null_type,less&lt;ll&gt;, rb_tree_tag,tree_order_statistics_node_update&gt;</cpp:value></cpp:define>
+<comment type="line">//member functions :</comment>
+<comment type="line">//1. order_of_key(k) : number of elements strictly lesser than k</comment>
+<comment type="line">//2. find_by_order(k) : k-th element in the set</comment>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<using>using <namespace>namespace <name>__gnu_pbds</name>;</namespace></using>
+
+<comment type="line">// return (a*b) % modulo</comment>
+<function><type><name>unsigned</name> <name>long</name> <name>long</name></type> <name>mulmod</name><parameter_list>(<parameter><decl><type><name>unsigned</name> <name>long</name> <name>long</name></type> <name>a</name></decl></parameter>, <parameter><decl><type><name>unsigned</name> <name>long</name> <name>long</name></type> <name>b</name></decl></parameter>, <parameter><decl><type><name>unsigned</name> <name>long</name> <name>long</name></type> <name>modulo</name></decl></parameter>)</parameter_list>
+<block>{
+  <comment type="line">// (a * b) % modulo = (a % modulo) * (b % modulo) % modulo</comment>
+  <expr_stmt><expr><name>a</name> <operator>%=</operator> <name>modulo</name></expr>;</expr_stmt>
+  <expr_stmt><expr><name>b</name> <operator>%=</operator> <name>modulo</name></expr>;</expr_stmt>
+
+  <comment type="line">// fast path</comment>
+  <if>if <condition>(<expr><name>a</name> <operator>&lt;=</operator> <literal type="number">0xFFFFFFF</literal> <operator>&amp;&amp;</operator> <name>b</name> <operator>&lt;=</operator> <literal type="number">0xFFFFFFF</literal></expr>)</condition><then>
+    <block type="pseudo"><return>return <expr><operator>(</operator><name>a</name> <operator>*</operator> <name>b</name><operator>)</operator> <operator>%</operator> <name>modulo</name></expr>;</return></block></then></if>
+
+  <comment type="line">// we might encounter overflows (slow path)</comment>
+  <comment type="line">// the number of loops depends on b, therefore try to minimize b</comment>
+  <if>if <condition>(<expr><name>b</name> <operator>&gt;</operator> <name>a</name></expr>)</condition><then>
+    <block type="pseudo"><expr_stmt><expr><call><name><name>std</name><operator>::</operator><name>swap</name></name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><name>b</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then></if>
+
+  <comment type="line">// bitwise multiplication</comment>
+  <decl_stmt><decl><type><name>unsigned</name> <name>long</name> <name>long</name></type> <name>result</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+  <while>while <condition>(<expr><name>a</name> <operator>&gt;</operator> <literal type="number">0</literal> <operator>&amp;&amp;</operator> <name>b</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition>
+  <block>{
+    <comment type="line">// b is odd ? a*b = a + a*(b-1)</comment>
+    <if>if <condition>(<expr><name>b</name> <operator>&amp;</operator> <literal type="number">1</literal></expr>)</condition><then>
+    <block>{
+      <expr_stmt><expr><name>result</name> <operator>+=</operator> <name>a</name></expr>;</expr_stmt>
+      <if>if <condition>(<expr><name>result</name> <operator>&gt;=</operator> <name>modulo</name></expr>)</condition><then>
+        <block type="pseudo"><expr_stmt><expr><name>result</name> <operator>-=</operator> <name>modulo</name></expr>;</expr_stmt></block></then></if>
+      <comment type="line">// skip b-- because the bit-shift at the end will remove the lowest bit anyway</comment>
+    }</block></then></if>
+
+    <comment type="line">// b is even ? a*b = (2*a)*(b/2)</comment>
+    <expr_stmt><expr><name>a</name> <operator>&lt;&lt;=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+    <if>if <condition>(<expr><name>a</name> <operator>&gt;=</operator> <name>modulo</name></expr>)</condition><then>
+      <block type="pseudo"><expr_stmt><expr><name>a</name> <operator>-=</operator> <name>modulo</name></expr>;</expr_stmt></block></then></if>
+
+    <comment type="line">// next bit</comment>
+    <expr_stmt><expr><name>b</name> <operator>&gt;&gt;=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+  }</block></while>
+
+  <return>return <expr><name>result</name></expr>;</return>
+}</block></function>
+
+<comment type="line">// return (base^exponent) % modulo =&gt; simple implementation</comment>
+<function><type><name>unsigned</name> <name>long</name> <name>long</name></type> <name>powmod</name><parameter_list>(<parameter><decl><type><name>unsigned</name> <name>long</name> <name>long</name></type> <name>base</name></decl></parameter>, <parameter><decl><type><name>unsigned</name> <name>long</name> <name>long</name></type> <name>exponent</name></decl></parameter>, <parameter><decl><type><name>unsigned</name> <name>long</name> <name>long</name></type> <name>modulo</name></decl></parameter>)</parameter_list>
+<block>{
+  <decl_stmt><decl><type><name>unsigned</name> <name>long</name> <name>long</name></type> <name>result</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+  <while>while <condition>(<expr><name>exponent</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition>
+  <block>{
+    <comment type="line">// fast exponentation:</comment>
+    <comment type="line">// odd exponent ? a^b = a*a^(b-1)</comment>
+    <if>if <condition>(<expr><name>exponent</name> <operator>&amp;</operator> <literal type="number">1</literal></expr>)</condition><then>
+      <block type="pseudo"><expr_stmt><expr><name>result</name> <operator>=</operator> <call><name>mulmod</name><argument_list>(<argument><expr><name>result</name></expr></argument>, <argument><expr><name>base</name></expr></argument>, <argument><expr><name>modulo</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then></if>
+
+    <comment type="line">// even exponent ? a^b = (a*a)^(b/2)</comment>
+    <expr_stmt><expr><name>base</name> <operator>=</operator> <call><name>mulmod</name><argument_list>(<argument><expr><name>base</name></expr></argument>, <argument><expr><name>base</name></expr></argument>, <argument><expr><name>modulo</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>exponent</name> <operator>&gt;&gt;=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+  }</block></while>
+  <return>return <expr><name>result</name></expr>;</return>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+    <decl_stmt><decl><type><name>IOS</name>
+    <name>int</name></type> <name>n</name></decl>,<decl><type ref="prev"/><name>m</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>n</name><operator>&gt;&gt;</operator><name>m</name></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>ll</name></type> <name>num</name><init>=<expr><call><name>powmod</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>,<argument><expr><name>m</name></expr></argument>,<argument><expr><name>hell</name></expr></argument>)</argument_list></call><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>ll</name></type> <name>res</name><init>=<expr><call><name>powmod</name><argument_list>(<argument><expr><name>num</name></expr></argument>,<argument><expr><name>n</name></expr></argument>,<argument><expr><name>hell</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><name>res</name></expr>;</expr_stmt>
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>
