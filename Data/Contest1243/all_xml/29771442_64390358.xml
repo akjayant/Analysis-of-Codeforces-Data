@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1243/all/29771442_64390358.cpp"><cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>REP</name><parameter_list>(<parameter><type><name>i</name></type></parameter>,<parameter><type><name>s</name></type></parameter>,<parameter><type><name>n</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(int i=s;i&lt;n;++i)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>rep</name><parameter_list>(<parameter><type><name>i</name></type></parameter>,<parameter><type><name>n</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>REP(i,0,n)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>EPS</name></cpp:macro> <cpp:value>(1e-8)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>equals</name><parameter_list>(<parameter><type><name>a</name></type></parameter>,<parameter><type><name>b</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>(fabs((a)-(b))&lt;EPS)</cpp:value></cpp:define>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<typedef>typedef <type><name>long</name> <name>long</name></type> <name>ll</name>;</typedef>
+
+<function><type><name>bool</name></type> <name>LT</name><parameter_list>(<parameter><decl><type><name>double</name></type> <name>a</name></decl></parameter>,<parameter><decl><type><name>double</name></type> <name>b</name></decl></parameter>)</parameter_list> <block>{ <return>return <expr><operator>!</operator><call><name>equals</name><argument_list>(<argument><expr><name>a</name></expr></argument>,<argument><expr><name>b</name></expr></argument>)</argument_list></call> <operator>&amp;&amp;</operator> <name>a</name> <operator>&lt;</operator> <name>b</name></expr>;</return> }</block></function>
+<function><type><name>bool</name></type> <name>LTE</name><parameter_list>(<parameter><decl><type><name>double</name></type> <name>a</name></decl></parameter>,<parameter><decl><type><name>double</name></type> <name>b</name></decl></parameter>)</parameter_list> <block>{ <return>return <expr><call><name>equals</name><argument_list>(<argument><expr><name>a</name></expr></argument>,<argument><expr><name>b</name></expr></argument>)</argument_list></call> <operator>||</operator> <name>a</name> <operator>&lt;</operator> <name>b</name></expr>;</return> }</block></function>
+
+<decl_stmt><decl><type><name>bool</name></type> <name>debug</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>char</name></type> <name><name>tmp</name><index>[<expr><literal type="number">10010</literal></expr>]</index></name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>string</name></type> <name>s</name></decl>,<decl><type ref="prev"/><name>t</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><specifier>const</specifier> <name>string</name></type> <name>YES</name> <init>= <expr><literal type="string">"Yes"</literal></expr></init></decl>, <decl><type ref="prev"/><name>NO</name> <init>= <expr><literal type="string">"No"</literal></expr></init></decl>;</decl_stmt>
+
+<function><type><name>bool</name></type> <name>check</name><parameter_list>()</parameter_list> <block>{
+  <decl_stmt><decl><type><name><name>map</name><argument_list type="generic">&lt;<argument><expr><name>char</name></expr></argument>,<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>mp</name></decl>;</decl_stmt>
+  <macro><name>rep</name><argument_list>(<argument>i</argument>,<argument>n</argument>)</argument_list></macro> <block>{
+    <expr_stmt><expr><operator>++</operator><name><name>mp</name><index>[<expr><name><name>s</name><index>[<expr><name>i</name></expr>]</index></name></expr>]</index></name></expr>;</expr_stmt>
+    <expr_stmt><expr><operator>++</operator><name><name>mp</name><index>[<expr><name><name>t</name><index>[<expr><name>i</name></expr>]</index></name></expr>]</index></name></expr>;</expr_stmt>
+  }</block>
+  <for>for<control>(<init><decl><type><name>auto</name></type> <name>v</name> <range>: <expr><name>mp</name></expr></range></decl></init>)</control>  <block>{
+    <if>if<condition>( <expr><name><name>v</name><operator>.</operator><name>second</name></name> <operator>&amp;</operator> <literal type="number">1</literal></expr> )</condition><then> <block type="pseudo"><return>return <expr><literal type="boolean">false</literal></expr>;</return></block></then></if>
+  }</block></for>
+  <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+}</block></function>
+
+<function><type><name>int</name></type> <name>getPos</name><parameter_list>(<parameter><decl><type><name>string</name> <modifier>&amp;</modifier></type><name>u</name></decl></parameter>,<parameter><decl><type><name>char</name></type> <name>c</name></decl></parameter>,<parameter><decl><type><name>int</name></type> <name>sp</name></decl></parameter>)</parameter_list> <block>{
+  <macro><name>REP</name><argument_list>(<argument>i</argument>,<argument>sp</argument>,<argument>n</argument>)</argument_list></macro> <block>{
+    <if>if<condition>( <expr><name><name>u</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <name>c</name></expr> )</condition><then> <block type="pseudo"><return>return <expr><name>i</name></expr>;</return></block></then></if>
+  }</block>
+  <return>return <expr><operator>-</operator><literal type="number">1</literal></expr>;</return>
+}</block></function>
+
+<function><type><name>void</name></type> <name>compute</name><parameter_list>()</parameter_list> <block>{
+  <if>if<condition>( <expr><operator>!</operator><call><name>check</name><argument_list>()</argument_list></call></expr> )</condition><then> <block>{ <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>NO</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt> <return>return;</return> }</block></then></if>
+  <typedef>typedef <type><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>,<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>ii</name>;</typedef>
+  <decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>ii</name></expr></argument>&gt;</argument_list></name></type> <name>vec</name></decl>;</decl_stmt>
+  <macro><name>rep</name><argument_list>(<argument>i</argument>,<argument>n-<literal type="number">1</literal></argument>)</argument_list></macro> <block>{
+    <if>if<condition>( <expr><name><name>s</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <name><name>t</name><index>[<expr><name>i</name></expr>]</index></name></expr> )</condition><then> <block type="pseudo"><continue>continue;</continue></block></then></if>
+    <decl_stmt><decl><type><name>int</name></type> <name>pos</name> <init>= <expr><call><name>getPos</name><argument_list>(<argument><expr><name>s</name></expr></argument>,<argument><expr><name><name>s</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>,<argument><expr><name>i</name><operator>+</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if>if<condition>( <expr><name>pos</name> <operator>!=</operator> <operator>-</operator><literal type="number">1</literal></expr> )</condition><then> <block>{
+      <decl_stmt><decl><type><name>char</name></type> <name>tmp</name> <init>= <expr><name><name>t</name><index>[<expr><name>i</name></expr>]</index></name></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><name><name>t</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <name><name>s</name><index>[<expr><name>pos</name></expr>]</index></name></expr>;</expr_stmt>
+      <expr_stmt><expr><name><name>s</name><index>[<expr><name>pos</name></expr>]</index></name> <operator>=</operator> <name>tmp</name></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>vec</name><operator>.</operator><name>push_back</name></name><argument_list>(<argument><expr><call><name>ii</name><argument_list>(<argument><expr><name>pos</name></expr></argument>,<argument><expr><name>i</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <continue>continue;</continue>
+    }</block></then></if>
+    <expr_stmt><expr><name>pos</name> <operator>=</operator> <call><name>getPos</name><argument_list>(<argument><expr><name>t</name></expr></argument>,<argument><expr><name><name>s</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>,<argument><expr><name>i</name><operator>+</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <if>if<condition>(<expr><name>debug</name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><call><name>assert</name><argument_list>( <argument><expr><name>pos</name> <operator>!=</operator> <operator>-</operator><literal type="number">1</literal></expr></argument> )</argument_list></call></expr>;</expr_stmt></block></then></if>
+    <decl_stmt><decl><type><name>char</name></type> <name>tmp</name> <init>= <expr><name><name>t</name><index>[<expr><name>pos</name></expr>]</index></name></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><name><name>t</name><index>[<expr><name>pos</name></expr>]</index></name> <operator>=</operator> <name><name>s</name><index>[<expr><name>pos</name></expr>]</index></name></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>s</name><index>[<expr><name>pos</name></expr>]</index></name> <operator>=</operator> <name>tmp</name></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>vec</name><operator>.</operator><name>push_back</name></name><argument_list>(<argument><expr><call><name>ii</name><argument_list>(<argument><expr><name>pos</name></expr></argument>,<argument><expr><name>pos</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><name>tmp</name> <operator>=</operator> <name><name>t</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>t</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <name><name>s</name><index>[<expr><name>pos</name></expr>]</index></name></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>s</name><index>[<expr><name>pos</name></expr>]</index></name> <operator>=</operator> <name>tmp</name></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>vec</name><operator>.</operator><name>push_back</name></name><argument_list>(<argument><expr><call><name>ii</name><argument_list>(<argument><expr><name>pos</name></expr></argument>,<argument><expr><name>i</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  }</block>
+  <if>if<condition>(<expr><name>debug</name></expr>)</condition><then> <block>{
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>s</name> <operator>&lt;&lt;</operator> <literal type="string">" == "</literal> <operator>&lt;&lt;</operator> <name>t</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assert</name><argument_list>( <argument><expr><name>s</name> <operator>==</operator> <name>t</name></expr></argument> )</argument_list></call></expr>;</expr_stmt>
+  }</block></then></if>
+  <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>YES</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+  <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <call><name><name>vec</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+  <macro><name>rep</name><argument_list>(<argument>i</argument>,<argument>(int)vec.size()</argument>)</argument_list></macro> <block>{
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name><name>vec</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><name>first</name> <operator>+</operator> <literal type="number">1</literal> <operator>&lt;&lt;</operator> <literal type="string">" "</literal> <operator>&lt;&lt;</operator> <name><name>vec</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><name>second</name> <operator>+</operator> <literal type="number">1</literal> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+  }</block>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+  <decl_stmt><decl><type><name>int</name></type> <name>T</name></decl>;</decl_stmt>
+  <expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%d"</literal></expr></argument>,<argument><expr><operator>&amp;</operator><name>T</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <while>while<condition>( <expr><name>T</name><operator>--</operator></expr> )</condition> <block>{
+    <expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%d"</literal></expr></argument>,<argument><expr><operator>&amp;</operator><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%s"</literal></expr></argument>,<argument><expr><operator>&amp;</operator><name><name>tmp</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>s</name> <operator>=</operator> <call><name>string</name><argument_list>(<argument><expr><name>tmp</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%s"</literal></expr></argument>,<argument><expr><operator>&amp;</operator><name><name>tmp</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>t</name> <operator>=</operator> <call><name>string</name><argument_list>(<argument><expr><name>tmp</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <if>if<condition>( <expr><name>debug</name></expr> )</condition><then> <block type="pseudo"><expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>s</name> <operator>&lt;&lt;</operator> <literal type="string">" "</literal> <operator>&lt;&lt;</operator> <name>t</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt></block></then></if>
+    <expr_stmt><expr><call><name>compute</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+  }</block></while>
+  <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

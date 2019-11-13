@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1236/all/29074124_62785993.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdio&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdlib&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstring&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;string&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;map&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;stack&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;queue&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cmath&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<typedef>typedef <type><name>long</name> <name>long</name></type> <name>ll</name>;</typedef>
+
+<decl_stmt><decl><type><name>ll</name></type> <name><name>ar</name><index>[<expr><literal type="number">1000010</literal></expr>]</index></name></decl>;</decl_stmt>
+
+<function><type><name>int</name></type> <name>main</name> <parameter_list>()</parameter_list> <block>{
+	<comment type="line">// freopen ("input.txt", "r", stdin);</comment>
+	<decl_stmt><decl><type><name>ll</name></type> <name>t</name></decl>, <decl><type ref="prev"/><name>n</name></decl>, <decl><type ref="prev"/><name>i</name></decl>, <decl><type ref="prev"/><name>ans</name></decl>, <decl><type ref="prev"/><name>a</name></decl>, <decl><type ref="prev"/><name>b</name></decl>, <decl><type ref="prev"/><name>c</name></decl>, <decl><type ref="prev"/><name>max_a</name></decl>, <decl><type ref="prev"/><name>max_c</name></decl>, <decl><type ref="prev"/><name>max_b</name></decl>;</decl_stmt>
+	<expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>t</name></expr>;</expr_stmt>
+	<comment type="line">// t = 1;</comment>
+	<while>while <condition>(<expr><name>t</name><operator>--</operator></expr>)</condition> <block>{
+		<expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>a</name> <operator>&gt;&gt;</operator> <name>b</name> <operator>&gt;&gt;</operator> <name>c</name></expr>;</expr_stmt>
+		<expr_stmt><expr><name>ans</name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+		<expr_stmt><expr><name>max_c</name> <operator>=</operator> <name>c</name></expr>;</expr_stmt>
+		<if>if <condition>(<expr><name>c</name> <operator>%</operator> <literal type="number">2</literal> <operator>==</operator> <literal type="number">1</literal></expr>)</condition><then> <block>{
+			<expr_stmt><expr><name>max_c</name> <operator>=</operator> <name>c</name> <operator>-</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+		}</block></then></if>
+		<if>if <condition>(<expr><name>max_c</name> <operator>&gt;=</operator> <literal type="number">2</literal><operator>*</operator><name>b</name></expr>)</condition><then> <block>{
+			<expr_stmt><expr><name>ans</name> <operator>+=</operator> <operator>(</operator><literal type="number">3</literal><operator>*</operator><name>b</name><operator>)</operator></expr>;</expr_stmt>
+			<expr_stmt><expr><name>b</name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+		}</block></then> <else>else <block>{
+			<expr_stmt><expr><name>ans</name> <operator>+=</operator> <operator>(</operator><name>max_c</name> <operator>+</operator> <name>max_c</name> <operator>/</operator> <literal type="number">2</literal><operator>)</operator></expr>;</expr_stmt>
+			<expr_stmt><expr><name>b</name> <operator>-=</operator> <operator>(</operator><name>max_c</name> <operator>/</operator> <literal type="number">2</literal><operator>)</operator></expr>;</expr_stmt>
+		}</block></else></if>
+
+		<expr_stmt><expr><name>max_b</name> <operator>=</operator> <name>b</name></expr>;</expr_stmt>
+		<if>if <condition>(<expr><name>b</name> <operator>%</operator> <literal type="number">2</literal> <operator>==</operator> <literal type="number">1</literal></expr>)</condition><then> <block>{
+			<expr_stmt><expr><name>max_b</name> <operator>=</operator> <name>b</name> <operator>-</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+		}</block></then></if>
+		<if>if <condition>(<expr><name>max_b</name> <operator>&gt;=</operator> <literal type="number">2</literal><operator>*</operator><name>a</name></expr>)</condition><then> <block>{
+			<expr_stmt><expr><name>ans</name> <operator>+=</operator> <operator>(</operator><literal type="number">3</literal><operator>*</operator><name>a</name><operator>)</operator></expr>;</expr_stmt>
+			<expr_stmt><expr><name>a</name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+		}</block></then> <else>else <block>{
+			<expr_stmt><expr><name>ans</name> <operator>+=</operator> <operator>(</operator><name>max_b</name> <operator>+</operator> <name>max_b</name> <operator>/</operator> <literal type="number">2</literal><operator>)</operator></expr>;</expr_stmt>
+			<comment type="line">// b -= (max_b / 2);</comment>
+		}</block></else></if>
+
+		<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>ans</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+
+	}</block></while>
+	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>

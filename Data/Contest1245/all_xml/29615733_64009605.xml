@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29615733_64009605.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ll</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>x</name></cpp:macro> <cpp:value>first</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>y</name></cpp:macro> <cpp:value>second</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pll</name></cpp:macro> <cpp:value>pair&lt;ll, ll&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pii</name></cpp:macro> <cpp:value>pair&lt;int, int&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>mll</name></cpp:macro> <cpp:value>map&lt;ll, ll&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>mii</name></cpp:macro> <cpp:value>map&lt;in, int&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>vll</name></cpp:macro> <cpp:value>vector&lt;ll&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>vi</name></cpp:macro> <cpp:value>vector&lt;int&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pb</name></cpp:macro> <cpp:value>push_back</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>p</name></cpp:macro> <cpp:value>push</cpp:value></cpp:define>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<decl_stmt><decl><type><name>ll</name></type> <name>a</name></decl>, <decl><type ref="prev"/><name>b</name></decl>, <decl><type ref="prev"/><name>c</name></decl>, <decl><type ref="prev"/><name>n</name></decl>, <decl><type ref="prev"/><name><name>dp</name><index>[<expr><literal type="number">111</literal></expr>]</index><index>[<expr><literal type="number">111</literal></expr>]</index><index>[<expr><literal type="number">111</literal></expr>]</index></name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>string</name></type> <name>s</name></decl>, <decl><type ref="prev"/><name>ans</name></decl>;</decl_stmt>
+
+<function><type><name>ll</name></type> <name>solve</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>i</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>A</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>B</name></decl></parameter>)</parameter_list> <block>{
+    <if>if<condition>(<expr><name>i</name> <operator>&gt;=</operator> <name>n</name></expr>)</condition><then> <block>{
+        <return>return <expr><literal type="number">0</literal></expr>;</return>
+    }</block></then></if>
+    <if>if<condition>(<expr><name><name>dp</name><index>[<expr><name>i</name></expr>]</index><index>[<expr><name>A</name></expr>]</index><index>[<expr><name>B</name></expr>]</index></name> <operator>!=</operator> <operator>-</operator><literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><return>return <expr><name><name>dp</name><index>[<expr><name>i</name></expr>]</index><index>[<expr><name>A</name></expr>]</index><index>[<expr><name>B</name></expr>]</index></name></expr>;</return></block></then></if>
+    <decl_stmt><decl><type><name>ll</name></type> <name>res</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>C</name> <init>= <expr><name>c</name> <operator>-</operator> <operator>(</operator><name>i</name> <operator>-</operator> <operator>(</operator><name>a</name> <operator>-</operator> <name>A</name><operator>)</operator>  <operator>-</operator> <operator>(</operator><name>b</name> <operator>-</operator> <name>B</name><operator>)</operator><operator>)</operator></expr></init></decl>;</decl_stmt>
+    <if>if<condition>(<expr><name>A</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+        <if>if<condition>(<expr><name><name>s</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="char">'S'</literal></expr>)</condition><then> <block>{
+            <expr_stmt><expr><name>res</name> <operator>=</operator> <call><name>max</name><argument_list>(<argument><expr><name>res</name></expr></argument>, <argument><expr><call><name>solve</name><argument_list>(<argument><expr><name>i</name><operator>+</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>A</name><operator>-</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>B</name></expr></argument>)</argument_list></call> <operator>+</operator> <literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        }</block></then></if>
+        <expr_stmt><expr><name>res</name> <operator>=</operator> <call><name>max</name><argument_list>(<argument><expr><name>res</name></expr></argument>, <argument><expr><call><name>solve</name><argument_list>(<argument><expr><name>i</name><operator>+</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>A</name> <operator>-</operator> <literal type="number">1</literal></expr></argument>, <argument><expr><name>B</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    }</block></then></if>
+    <if>if<condition>(<expr><name>C</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+        <if>if<condition>(<expr><name><name>s</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="char">'P'</literal></expr>)</condition><then> <block>{
+            <expr_stmt><expr><name>res</name> <operator>=</operator> <call><name>max</name><argument_list>(<argument><expr><name>res</name></expr></argument>, <argument><expr><call><name>solve</name><argument_list>(<argument><expr><name>i</name><operator>+</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>A</name></expr></argument>, <argument><expr><name>B</name></expr></argument>)</argument_list></call> <operator>+</operator> <literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        }</block></then></if>
+        <expr_stmt><expr><name>res</name> <operator>=</operator> <call><name>max</name><argument_list>(<argument><expr><name>res</name></expr></argument>, <argument><expr><call><name>solve</name><argument_list>(<argument><expr><name>i</name><operator>+</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>A</name></expr></argument>, <argument><expr><name>B</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    }</block></then></if>
+    <if>if<condition>(<expr><name>B</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+        <if>if<condition>(<expr><name><name>s</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="char">'R'</literal></expr>)</condition><then> <block>{
+            <expr_stmt><expr><name>res</name> <operator>=</operator> <call><name>max</name><argument_list>(<argument><expr><name>res</name></expr></argument>, <argument><expr><call><name>solve</name><argument_list>(<argument><expr><name>i</name><operator>+</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>A</name></expr></argument>, <argument><expr><name>B</name> <operator>-</operator> <literal type="number">1</literal></expr></argument>)</argument_list></call> <operator>+</operator> <literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        }</block></then></if>
+        <expr_stmt><expr><name>res</name> <operator>=</operator> <call><name>max</name><argument_list>(<argument><expr><name>res</name></expr></argument>, <argument><expr><call><name>solve</name><argument_list>(<argument><expr><name>i</name><operator>+</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>A</name></expr></argument>, <argument><expr><name>B</name> <operator>-</operator> <literal type="number">1</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    }</block></then></if>
+    <return>return <expr><name><name>dp</name><index>[<expr><name>i</name></expr>]</index><index>[<expr><name>A</name></expr>]</index><index>[<expr><name>B</name></expr>]</index></name> <operator>=</operator> <name>res</name></expr>;</return>
+}</block></function>
+
+<function><type><name>void</name></type> <name>findPass</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>i</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>A</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>B</name></decl></parameter>)</parameter_list> <block>{
+    <decl_stmt><decl><type><name>int</name></type> <name>C</name> <init>= <expr><name>c</name> <operator>-</operator> <operator>(</operator><name>i</name> <operator>-</operator> <operator>(</operator><name>a</name> <operator>-</operator> <name>A</name><operator>)</operator>  <operator>-</operator> <operator>(</operator><name>b</name> <operator>-</operator> <name>B</name><operator>)</operator><operator>)</operator></expr></init></decl>;</decl_stmt>
+    <if>if<condition>(<expr><name>i</name> <operator>&gt;=</operator> <name>n</name></expr>)</condition><then> <block type="pseudo"><return>return;</return></block></then></if>
+    <if>if<condition>(<expr><name>A</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+        <if>if<condition>(<expr><name><name>s</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="char">'S'</literal></expr>)</condition><then> <block>{
+            <if>if<condition>(<expr><call><name>solve</name><argument_list>(<argument><expr><name>i</name></expr></argument>, <argument><expr><name>A</name></expr></argument>, <argument><expr><name>B</name></expr></argument>)</argument_list></call> <operator>==</operator> <literal type="number">1</literal> <operator>+</operator> <call><name>solve</name><argument_list>(<argument><expr><name>i</name><operator>+</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>A</name><operator>-</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>B</name></expr></argument>)</argument_list></call></expr>)</condition><then> <block>{
+                <expr_stmt><expr><name>ans</name> <operator>+=</operator> <literal type="char">'R'</literal></expr>;</expr_stmt>
+                <expr_stmt><expr><call><name>findPass</name><argument_list>(<argument><expr><name>i</name><operator>+</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>A</name><operator>-</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>B</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <return>return ;</return>
+            }</block></then></if>
+        }</block></then></if>
+        <if>if<condition>(<expr><call><name>solve</name><argument_list>(<argument><expr><name>i</name></expr></argument>, <argument><expr><name>A</name></expr></argument>, <argument><expr><name>B</name></expr></argument>)</argument_list></call> <operator>==</operator><call><name>solve</name><argument_list>(<argument><expr><name>i</name><operator>+</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>A</name><operator>-</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>B</name></expr></argument>)</argument_list></call></expr>)</condition><then> <block>{
+            <expr_stmt><expr><name>ans</name> <operator>+=</operator> <literal type="char">'R'</literal></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name>findPass</name><argument_list>(<argument><expr><name>i</name><operator>+</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>A</name><operator>-</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>B</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <return>return ;</return>
+        }</block></then></if>
+    }</block></then></if>
+    <if>if<condition>(<expr><name>C</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+        <if>if<condition>(<expr><name><name>s</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="char">'P'</literal></expr>)</condition><then> <block>{
+            <if>if<condition>(<expr><call><name>solve</name><argument_list>(<argument><expr><name>i</name></expr></argument>, <argument><expr><name>A</name></expr></argument>, <argument><expr><name>B</name></expr></argument>)</argument_list></call> <operator>==</operator> <literal type="number">1</literal> <operator>+</operator> <call><name>solve</name><argument_list>(<argument><expr><name>i</name><operator>+</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>A</name></expr></argument>, <argument><expr><name>B</name></expr></argument>)</argument_list></call></expr>)</condition><then> <block>{
+                <expr_stmt><expr><name>ans</name> <operator>+=</operator> <literal type="char">'S'</literal></expr>;</expr_stmt>
+                <expr_stmt><expr><call><name>findPass</name><argument_list>(<argument><expr><name>i</name><operator>+</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>A</name></expr></argument>, <argument><expr><name>B</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <return>return ;</return>
+            }</block></then></if>
+        }</block></then></if>
+        <if>if<condition>(<expr><call><name>solve</name><argument_list>(<argument><expr><name>i</name></expr></argument>, <argument><expr><name>A</name></expr></argument>, <argument><expr><name>B</name></expr></argument>)</argument_list></call> <operator>==</operator> <call><name>solve</name><argument_list>(<argument><expr><name>i</name><operator>+</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>A</name></expr></argument>, <argument><expr><name>B</name></expr></argument>)</argument_list></call></expr>)</condition><then> <block>{
+            <expr_stmt><expr><name>ans</name> <operator>+=</operator> <literal type="char">'S'</literal></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name>findPass</name><argument_list>(<argument><expr><name>i</name><operator>+</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>A</name></expr></argument>, <argument><expr><name>B</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <return>return ;</return>
+        }</block></then></if>
+    }</block></then></if>
+    <if>if<condition>(<expr><name>B</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+        <if>if<condition>(<expr><name><name>s</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="char">'R'</literal></expr>)</condition><then> <block>{
+            <if>if<condition>(<expr><call><name>solve</name><argument_list>(<argument><expr><name>i</name></expr></argument>, <argument><expr><name>A</name></expr></argument>, <argument><expr><name>B</name></expr></argument>)</argument_list></call> <operator>==</operator> <literal type="number">1</literal> <operator>+</operator> <call><name>solve</name><argument_list>(<argument><expr><name>i</name><operator>+</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>A</name></expr></argument>, <argument><expr><name>B</name><operator>-</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>)</condition><then> <block>{
+                <expr_stmt><expr><name>ans</name> <operator>+=</operator> <literal type="char">'P'</literal></expr>;</expr_stmt>
+                <expr_stmt><expr><call><name>findPass</name><argument_list>(<argument><expr><name>i</name><operator>+</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>A</name></expr></argument>, <argument><expr><name>B</name><operator>-</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <return>return ;</return>
+            }</block></then></if>
+        }</block></then></if>
+        <if>if<condition>(<expr><call><name>solve</name><argument_list>(<argument><expr><name>i</name></expr></argument>, <argument><expr><name>A</name></expr></argument>, <argument><expr><name>B</name></expr></argument>)</argument_list></call> <operator>==</operator> <call><name>solve</name><argument_list>(<argument><expr><name>i</name><operator>+</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>A</name></expr></argument>, <argument><expr><name>B</name><operator>-</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>)</condition><then> <block>{
+            <expr_stmt><expr><name>ans</name> <operator>+=</operator> <literal type="char">'P'</literal></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name>findPass</name><argument_list>(<argument><expr><name>i</name><operator>+</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>A</name></expr></argument>, <argument><expr><name>B</name><operator>-</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <return>return ;</return>
+        }</block></then></if>
+    }</block></then></if>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+    <expr_stmt><expr><call><name><name>ios_base</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>cin</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><name>NULL</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>cout</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><name>NULL</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>t</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>t</name></expr>;</expr_stmt>
+    <while>while<condition>(<expr><name>t</name><operator>--</operator></expr>)</condition> <block>{
+        <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>n</name><operator>&gt;&gt;</operator><name>a</name><operator>&gt;&gt;</operator><name>b</name><operator>&gt;&gt;</operator><name>c</name><operator>&gt;&gt;</operator><name>s</name></expr>;</expr_stmt>
+        <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;=</operator><name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{
+            <for>for<control>(<init><decl><type><name>int</name></type> <name>j</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>j</name><operator>&lt;=</operator><name>a</name></expr>;</condition><incr><expr><name>j</name><operator>++</operator></expr></incr>)</control> <block>{
+                <for>for<control>(<init><decl><type><name>int</name></type> <name>k</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>k</name><operator>&lt;=</operator><name>b</name></expr>;</condition><incr><expr><name>k</name><operator>++</operator></expr></incr>)</control> <block>{
+                    <expr_stmt><expr><name><name>dp</name><index>[<expr><name>i</name></expr>]</index><index>[<expr><name>j</name></expr>]</index><index>[<expr><name>k</name></expr>]</index></name> <operator>=</operator> <operator>-</operator><literal type="number">1</literal></expr>;</expr_stmt>
+                }</block></for>
+            }</block></for>
+        }</block></for>
+        <expr_stmt><expr><name>ans</name> <operator>=</operator> <literal type="string">""</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name>findPass</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><name>a</name></expr></argument>, <argument><expr><name>b</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <if>if<condition>(<expr><call><name>solve</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><name>a</name></expr></argument>, <argument><expr><name>b</name></expr></argument>)</argument_list></call> <operator>&gt;=</operator> <operator>(</operator><name>n</name> <operator>+</operator> <literal type="number">1</literal><operator>)</operator><operator>/</operator><literal type="number">2</literal></expr>)</condition><then> <block>{
+            <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><literal type="string">"YES\n"</literal><operator>&lt;&lt;</operator><name>ans</name><operator>&lt;&lt;</operator><literal type="char">'\n'</literal></expr>;</expr_stmt>
+        }</block></then> <else>else <block>{
+            <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><literal type="string">"NO\n"</literal></expr>;</expr_stmt>
+        }</block></else></if>
+    }</block></while>
+}</block></function>
+<comment type="line">//</comment></unit>

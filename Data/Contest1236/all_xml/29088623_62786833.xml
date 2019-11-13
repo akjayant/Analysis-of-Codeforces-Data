@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1236/all/29088623_62786833.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;queue&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;string&gt;</cpp:file></cpp:include>
+
+<using>using <name>ll</name> <init>= <type><name>long</name> <name>long</name></type></init>;</using>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>MOD</name></cpp:macro> <cpp:value>(ll)(1e9 + 7)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>MAX</name></cpp:macro> <cpp:value>1000000</cpp:value></cpp:define>  <comment type="line">// éä¹ãããã¤ã¾ã§è¨ç®ããã</comment>
+
+<class_decl>class <name>modlong</name>;</class_decl>
+<function_decl><type><name>void</name></type> <name>computeAll</name><parameter_list>(<parameter><decl><type><name>long</name></type> <name>n</name></decl></parameter>)</parameter_list>;</function_decl>
+<function_decl><type><name>modlong</name></type> <name>modComb</name><parameter_list>(<parameter><decl><type><name>long</name></type> <name>n</name></decl></parameter>, <parameter><decl><type><name>long</name></type> <name>k</name></decl></parameter>)</parameter_list>;</function_decl>
+<function_decl><type><name>modlong</name></type> <name>modFact</name><parameter_list>(<parameter><decl><type><name>long</name></type> <name>n</name></decl></parameter>)</parameter_list>;</function_decl>
+
+<class>class <name>modlong</name> <block>{<private type="default">
+    <decl_stmt><decl><type><name>ll</name></type> <name>val</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>const</specifier> <name>ll</name></type> <name>mod</name> <init>= <expr><name>MOD</name></expr></init></decl>;</decl_stmt>
+
+</private><public>public:
+    <comment type="line">// åæå å¤ãå¼æ°ã«ä¸ããªãã£ãå ´åã¯val=0ã¨ãã¦ãã</comment>
+    <constructor><name>modlong</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>init</name> <init>= <expr><literal type="number">0</literal></expr></init></decl></parameter>)</parameter_list> <block>{
+        <while>while <condition>(<expr><name>init</name> <operator>&lt;</operator> <literal type="number">0</literal></expr>)</condition> <block type="pseudo"><expr_stmt><expr><name>init</name> <operator>+=</operator> <name>mod</name></expr>;</expr_stmt></block></while>  <comment type="line">// 0ä»¥ä¸ã§ãããã¨ãä¿è¨¼</comment>
+        <expr_stmt><expr><name>val</name> <operator>=</operator> <name>init</name> <operator>%</operator> <name>mod</name></expr>;</expr_stmt>
+    }</block></constructor>
+
+    <comment type="line">// longã¸ã®ã­ã£ã¹ã operator long()ã§å®ç¾©ããã¨ modlong +</comment>
+    <comment type="line">// longã¨ããã§ããªããªã</comment>
+    <function><type><name>ll</name></type> <name>tol</name><parameter_list>()</parameter_list> <block>{ <return>return <expr><name><name>this</name><operator>-&gt;</operator><name>val</name></name></expr>;</return> }</block></function>
+
+    <comment type="line">// ä»£å¥</comment>
+    <function type="operator"><type><name>void</name></type> <name>operator<name>=</name></name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name>modlong</name> <modifier>&amp;</modifier></type><name>r</name></decl></parameter>)</parameter_list> <block>{ <expr_stmt><expr><name><name>this</name><operator>-&gt;</operator><name>val</name></name> <operator>=</operator> <name><name>r</name><operator>.</operator><name>val</name></name></expr>;</expr_stmt> }</block></function>
+    <function type="operator"><type><name>void</name></type> <name>operator<name>=</name></name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name>ll</name> <modifier>&amp;</modifier></type><name>r</name></decl></parameter>)</parameter_list> <block>{
+        <decl_stmt><decl><type><name>ll</name></type> <name>rr</name> <init>= <expr><name>r</name></expr></init></decl>;</decl_stmt>
+        <while>while <condition>(<expr><name>rr</name> <operator>&lt;</operator> <literal type="number">0</literal></expr>)</condition> <block type="pseudo"><expr_stmt><expr><name>rr</name> <operator>+=</operator> <name>mod</name></expr>;</expr_stmt></block></while>  <comment type="line">// 0ä»¥ä¸ã§ãããã¨ãä¿è¨¼</comment>
+        <expr_stmt><expr><name><name>this</name><operator>-&gt;</operator><name>val</name></name> <operator>=</operator> <name>rr</name> <operator>%</operator> <name>mod</name></expr>;</expr_stmt>
+    }</block></function>
+
+    <comment type="line">//æ¯è¼</comment>
+    <function type="operator"><type><name>bool</name></type> <name>operator<name>&lt;</name></name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name>modlong</name> <modifier>&amp;</modifier></type><name>r</name></decl></parameter>)</parameter_list> <block>{ <return>return <expr><name><name>this</name><operator>-&gt;</operator><name>val</name></name> <operator>&lt;</operator> <name><name>r</name><operator>.</operator><name>val</name></name></expr>;</return> }</block></function>
+    <function type="operator"><type><name>bool</name></type> <name>operator<name>&gt;</name></name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name>modlong</name> <modifier>&amp;</modifier></type><name>r</name></decl></parameter>)</parameter_list> <block>{ <return>return <expr><name><name>this</name><operator>-&gt;</operator><name>val</name></name> <operator>&gt;</operator> <name><name>r</name><operator>.</operator><name>val</name></name></expr>;</return> }</block></function>
+    <function type="operator"><type><name>bool</name></type> <name>operator<name>==</name></name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name>modlong</name> <modifier>&amp;</modifier></type><name>r</name></decl></parameter>)</parameter_list> <block>{ <return>return <expr><name><name>this</name><operator>-&gt;</operator><name>val</name></name> <operator>==</operator> <name><name>r</name><operator>.</operator><name>val</name></name></expr>;</return> }</block></function>
+    <function type="operator"><type><name>bool</name></type> <name>operator<name>!=</name></name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name>modlong</name> <modifier>&amp;</modifier></type><name>r</name></decl></parameter>)</parameter_list> <block>{ <return>return <expr><operator>!</operator><operator>(</operator><operator>*</operator><name>this</name> <operator>==</operator> <name>r</name><operator>)</operator></expr>;</return> }</block></function>
+    <function type="operator"><type><name>bool</name></type> <name>operator<name>&lt;=</name></name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name>modlong</name> <modifier>&amp;</modifier></type><name>r</name></decl></parameter>)</parameter_list> <block>{ <return>return <expr><operator>!</operator><operator>(</operator><operator>*</operator><name>this</name> <operator>&gt;</operator> <name>r</name><operator>)</operator></expr>;</return> }</block></function>
+    <function type="operator"><type><name>bool</name></type> <name>operator<name>&gt;=</name></name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name>modlong</name> <modifier>&amp;</modifier></type><name>r</name></decl></parameter>)</parameter_list> <block>{ <return>return <expr><operator>!</operator><operator>(</operator><operator>*</operator><name>this</name> <operator>&lt;</operator> <name>r</name><operator>)</operator></expr>;</return> }</block></function>
+
+    <comment type="line">// è¶³ãç®; ç¬¦å·åè»¢; å¼ãç®</comment>
+    <function type="operator"><type><name>modlong</name></type> <name>operator<name>+</name></name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name>modlong</name> <modifier>&amp;</modifier></type><name>r</name></decl></parameter>)</parameter_list> <block>{
+        <decl_stmt><decl><type><name>ll</name></type> <name>aval</name> <init>= <expr><operator>(</operator><name><name>this</name><operator>-&gt;</operator><name>val</name></name> <operator>+</operator> <name><name>r</name><operator>.</operator><name>val</name></name><operator>)</operator> <operator>%</operator> <name>mod</name></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>modlong</name></type> <name>ans</name><argument_list>(<argument><expr><name>aval</name></expr></argument>)</argument_list></decl>;</decl_stmt>
+        <return>return <expr><name>ans</name></expr>;</return>
+    }</block></function>
+    <function type="operator"><type><name>modlong</name></type> <name>operator<name>-</name></name><parameter_list>()</parameter_list> <block>{
+        <decl_stmt><decl><type><name>ll</name></type> <name>aval</name> <init>= <expr><operator>(</operator><name>mod</name> <operator>-</operator> <name><name>this</name><operator>-&gt;</operator><name>val</name></name><operator>)</operator> <operator>%</operator> <name>mod</name></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>modlong</name></type> <name>ans</name><argument_list>(<argument><expr><name>aval</name></expr></argument>)</argument_list></decl>;</decl_stmt>
+        <return>return <expr><name>ans</name></expr>;</return>
+    }</block></function>
+    <function type="operator"><type><name>modlong</name></type> <name>operator<name>-</name></name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name>modlong</name> <modifier>&amp;</modifier></type><name>r</name></decl></parameter>)</parameter_list> <block>{
+        <decl_stmt><decl><type><name>modlong</name></type> <name>rr</name> <init>= <expr><name>r</name></expr></init></decl>;</decl_stmt>
+        <return>return <expr><operator>*</operator><name>this</name> <operator>+</operator> <operator>(</operator><operator>-</operator><name>rr</name><operator>)</operator></expr>;</return>
+    }</block></function>
+
+    <comment type="line">//ããç®; éå; ããç®</comment>
+    <function type="operator"><type><name>modlong</name></type> <name>operator<name>*</name></name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name>modlong</name> <modifier>&amp;</modifier></type><name>r</name></decl></parameter>)</parameter_list> <block>{
+        <decl_stmt><decl><type><name>ll</name></type> <name>aval</name> <init>= <expr><operator>(</operator><name><name>this</name><operator>-&gt;</operator><name>val</name></name> <operator>*</operator> <name><name>r</name><operator>.</operator><name>val</name></name><operator>)</operator> <operator>%</operator> <name>mod</name></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>modlong</name></type> <name>ans</name><argument_list>(<argument><expr><name>aval</name></expr></argument>)</argument_list></decl>;</decl_stmt>
+        <return>return <expr><name>ans</name></expr>;</return>
+    }</block></function>
+    <function><type><name>modlong</name></type> <name>inv</name><parameter_list>()</parameter_list> <block>{
+        <if>if <condition>(<expr><operator>*</operator><name>this</name> <operator>==</operator> <literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><return>return <expr><call><name>modlong</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</return></block></then></if>
+        <if>if <condition>(<expr><operator>*</operator><name>this</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>cerr</name> <operator>&lt;&lt;</operator> <literal type="string">"modlong warning: dividebyzero!!!"</literal> <operator>&lt;&lt;</operator> <literal type="char">'\n'</literal></expr>;</expr_stmt></block></then></if>
+
+        <decl_stmt><decl><type><name>modlong</name></type> <name>p</name></decl>, <decl><type ref="prev"/><name>q</name> <init>= <expr><operator>*</operator><name>this</name></expr></init></decl>, <decl><type ref="prev"/><name>m</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></decl>, <decl><type ref="prev"/><name>n</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></decl>, <decl><type ref="prev"/><name>r</name></decl>, <decl><type ref="prev"/><name>c</name></decl>;</decl_stmt>
+        <expr_stmt><expr><name><name>p</name><operator>.</operator><name>val</name></name> <operator>=</operator> <name>mod</name></expr>;</expr_stmt>  <comment type="line">// p=modã¨ããã¨p.val=mod%mod=0ã¨ãªã£ã¦ãã¾ã</comment>
+        <while>while <condition>(<expr><name>q</name> <operator>&gt;</operator> <literal type="number">1</literal></expr>)</condition> <block>{
+            <expr_stmt><expr><name>r</name> <operator>=</operator> <name><name>p</name><operator>.</operator><name>val</name></name> <operator>%</operator>
+                <name><name>q</name><operator>.</operator><name>val</name></name></expr>;</expr_stmt>  <comment type="line">// r.val=p.val / q.val</comment>
+                        <comment type="line">// ã¨ããããããã®ã»ããä»£å¥æã«%modãããã®ã§å®å¨</comment>
+            <expr_stmt><expr><name>c</name> <operator>=</operator> <name><name>m</name><operator>.</operator><name>val</name></name> <operator>-</operator> <name><name>n</name><operator>.</operator><name>val</name></name> <operator>*</operator> <operator>(</operator><name><name>p</name><operator>.</operator><name>val</name></name> <operator>/</operator> <name><name>q</name><operator>.</operator><name>val</name></name><operator>)</operator></expr>;</expr_stmt>
+            <expr_stmt><expr><name>p</name> <operator>=</operator> <name>q</name></expr><operator>,</operator> <expr><name>q</name> <operator>=</operator> <name>r</name></expr><operator>,</operator> <expr><name>m</name> <operator>=</operator> <name>n</name></expr><operator>,</operator> <expr><name>n</name> <operator>=</operator> <name>c</name></expr>;</expr_stmt>
+        }</block></while>
+        <return>return <expr><name>n</name></expr>;</return>
+    }</block></function>
+    <function type="operator"><type><name>modlong</name></type> <name>operator<name>/</name></name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name>modlong</name> <modifier>&amp;</modifier></type><name>r</name></decl></parameter>)</parameter_list> <block>{
+        <decl_stmt><decl><type><name>modlong</name></type> <name>rr</name> <init>= <expr><name>r</name></expr></init></decl>;</decl_stmt>
+        <return>return <expr><operator>*</operator><name>this</name> <operator>*</operator> <call><name><name>rr</name><operator>.</operator><name>inv</name></name><argument_list>()</argument_list></call></expr>;</return>
+    }</block></function>
+
+    <comment type="line">// ++ -- åä»ãã¨å¾ãä»ã</comment>
+    <function type="operator"><type><name>void</name></type> <name>operator<name>++</name></name><parameter_list>()</parameter_list> <block>{ <expr_stmt><expr><operator>++</operator><name><name>this</name><operator>-&gt;</operator><name>val</name></name></expr>;</expr_stmt> }</block></function>
+    <function type="operator"><type><name>void</name></type> <name>operator<name>++</name></name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>a</name></decl></parameter>)</parameter_list> <block>{
+        <expr_stmt><expr><name>a</name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>this</name><operator>-&gt;</operator><name>val</name></name><operator>++</operator></expr>;</expr_stmt>
+    }</block></function>  <comment type="line">// aä½¿ã£ã¦ãªãã­ã£ã¦ããwarningãsilenceããããã«aãããã£ã¦ã</comment>
+    <function type="operator"><type><name>void</name></type> <name>operator<name>--</name></name><parameter_list>()</parameter_list> <block>{ <expr_stmt><expr><operator>--</operator><name><name>this</name><operator>-&gt;</operator><name>val</name></name></expr>;</expr_stmt> }</block></function>
+    <function type="operator"><type><name>void</name></type> <name>operator<name>--</name></name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>a</name></decl></parameter>)</parameter_list> <block>{
+        <expr_stmt><expr><name>a</name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>this</name><operator>-&gt;</operator><name>val</name></name><operator>--</operator></expr>;</expr_stmt>
+    }</block></function>
+
+    <comment type="line">// ååæ¼ç®&amp;ä»£å¥</comment>
+    <function type="operator"><type><name>void</name></type> <name>operator<name>+=</name></name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name>modlong</name> <modifier>&amp;</modifier></type><name>r</name></decl></parameter>)</parameter_list> <block>{ <expr_stmt><expr><operator>*</operator><name>this</name> <operator>=</operator> <operator>*</operator><name>this</name> <operator>+</operator> <name>r</name></expr>;</expr_stmt> }</block></function>
+    <function type="operator"><type><name>void</name></type> <name>operator<name>-=</name></name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name>modlong</name> <modifier>&amp;</modifier></type><name>r</name></decl></parameter>)</parameter_list> <block>{ <expr_stmt><expr><operator>*</operator><name>this</name> <operator>=</operator> <operator>*</operator><name>this</name> <operator>-</operator> <name>r</name></expr>;</expr_stmt> }</block></function>
+    <function type="operator"><type><name>void</name></type> <name>operator<name>*=</name></name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name>modlong</name> <modifier>&amp;</modifier></type><name>r</name></decl></parameter>)</parameter_list> <block>{ <expr_stmt><expr><operator>*</operator><name>this</name> <operator>=</operator> <operator>*</operator><name>this</name> <operator>*</operator> <name>r</name></expr>;</expr_stmt> }</block></function>
+    <function type="operator"><type><name>void</name></type> <name>operator<name>/=</name></name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name>modlong</name> <modifier>&amp;</modifier></type><name>r</name></decl></parameter>)</parameter_list> <block>{ <expr_stmt><expr><operator>*</operator><name>this</name> <operator>=</operator> <operator>*</operator><name>this</name> <operator>/</operator> <name>r</name></expr>;</expr_stmt> }</block></function>
+
+    <comment type="line">// ã¹ãä¹</comment>
+    <function><type><name>modlong</name></type> <name>pow</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>n</name></decl></parameter>)</parameter_list> <block>{
+        <if>if <condition>(<expr><name>n</name> <operator>&lt;</operator> <literal type="number">0</literal></expr>)</condition><then>
+            <block type="pseudo"><return>return <expr><call><name>inv</name><argument_list>()</argument_list></call><operator>.</operator><call><name>pow</name><argument_list>(<argument><expr><operator>-</operator><name>n</name></expr></argument>)</argument_list></call></expr>;</return></block></then>  <comment type="line">// éåã®-nä¹</comment>
+        <elseif>else <if>if <condition>(<expr><name>n</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then>
+            <block type="pseudo"><return>return <expr><call><name>modlong</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</return></block></then></if></elseif></if>
+
+        <decl_stmt><decl><type><name>modlong</name></type> <name>half</name> <init>= <expr><call><name>pow</name><argument_list>(<argument><expr><name>n</name> <operator>/</operator> <literal type="number">2</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <if>if <condition>(<expr><name>n</name> <operator>%</operator> <literal type="number">2</literal></expr>)</condition><then>
+            <block type="pseudo"><return>return <expr><operator>*</operator><name>this</name> <operator>*</operator> <name>half</name> <operator>*</operator> <name>half</name></expr>;</return></block></then>
+        <else>else
+            <block type="pseudo"><return>return <expr><name>half</name> <operator>*</operator> <name>half</name></expr>;</return></block></else></if>
+    }</block></function>
+
+    <comment type="line">// ã³ã³ããã¼ã·ã§ã³ modCombã¯å°ãä¸ã«æ¸ãã¦ãã</comment>
+    <function><type><name>modlong</name></type> <name>C</name><parameter_list>(<parameter><decl><type><name>modlong</name></type> <name>k</name></decl></parameter>)</parameter_list> <block>{ <return>return <expr><call><name>modComb</name><argument_list>(<argument><expr><name><name>this</name><operator>-&gt;</operator><name>val</name></name></expr></argument>, <argument><expr><name><name>k</name><operator>.</operator><name>val</name></name></expr></argument>)</argument_list></call></expr>;</return> }</block></function>
+    <function><type><name>modlong</name></type> <name>fact</name><parameter_list>()</parameter_list> <block>{ <return>return <expr><call><name>modFact</name><argument_list>(<argument><expr><name><name>this</name><operator>-&gt;</operator><name>val</name></name></expr></argument>)</argument_list></call></expr>;</return> }</block></function>
+
+    <friend>friend <function_decl type="operator"><type><name>ostream</name> <modifier>&amp;</modifier></type><name>operator<name>&lt;&lt;</name></name><parameter_list>(<parameter><decl><type><name>ostream</name> <modifier>&amp;</modifier></type><name>os</name></decl></parameter>, <parameter><decl><type><specifier>const</specifier> <name>modlong</name> <modifier>&amp;</modifier></type><name>out</name></decl></parameter>)</parameter_list>;</function_decl></friend>
+    <friend>friend <function_decl type="operator"><type><name>istream</name> <modifier>&amp;</modifier></type><name>operator<name>&gt;&gt;</name></name><parameter_list>(<parameter><decl><type><name>istream</name> <modifier>&amp;</modifier></type><name>is</name></decl></parameter>, <parameter><decl><type><name>modlong</name> <modifier>&amp;</modifier></type><name>out</name></decl></parameter>)</parameter_list>;</function_decl></friend>
+</public>}</block>;</class>
+
+<comment type="line">// coutãcerrãcinç¨ã®æ¼ç®å­ãã¡</comment>
+<function type="operator"><type><name>ostream</name> <modifier>&amp;</modifier></type><name>operator<name>&lt;&lt;</name></name><parameter_list>(<parameter><decl><type><name>ostream</name> <modifier>&amp;</modifier></type><name>os</name></decl></parameter>, <parameter><decl><type><specifier>const</specifier> <name>modlong</name> <modifier>&amp;</modifier></type><name>out</name></decl></parameter>)</parameter_list> <block>{
+    <expr_stmt><expr><name>os</name> <operator>&lt;&lt;</operator> <name><name>out</name><operator>.</operator><name>val</name></name></expr>;</expr_stmt>
+    <return>return <expr><name>os</name></expr>;</return>
+}</block></function>
+<function type="operator"><type><name>istream</name> <modifier>&amp;</modifier></type><name>operator<name>&gt;&gt;</name></name><parameter_list>(<parameter><decl><type><name>istream</name> <modifier>&amp;</modifier></type><name>is</name></decl></parameter>, <parameter><decl><type><name>modlong</name> <modifier>&amp;</modifier></type><name>in</name></decl></parameter>)</parameter_list> <block>{
+    <decl_stmt><decl><type><name>ll</name></type> <name>inl</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>is</name> <operator>&gt;&gt;</operator> <name>inl</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>in</name><operator>.</operator><name>val</name></name> <operator>=</operator> <name>inl</name> <operator>%</operator> <name>MOD</name></expr>;</expr_stmt>
+    <return>return <expr><name>is</name></expr>;</return>
+}</block></function>
+
+<comment type="line" format="doxygen">//////      éä¹ãå¨ã¦æ±ãã -&gt; äºé ä¿æ°ãæ±ãã</comment>
+
+<decl_stmt><decl><type><name>ll</name></type> <name><name>invs</name><index>[<expr><name>MAX</name></expr>]</index></name></decl>, <decl><type ref="prev"/><name><name>facts</name><index>[<expr><name>MAX</name></expr>]</index></name></decl>, <decl><type ref="prev"/><name><name>finvs</name><index>[<expr><name>MAX</name></expr>]</index></name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>ll</name></type> <name>listlen</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>  <comment type="line">// invs, facts, finvsã®éåé·</comment>
+<function><type><name>void</name></type> <name>computeAll</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>n</name></decl></parameter>)</parameter_list> <block>{
+    <if>if <condition>(<expr><name>n</name> <operator>&gt;=</operator> <name>MAX</name></expr>)</condition><then>
+        <block type="pseudo"><expr_stmt><expr><name>cerr</name> <operator>&lt;&lt;</operator> <literal type="string">"modlong error: index out of range in computeAll"</literal> <operator>&lt;&lt;</operator> <literal type="char">'\n'</literal></expr>;</expr_stmt></block></then></if>
+    <decl_stmt><decl><type><name>ll</name></type> <name>i</name></decl>;</decl_stmt>
+    <if>if <condition>(<expr><name>listlen</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+        <expr_stmt><expr><name><name>invs</name><index>[<expr><literal type="number">1</literal></expr>]</index></name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>facts</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>facts</name><index>[<expr><literal type="number">1</literal></expr>]</index></name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>finvs</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>finvs</name><index>[<expr><literal type="number">1</literal></expr>]</index></name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name>i</name> <operator>=</operator> <literal type="number">2</literal></expr>;</expr_stmt>
+    }</block></then> <else>else <block>{
+        <expr_stmt><expr><name>i</name> <operator>=</operator> <name>listlen</name></expr>;</expr_stmt>
+    }</block></else></if>
+    <if>if <condition>(<expr><name>n</name> <operator>&lt;</operator> <literal type="number">2</literal></expr>)</condition><then> <block type="pseudo"><return>return;</return></block></then></if>
+    <for>for <control>(<init>;</init> <condition><expr><name>i</name> <operator>&lt;=</operator> <name>n</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{
+        <expr_stmt><expr><name><name>invs</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <operator>-</operator><name><name>invs</name><index>[<expr><name>MOD</name> <operator>%</operator> <name>i</name></expr>]</index></name> <operator>*</operator> <operator>(</operator><name>MOD</name> <operator>/</operator> <name>i</name><operator>)</operator> <operator>%</operator> <name>MOD</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>facts</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <name><name>facts</name><index>[<expr><name>i</name> <operator>-</operator> <literal type="number">1</literal></expr>]</index></name> <operator>*</operator> <name>i</name> <operator>%</operator> <name>MOD</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>finvs</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <name><name>finvs</name><index>[<expr><name>i</name> <operator>-</operator> <literal type="number">1</literal></expr>]</index></name> <operator>*</operator> <name><name>invs</name><index>[<expr><name>i</name></expr>]</index></name> <operator>%</operator> <name>MOD</name></expr>;</expr_stmt>
+    }</block></for>
+    <expr_stmt><expr><name>listlen</name> <operator>=</operator> <name>n</name> <operator>+</operator> <literal type="number">1</literal></expr>;</expr_stmt>  <comment type="line">// æ¬¡å¼ã³åºãã¨ãã¯n+1ä»¥éããåéããã°è¯ã</comment>
+}</block></function>
+<comment type="line">// ã³ã³ããã¼ã·ã§ã³</comment>
+<function><type><name>modlong</name></type> <name>modComb</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>n</name></decl></parameter>, <parameter><decl><type><name>ll</name></type> <name>k</name></decl></parameter>)</parameter_list> <block>{
+    <if>if <condition>(<expr><name><name>k</name> <argument_list type="generic">&lt; <argument><expr><literal type="number">0</literal> <operator>||</operator> <name>k</name></expr></argument> &gt;</argument_list></name> <name>n</name></expr>)</condition><then> <block type="pseudo"><return>return <expr><literal type="number">0</literal></expr>;</return></block></then></if>
+    <if>if <condition>(<expr><name>k</name> <operator>==</operator> <literal type="number">0</literal> <operator>||</operator> <name>k</name> <operator>==</operator> <name>n</name></expr>)</condition><then> <block type="pseudo"><return>return <expr><literal type="number">1</literal></expr>;</return></block></then></if>
+    <if>if <condition>(<expr><name>listlen</name> <operator>&lt;=</operator> <name>n</name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><call><name>computeAll</name><argument_list>(<argument><expr><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then></if>  <comment type="line">// æ¯åè¶³ããªãåã ãè£ã</comment>
+    <return>return <expr><call><name>modlong</name><argument_list>(<argument><expr><name><name>facts</name><index>[<expr><name>n</name></expr>]</index></name></expr></argument>)</argument_list></call> <operator>*</operator> <name><name>finvs</name><index>[<expr><name>k</name></expr>]</index></name> <operator>*</operator> <name><name>finvs</name><index>[<expr><name>n</name> <operator>-</operator> <name>k</name></expr>]</index></name></expr>;</return>
+}</block></function>
+<comment type="line">// éä¹</comment>
+<function><type><name>modlong</name></type> <name>modFact</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>n</name></decl></parameter>)</parameter_list> <block>{
+    <if>if <condition>(<expr><name>listlen</name> <operator>&lt;=</operator> <name>n</name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><call><name>computeAll</name><argument_list>(<argument><expr><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then></if>  <comment type="line">// æ¯åè¶³ããªãåã ãè£ã</comment>
+    <return>return <expr><call><name>modlong</name><argument_list>(<argument><expr><name><name>facts</name><index>[<expr><name>n</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</return>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+    <decl_stmt><decl><type><name>ll</name></type> <name>n</name></decl>, <decl><type ref="prev"/><name>m</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name> <operator>&gt;&gt;</operator> <name>m</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <operator>(</operator><call><name>modlong</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>pow</name><argument_list>(<argument><expr><name>m</name></expr></argument>)</argument_list></call> <operator>-</operator> <literal type="number">1</literal><operator>)</operator><operator>.</operator><call><name>pow</name><argument_list>(<argument><expr><name>n</name></expr></argument>)</argument_list></call> <operator>&lt;&lt;</operator> <literal type="char">'\n'</literal></expr>;</expr_stmt>
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>

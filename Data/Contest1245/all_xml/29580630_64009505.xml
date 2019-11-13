@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29580630_64009505.cpp"><cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>int</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>fto</name><parameter_list>(<parameter><type><name>i</name></type></parameter>,<parameter><type><name>a</name></type></parameter>,<parameter><type><name>b</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(int i=a;i&lt;=b;++i)</cpp:value></cpp:define>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>N</name><init>=<expr><literal type="number">100005</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>base</name><init>=<expr><literal type="number">1e9</literal><operator>+</operator><literal type="number">7</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>,<decl><type ref="prev"/><name>kq</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name><name>block</name><index>[<expr><name>N</name></expr>]</index></name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>string</name></type> <name>st</name></decl>;</decl_stmt>
+<function><name>main</name><parameter_list>()</parameter_list>
+<block>{
+    <comment type="line">//freopen("test.inp","r",stdin);</comment>
+    <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>st</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name>n</name><operator>=</operator><call><name><name>st</name><operator>.</operator><name>length</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>st</name><operator>=</operator><literal type="char">' '</literal><operator>+</operator><name>st</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>block</name><index>[<expr><literal type="number">1</literal></expr>]</index></name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>block</name><index>[<expr><literal type="number">2</literal></expr>]</index></name><operator>=</operator><literal type="number">2</literal></expr>;</expr_stmt>
+    <macro><name>fto</name><argument_list>(<argument>i</argument>,<argument><literal type="number">3</literal></argument>,<argument>n</argument>)</argument_list></macro>
+    <expr_stmt><expr><name><name>block</name><index>[<expr><name>i</name></expr>]</index></name><operator>=</operator><operator>(</operator><name><name>block</name><index>[<expr><name>i</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name><operator>+</operator><name><name>block</name><index>[<expr><name>i</name><operator>-</operator><literal type="number">2</literal></expr>]</index></name><operator>)</operator><operator>%</operator><name>base</name></expr>;</expr_stmt>
+    <macro><name>fto</name><argument_list>(<argument>i</argument>,<argument><literal type="number">1</literal></argument>,<argument>n</argument>)</argument_list></macro>
+    <block>{
+        <if>if<condition>(<expr><name><name>st</name><index>[<expr><name>i</name></expr>]</index></name><operator>==</operator><literal type="char">'m'</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>kq</name><operator>=</operator><literal type="number">0</literal></expr>;</expr_stmt></block></then></if>
+        <if>if<condition>(<expr><name><name>st</name><index>[<expr><name>i</name></expr>]</index></name><operator>==</operator><literal type="char">'w'</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>kq</name><operator>=</operator><literal type="number">0</literal></expr>;</expr_stmt></block></then></if>
+        <if>if<condition>(<expr><name><name>st</name><index>[<expr><name>i</name></expr>]</index></name><operator>==</operator><literal type="char">'n'</literal></expr>)</condition><then>
+        <block>{
+            <decl_stmt><decl><type><name>int</name></type> <name>dem</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+            <while>while<condition>(<expr><name><name>st</name><index>[<expr><name>i</name></expr>]</index></name><operator>==</operator><literal type="char">'n'</literal></expr>)</condition>
+            <block>{
+                <expr_stmt><expr><name>i</name><operator>++</operator></expr>;</expr_stmt>
+                <expr_stmt><expr><name>dem</name><operator>++</operator></expr>;</expr_stmt>
+            }</block></while>
+            <if>if<condition>(<expr><name>dem</name><operator>!=</operator><literal type="number">1</literal></expr>)</condition><then>
+            <block type="pseudo"><expr_stmt><expr><name>kq</name><operator>=</operator><operator>(</operator><name>kq</name><operator>*</operator><name><name>block</name><index>[<expr><name>dem</name></expr>]</index></name><operator>)</operator><operator>%</operator><name>base</name></expr>;</expr_stmt></block></then></if>
+            <expr_stmt><expr><name>i</name><operator>--</operator></expr>;</expr_stmt>
+            <continue>continue;</continue>
+        }</block></then></if>
+        <if>if<condition>(<expr><name><name>st</name><index>[<expr><name>i</name></expr>]</index></name><operator>==</operator><literal type="char">'u'</literal></expr>)</condition><then>
+        <block>{
+            <decl_stmt><decl><type><name>int</name></type> <name>dem</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+            <while>while<condition>(<expr><name><name>st</name><index>[<expr><name>i</name></expr>]</index></name><operator>==</operator><literal type="char">'u'</literal></expr>)</condition>
+            <block>{
+                <expr_stmt><expr><name>i</name><operator>++</operator></expr>;</expr_stmt>
+                <expr_stmt><expr><name>dem</name><operator>++</operator></expr>;</expr_stmt>
+            }</block></while>
+            <if>if<condition>(<expr><name>dem</name><operator>!=</operator><literal type="number">1</literal></expr>)</condition><then>
+            <block type="pseudo"><expr_stmt><expr><name>kq</name><operator>=</operator><operator>(</operator><name>kq</name><operator>*</operator><name><name>block</name><index>[<expr><name>dem</name></expr>]</index></name><operator>%</operator><name>base</name><operator>)</operator></expr>;</expr_stmt></block></then></if>
+            <expr_stmt><expr><name>i</name><operator>--</operator></expr>;</expr_stmt>
+            <continue>continue;</continue>
+        }</block></then></if>
+    }</block>
+    <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><name>kq</name></expr>;</expr_stmt>
+}</block></function>
+</unit>

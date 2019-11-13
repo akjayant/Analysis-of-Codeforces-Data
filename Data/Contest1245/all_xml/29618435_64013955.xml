@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29618435_64013955.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>FOR</name><parameter_list>(<parameter><type><name>i</name></type></parameter>,<parameter><type><name>j</name></type></parameter>,<parameter><type><name>k</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(int i = j; i &lt;= k; i ++)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>FORD</name><parameter_list>(<parameter><type><name>i</name></type></parameter>,<parameter><type><name>j</name></type></parameter>,<parameter><type><name>k</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(int i = j; i &gt;= k; i --)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>mp</name></cpp:macro> <cpp:value>make_pair</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>N</name></cpp:macro> <cpp:value>300005</cpp:value></cpp:define>
+<comment type="line">//#define f first</comment>
+<comment type="line">//#define s second</comment>
+<comment type="line">//#define int long long</comment>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>MOD</name><init>=<expr><literal type="number">1e9</literal><operator>+</operator><literal type="number">7</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>string</name></type> <name>s</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name>kt1</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>, <decl><type ref="prev"/><name>kt2</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>long</name> <name>long</name></type> <name><name>dp</name><index>[<expr><name>N</name></expr>]</index></name></decl>, <decl><type ref="prev"/><name>res</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name>kt</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+    <expr_stmt><expr><call><name><name>ios_base</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>cin</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>cout</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<comment type="line">//    freopen("A.inp","r",stdin);</comment>
+<comment type="line">//    freopen("A.out","w",stdout);</comment>
+    <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>s</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name>n</name> <operator>=</operator> <call><name><name>s</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>dp</name><index>[<expr><literal type="number">1</literal></expr>]</index></name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>dp</name><index>[<expr><literal type="number">2</literal></expr>]</index></name> <operator>=</operator> <literal type="number">2</literal></expr>;</expr_stmt>
+    <macro><name>FOR</name><argument_list>(<argument>i</argument>, <argument><literal type="number">3</literal></argument>, <argument>n</argument>)</argument_list></macro>
+    <block>{
+        <expr_stmt><expr><name><name>dp</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <name><name>dp</name><index>[<expr><name>i</name> <operator>-</operator> <literal type="number">1</literal></expr>]</index></name> <operator>+</operator> <name><name>dp</name><index>[<expr><name>i</name> <operator>-</operator> <literal type="number">2</literal></expr>]</index></name></expr>;</expr_stmt>
+        <if>if<condition>(<expr><name><name>dp</name><index>[<expr><name>i</name></expr>]</index></name> <operator>&gt;=</operator> <name>MOD</name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name><name>dp</name><index>[<expr><name>i</name></expr>]</index></name> <operator>-=</operator> <name>MOD</name></expr>;</expr_stmt></block></then></if>
+    }</block>
+<comment type="line">//    cout &lt;&lt; dp[3];</comment>
+    <expr_stmt><expr><name>s</name> <operator>=</operator> <literal type="char">' '</literal> <operator>+</operator> <name>s</name></expr>;</expr_stmt>
+    <macro><name>FOR</name><argument_list>(<argument>i</argument>, <argument><literal type="number">1</literal></argument>, <argument>n</argument>)</argument_list></macro>
+    <block>{
+        <if>if<condition>(<expr><name><name>s</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="char">'m'</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>kt1</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt></block></then></if>
+        <if>if<condition>(<expr><name><name>s</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="char">'w'</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>kt2</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt></block></then></if>
+    }</block>
+    <macro><name>FOR</name><argument_list>(<argument>i</argument>, <argument><literal type="number">1</literal></argument>, <argument>n</argument>)</argument_list></macro>
+    <block>{
+        <if>if<condition>(<expr><operator>(</operator><name><name>s</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="char">'n'</literal> <operator>&amp;&amp;</operator> <operator>!</operator><name>kt1</name><operator>)</operator> <operator>||</operator> <operator>(</operator><name><name>s</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="char">'u'</literal> <operator>&amp;&amp;</operator> <operator>!</operator><name>kt2</name><operator>)</operator></expr>)</condition><then>
+        <block>{
+            <expr_stmt><expr><name>kt</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+            <decl_stmt><decl><type><name>int</name></type> <name>dem</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+            <while>while<condition>(<expr><name>i</name> <operator>&lt;</operator> <name>n</name> <operator>&amp;&amp;</operator> <name><name>s</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <name><name>s</name><index>[<expr><name>i</name> <operator>+</operator> <literal type="number">1</literal></expr>]</index></name></expr>)</condition>
+            <block>{
+                <expr_stmt><expr><name>i</name> <operator>++</operator></expr>;</expr_stmt>
+                <expr_stmt><expr><name>dem</name> <operator>++</operator></expr>;</expr_stmt>
+            }</block></while>
+            <expr_stmt><expr><name>res</name> <operator>=</operator> <operator>(</operator><name>res</name> <operator>*</operator> <name><name>dp</name><index>[<expr><name>dem</name></expr>]</index></name><operator>)</operator> <operator>%</operator> <name>MOD</name></expr>;</expr_stmt>
+        }</block></then></if>
+    }</block>
+<comment type="line">//    cout &lt;&lt; dp[3] &lt;&lt; "\n";</comment>
+    <if>if<condition>(<expr><name>kt1</name> <operator>||</operator> <name>kt2</name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="number">0</literal></expr>;</expr_stmt></block></then>
+    <else>else <block type="pseudo"><expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>res</name></expr>;</expr_stmt></block></else></if>
+}</block></function>
+</unit>

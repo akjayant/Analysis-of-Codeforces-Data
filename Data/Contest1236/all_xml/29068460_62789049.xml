@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1236/all/29068460_62789049.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iomanip&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<class><template>template<parameter_list>&lt;<parameter><type><name>long</name> <name>long</name></type> <name>mod</name></parameter>&gt;</parameter_list></template>
+class <name>modint</name><block>{<private type="default">
+</private><private>private:
+  <decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>a</name></decl>;</decl_stmt>
+</private><public>public:
+  <constructor><specifier>constexpr</specifier> <name>modint</name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name>long</name> <name>long</name></type> <name>x</name> <init>= <expr><literal type="number">0</literal></expr></init></decl></parameter>)</parameter_list> <noexcept>noexcept</noexcept></constructor> : <macro><name>a</name><argument_list>(<argument>x%mod</argument>)</argument_list></macro> <block>{}</block>
+  <function><specifier>constexpr</specifier> <type><name>long</name> <name>long</name><modifier>&amp;</modifier></type> <name>value</name><parameter_list>()</parameter_list> <noexcept>noexcept</noexcept> <block>{ <return>return <expr><name>a</name></expr>;</return> }</block></function>
+  <function><specifier>constexpr</specifier> <type><specifier>const</specifier> <name>long</name> <name>long</name><modifier>&amp;</modifier></type> <name>value</name><parameter_list>()</parameter_list> <specifier>const</specifier> <noexcept>noexcept</noexcept> <block>{ <return>return <expr><name>a</name></expr>;</return> }</block></function>
+  <function type="operator"><specifier>constexpr</specifier> <type><name>modint</name></type> <name>operator<name>+</name></name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name>modint</name></type> <name>rhs</name></decl></parameter>)</parameter_list> <specifier>const</specifier> <noexcept>noexcept</noexcept> <block>{
+    <return>return <expr><call><name>modint</name><argument_list>(<argument><expr><operator>*</operator><name>this</name></expr></argument>)</argument_list></call> <operator>+=</operator> <name>rhs</name></expr>;</return>
+  }</block></function>
+  <function type="operator"><specifier>constexpr</specifier> <type><name>modint</name></type> <name>operator<name>-</name></name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name>modint</name></type> <name>rhs</name></decl></parameter>)</parameter_list> <specifier>const</specifier> <noexcept>noexcept</noexcept> <block>{
+    <return>return <expr><call><name>modint</name><argument_list>(<argument><expr><operator>*</operator><name>this</name></expr></argument>)</argument_list></call> <operator>-=</operator> <name>rhs</name></expr>;</return>
+  }</block></function>
+  <function type="operator"><specifier>constexpr</specifier> <type><name>modint</name></type> <name>operator<name>*</name></name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name>modint</name></type> <name>rhs</name></decl></parameter>)</parameter_list> <specifier>const</specifier> <noexcept>noexcept</noexcept> <block>{
+    <return>return <expr><call><name>modint</name><argument_list>(<argument><expr><operator>*</operator><name>this</name></expr></argument>)</argument_list></call> <operator>*=</operator> <name>rhs</name></expr>;</return>
+  }</block></function>
+  <function type="operator"><specifier>constexpr</specifier> <type><name>modint</name></type> <name>operator<name>/</name></name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name>modint</name></type> <name>rhs</name></decl></parameter>)</parameter_list> <specifier>const</specifier> <noexcept>noexcept</noexcept> <block>{
+    <return>return <expr><call><name>modint</name><argument_list>(<argument><expr><operator>*</operator><name>this</name></expr></argument>)</argument_list></call> <operator>/=</operator> <name>rhs</name></expr>;</return>
+  }</block></function>
+  <function type="operator"><specifier>constexpr</specifier> <type><name>modint</name><modifier>&amp;</modifier></type> <name>operator<name>+=</name></name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name>modint</name></type> <name>rhs</name></decl></parameter>)</parameter_list> <noexcept>noexcept</noexcept> <block>{
+    <expr_stmt><expr><name>a</name> <operator>+=</operator> <name><name>rhs</name><operator>.</operator><name>a</name></name></expr>;</expr_stmt>
+    <if>if<condition>(<expr><name>a</name> <operator>&gt;=</operator> <name>mod</name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>a</name> <operator>-=</operator> <name>mod</name></expr>;</expr_stmt></block></then></if>
+    <return>return <expr><operator>*</operator><name>this</name></expr>;</return>
+  }</block></function>
+  <function type="operator"><specifier>constexpr</specifier> <type><name>modint</name> <modifier>&amp;</modifier></type><name>operator<name>-=</name></name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name>modint</name></type> <name>rhs</name></decl></parameter>)</parameter_list> <noexcept>noexcept</noexcept> <block>{
+    <if>if<condition>(<expr><name>a</name> <operator>&lt;</operator> <name><name>rhs</name><operator>.</operator><name>a</name></name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>a</name> <operator>+=</operator> <name>mod</name></expr>;</expr_stmt></block></then></if>
+    <expr_stmt><expr><name>a</name> <operator>-=</operator> <name><name>rhs</name><operator>.</operator><name>a</name></name></expr>;</expr_stmt>
+    <return>return <expr><operator>*</operator><name>this</name></expr>;</return>
+  }</block></function>
+  <function type="operator"><specifier>constexpr</specifier> <type><name>modint</name><modifier>&amp;</modifier></type> <name>operator<name>*=</name></name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name>modint</name></type> <name>rhs</name></decl></parameter>)</parameter_list> <noexcept>noexcept</noexcept> <block>{
+    <expr_stmt><expr><name>a</name> <operator>=</operator> <name>a</name><operator>*</operator><name><name>rhs</name><operator>.</operator><name>a</name></name><operator>%</operator><name>mod</name></expr>;</expr_stmt>
+    <return>return <expr><operator>*</operator><name>this</name></expr>;</return>
+  }</block></function>
+  <function type="operator"><specifier>constexpr</specifier> <type><name>modint</name><modifier>&amp;</modifier></type> <name>operator<name>/=</name></name><parameter_list>(<parameter><decl><type><name>modint</name></type> <name>rhs</name></decl></parameter>)</parameter_list> <noexcept>noexcept</noexcept> <block>{
+    <decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>k</name> <init>= <expr><name>mod</name><operator>-</operator><literal type="number">2</literal></expr></init></decl>;</decl_stmt>
+    <while>while<condition>(<expr><name>k</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition><block>{
+      <if>if<condition>(<expr><name>k</name><operator>&amp;</operator><literal type="number">1</literal></expr>)</condition><then><block>{
+        <expr_stmt><expr><operator>*</operator><name>this</name> <operator>*=</operator> <name>rhs</name></expr>;</expr_stmt>
+      }</block></then></if>
+      <expr_stmt><expr><name>rhs</name> <operator>*=</operator> <name>rhs</name></expr>;</expr_stmt>
+      <expr_stmt><expr><name>k</name> <operator>/=</operator> <literal type="number">2</literal></expr>;</expr_stmt>
+    }</block></while>
+    <return>return <expr><operator>*</operator><name>this</name></expr>;</return>
+  }</block></function>
+  <friend>friend <function type="operator"><type><name>ostream</name><modifier>&amp;</modifier></type> <name>operator<name>&lt;&lt;</name></name><parameter_list>(<parameter><decl><type><name>ostream</name> <modifier>&amp;</modifier></type><name>os</name></decl></parameter>, <parameter><decl><type><specifier>const</specifier> <name>modint</name> <modifier>&amp;</modifier></type><name>X</name></decl></parameter>)</parameter_list><block>{
+    <return>return <expr><name>os</name> <operator>&lt;&lt;</operator> <name><name>X</name><operator>.</operator><name>a</name></name></expr>;</return>
+  }</block></function></friend>
+  <friend>friend <function type="operator"><type><name>istream</name><modifier>&amp;</modifier></type> <name>operator<name>&gt;&gt;</name></name><parameter_list>(<parameter><decl><type><name>istream</name> <modifier>&amp;</modifier></type><name>is</name></decl></parameter>, <parameter><decl><type><name>modint</name> <modifier>&amp;</modifier></type><name>X</name></decl></parameter>)</parameter_list><block>{
+    <name>is</name> <expr_stmt><expr><operator>&gt;&gt;</operator> <name><name>X</name><operator>.</operator><name>a</name></name></expr>;</expr_stmt>
+    <name><name>X</name><operator>.</operator><name>a</name></name> <expr_stmt><expr><operator>%=</operator> <name>mod</name></expr>;</expr_stmt>
+    <if>if<condition>(<expr><name><name>X</name><operator>.</operator><name>a</name></name> <operator>&lt;</operator> <literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><name><name>X</name><operator>.</operator><name>a</name></name> <expr_stmt><expr><operator>+=</operator> <name>mod</name></expr>;</expr_stmt></block></then></if>
+    <return>return <expr><name>is</name></expr>;</return>
+  }</block></function></friend>
+</public>}</block>;</class>
+
+<function><template>template<parameter_list>&lt;<parameter><type><name>typename</name></type> <name>T</name></parameter>&gt;</parameter_list></template>
+<type><name>T</name></type> <name>power</name><parameter_list>(<parameter><decl><type><name>T</name></type> <name>x</name></decl></parameter>, <parameter><decl><type><name>long</name> <name>long</name></type> <name>k</name></decl></parameter>)</parameter_list><block>{
+  <decl_stmt><decl><type><name>T</name></type> <name>ret</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></decl>;</decl_stmt>
+  <while>while<condition>(<expr><name>k</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition><block>{
+    <if>if<condition>(<expr><name>k</name><operator>&amp;</operator><literal type="number">1</literal></expr>)</condition><then>
+      <block type="pseudo"><expr_stmt><expr><name>ret</name> <operator>*=</operator> <name>x</name></expr>;</expr_stmt></block></then></if>
+    <expr_stmt><expr><name>k</name> <operator>/=</operator> <literal type="number">2</literal></expr>;</expr_stmt>
+    <expr_stmt><expr><name>x</name> <operator>*=</operator> <name>x</name></expr>;</expr_stmt>
+  }</block></while>
+  <return>return <expr><name>ret</name></expr>;</return>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list><block>{
+  <expr_stmt><expr><call><name><name>cin</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><call><name><name>ios</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <using>using <name>mint</name> <init>= <type><name><name>modint</name><argument_list type="generic">&lt;<argument><expr><operator>(</operator><name>int</name><operator>)</operator><literal type="number">1e9</literal><operator>+</operator><literal type="number">7</literal></expr></argument>&gt;</argument_list></name></type></init>;</using>
+  <decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>, <decl><type ref="prev"/><name>m</name></decl>;</decl_stmt>
+  <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name> <operator>&gt;&gt;</operator> <name>m</name></expr>;</expr_stmt>
+  <decl_stmt><decl><type><name>mint</name></type> <name>ans</name> <init>= <expr><call><name>power</name><argument_list>(<argument><expr><call><name>power</name><argument_list>(<argument><expr><operator>(</operator><name>mint</name><operator>)</operator><literal type="number">2</literal></expr></argument>,<argument><expr><name>m</name></expr></argument>)</argument_list></call><operator>-</operator><literal type="number">1</literal></expr></argument>,<argument><expr><name>n</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+  <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>ans</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+}</block></function>
+</unit>

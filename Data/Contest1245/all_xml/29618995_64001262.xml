@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29618995_64001262.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstring&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdio&gt;</cpp:file></cpp:include>
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>N</name> <init>= <expr><literal type="number">100</literal></expr></init></decl>;</decl_stmt>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<decl_stmt><decl><type><name>int</name></type> <name>T</name></decl>,<decl><type ref="prev"/><name>a</name></decl>,<decl><type ref="prev"/><name>b</name></decl>,<decl><type ref="prev"/><name>c</name></decl>,<decl><type ref="prev"/><name>n</name></decl>,<decl><type ref="prev"/><name>ans</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>char</name></type> <name><name>ch</name><index>[<expr><name>N</name> <operator>+</operator> <literal type="number">5</literal></expr>]</index></name></decl>,<decl><type ref="prev"/><name><name>ac</name><index>[<expr><name>N</name> <operator>+</operator> <literal type="number">5</literal></expr>]</index></name></decl>;</decl_stmt>
+<function><type><name>int</name></type> <name>gcd</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>x</name></decl></parameter>,<parameter><decl><type><name>int</name></type> <name>y</name></decl></parameter>)</parameter_list>
+<block>{
+	<if>if <condition>(<expr><operator>!</operator><name>y</name></expr>)</condition><then>
+		<block type="pseudo"><return>return <expr><name>x</name></expr>;</return></block></then></if>
+	<return>return <expr><call><name>gcd</name><argument_list>(<argument><expr><name>y</name></expr></argument>,<argument><expr><name>x</name> <operator>%</operator> <name>y</name></expr></argument>)</argument_list></call></expr>;</return>
+}</block></function>
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+	<expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%d"</literal></expr></argument>,<argument><expr><operator>&amp;</operator><name>T</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<while>while <condition>(<expr><name>T</name><operator>--</operator></expr>)</condition>
+	<block>{
+		<expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%d"</literal></expr></argument>,<argument><expr><operator>&amp;</operator><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%d%d%d"</literal></expr></argument>,<argument><expr><operator>&amp;</operator><name>a</name></expr></argument>,<argument><expr><operator>&amp;</operator><name>b</name></expr></argument>,<argument><expr><operator>&amp;</operator><name>c</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%s"</literal></expr></argument>,<argument><expr><name>ch</name> <operator>+</operator> <literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<expr_stmt><expr><call><name>memset</name><argument_list>(<argument><expr><name>ac</name></expr></argument>,<argument><expr><literal type="number">0</literal></expr></argument>,<argument><expr><sizeof>sizeof<argument_list>(<argument><expr><name>ac</name></expr></argument>)</argument_list></sizeof></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<expr_stmt><expr><name>ans</name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+		<for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</init><condition><expr><name>i</name> <operator>&lt;=</operator> <name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+			<block type="pseudo"><if>if <condition>(<expr><name><name>ch</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="char">'R'</literal></expr>)</condition><then>
+			<block>{
+				<if>if <condition>(<expr><name>b</name></expr>)</condition><then>
+					<block type="pseudo"><expr_stmt><expr><name>ans</name><operator>++</operator></expr><operator>,</operator><expr><name><name>ac</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <literal type="char">'P'</literal></expr><operator>,</operator><expr><name>b</name><operator>--</operator></expr>;</expr_stmt></block></then></if>
+			}</block></then>
+			<elseif>else
+				<if>if <condition>(<expr><name><name>ch</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="char">'P'</literal></expr>)</condition><then>
+				<block>{
+					<if>if <condition>(<expr><name>c</name></expr>)</condition><then>
+						<block type="pseudo"><expr_stmt><expr><name><name>ac</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <literal type="char">'S'</literal></expr><operator>,</operator><expr><name>ans</name><operator>++</operator></expr><operator>,</operator><expr><name>c</name><operator>--</operator></expr>;</expr_stmt></block></then></if>
+				}</block></then></if></elseif>
+				<else>else
+				<block>{
+					<if>if <condition>(<expr><name>a</name></expr>)</condition><then>
+						<block type="pseudo"><expr_stmt><expr><name><name>ac</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <literal type="char">'R'</literal></expr><operator>,</operator><expr><name>ans</name><operator>++</operator></expr><operator>,</operator><expr><name>a</name><operator>--</operator></expr>;</expr_stmt></block></then></if>
+				}</block></else></if></block></for>
+		<if>if <condition>(<expr><name>ans</name> <operator>*</operator> <literal type="number">2</literal> <operator>&gt;=</operator> <name>n</name></expr>)</condition><then>
+		<block>{
+			<expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"YES\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+			<for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</init><condition><expr><name>i</name> <operator>&lt;=</operator> <name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+				<block type="pseudo"><if>if <condition>(<expr><name><name>ac</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then>
+				<block>{
+					<if>if <condition>(<expr><name>a</name></expr>)</condition><then>
+						<block type="pseudo"><expr_stmt><expr><call><name>putchar</name><argument_list>(<argument><expr><literal type="char">'R'</literal></expr></argument>)</argument_list></call></expr><operator>,</operator><expr><name>a</name><operator>--</operator></expr>;</expr_stmt></block></then>
+					<elseif>else
+						<if>if <condition>(<expr><name>b</name></expr>)</condition><then>
+							<block type="pseudo"><expr_stmt><expr><call><name>putchar</name><argument_list>(<argument><expr><literal type="char">'P'</literal></expr></argument>)</argument_list></call></expr><operator>,</operator><expr><name>b</name><operator>--</operator></expr>;</expr_stmt></block></then></if></elseif>
+						<else>else
+							<block type="pseudo"><expr_stmt><expr><call><name>putchar</name><argument_list>(<argument><expr><literal type="char">'S'</literal></expr></argument>)</argument_list></call></expr><operator>,</operator><expr><name>c</name><operator>--</operator></expr>;</expr_stmt></block></else></if>
+				}</block></then>
+				<else>else
+					<block type="pseudo"><expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><name><name>ac</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt></block></else></if></block></for>
+			<expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><name>endl</name></expr>;</expr_stmt>
+		}</block></then>
+		<else>else
+			<block type="pseudo"><expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"NO\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></else></if>
+	}</block></while>
+	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>

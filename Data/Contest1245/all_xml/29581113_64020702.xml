@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29581113_64020702.cpp"><cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;string&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;iomanip&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;cmath&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>int</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>endl</name></cpp:macro> <cpp:value>"\n"</cpp:value></cpp:define>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>long</name> <name>long</name></type> <name>INF</name> <init>= <expr><operator>(</operator><name>long</name> <name>long</name><operator>)</operator><literal type="number">1e18</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><specifier>const</specifier> <name>long</name> <name>long</name></type> <name>MOD</name> <init>= <expr><literal type="number">1</literal><literal type="char">'000'</literal><literal type="number">000</literal><literal type="char">'007; 
+
+string yn(bool f){return f?"Yes":"No";}
+string YN(bool f){return f?"YES":"NO";}
+
+#define MAX_VAL 210000
+
+long long fac[MAX_VAL], mmi[MAX_VAL];
+
+void factorial_mod(){
+	 fac[0]=fac[1]=1;
+	for(long long i = 2; i &lt; MAX_VAL; fac[i]%=MOD,i++)
+		fac[i] = fac[i-1]*(i%MOD);
+}
+
+long long power_mod(long long x, long long n){
+	long long ans = 1;
+	for(;n;n&gt;&gt;=1,x*=x,ans%=MOD,x%=MOD)
+		if(n&amp;1)ans*=x;
+	return ans%MOD;
+}
+
+void exgcd(int a, int b, int &amp;x, int &amp;y){
+	if(b == 0){
+		x = 1;
+		y = 0;
+		return ;
+	}
+	exgcd(b,a%b,y,x);
+	y -= a/b * x;
+}
+
+void modular_multiplicatibe_inverse(){
+	int x, y;  
+	exgcd(fac[MAX_VAL-1],MOD,x,y);
+	mmi[MAX_VAL-1] = x;
+	for(long long i = MAX_VAL-2; i &gt;= 0; mmi[i]%=MOD,i--)
+		mmi[i] = mmi[i+1]*((i+1)%MOD);
+}
+
+long long combination(long long n, long long r){
+	return n &lt; r ? 0 :fac[n]*(mmi[r]*mmi[n-r]%MOD)%MOD;
+}
+
+signed main(){
+	cin.tie(nullptr);
+	ios::sync_with_stdio(false);
+	cout&lt;&lt;fixed&lt;&lt;setprecision(10);
+	
+	bool flag = false;
+	int ans = 1;
+	string s;
+	
+	cin&gt;&gt;s;
+	
+	if(count(s.begin(), s.end(), '</literal><name>m</name><literal type="char">') || count(s.begin(), s.end(), '</literal><name>w</name><literal type="char">')){
+		cout&lt;&lt;0&lt;&lt;endl;
+		return 0;
+	}
+	
+	
+	factorial_mod();
+	modular_multiplicatibe_inverse();
+	
+	for(int i = 0, con = 1; i &lt; s.size(); i++){
+		if(!i){
+			
+		} else {
+			if(s[i] == s[i-1]){
+				con++;
+			} else {
+				
+				if(s[i-1] == '</literal><literal type="string">u'</literal> || s[i-1] == '<name>n</name><literal type="char">'){
+					int hoge = 0;
+					// cout&lt;&lt;con&lt;&lt;endl;
+					for(int j =  0; j &lt;= con; j++){
+						if(con-j&lt;j) break;
+						hoge += combination(con-j,j);
+						hoge %= MOD;
+					}
+					ans *= hoge;
+					ans %= MOD;
+				}
+				con = 1;
+			}
+		}
+		// cout&lt;&lt;con&lt;&lt;endl;
+		if(i == s.size()-1){
+			if(con &gt;= 2) {
+				if(s[i] == '</literal><literal type="string">u'</literal> || s[i] == '<name>n</name><literal type="char">'</literal></expr></init></decl></decl_stmt>){
+					int hoge = 0;
+					// cout&lt;&lt;con&lt;&lt;endl;
+					for(int j =  0; j &lt;= con; j++){
+						if(con-j&lt;j) break;
+						hoge += combination(con-j,j);
+						hoge %= MOD;
+					}
+					
+					ans *= hoge;
+					ans %= MOD;
+				}
+			}
+		}
+	}
+	
+	cout&lt;&lt;ans&lt;&lt;endl;
+	
+	return 0;
+}</unit>

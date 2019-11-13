@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29603712_63997925.cpp"><cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<typedef>typedef <type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>vi</name>;</typedef>
+<typedef>typedef <type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>double</name></expr></argument>&gt;</argument_list></name></type> <name>vd</name>;</typedef>
+<typedef>typedef <type><name>long</name> <name>long</name> <name>int</name></type> <name>ll</name>;</typedef>
+<typedef>typedef <type><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>,<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>pi</name>;</typedef>
+<typedef>typedef <type><name>unsigned</name> <name>long</name> <name>long</name> <name>int</name></type> <name>ull</name>;</typedef>
+
+<function><type><name>ll</name></type> <name>lsone</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>p</name></decl></parameter>)</parameter_list><block>{<return>return<expr><operator>(</operator><name>p</name> <operator>&amp;</operator> <operator>-</operator><name>p</name><operator>)</operator></expr>;</return>}</block></function>
+
+<function><type><name>int</name></type> <name>gcd</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>a</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>b</name></decl></parameter>)</parameter_list>
+<block>{
+    <comment type="line">// Everything divides 0</comment>
+    <if>if <condition>(<expr><name>a</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then>
+       <block type="pseudo"><return>return <expr><name>b</name></expr>;</return></block></then></if>
+    <if>if <condition>(<expr><name>b</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then>
+       <block type="pseudo"><return>return <expr><name>a</name></expr>;</return></block></then></if>
+
+    <comment type="line">// base case</comment>
+    <if>if <condition>(<expr><name>a</name> <operator>==</operator> <name>b</name></expr>)</condition><then>
+        <block type="pseudo"><return>return <expr><name>a</name></expr>;</return></block></then></if>
+
+    <comment type="line">// a is greater</comment>
+    <if>if <condition>(<expr><name>a</name> <operator>&gt;</operator> <name>b</name></expr>)</condition><then>
+        <block type="pseudo"><return>return <expr><call><name>gcd</name><argument_list>(<argument><expr><name>a</name><operator>-</operator><name>b</name></expr></argument>, <argument><expr><name>b</name></expr></argument>)</argument_list></call></expr>;</return></block></then></if>
+    <return>return <expr><call><name>gcd</name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><name>b</name><operator>-</operator><name>a</name></expr></argument>)</argument_list></call></expr>;</return>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list><block>{
+    <expr_stmt><expr><call><name><name>std</name><operator>::</operator><name>ios</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <comment type="line">//freopen("in.txt","r",stdin);</comment>
+    <comment type="line">//freopen("out.txt","w",stdout);</comment>
+    <decl_stmt><decl><type><name>int</name></type> <name>a</name></decl>, <decl><type ref="prev"/><name>b</name></decl>, <decl><type ref="prev"/><name>n</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name></expr>;</expr_stmt>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control><block>{
+        <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>a</name> <operator>&gt;&gt;</operator> <name>b</name></expr>;</expr_stmt>
+        <if>if <condition>(<expr><call><name>gcd</name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><name>b</name></expr></argument>)</argument_list></call> <operator>==</operator> <literal type="number">1</literal></expr>)</condition><then><block>{
+            <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"Finite"</literal> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+        }</block></then>
+        <else>else<block>{
+            <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"Infinite"</literal> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+        }</block></else></if>
+    }</block></for>
+}</block></function>
+</unit>

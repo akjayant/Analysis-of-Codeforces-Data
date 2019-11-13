@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1236/all/29090534_62791262.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>mod</name></cpp:macro> <cpp:value>1000000007;</cpp:value></cpp:define>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<decl_stmt><decl><type><name>long</name> <name>long</name> <name>int</name></type> <name>n</name></decl>,<decl><type ref="prev"/><name>m</name></decl>,<decl><type ref="prev"/><name>a</name></decl>;</decl_stmt>
+<function><type><name>void</name></type> <name>logpow</name><parameter_list>(<parameter><decl><type><name>long</name> <name>long</name> <name>int</name> <modifier>&amp;</modifier></type><name>baza</name></decl></parameter>,<parameter><decl><type><name>long</name> <name>long</name> <name>int</name></type> <name>exp</name></decl></parameter>)</parameter_list>
+<block>{
+    <decl_stmt><decl><type><name>long</name> <name>long</name> <name>int</name></type> <name>res</name><init>=<expr><literal type="number">1</literal></expr></init></decl>,<decl><type ref="prev"/><name>aux</name><init>=<expr><name>baza</name></expr></init></decl>;</decl_stmt>
+    <while>while<condition>(<expr><name>exp</name></expr>)</condition>
+    <block>{
+        <if>if<condition>(<expr><name>exp</name><operator>%</operator><literal type="number">2</literal><operator>==</operator><literal type="number">1</literal></expr>)</condition><then>
+            <block type="pseudo"><expr_stmt><expr><name>res</name><operator>*=</operator><name>aux</name></expr>;</expr_stmt></block></then></if>
+        <expr_stmt><expr><name>res</name><operator>%=</operator><name>mod</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name>exp</name><operator>/=</operator><literal type="number">2</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name>aux</name><operator>*=</operator><name>aux</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name>aux</name><operator>%=</operator><name>mod</name></expr>;</expr_stmt>
+    }</block></while>
+    <expr_stmt><expr><name>baza</name><operator>=</operator><name>res</name></expr>;</expr_stmt>
+}</block></function>
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+    <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>n</name><operator>&gt;&gt;</operator><name>m</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name>a</name><operator>=</operator><literal type="number">2</literal></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>logpow</name><argument_list>(<argument><expr><name>a</name></expr></argument>,<argument><expr><name>m</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>a</name><operator>+=</operator><name>mod</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name>a</name><operator>--</operator></expr>;</expr_stmt>
+    <expr_stmt><expr><name>a</name><operator>%=</operator><name>mod</name></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>logpow</name><argument_list>(<argument><expr><name>a</name></expr></argument>,<argument><expr><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><name>a</name></expr>;</expr_stmt>
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

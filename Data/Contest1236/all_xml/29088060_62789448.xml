@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1236/all/29088060_62789448.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<typedef>typedef <type><name>long</name> <name>long</name></type> <name>ll</name>;</typedef>
+<typedef>typedef <type><name>unsigned</name> <name>long</name> <name>long</name></type> <name>ull</name>;</typedef>
+<typedef>typedef <type><name>double</name></type> <name>rl</name>;</typedef>
+<typedef>typedef <type><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>, <argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>pii</name>;</typedef>
+<typedef>typedef <type><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>ll</name></expr></argument>, <argument><expr><name>ll</name></expr></argument>&gt;</argument_list></name></type> <name>pll</name>;</typedef>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pb</name></cpp:macro> <cpp:value>push_back</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>mp</name></cpp:macro> <cpp:value>make_pair</cpp:value></cpp:define>
+
+<cpp:if>#<cpp:directive>if</cpp:directive> <expr><literal type="number">1</literal></expr></cpp:if>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>dbg</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>cerr &lt;&lt; #x &lt;&lt; ": " &lt;&lt; (x) &lt;&lt; endl;</cpp:value></cpp:define>
+<cpp:else>#<cpp:directive>else</cpp:directive></cpp:else>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>dbg</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro></cpp:define>
+<cpp:endif>#<cpp:directive>endif</cpp:directive></cpp:endif> <comment type="line">// 1</comment>
+<decl_stmt><decl><type><name>ll</name></type> <name>n</name></decl>, <decl><type ref="prev"/><name>m</name></decl>;</decl_stmt>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>ll</name></type> <name>MOD</name><init>=<expr><literal type="number">1000</literal><operator>*</operator><literal type="number">1000</literal><operator>*</operator><literal type="number">1000</literal><operator>+</operator><literal type="number">7LL</literal></expr></init></decl>;</decl_stmt>
+
+<function><type><name>ll</name></type> <name>powmod</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>A</name></decl></parameter>, <parameter><decl><type><name>ll</name></type> <name>N</name></decl></parameter>)</parameter_list>
+<block>{
+    <expr_stmt><expr><name>A</name><operator>%=</operator><name>MOD</name></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>ll</name></type> <name>R</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <while>while<condition>(<expr><name>N</name><operator>!=</operator><literal type="number">0</literal></expr>)</condition>
+    <block>{
+        <if>if<condition>(<expr><name>N</name><operator>&amp;</operator><literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>R</name><operator>=</operator><operator>(</operator><name>R</name><operator>*</operator><name>A</name><operator>)</operator><operator>%</operator><name>MOD</name></expr>;</expr_stmt></block></then></if>
+        <expr_stmt><expr><name>A</name><operator>=</operator><operator>(</operator><name>A</name><operator>*</operator><name>A</name><operator>)</operator><operator>%</operator><name>MOD</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name>N</name><operator>&gt;&gt;=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+    }</block></while>
+    <return>return <expr><name>R</name></expr>;</return>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+    <comment type="line">//freopen("A.txt", "r", stdin);</comment>
+    <comment type="line">//freopen("output.txt", "w", stdout);</comment>
+    <comment type="line">//ios_base::sync_with_stdio(false);</comment>
+    <comment type="line">//cin.tie(nullptr); cout.tie(nullptr);</comment>
+    <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name> <operator>&gt;&gt;</operator> <name>m</name></expr>;</expr_stmt>
+
+    <decl_stmt><decl><type><name>ll</name></type> <name>tmp</name><init>=<expr><operator>(</operator><call><name>powmod</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>, <argument><expr><name>m</name></expr></argument>)</argument_list></call><operator>-</operator><literal type="number">1</literal><operator>+</operator><name>MOD</name><operator>)</operator><operator>%</operator><name>MOD</name></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>ll</name></type> <name>res</name><init>=<expr><call><name>powmod</name><argument_list>(<argument><expr><name>tmp</name></expr></argument>, <argument><expr><name>n</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>res</name></expr>;</expr_stmt>
+
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

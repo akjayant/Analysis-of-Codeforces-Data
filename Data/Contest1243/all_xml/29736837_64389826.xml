@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1243/all/29736837_64389826.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>int</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>MOD</name></cpp:macro> <cpp:value>1000000007</cpp:value></cpp:define>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<function><type><name>int32_t</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+    <expr_stmt><expr><call><name><name>ios_base</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <cpp:ifndef>#<cpp:directive>ifndef</cpp:directive> <name>ONLINE_JUDGE</name></cpp:ifndef>
+    <expr_stmt><expr><call><name>freopen</name><argument_list>(<argument><expr><literal type="string">"input.txt"</literal></expr></argument>, <argument><expr><literal type="string">"r"</literal></expr></argument>, <argument><expr><name>stdin</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>freopen</name><argument_list>(<argument><expr><literal type="string">"output.txt"</literal></expr></argument>, <argument><expr><literal type="string">"w"</literal></expr></argument>, <argument><expr><name>stdout</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <cpp:endif>#<cpp:directive>endif</cpp:directive></cpp:endif>
+    <decl_stmt><decl><type><name>int</name></type> <name>t</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>t</name></expr>;</expr_stmt>
+    <while>while<condition>(<expr><name>t</name><operator>--</operator></expr>)</condition>
+    <block>{
+        <decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>;</decl_stmt>
+        <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>n</name></expr>;</expr_stmt>
+        <decl_stmt><decl><type><name>string</name></type> <name>s1</name></decl>,<decl><type ref="prev"/><name>s2</name></decl>;</decl_stmt>
+        <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>s1</name><operator>&gt;&gt;</operator><name>s2</name></expr>;</expr_stmt>
+        <decl_stmt><decl><type><name><name>map</name><argument_list type="generic">&lt;<argument><expr><name>char</name></expr></argument>, <argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>m</name></decl>;</decl_stmt>
+        <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;</operator><call><name><name>s1</name><operator>.</operator><name>length</name></name><argument_list>()</argument_list></call></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+        <block>{
+            <if>if<condition>(<expr><call><name><name>m</name><operator>.</operator><name>find</name></name><argument_list>(<argument><expr><name><name>s1</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>)</argument_list></call><operator>==</operator><call><name><name>m</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call></expr>)</condition><then>
+            <block>{
+                <expr_stmt><expr><name><name>m</name><index>[<expr><name><name>s1</name><index>[<expr><name>i</name></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+            }</block></then>
+            <else>else
+            <block>{
+                <expr_stmt><expr><name><name>m</name><index>[<expr><name><name>s1</name><index>[<expr><name>i</name></expr>]</index></name></expr>]</index></name><operator>++</operator></expr>;</expr_stmt>
+            }</block></else></if>
+            <if>if<condition>(<expr><call><name><name>m</name><operator>.</operator><name>find</name></name><argument_list>(<argument><expr><name><name>s2</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>)</argument_list></call><operator>==</operator><call><name><name>m</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call></expr>)</condition><then>
+            <block>{
+                <expr_stmt><expr><name><name>m</name><index>[<expr><name><name>s2</name><index>[<expr><name>i</name></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+            }</block></then>
+            <else>else
+            <block>{
+                <expr_stmt><expr><name><name>m</name><index>[<expr><name><name>s2</name><index>[<expr><name>i</name></expr>]</index></name></expr>]</index></name><operator>++</operator></expr>;</expr_stmt>
+            }</block></else></if>
+        }</block></for>
+        <decl_stmt><decl><type><name>bool</name></type> <name>is_possible</name> <init>= <expr><literal type="boolean">true</literal></expr></init></decl>;</decl_stmt>
+        <for>for<control>(<init><decl><type><name>auto</name></type> <name>c</name><range>: <expr><name>m</name></expr></range></decl></init>)</control>
+        <block>{
+            <comment type="line">// cout&lt;&lt;c.second&lt;&lt;'\n';</comment>
+            <if>if<condition>(<expr><name><name>c</name><operator>.</operator><name>second</name></name><operator>%</operator><literal type="number">2</literal><operator>!=</operator><literal type="number">0</literal></expr>)</condition><then>
+                <block type="pseudo"><expr_stmt><expr><name>is_possible</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt></block></then></if>
+        }</block></for>
+        <decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>, <argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></expr></argument> &gt;</argument_list></name></type> <name>answer</name></decl>;</decl_stmt>
+        <if>if<condition>(<expr><operator>!</operator><name>is_possible</name></expr>)</condition><then>
+        <block>{
+            <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><literal type="string">"No\n"</literal></expr>;</expr_stmt>
+        }</block></then>
+        <else>else
+        <block>{
+            <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;</operator><call><name><name>s1</name><operator>.</operator><name>length</name></name><argument_list>()</argument_list></call></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+            <block>{
+                <decl_stmt><decl><type><name>bool</name></type> <name>swap_done</name> <init>= <expr><literal type="boolean">false</literal></expr></init></decl>;</decl_stmt>
+                <if>if<condition>(<expr><name><name>s1</name><index>[<expr><name>i</name></expr>]</index></name><operator>!=</operator><name><name>s2</name><index>[<expr><name>i</name></expr>]</index></name></expr>)</condition><then>
+                <block>{
+                    <comment type="line">// cout&lt;&lt;i&lt;&lt;'\n';</comment>
+                    <for>for<control>(<init><decl><type><name>int</name></type> <name>j</name><init>=<expr><name>i</name><operator>+</operator><literal type="number">1</literal></expr></init></decl>;</init><condition><expr><name>j</name><operator>&lt;</operator><call><name><name>s1</name><operator>.</operator><name>length</name></name><argument_list>()</argument_list></call></expr>;</condition><incr><expr><name>j</name><operator>++</operator></expr></incr>)</control> <comment type="line">// either we pick from this string</comment>
+                    <block>{
+                        <if>if<condition>(<expr><name><name>s1</name><index>[<expr><name>j</name></expr>]</index></name><operator>==</operator><name><name>s1</name><index>[<expr><name>i</name></expr>]</index></name></expr>)</condition><then>
+                        <block>{
+                            <comment type="line">// cout&lt;&lt;"X";</comment>
+                            <expr_stmt><expr><call><name>swap</name><argument_list>(<argument><expr><name><name>s1</name><index>[<expr><name>j</name></expr>]</index></name></expr></argument>, <argument><expr><name><name>s2</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                            <comment type="line">// assert(s1[i]==s2[i]);</comment>
+                            <expr_stmt><expr><call><name><name>answer</name><operator>.</operator><name>push_back</name></name><argument_list>(<argument><expr><block>{<expr><name>j</name><operator>+</operator><literal type="number">1</literal></expr>, <expr><name>i</name><operator>+</operator><literal type="number">1</literal></expr>}</block></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                            <expr_stmt><expr><name>swap_done</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+                            <break>break;</break>
+                        }</block></then></if>
+                    }</block></for>
+                    <if>if<condition>(<expr><operator>!</operator><name>swap_done</name></expr>)</condition><then>
+                    <block>{
+                        <for>for<control>(<init><decl><type><name>int</name></type> <name>j</name><init>=<expr><name>i</name><operator>+</operator><literal type="number">1</literal></expr></init></decl>;</init><condition><expr><name>j</name><operator>&lt;</operator><call><name><name>s2</name><operator>.</operator><name>length</name></name><argument_list>()</argument_list></call></expr>;</condition><incr><expr><name>j</name><operator>++</operator></expr></incr>)</control> <comment type="line">// or from the other string</comment>
+                        <block>{
+                            <if>if<condition>(<expr><name><name>s2</name><index>[<expr><name>j</name></expr>]</index></name><operator>==</operator><name><name>s1</name><index>[<expr><name>i</name></expr>]</index></name></expr>)</condition><then>
+                            <block>{
+                                <expr_stmt><expr><call><name>swap</name><argument_list>(<argument><expr><name><name>s2</name><index>[<expr><name>j</name></expr>]</index></name></expr></argument>, <argument><expr><name><name>s1</name><index>[<expr><name>n</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt> 
+                                <expr_stmt><expr><call><name>swap</name><argument_list>(<argument><expr><name><name>s1</name><index>[<expr><name>n</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name></expr></argument>, <argument><expr><name><name>s2</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                                <comment type="line">// assert(s1[i]==s2[i]);</comment>
+                                <expr_stmt><expr><call><name><name>answer</name><operator>.</operator><name>push_back</name></name><argument_list>(<argument><expr><block>{<expr><name>n</name></expr>, <expr><name>j</name><operator>+</operator><literal type="number">1</literal></expr>}</block></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                                <expr_stmt><expr><call><name><name>answer</name><operator>.</operator><name>push_back</name></name><argument_list>(<argument><expr><block>{<expr><name>n</name></expr>, <expr><name>i</name><operator>+</operator><literal type="number">1</literal></expr>}</block></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                                <expr_stmt><expr><name>swap_done</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+                                <break>break;</break>
+                            }</block></then></if>
+                        }</block></for>
+                    }</block></then></if>
+                }</block></then></if>
+            }</block></for>
+            <comment type="line">// cout&lt;&lt;s1&lt;&lt;' '&lt;&lt;s2&lt;&lt;'\n';</comment>
+            <if>if<condition>(<expr><name>s1</name><operator>!=</operator><name>s2</name></expr>)</condition><then>
+            <block>{
+                <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><literal type="string">"No\n"</literal></expr>;</expr_stmt>
+            }</block></then>
+            <else>else
+            <block>{
+                <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><literal type="string">"Yes\n"</literal><operator>&lt;&lt;</operator><call><name><name>answer</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call><operator>&lt;&lt;</operator><literal type="char">'\n'</literal></expr>;</expr_stmt>
+                <for>for<control>(<init><decl><type><name>auto</name></type> <name>c</name><range>: <expr><name>answer</name></expr></range></decl></init>)</control>
+                <block>{
+                    <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><name><name>c</name><operator>.</operator><name>first</name></name><operator>&lt;&lt;</operator><literal type="char">' '</literal><operator>&lt;&lt;</operator><name><name>c</name><operator>.</operator><name>second</name></name><operator>&lt;&lt;</operator><literal type="char">'\n'</literal></expr>;</expr_stmt>
+                }</block></for>
+            }</block></else></if>
+            <comment type="line">// cout&lt;&lt;'\n';</comment>
+        }</block></else></if>
+    }</block></while>
+}</block></function></unit>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29615079_64001091.cpp"><cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;cstdio&gt;</cpp:file></cpp:include>
+<decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>;</decl_stmt>
+<function><specifier>inline</specifier> <type><name>int</name></type> <name>Read</name><parameter_list>()</parameter_list><block>{
+	<decl_stmt><decl><type><name>char</name></type> <name>ch</name></decl>;</decl_stmt>
+	<while>while<condition>(<expr><operator>(</operator><name>ch</name><operator>=</operator><call><name>getchar</name><argument_list>()</argument_list></call><operator>)</operator><operator>&lt;</operator><literal type="char">'0'</literal><operator>||</operator><name>ch</name><operator>&gt;</operator><literal type="char">'9'</literal></expr>)</condition><block type="pseudo"><empty_stmt>;</empty_stmt></block></while>
+	<decl_stmt><decl><type><name>int</name></type> <name>x</name><init>=<expr><name>ch</name><operator>^</operator><literal type="number">48</literal></expr></init></decl>;</decl_stmt>
+	<while>while<condition>(<expr><operator>(</operator><name>ch</name><operator>=</operator><call><name>getchar</name><argument_list>()</argument_list></call><operator>)</operator><operator>&gt;=</operator><literal type="char">'0'</literal><operator>&amp;&amp;</operator><name>ch</name><operator>&lt;=</operator><literal type="char">'9'</literal></expr>)</condition>
+		<block type="pseudo"><expr_stmt><expr><name>x</name><operator>=</operator><operator>(</operator><name>x</name><operator>&lt;&lt;</operator><literal type="number">3</literal><operator>)</operator><operator>+</operator><operator>(</operator><name>x</name><operator>&lt;&lt;</operator><literal type="number">1</literal><operator>)</operator><operator>+</operator><operator>(</operator><name>ch</name><operator>^</operator><literal type="number">48</literal><operator>)</operator></expr>;</expr_stmt></block></while>
+	<return>return <expr><name>x</name></expr>;</return>
+}</block></function>
+<function><specifier>inline</specifier> <type><name>int</name></type> <name>Gcd</name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name>int</name></type> <name>x</name></decl></parameter>,<parameter><decl><type><specifier>const</specifier> <name>int</name></type> <name>y</name></decl></parameter>)</parameter_list><block>{
+	<return>return <expr><ternary><condition><expr><name>x</name><operator>%</operator><name>y</name></expr>?</condition><then><expr><call><name>Gcd</name><argument_list>(<argument><expr><name>y</name></expr></argument>,<argument><expr><name>x</name><operator>%</operator><name>y</name></expr></argument>)</argument_list></call></expr></then><else>:<expr><name>y</name></expr></else></ternary></expr>;</return>
+}</block></function>
+<function><specifier>inline</specifier> <type><name>void</name></type> <name>Query</name><parameter_list>()</parameter_list><block>{
+	<decl_stmt><decl><type><name>int</name></type> <name>x</name><init>=<expr><call><name>Read</name><argument_list>()</argument_list></call></expr></init></decl>,<decl><type ref="prev"/><name>y</name><init>=<expr><call><name>Read</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+	<decl_stmt><decl><type><name>int</name></type> <name>k</name><init>=<expr><call><name>Gcd</name><argument_list>(<argument><expr><name>x</name></expr></argument>,<argument><expr><name>y</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+	<if>if<condition>(<expr><name>k</name><operator>!=</operator><literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><call><name>puts</name><argument_list>(<argument><expr><literal type="string">"Infinite"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then>
+	<else>else <block type="pseudo"><expr_stmt><expr><call><name>puts</name><argument_list>(<argument><expr><literal type="string">"Finite"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></else></if>
+}</block></function>
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list><block>{
+	<for>for<control>(<init><expr><name>n</name><operator>=</operator><call><name>Read</name><argument_list>()</argument_list></call></expr>;</init><condition><expr><name>n</name></expr>;</condition><incr><expr><name>n</name><operator>--</operator></expr></incr>)</control>
+		<block type="pseudo"><expr_stmt><expr><call><name>Query</name><argument_list>()</argument_list></call></expr>;</expr_stmt></block></for>
+	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>

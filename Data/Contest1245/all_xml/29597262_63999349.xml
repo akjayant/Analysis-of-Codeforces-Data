@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29597262_63999349.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;list&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;map&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;set&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;deque&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;stack&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bitset&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;functional&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iomanip&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdio&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cmath&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;set&gt;</cpp:file></cpp:include>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ll</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>MODD</name></cpp:macro> <cpp:value>1000000007</cpp:value></cpp:define>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<function><type><name>int</name></type> <name>Solve</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>pos</name></decl></parameter>, <parameter><decl><type><specifier>const</specifier> <name>string</name><modifier>&amp;</modifier></type> <name>S</name></decl></parameter>)</parameter_list> <block>{
+    
+    <if>if <condition>(<expr><name>pos</name> <operator>==</operator> <call><name><name>S</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr>)</condition><then>
+        <block type="pseudo"><return>return <expr><literal type="number">1</literal></expr>;</return></block></then></if>
+    
+    <if>if <condition>(<expr><name><name>S</name><index>[<expr><name>pos</name></expr>]</index></name><operator>==</operator><literal type="char">'w'</literal> <operator>||</operator> <name><name>S</name><index>[<expr><name>pos</name></expr>]</index></name><operator>==</operator><literal type="char">'m'</literal></expr>)</condition><then>
+        <block type="pseudo"><return>return <expr><literal type="number">0</literal></expr>;</return></block></then></if>
+    
+    <decl_stmt><decl><type><name>int</name></type> <name>ans</name> <init>= <expr><call><name>Solve</name><argument_list>(<argument><expr><name>pos</name><operator>+</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>S</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    
+    <if>if <condition>(<expr><name>pos</name> <operator>&lt;</operator> <call><name><name>S</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call><operator>-</operator><literal type="number">1</literal> <operator>&amp;&amp;</operator> <name><name>S</name><index>[<expr><name>pos</name></expr>]</index></name><operator>==</operator><name><name>S</name><index>[<expr><name>pos</name><operator>+</operator><literal type="number">1</literal></expr>]</index></name> <operator>&amp;&amp;</operator> <name><name>S</name><index>[<expr><name>pos</name></expr>]</index></name><operator>==</operator><literal type="char">'u'</literal></expr>)</condition><then> <block>{
+        <expr_stmt><expr><name>ans</name> <operator>+=</operator> <call><name>Solve</name><argument_list>(<argument><expr><name>pos</name><operator>+</operator><literal type="number">2</literal></expr></argument>, <argument><expr><name>S</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name>ans</name> <operator>%=</operator> <name>MODD</name></expr>;</expr_stmt>
+    }</block></then></if>
+    
+    <if>if <condition>(<expr><name>pos</name> <operator>&lt;</operator> <call><name><name>S</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call><operator>-</operator><literal type="number">1</literal> <operator>&amp;&amp;</operator> <name><name>S</name><index>[<expr><name>pos</name></expr>]</index></name><operator>==</operator><name><name>S</name><index>[<expr><name>pos</name><operator>+</operator><literal type="number">1</literal></expr>]</index></name> <operator>&amp;&amp;</operator> <name><name>S</name><index>[<expr><name>pos</name></expr>]</index></name><operator>==</operator><literal type="char">'n'</literal></expr>)</condition><then> <block>{
+        <expr_stmt><expr><name>ans</name> <operator>+=</operator> <call><name>Solve</name><argument_list>(<argument><expr><name>pos</name><operator>+</operator><literal type="number">2</literal></expr></argument>, <argument><expr><name>S</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name>ans</name> <operator>%=</operator> <name>MODD</name></expr>;</expr_stmt>
+    }</block></then></if>
+    
+    <return>return <expr><name>ans</name></expr>;</return>
+    
+}</block></function>
+
+<decl_stmt><decl><type><name>ll</name></type> <name><name>dp</name><index>[<expr><literal type="number">111111</literal></expr>]</index></name></decl>;</decl_stmt>
+
+<function><type><name>int</name></type> <name>Solve</name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name>string</name><modifier>&amp;</modifier></type> <name>S</name></decl></parameter>)</parameter_list> <block>{
+    <decl_stmt><decl><type><name>int</name></type> <name>L</name><init>=<expr><call><name><name>S</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>pos</name><init>=<expr><name>L</name></expr></init></decl>;</init><condition><expr><name>pos</name><operator>&gt;=</operator><literal type="number">0</literal></expr>;</condition><incr><expr><name>pos</name><operator>--</operator></expr></incr>)</control> <block>{
+        <if>if <condition>(<expr><name>pos</name> <operator>==</operator> <name>L</name></expr>)</condition><then> <block>{
+            <expr_stmt><expr><name><name>dp</name><index>[<expr><name>pos</name></expr>]</index></name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+            <continue>continue;</continue>
+        }</block></then></if>
+        
+        <if>if <condition>(<expr><name><name>S</name><index>[<expr><name>pos</name></expr>]</index></name><operator>==</operator><literal type="char">'w'</literal> <operator>||</operator> <name><name>S</name><index>[<expr><name>pos</name></expr>]</index></name><operator>==</operator><literal type="char">'m'</literal></expr>)</condition><then> <block>{
+            <expr_stmt><expr><name><name>dp</name><index>[<expr><name>pos</name></expr>]</index></name><operator>=</operator><literal type="number">0</literal></expr>;</expr_stmt>
+            <continue>continue;</continue>
+        }</block></then></if>
+        
+        <decl_stmt><decl><type><name>int</name></type> <name>ans</name> <init>= <expr><name><name>dp</name><index>[<expr><name>pos</name><operator>+</operator><literal type="number">1</literal></expr>]</index></name></expr></init></decl>;</decl_stmt>
+        
+        <if>if <condition>(<expr><name>pos</name> <operator>&lt;</operator> <call><name><name>S</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call><operator>-</operator><literal type="number">1</literal> <operator>&amp;&amp;</operator> <name><name>S</name><index>[<expr><name>pos</name></expr>]</index></name><operator>==</operator><name><name>S</name><index>[<expr><name>pos</name><operator>+</operator><literal type="number">1</literal></expr>]</index></name> <operator>&amp;&amp;</operator> <name><name>S</name><index>[<expr><name>pos</name></expr>]</index></name><operator>==</operator><literal type="char">'u'</literal></expr>)</condition><then> <block>{
+            <expr_stmt><expr><name>ans</name> <operator>+=</operator> <name><name>dp</name><index>[<expr><name>pos</name><operator>+</operator><literal type="number">2</literal></expr>]</index></name></expr>;</expr_stmt>
+            <expr_stmt><expr><name>ans</name> <operator>%=</operator> <name>MODD</name></expr>;</expr_stmt>
+        }</block></then></if>
+        
+        <if>if <condition>(<expr><name>pos</name> <operator>&lt;</operator> <call><name><name>S</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call><operator>-</operator><literal type="number">1</literal> <operator>&amp;&amp;</operator> <name><name>S</name><index>[<expr><name>pos</name></expr>]</index></name><operator>==</operator><name><name>S</name><index>[<expr><name>pos</name><operator>+</operator><literal type="number">1</literal></expr>]</index></name> <operator>&amp;&amp;</operator> <name><name>S</name><index>[<expr><name>pos</name></expr>]</index></name><operator>==</operator><literal type="char">'n'</literal></expr>)</condition><then> <block>{
+            <expr_stmt><expr><name>ans</name> <operator>+=</operator> <name><name>dp</name><index>[<expr><name>pos</name><operator>+</operator><literal type="number">2</literal></expr>]</index></name></expr>;</expr_stmt>
+            <expr_stmt><expr><name>ans</name> <operator>%=</operator> <name>MODD</name></expr>;</expr_stmt>
+        }</block></then></if>
+        <expr_stmt><expr><name><name>dp</name><index>[<expr><name>pos</name></expr>]</index></name><operator>=</operator><name>ans</name></expr>;</expr_stmt>
+    }</block></for>
+    <return>return <expr><name><name>dp</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>;</return>
+}</block></function>
+
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+    <decl_stmt><decl><type><name>string</name></type> <name>S</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>S</name></expr>;</expr_stmt>
+    
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <call><name>Solve</name><argument_list>(<argument><expr><name>S</name></expr></argument>)</argument_list></call> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+}</block></function>
+</unit>

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1236/all/29087309_62790963.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iomanip&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;fstream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;string&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;array&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;deque&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;list&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;set&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;map&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;unordered_map&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;unordered_set&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;stack&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;queue&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bitset&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;tuple&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cmath&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;complex&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;utility&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;regex&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdint&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;numeric&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;functional&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cassert&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<using>using <name>ll</name> <init>= <type><name>long</name> <name>long</name></type></init>;</using>
+<using>using <name>ull</name> <init>= <type><name>unsigned</name> <name>long</name> <name>long</name></type></init>;</using>
+
+<decl_stmt><decl><specifier>constexpr</specifier> <type><name>ll</name></type> <name>INF</name> <init>= <expr><literal type="number">1</literal><literal type="char">'000'</literal><literal type="number">000</literal><literal type="char">'000'</literal><literal type="number">000</literal><literal type="char">'000'</literal><literal type="number">000</literal></expr></init></decl>;</decl_stmt>
+<namespace>namespace <name>utils</name><block>{
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ALL</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>begin(x), end(x)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>RALL</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>rbegin(x), rend(x)</cpp:value></cpp:define>
+    <using><template>template<parameter_list>&lt;<parameter><type><name>class</name></type> <name>T</name></parameter>, <parameter><type><name>class</name></type> <name>Compare</name></parameter>&gt;</parameter_list></template> using <name>p_queue</name> <init>= <type><name><name>priority_queue</name><argument_list type="generic">&lt;<argument><expr><name>T</name></expr></argument>, <argument><expr><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>T</name></expr></argument>&gt;</argument_list></name></expr></argument>, <argument><expr><name>Compare</name></expr></argument>&gt;</argument_list></name></type></init>;</using>
+    <using><template>template<parameter_list>&lt;<parameter><type><name>class</name></type> <name>T</name></parameter>&gt;</parameter_list></template> using <name>min_queue</name> <init>= <type><name><name>p_queue</name><argument_list type="generic">&lt;<argument><expr><name>T</name></expr></argument>, <argument><expr><name><name>greater</name><argument_list type="generic">&lt;<argument><expr><name>T</name></expr></argument>&gt;</argument_list></name></expr></argument>&gt;</argument_list></name></type></init>;</using>
+    <using><template>template<parameter_list>&lt;<parameter><type><name>class</name></type> <name>T</name></parameter>&gt;</parameter_list></template> using <name>max_queue</name> <init>= <type><name><name>p_queue</name><argument_list type="generic">&lt;<argument><expr><name>T</name></expr></argument>, <argument><expr><name><name>less</name><argument_list type="generic">&lt;<argument><expr><name>T</name></expr></argument>&gt;</argument_list></name></expr></argument>&gt;</argument_list></name></type></init>;</using>
+
+    <function><template>template<parameter_list>&lt;<parameter><type><name>class</name></type> <name>T</name></parameter>&gt;</parameter_list></template> <type><name>bool</name></type> <name>up_min</name><parameter_list>(<parameter><decl><type><name>T</name><modifier>&amp;</modifier></type> <name>X</name></decl></parameter>, <parameter><decl><type><specifier>const</specifier> <name>T</name><modifier>&amp;</modifier></type> <name>A</name></decl></parameter>)</parameter_list><block>{ <if>if<condition>(<expr><name>X</name> <operator>&gt;</operator> <name>A</name></expr>)</condition><then> <block>{<expr_stmt><expr><name>X</name> <operator>=</operator> <name>A</name></expr>;</expr_stmt> <return>return <expr><literal type="boolean">true</literal></expr>;</return>}</block></then></if> <return>return <expr><literal type="boolean">false</literal></expr>;</return> }</block></function>
+    <function><template>template<parameter_list>&lt;<parameter><type><name>class</name></type> <name>T</name></parameter>&gt;</parameter_list></template> <type><name>bool</name></type> <name>up_max</name><parameter_list>(<parameter><decl><type><name>T</name><modifier>&amp;</modifier></type> <name>X</name></decl></parameter>, <parameter><decl><type><specifier>const</specifier> <name>T</name><modifier>&amp;</modifier></type> <name>A</name></decl></parameter>)</parameter_list><block>{ <if>if<condition>(<expr><name>X</name> <operator>&lt;</operator> <name>A</name></expr>)</condition><then> <block>{<expr_stmt><expr><name>X</name> <operator>=</operator> <name>A</name></expr>;</expr_stmt> <return>return <expr><literal type="boolean">true</literal></expr>;</return>}</block></then></if> <return>return <expr><literal type="boolean">false</literal></expr>;</return> }</block></function>
+
+    <function type="operator"><type><name>ll</name></type> <name>operator<name>"" _64</name></name><parameter_list>(<parameter><decl><type><name>unsigned</name> <name>long</name> <name>long</name></type> <name>x</name></decl></parameter>)</parameter_list><block>{ <return>return <expr><call><name>ll</name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call></expr>;</return> }</block></function>
+    <function type="operator"><type><name>ull</name></type> <name>operator<name>"" _64u</name></name><parameter_list>(<parameter><decl><type><name>unsigned</name> <name>long</name> <name>long</name></type> <name>x</name></decl></parameter>)</parameter_list><block>{ <return>return <expr><call><name>ull</name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call></expr>;</return> }</block></function>
+
+    <function><template>template<parameter_list>&lt;<parameter><type><name>class</name></type> <name>T</name></parameter>&gt;</parameter_list></template>
+    <type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>T</name></expr></argument>&gt;</argument_list></name></type> <name>make_mdvector</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>n</name></decl></parameter>, <parameter><decl><type><name>T</name></type> <name>t</name></decl></parameter>)</parameter_list><block>{
+        <return>return <expr><call><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>T</name></expr></argument>&gt;</argument_list></name><argument_list>(<argument><expr><name>n</name></expr></argument>, <argument><expr><name>t</name></expr></argument>)</argument_list></call></expr>;</return>
+    }</block></function>
+    <function><template>template<parameter_list>&lt;<parameter><type><name>class</name> <modifier>...</modifier></type><name>Ts</name></parameter>&gt;</parameter_list></template>
+    <type><name>auto</name></type> <name>make_mdvector</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>n</name></decl></parameter>, <parameter><decl><type><name>Ts</name> <modifier>...</modifier></type> <name>ts</name></decl></parameter>)</parameter_list><block>{
+        <return>return <expr><call><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><decltype>decltype<argument_list>(<argument><expr><call><name>make_mdvector</name><argument_list>(<argument><expr><name>ts</name><operator>...</operator></expr></argument>)</argument_list></call></expr></argument>)</argument_list></decltype></expr></argument>&gt;</argument_list></name><argument_list>(<argument><expr><name>n</name></expr></argument>, <argument><expr><call><name>make_mdvector</name><argument_list>(<argument><expr><name>ts</name><operator>...</operator></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+    }</block></function>
+
+    <function><specifier>inline</specifier> <type><name>ll</name></type> <name>bit</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>x</name></decl></parameter>)</parameter_list><block>{
+        <return>return <expr><literal type="number">1ll</literal> <operator>&lt;&lt;</operator> <name>x</name></expr>;</return>
+    }</block></function>
+
+    <function type="operator"><template>template<parameter_list>&lt;<parameter><type><name>class</name></type> <name>T</name></parameter>&gt;</parameter_list></template>
+    <type><name>istream</name><modifier>&amp;</modifier></type> <name>operator<name>&gt;&gt;</name></name><parameter_list>(<parameter><decl><type><name>istream</name><modifier>&amp;</modifier></type> <name>is</name></decl></parameter>, <parameter><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>T</name></expr></argument>&gt;</argument_list></name><modifier>&amp;</modifier></type> <name>v</name></decl></parameter>)</parameter_list><block>{
+        <for>for <control>(<init><expr><name>auto</name> <operator>&amp;&amp;</operator><name>x</name> <operator>:</operator> <name>v</name></expr></init>)</control> <block>{ <expr_stmt><expr><name>is</name> <operator>&gt;&gt;</operator> <name>x</name></expr>;</expr_stmt> }</block></for> <return>return <expr><name>is</name></expr>;</return>
+    }</block></function>
+
+    <function type="operator"><template>template<parameter_list>&lt;<parameter><type><name>class</name></type> <name>T</name></parameter>&gt;</parameter_list></template>
+    <type><name>ostream</name><modifier>&amp;</modifier></type> <name>operator<name>&lt;&lt;</name></name><parameter_list>(<parameter><decl><type><name>ostream</name><modifier>&amp;</modifier></type> <name>os</name></decl></parameter>, <parameter><decl><type><specifier>const</specifier> <name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>T</name></expr></argument>&gt;</argument_list></name><modifier>&amp;</modifier></type> <name>v</name></decl></parameter>)</parameter_list><block>{
+        <for>for <control>(<init><expr><name>auto</name> <operator>&amp;&amp;</operator><name>x</name> <operator>:</operator> <name>v</name></expr></init>)</control> <block>{ <expr_stmt><expr><name>os</name> <operator>&lt;&lt;</operator> <name>x</name> <operator>&lt;&lt;</operator> <literal type="char">' '</literal></expr>;</expr_stmt> }</block></for> <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt> <return>return <expr><name>os</name></expr> ;</return>
+    }</block></function>
+}</block></namespace>
+<using>using <namespace>namespace <name>utils</name>;</namespace></using>
+
+<namespace>namespace <name>xelmh_RCR</name> <block>{
+    <class>class <name>RCR</name> <block>{<private type="default">
+        <comment type="line">// Residue Class Ring</comment>
+        <decl_stmt><decl><specifier>static</specifier> <specifier>constexpr</specifier> <type><name>ll</name></type> <name>NIL</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><specifier>static</specifier> <specifier>constexpr</specifier> <type><name>int64_t</name></type> <name>MOD</name> <init>= <expr><literal type="number">1</literal><literal type="char">'000'</literal><literal type="number">000</literal><literal type="char">'007;
+//        static constexpr int64_t MOD = 998'</literal><literal type="number">244</literal><literal type="char">'353;
+
+        ll val;
+    public:
+        RCR(ll x) : val(x &gt;= 0 ? x % MOD : MOD - (-x) % MOD) {}
+        RCR(signed x) : val(x &gt;= 0 ? x % MOD : MOD - (-x) % MOD) {}
+        RCR(ull x) : val(x % MOD) {}
+        RCR(unsigned x) : val(x % MOD) {}
+        RCR() : val{NIL} {}
+
+        bool is_nil() { return val == NIL; }
+
+        RCR pow(ll n) const {
+            ll r = 1, a = val;
+            while (n) {
+                if (n &amp; 1) {
+                    r *= a;
+                    r %= MOD;
+                }
+                a *= a;
+                a %= MOD;
+                n /= 2;
+            }
+            return {r};
+        }
+        RCR inv() const { /* return Inverse */ assert(val != 0);
+            return this-&gt;pow(MOD - 2);
+        }
+
+        void operator+=(const RCR &amp;a) {
+            val += a.val;
+            if (val &gt;= MOD) val -= MOD;
+        }
+        void operator-=(const RCR &amp;a) {
+            val -= a.val;
+            if (val &lt; 0) val += MOD;
+        }
+        void operator*=(const RCR &amp;a) {
+            val *= a.val;
+            val %= MOD;
+        }
+        void operator/=(const RCR &amp;a) {
+            val *= a.inv().val;
+            val %= MOD;
+        }
+
+        RCR operator+(const RCR &amp;x) const {
+            ll v = val + x.val;
+            return {v};
+        }
+        RCR operator-(const RCR &amp;x) const {
+            ll v = val - x.val;
+            return {v};
+        }
+        RCR operator*(const RCR &amp;x) const {
+            ll v = val * x.val;
+            return {v};
+        }
+        RCR operator/(const RCR &amp;x) const {
+            ll v = val * x.inv().val;
+            return {v};
+        }
+
+        bool operator==(const RCR &amp;x) const { return x.val == val; }
+        bool operator!=(const RCR &amp;x) const { return x.val != val; }
+
+        friend istream &amp;operator&gt;&gt;(istream &amp;is, RCR &amp;r) {
+            ll tmp;
+            is &gt;&gt; tmp;
+            r = tmp;
+            return is;
+        }
+        friend ostream &amp;operator&lt;&lt;(ostream &amp;os, const RCR &amp;r) { return os &lt;&lt; r.val; }
+    };
+
+    RCR fact(ll N) {
+        /* N -&gt; N! */
+        static vector&lt;RCR&gt; cal(1, RCR{1});
+        assert(N &gt;= 0);
+
+        if (cal.size() &gt; N) return cal[N];
+        else {
+            RCR nm = fact(N - 1);
+            assert(cal.size() == N);
+            cal.push_back(nm * N);
+            return cal.back();
+        }
+    }
+
+    /* N, k -&gt; N C k */
+    RCR choose(ll N, ll k) {
+        // N! / k!(N-k!)
+        RCR ans = fact(N) / (fact(k) * fact(N - k));
+        return ans;
+    }
+
+    RCR operator "" _mod(unsigned long long x) {
+        return RCR{x};
+    }
+}
+using namespace xelmh_RCR;
+
+
+class solver{
+    istream&amp; is;
+    ostream&amp; os;
+
+public:
+    solver(istream&amp; I, ostream&amp; O) :is(I), os(O) {}
+    void run();
+};
+
+int main(int argc, char *argv[]) {
+    cin.tie(nullptr);
+    ios::sync_with_stdio(false);
+    cout &lt;&lt; setprecision(16) &lt;&lt; scientific;
+#ifdef XELMH
+    string test_cases = "test_B.txt";
+    cerr &lt;&lt; test_cases &lt;&lt; " --&gt;" &lt;&lt; endl;
+    auto fs = fstream(test_cases, fstream::in);
+    int loop = 0;
+    while(fs) {
+        loop++;
+        cout &lt;&lt; '</literal><operator>#</operator><literal type="char">'</literal></expr></init></decl></decl_stmt></private></block></class></block></namespace> &lt;&lt; loop &lt;&lt; "#------\n";
+        solver(fs, cout).run();
+    }
+    if(loop &lt;= 1) {
+        cout &lt;&lt; "===" &lt;&lt; endl;
+        while(cin) solver(cin, cout).run();
+    }
+#else
+    solver(cin, cout).run();
+#endif
+    return 0;
+}
+
+
+void solver::run(){
+    ll N, M;
+    is &gt;&gt; N &gt;&gt; M;
+    if(!is) return;
+    
+    
+    RCR ans = ((2_mod).pow(M) -1_mod).pow(N);
+    os &lt;&lt; ans &lt;&lt; endl;
+}
+</unit>
