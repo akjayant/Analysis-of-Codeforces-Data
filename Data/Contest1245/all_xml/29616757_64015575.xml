@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29616757_64015575.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<decl_stmt><decl><specifier>constexpr</specifier> <type><name>int</name></type> <name>MOD</name> <init>= <expr><literal type="number">1</literal><literal type="char">'000'</literal><literal type="number">000</literal><literal type="char">'007;
+long long ans = 1;
+long long dp[100001];
+void f(int k) {
+    if(k &lt;= 1)
+        return;
+
+    ans = ans * dp[k] % MOD;    
+}
+
+void solve() {
+    string s;
+    cin &gt;&gt; s;
+
+    memset(dp, 0, sizeof(dp));
+    dp[1] = 1;
+    dp[2] = 2;
+    for(auto i = 3; i &lt;= 100000; ++i)
+        dp[i] = (dp[i-1] + dp[i-2]) % MOD;
+
+    auto n = 0, u = 0;
+    for(auto c : s) {
+        if(c == '</literal><name>m</name><literal type="char">' || c == '</literal><name>w</name><literal type="char">') {
+            cout &lt;&lt; 0 &lt;&lt; endl;
+            return;
+        }
+        else if(c == '</literal><name>n</name><literal type="char">') {
+            n++;
+            f(u);
+            u = 0;
+        }
+        else if(c == '</literal><literal type="string">u'</literal></expr></init></decl></decl_stmt>) {
+            u++;
+            f(n);
+            n = 0;
+        }
+        else {
+            f(n), f(u);
+            n = 0, u = 0;
+        }
+    }
+
+    f(n), f(u);
+    cout &lt;&lt; ans &lt;&lt; endl;
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    solve();
+}</unit>

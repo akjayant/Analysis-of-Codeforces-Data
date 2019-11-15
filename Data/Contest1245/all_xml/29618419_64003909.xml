@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29618419_64003909.cpp"><cpp:pragma>#<cpp:directive>pragma</cpp:directive> <name>GCC</name> <name>optimize</name><name>(</name><cpp:literal>"Ofast"</cpp:literal><name>)</name></cpp:pragma>
+<cpp:pragma>#<cpp:directive>pragma</cpp:directive> <name>GCC</name> <name>target</name><name>(</name><cpp:literal>"avx,avx2,fma"</cpp:literal><name>)</name></cpp:pragma>
+<cpp:pragma>#<cpp:directive>pragma</cpp:directive> <name>GCC</name> <name>optimization</name> <name>(</name><cpp:literal>"unroll-loops"</cpp:literal><name>)</name></cpp:pragma>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<typedef>typedef <type><name>long</name> <name>long</name></type> <name>ll</name>;</typedef>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>rep</name><parameter_list>(<parameter><type><name>i</name></type></parameter>,<parameter><type><name>a</name></type></parameter>,<parameter><type><name>b</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(ll i = (a); i &lt; (b); i++)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>iter</name><parameter_list>(<parameter><type><name>it</name></type></parameter>,<parameter><type><name>c</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(auto it = (c).begin(); it != (c).end();++it)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pb</name></cpp:macro> <cpp:value>push_back</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>fs</name></cpp:macro> <cpp:value>first</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>sc</name></cpp:macro> <cpp:value>second</cpp:value></cpp:define>
+<typedef>typedef <type><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>ll</name></expr></argument>,<argument><expr><name>ll</name></expr></argument>&gt;</argument_list></name></type> <name>ii</name>;</typedef>
+<typedef>typedef <type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>ll</name></expr></argument>&gt;</argument_list></name></type> <name>vi</name>;</typedef>
+<typedef>typedef <type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>ii</name></expr></argument>&gt;</argument_list></name></type> <name>vii</name>;</typedef>
+<typedef>typedef <type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>vi</name></expr></argument>&gt;</argument_list></name></type> <name>vvi</name>;</typedef>
+<typedef>typedef <type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>vii</name></expr></argument>&gt;</argument_list></name></type> <name>vvii</name>;</typedef>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>ll</name></type> <name>INF</name> <init>= <expr><operator>~</operator><operator>(</operator><literal type="number">1</literal><operator>&lt;&lt;</operator><literal type="number">31</literal><operator>)</operator></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><specifier>const</specifier> <name>double</name></type> <name>pi</name> <init>= <expr><call><name>acos</name><argument_list>(<argument><expr><operator>-</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><specifier>const</specifier> <name>double</name></type> <name>EPS</name> <init>= <expr><literal type="number">1e-9</literal></expr></init></decl>;</decl_stmt>
+<typedef>typedef <type><name>unsigned</name> <name>long</name> <name>long</name></type> <name>ull</name>;</typedef>
+
+<function><template>template <parameter_list>&lt;<parameter><type><name>class</name></type> <name>T</name></parameter>&gt;</parameter_list></template> <type><name>T</name></type> <name>smod</name><parameter_list>(<parameter><decl><type><name>T</name></type> <name>a</name></decl></parameter>, <parameter><decl><type><name>T</name></type> <name>b</name></decl></parameter>)</parameter_list> <block>{
+  <return>return <expr><operator>(</operator><name>a</name> <operator>%</operator> <name>b</name> <operator>+</operator> <name>b</name><operator>)</operator> <operator>%</operator> <name>b</name></expr>;</return> }</block></function>
+
+<decl_stmt><decl><type><name>string</name></type> <name>s</name></decl>;</decl_stmt>
+<expr_stmt><expr><name>ll</name> <name><name>memo</name><index>[<expr><literal type="number">100</literal><literal type="char">'005];
+ll mod = 1000000000+7;
+ll dp(ll at) {
+    if(at &gt;= size(s)-1) return 1;
+    else {
+        if(memo[at] != -1) return memo[at];
+        ll ans = dp(at+1);
+        if(s[at] == '</literal><literal type="string">u'</literal></expr></index></name> &amp;&amp; s[at+1] == '<literal type="string">u'</literal>) ans += dp(at+2);
+        if(s[at] == '<name>n</name><literal type="char">' &amp;&amp; s[at+1] == '</literal><name>n</name><literal type="char">') ans += dp(at+2);
+        return memo[at] = (ans) % mod;
+    }
+}
+
+int main() {
+    cin.sync_with_stdio(false);
+    memset(memo,-1,sizeof(memo));
+    cin &gt;&gt; s;
+    ll ok = 1;
+    rep(i,0,size(s)) if(s[i] == '</literal><name>m</name><literal type="char">' || s[i] == '</literal><name>w</name><literal type="char">'</literal></expr></expr_stmt>) ok = 0;
+    if(!ok) {
+        cout &lt;&lt; 0 &lt;&lt; endl;
+        return 0;
+    }
+    cout &lt;&lt; dp(0) &lt;&lt; endl;
+    return 0;
+}
+
+
+</unit>

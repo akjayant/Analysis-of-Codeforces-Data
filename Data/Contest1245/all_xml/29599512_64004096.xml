@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29599512_64004096.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<typedef>typedef <type><name>long</name> <name>long</name> <name>int</name></type> <name>lli</name>;</typedef>
+<typedef>typedef <type><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>, <argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>ii</name>;</typedef>
+<typedef>typedef <type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>vi</name>;</typedef>
+<typedef>typedef <type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>ii</name></expr></argument>&gt;</argument_list></name></type> <name>vii</name>;</typedef>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+	<decl_stmt><decl><type><name>int</name></type> <name>t</name></decl>, <decl><type ref="prev"/><name>n</name></decl>, <decl><type ref="prev"/><name>a</name></decl>, <decl><type ref="prev"/><name>b</name></decl>, <decl><type ref="prev"/><name>c</name></decl>;</decl_stmt>
+	<decl_stmt><decl><type><name>string</name></type> <name>bob</name></decl>;</decl_stmt>
+	<expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>t</name></expr>;</expr_stmt>
+	<while>while<condition>(<expr><name>t</name><operator>--</operator></expr>)</condition> <block>{
+		<expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name></expr>;</expr_stmt>
+		<expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>a</name> <operator>&gt;&gt;</operator> <name>b</name> <operator>&gt;&gt;</operator> <name>c</name></expr>;</expr_stmt>
+
+		<decl_stmt><decl><type><name>int</name></type> <name>toWin</name></decl>;</decl_stmt>
+		<if>if<condition>(<expr><name>n</name> <operator>%</operator> <literal type="number">2</literal> <operator>==</operator> <literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>toWin</name> <operator>=</operator> <operator>(</operator><name>n</name><operator>+</operator><literal type="number">1</literal><operator>)</operator> <operator>/</operator> <literal type="number">2</literal></expr>;</expr_stmt></block></then>
+		<else>else <block type="pseudo"><expr_stmt><expr><name>toWin</name> <operator>=</operator> <name>n</name><operator>/</operator><literal type="number">2</literal></expr>;</expr_stmt></block></else></if>
+
+		<expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>bob</name></expr>;</expr_stmt>
+		<decl_stmt><decl><type><name>int</name></type> <name>win</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+		<decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>char</name></expr></argument>&gt;</argument_list></name></type> <name>moves</name><argument_list>(<argument><expr><name>n</name></expr></argument>, <argument><expr><literal type="char">'N'</literal></expr></argument>)</argument_list></decl>;</decl_stmt>
+		<for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>n</name></expr>;</condition> <incr><expr><operator>++</operator><name>i</name></expr></incr>)</control>
+		<block>{
+			<if>if<condition>(<expr><name><name>bob</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="char">'R'</literal> <operator>&amp;&amp;</operator> <name>b</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+				<expr_stmt><expr><name><name>moves</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <literal type="char">'P'</literal></expr>;</expr_stmt>
+				<expr_stmt><expr><name>b</name><operator>--</operator></expr>;</expr_stmt> <expr_stmt><expr><name>win</name><operator>++</operator></expr>;</expr_stmt>
+			}</block></then> <elseif>else <if>if<condition>(<expr><name><name>bob</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="char">'P'</literal> <operator>&amp;&amp;</operator> <name>c</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+				<expr_stmt><expr><name><name>moves</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <literal type="char">'S'</literal></expr>;</expr_stmt>
+				<expr_stmt><expr><name>c</name><operator>--</operator></expr>;</expr_stmt> <expr_stmt><expr><name>win</name><operator>++</operator></expr>;</expr_stmt>
+			}</block></then></if></elseif> <elseif>else <if>if<condition>(<expr><name><name>bob</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="char">'S'</literal> <operator>&amp;&amp;</operator> <name>a</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+				<expr_stmt><expr><name><name>moves</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <literal type="char">'R'</literal></expr>;</expr_stmt>
+				<expr_stmt><expr><name>a</name><operator>--</operator></expr>;</expr_stmt> <expr_stmt><expr><name>win</name><operator>++</operator></expr>;</expr_stmt>
+			}</block></then></if></elseif></if>
+		}</block></for>
+		<if>if<condition>(<expr><name>win</name> <operator>&gt;=</operator> <name>toWin</name></expr>)</condition><then> <block>{
+			<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"YES"</literal> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+			<for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>n</name></expr>;</condition> <incr><expr><operator>++</operator><name>i</name></expr></incr>)</control>
+			<block>{
+				<if>if<condition>(<expr><name><name>moves</name><index>[<expr><name>i</name></expr>]</index></name> <operator>!=</operator> <literal type="char">'N'</literal></expr>)</condition><then> <block>{
+					<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name><name>moves</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt>
+				}</block></then> <else>else <block>{
+					<if>if<condition>(<expr><name>a</name><operator>--</operator> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="char">'R'</literal></expr>;</expr_stmt></block></then>
+					<elseif>else <if>if<condition>(<expr><name>b</name><operator>--</operator> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="char">'P'</literal></expr>;</expr_stmt></block></then></if></elseif>
+					<elseif>else <if>if<condition>(<expr><name>c</name><operator>--</operator> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="char">'S'</literal></expr>;</expr_stmt></block></then></if></elseif></if>
+				}</block></else></if>
+			}</block></for>
+			<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+		}</block></then> <else>else <block>{
+			<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"NO"</literal> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+		}</block></else></if>
+	}</block></while>
+
+	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>

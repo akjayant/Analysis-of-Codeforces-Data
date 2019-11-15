@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1236/all/29063859_62794672.cpp"><comment type="block">/*
+ID: espr1t
+TASK: 
+KEYWORDS: 
+*/</comment>
+
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdio&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstring&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;string&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;set&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;queue&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<decl_stmt><decl><type><name>FILE</name><modifier>*</modifier></type> <name>in</name> <init>= <expr><name>stdin</name></expr></init></decl>;</decl_stmt> <decl_stmt><decl><type><name>FILE</name><modifier>*</modifier></type> <name>out</name> <init>= <expr><name>stdout</name></expr></init></decl>;</decl_stmt>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>MAX</name> <init>= <expr><literal type="number">303</literal></expr></init></decl>;</decl_stmt>
+
+<decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>;</decl_stmt>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>(<parameter><decl><type><name>void</name></type></decl></parameter>)</parameter_list> <block>{
+<comment type="line">//	in = fopen("C.in", "rt");</comment>
+
+	<expr_stmt><expr><call><name>fscanf</name><argument_list>(<argument><expr><name>in</name></expr></argument>, <argument><expr><literal type="string">"%d"</literal></expr></argument>, <argument><expr><operator>&amp;</operator><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+<comment type="line">//  set &lt;int&gt; nums;	</comment>
+<comment type="line">//	for (int i = 1; i &lt;= n * n; i++)</comment>
+<comment type="line">//	    nums.insert(i);</comment>
+<comment type="line">//	int target = n * (n * n + 1) / 2;</comment>
+
+	<decl_stmt><decl><type><name><name>deque</name> <argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name><name>q</name><index>[<expr><name>MAX</name></expr>]</index></name></decl>;</decl_stmt>
+	<for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>n</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{
+	    <for>for <control>(<init><decl><type><name>int</name></type> <name>num</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</init> <condition><expr><name>num</name> <operator>&lt;=</operator> <name>n</name></expr>;</condition> <incr><expr><name>num</name><operator>++</operator></expr></incr>)</control>
+	       <block type="pseudo"><expr_stmt><expr><name><name>q</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>push_back</name><argument_list>(<argument><expr><name>i</name> <operator>*</operator> <name>n</name> <operator>+</operator> <name>num</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></for>
+    }</block></for>
+    <decl_stmt><decl><type><name>int</name></type> <name>parity</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>n</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{
+        <decl_stmt><decl><type><name><name>vector</name> <argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>chosen</name></decl>;</decl_stmt>
+        <for>for <control>(<init><decl><type><name>int</name></type> <name>group</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>group</name> <operator>&lt;</operator> <name>n</name></expr>;</condition> <incr><expr><name>group</name><operator>++</operator></expr></incr>)</control> <block>{
+            <if>if <condition>(<expr><name>parity</name> <operator>&amp;</operator> <literal type="number">1</literal></expr>)</condition><then> <block>{
+                <expr_stmt><expr><call><name><name>chosen</name><operator>.</operator><name>push_back</name></name><argument_list>(<argument><expr><name><name>q</name><index>[<expr><name>group</name></expr>]</index></name><operator>.</operator><call><name>back</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><name><name>q</name><index>[<expr><name>group</name></expr>]</index></name><operator>.</operator><call><name>pop_back</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            }</block></then> <else>else <block>{
+                <expr_stmt><expr><call><name><name>chosen</name><operator>.</operator><name>push_back</name></name><argument_list>(<argument><expr><name><name>q</name><index>[<expr><name>group</name></expr>]</index></name><operator>.</operator><call><name>front</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><name><name>q</name><index>[<expr><name>group</name></expr>]</index></name><operator>.</operator><call><name>pop_front</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+            }</block></else></if>
+            <expr_stmt><expr><name>parity</name> <operator>=</operator> <operator>!</operator><name>parity</name></expr>;</expr_stmt>
+        }</block></for>
+        <for>for <control>(<init><decl><type><name>int</name></type> <name>c</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>c</name> <operator>&lt;</operator> <operator>(</operator><name>int</name><operator>)</operator><call><name><name>chosen</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr>;</condition> <incr><expr><name>c</name><operator>++</operator></expr></incr>)</control>
+            <block type="pseudo"><expr_stmt><expr><call><name>fprintf</name><argument_list>(<argument><expr><name>out</name></expr></argument>, <argument><expr><literal type="string">"%d%c"</literal></expr></argument>, <argument><expr><name><name>chosen</name><index>[<expr><name>c</name></expr>]</index></name></expr></argument>, <argument><expr><ternary><condition><expr><name>c</name> <operator>+</operator> <literal type="number">1</literal> <operator>==</operator> <operator>(</operator><name>int</name><operator>)</operator><call><name><name>chosen</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr> ?</condition><then> <expr><literal type="char">'\n'</literal></expr> </then><else>: <expr><literal type="char">' '</literal></expr></else></ternary></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></for>
+    }</block></for>
+	
+	
+	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

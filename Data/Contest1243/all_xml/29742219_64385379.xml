@@ -1,0 +1,747 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1243/all/29742219_64385379.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;map&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;set&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cmath&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;string&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;queue&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;random&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iomanip&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;assert.h&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;ctime&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;random&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;fstream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;sstream&gt;</cpp:file></cpp:include>
+
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>null</name></cpp:macro> <cpp:value>nullptr</cpp:value></cpp:define>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<typedef>typedef <type><name>long</name> <name>long</name></type> <name>ll</name>;</typedef>
+<typedef>typedef <type><name>double</name> <name>long</name></type> <name>dl</name>;</typedef>
+<typedef>typedef <type><name>unsigned</name> <name>long</name> <name>long</name></type> <name>ull</name>;</typedef>
+
+<comment type="line">//struct Dinic{</comment>
+<comment type="line">//    struct edge{</comment>
+<comment type="line">//        ll from, to,flow,cap;</comment>
+<comment type="line">//    };</comment>
+<comment type="line">//    vector&lt;edge&gt; edges;</comment>
+<comment type="line">//    vector&lt;vector&lt;ll&gt;&gt; adj;</comment>
+<comment type="line">//    vector&lt;ll&gt; level;</comment>
+<comment type="line">//    vector&lt;ll&gt; ptr;</comment>
+<comment type="line">//    ll s,t,n;</comment>
+<comment type="line">//    Dinic(ll _s, ll _t, ll _n){</comment>
+<comment type="line">//        s=_s;</comment>
+<comment type="line">//        t=_t;</comment>
+<comment type="line">//        n=_n;</comment>
+<comment type="line">//        adj.resize(n);</comment>
+<comment type="line">//        level.resize(n);</comment>
+<comment type="line">//        ptr.resize(n);</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    void clear(){</comment>
+<comment type="line">//        n=0;</comment>
+<comment type="line">//        s=0;</comment>
+<comment type="line">//        t=0;</comment>
+<comment type="line">//        adj.clear();</comment>
+<comment type="line">//        level.clear();</comment>
+<comment type="line">//        ptr.clear();</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    void resize(ll _s ,ll _t,ll _n){</comment>
+<comment type="line">//        s=_s;</comment>
+<comment type="line">//        t=_t;</comment>
+<comment type="line">//        n=_n;</comment>
+<comment type="line">//        adj.resize(n);</comment>
+<comment type="line">//        level.resize(n);</comment>
+<comment type="line">//        ptr.resize(n);</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    void add_edge(ll from,ll to, ll cap){</comment>
+<comment type="line">//        edge a = {from,to,0,cap};</comment>
+<comment type="line">//        edge b = {to,from,0,0};</comment>
+<comment type="line">//        adj[from].push_back(edges.size());</comment>
+<comment type="line">//        edges.push_back(a);</comment>
+<comment type="line">//        adj[to].push_back(edges.size());</comment>
+<comment type="line">//        edges.push_back(b);</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    queue&lt;ll&gt; q;</comment>
+<comment type="line">//    bool bfs(){</comment>
+<comment type="line">//        level[s] = 0;</comment>
+<comment type="line">//        q.push(s);</comment>
+<comment type="line">//        while(!q.empty()){</comment>
+<comment type="line">//            ll v = q.front();</comment>
+<comment type="line">//            q.pop();</comment>
+<comment type="line">//            for(auto k : adj[v]){</comment>
+<comment type="line">//                auto e = edges[k];</comment>
+<comment type="line">//                if(e.cap-e.flow==0 || level[e.to]!=-1)continue;</comment>
+<comment type="line">//                level[e.to] = level[v] + 1;</comment>
+<comment type="line">//                q.push(e.to);</comment>
+<comment type="line">//            }</comment>
+<comment type="line">//        }</comment>
+<comment type="line">//        return level[t]!=-1;</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    ll dfs(ll node,ll flow = 1e10){</comment>
+<comment type="line">//        if(node==t){</comment>
+<comment type="line">//            return flow;</comment>
+<comment type="line">//        }</comment>
+<comment type="line">//        if(flow&lt;=0){</comment>
+<comment type="line">//            return 0;</comment>
+<comment type="line">//        }</comment>
+<comment type="line">//        for(ll &amp; cid = ptr[node];cid&lt;adj[node].size();cid++){</comment>
+<comment type="line">//            auto id = adj[node][cid];</comment>
+<comment type="line">//            ll to = edges[id].to;</comment>
+<comment type="line">//            if(level[node]+1 !=level[to] || edges[id].cap-edges[id].flow==0)continue;</comment>
+<comment type="line">//            ll added = dfs(to,min(flow,edges[id].cap-edges[id].flow));</comment>
+<comment type="line">//            if(added&gt;0){</comment>
+<comment type="line">//                edges[id].flow+=added;</comment>
+<comment type="line">//                edges[id^1].flow-=added;</comment>
+<comment type="line">//                return added;</comment>
+<comment type="line">//            }</comment>
+<comment type="line">//        }</comment>
+<comment type="line">//        return 0;</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    ll flow(){</comment>
+<comment type="line">//        ll answer =0;</comment>
+<comment type="line">//        while(true){</comment>
+<comment type="line">//            fill(level.begin(),level.end(),-1);</comment>
+<comment type="line">//            if(!bfs()){</comment>
+<comment type="line">//                break;</comment>
+<comment type="line">//            }</comment>
+<comment type="line">//            fill(ptr.begin(),ptr.end(),0);</comment>
+<comment type="line">//            while(ll added = dfs(s)){</comment>
+<comment type="line">//                answer+=added;</comment>
+<comment type="line">//            }</comment>
+<comment type="line">//        }</comment>
+<comment type="line">//        return answer;</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    void correct(ll node,ll i ,vector&lt;string&gt; &amp;for_per,vector&lt;vector&lt;ll&gt;&gt; &amp;ma,map&lt;string,ll&gt; &amp;lol){</comment>
+<comment type="line">//        vector&lt;bool&gt; used(n);</comment>
+<comment type="line">//        correct_dfs(t,i,for_per,ma,used,lol);</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    bool correct_dfs(ll node,ll i ,vector&lt;string&gt; &amp;for_per,vector&lt;vector&lt;ll&gt;&gt; &amp;ma,vector&lt;bool&gt; &amp;used,map&lt;string,ll&gt; &amp;lol){</comment>
+<comment type="line">//        used[node] =true;</comment>
+<comment type="line">//        if(node==s){</comment>
+<comment type="line">//            return true;</comment>
+<comment type="line">//        }</comment>
+<comment type="line">//        if(node == t){</comment>
+<comment type="line">//            for(int j = 0 ; j &lt; adj[node].size();j++){</comment>
+<comment type="line">//                ll id = adj[node][j];</comment>
+<comment type="line">//                auto temp = lol[for_per[i]];</comment>
+<comment type="line">//                if(edges[id].to == ma[temp][temp]){</comment>
+<comment type="line">//                    edges[id].flow=0;</comment>
+<comment type="line">//                    edges[id^1].flow=0;</comment>
+<comment type="line">//                    edges[id^1].cap+=3;</comment>
+<comment type="line">//                    correct_dfs(edges[id].to,i,for_per,ma,used,lol);</comment>
+<comment type="line">//                    break;</comment>
+<comment type="line">//                }</comment>
+<comment type="line">//            }</comment>
+<comment type="line">//        }else{</comment>
+<comment type="line">//            for(int j = 0 ; j &lt; adj[node].size();j++){</comment>
+<comment type="line">//                ll id = adj[node][j];</comment>
+<comment type="line">//                if(!used[edges[id].to]&amp;&amp;correct_dfs(edges[id].to,i,for_per,ma,used,lol)){</comment>
+<comment type="line">//                    edges[id].flow+=3;</comment>
+<comment type="line">//                    edges[id^1].flow-=3;</comment>
+<comment type="line">//                }</comment>
+<comment type="line">//            }</comment>
+<comment type="line">//        }</comment>
+<comment type="line">//</comment>
+<comment type="line">//</comment>
+<comment type="line">//</comment>
+<comment type="line">//        return false;</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//};</comment>
+<comment type="line">//void grays(vector&lt;ll&gt; &amp;g,ll pos , ll n){</comment>
+<comment type="line">//    if(pos== 0 ){</comment>
+<comment type="line">//        g[0]=0;</comment>
+<comment type="line">//        g[1] = 1;</comment>
+<comment type="line">//    }else{</comment>
+<comment type="line">//        ll t = (1&lt;&lt;(pos));</comment>
+<comment type="line">//        for(int i = 0;i&lt;t; i ++){</comment>
+<comment type="line">//            g[i+t] = g[t-i-1] ^t;</comment>
+<comment type="line">//        }</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    if(pos+1!=n){</comment>
+<comment type="line">//        grays(g,pos+1,n);</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//}</comment>
+<comment type="line">//vector&lt;ll&gt; gray(ll n){</comment>
+<comment type="line">//    vector&lt;ll&gt; answer((1&lt;&lt;n));</comment>
+<comment type="line">//    grays(answer,0,n);</comment>
+<comment type="line">//    return answer;</comment>
+<comment type="line">//}</comment>
+<comment type="line">//</comment>
+<comment type="line">//ll am_bit(ll a){</comment>
+<comment type="line">//    ll answer = 0;</comment>
+<comment type="line">//    while(a){</comment>
+<comment type="line">//        answer+=a&amp;1;</comment>
+<comment type="line">//        a&gt;&gt;=1;</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    return answer;</comment>
+<comment type="line">//}</comment>
+<comment type="line">//</comment>
+<comment type="line" format="doxygen">//// m  - Ð¸Ð·Ð½Ð°ÑÐ°Ð»ÑÐ½Ð¾ ÑÑÐ³ÑÐ°Ð½Ð½ÑÐ¹ Ð¼Ð°ÑÑÐ¸ Ð½ÐµÐµ Ð¿ÐµÑÐµÑÐµÐºÐ°ÑÑÐ¸ÐµÑÑ Ñ Ð½Ð°Ð¼Ð¸</comment>
+<comment type="line">//bool win(ll mask,Dinic &amp;dinic,vector&lt;ll&gt; &amp;scores,vector&lt;vector&lt;ll&gt;&gt; &amp;ma,ll n,ll m,ll z,vector&lt;string&gt; &amp;for_per,map&lt;string,ll&gt; &amp;lol,ll prev=0){</comment>
+<comment type="line">//    if(prev == 0 ){</comment>
+<comment type="line">//        ll am = 2 +z;</comment>
+<comment type="line">//        dinic.clear();</comment>
+<comment type="line">//        dinic.resize(am-2,am-1,am);</comment>
+<comment type="line">//        vector&lt;ll&gt; scores1 = scores;</comment>
+<comment type="line">//        for(int i =0 ; i &lt; for_per.size() ; i ++){</comment>
+<comment type="line">//            if(mask&amp; (1ll&lt;&lt;i)){</comment>
+<comment type="line">//                scores1[0]+=3;</comment>
+<comment type="line">//            }else{</comment>
+<comment type="line">//                scores1[lol[for_per[i]]]+=3;</comment>
+<comment type="line">//            }</comment>
+<comment type="line">//        }</comment>
+<comment type="line">//</comment>
+<comment type="line">//        for(int i = 1; i &lt;n ; i++){</comment>
+<comment type="line">//            for(int j = i+1; j &lt; n ; j++){</comment>
+<comment type="line">//                if(ma[i][j]!=-1){</comment>
+<comment type="line">//                    dinic.add_edge(am-2,ma[i][j],3);</comment>
+<comment type="line">//                    dinic.add_edge(ma[i][j],ma[i][i],3);</comment>
+<comment type="line">//                    dinic.add_edge(ma[i][j],ma[j][j],3);</comment>
+<comment type="line">//                }</comment>
+<comment type="line">//            }</comment>
+<comment type="line">//        }</comment>
+<comment type="line">//        for(int j = 1; j &lt; n ; j ++){</comment>
+<comment type="line">//            if(scores1[0]-scores1[j]&lt;=0){</comment>
+<comment type="line">//                return false;</comment>
+<comment type="line">//            }</comment>
+<comment type="line">//            dinic.add_edge(ma[j][j],am-1,scores1[0]-scores1[j]-1);</comment>
+<comment type="line">//        }</comment>
+<comment type="line">//        return dinic.flow()==3*dinic.adj[dinic.s].size();</comment>
+<comment type="line">//    }else{</comment>
+<comment type="line">//        for(int i = 0 ; i &lt; for_per.size(); i ++){</comment>
+<comment type="line">//            if(((1ll&lt;&lt;i)&amp;mask )&amp;&amp; !((1ll&lt;&lt;i)&amp;prev )){</comment>
+<comment type="line">//                dinic.correct(dinic.t,i,for_per,ma);</comment>
+<comment type="line">//                break;</comment>
+<comment type="line">//            }</comment>
+<comment type="line">//        }</comment>
+<comment type="line">//        return dinic.flow()==3*dinic.adj[dinic.s].size();</comment>
+<comment type="line">//</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//</comment>
+<comment type="line">//}</comment>
+<comment type="line">//ll answer =(1ll&lt;&lt;23)-1;</comment>
+<comment type="line">//bool brt(ll height,vector&lt;vector&lt;ll&gt;&gt; &amp;per,Dinic &amp;dinic,vector&lt;ll&gt; &amp;scores,vector&lt;vector&lt;ll&gt;&gt; &amp;ma,ll n,ll m,ll z,vector&lt;string&gt; &amp;for_per,map&lt;string,ll&gt; &amp;lol){</comment>
+<comment type="line">//    for(int i = 0 ; i &lt; per[height].size() ; i ++){</comment>
+<comment type="line">//        if(win(per[height][i],dinic,scores,ma,n,m,z,for_per,lol)){</comment>
+<comment type="line">//            if(am_bit(per[height][i])&lt;am_bit(answer)){</comment>
+<comment type="line">//                answer=per[height][i];</comment>
+<comment type="line">//            }</comment>
+<comment type="line">//            return true;</comment>
+<comment type="line">//        }</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    return false;</comment>
+<comment type="line">//}</comment>
+<comment type="line">//void match(vector&lt;ll&gt; &amp; scores, vector&lt;vector&lt;ll&gt;&gt; &amp;ma,map&lt;string,ll&gt; &amp;lol,string &amp; first,ll &amp;cur){</comment>
+<comment type="line">//</comment>
+<comment type="line">//    string temp;</comment>
+<comment type="line">//    getline(cin,temp);</comment>
+<comment type="line">//</comment>
+<comment type="line">//    istringstream ss(temp);</comment>
+<comment type="line">//    int t = 0;</comment>
+<comment type="line">//    vector&lt;string&gt; input(10);</comment>
+<comment type="line">//    string a,b,score,fuck;</comment>
+<comment type="line">//    while(ss&gt;&gt;temp){</comment>
+<comment type="line">//        input[t++] = temp;</comment>
+<comment type="line">//    }</comment>
+<comment type="line" format="doxygen">////    for(int i = 0 ; i &lt; 4; i ++){</comment>
+<comment type="line" format="doxygen">////        cout&lt;&lt;input[i]&lt;&lt;" ";</comment>
+<comment type="line" format="doxygen">////    }</comment>
+<comment type="line">//    if(input[3]==""){</comment>
+<comment type="line">//        if(input[2][0]&gt;input[2][2]){</comment>
+<comment type="line">//            scores[lol[input[0]]]+=3;</comment>
+<comment type="line">//        }else{</comment>
+<comment type="line">//            scores[lol[input[1]]]+=3;</comment>
+<comment type="line">//        }</comment>
+<comment type="line">//    }else{</comment>
+<comment type="line">//        if(input[2][0]&gt;input[2][2]){</comment>
+<comment type="line">//            scores[lol[input[0]]]+=2;</comment>
+<comment type="line">//            scores[lol[input[1]]]+=1;</comment>
+<comment type="line">//        }else{</comment>
+<comment type="line">//            scores[lol[input[1]]]+=2;</comment>
+<comment type="line">//            scores[lol[input[0]]]+=1;</comment>
+<comment type="line">//        }</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    ma[lol[input[0]]][lol[input[1]]] = ma[lol[input[1]]][lol[input[0]]] =-1;</comment>
+<comment type="line">//    if(input[0]==first || input[1]==first){</comment>
+<comment type="line">//        cur++;</comment>
+<comment type="line">//    }</comment>
+<comment type="line" format="doxygen">////    cout&lt;&lt;"\n";</comment>
+<comment type="line">//</comment>
+<comment type="line">//}</comment>
+
+<comment type="line">//struct mset {</comment>
+<comment type="line">//    multiset&lt;ll&gt; data;</comment>
+<comment type="line">//</comment>
+<comment type="line">//    void operator -=(const mset &amp;a) {</comment>
+<comment type="line">//        for(auto e : a.data){</comment>
+<comment type="line">//            auto t = data.find(e);</comment>
+<comment type="line">//            if(t!=data.end()){</comment>
+<comment type="line">//                data.erase(t);</comment>
+<comment type="line">//            }</comment>
+<comment type="line">//        }</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    void operator +=(const mset &amp;a){</comment>
+<comment type="line">//        for(auto e : a.data){</comment>
+<comment type="line">//            data.insert(e);</comment>
+<comment type="line">//        }</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//};</comment>
+<comment type="line">//</comment>
+<comment type="line">//ll askMaMi(ll n,ll ma,ll z){</comment>
+<comment type="line">//    if(n==1||n==z)return ma;</comment>
+<comment type="line">//    cout&lt;&lt;"2 ";</comment>
+<comment type="line">//    for(int i = 1; i &lt;= n;i++){</comment>
+<comment type="line">//        cout&lt;&lt;i&lt;&lt;" ";</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    cout&lt;&lt;"\n";</comment>
+<comment type="line">//    cout.flush();</comment>
+<comment type="line">//    ma = -1e15;</comment>
+<comment type="line">//    ll a;</comment>
+<comment type="line">//    for(int i = 0 ; i &lt; n*(n-1)/2;i++){</comment>
+<comment type="line">//        cin&gt;&gt;a;</comment>
+<comment type="line">//        ma=max(ma,a);</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    return ma;</comment>
+<comment type="line">//}</comment>
+<comment type="line">//mset ask(vector&lt;int&gt; &amp;arr){</comment>
+<comment type="line">//    cout&lt;&lt;"2 ";</comment>
+<comment type="line">//    for(int i = 0; i &lt; arr.size();i++){</comment>
+<comment type="line">//        cout&lt;&lt;arr[i]&lt;&lt;" ";</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    cout&lt;&lt;"\n";</comment>
+<comment type="line">//    cout.flush();</comment>
+<comment type="line">//    mset answer;</comment>
+<comment type="line">//    ll a;</comment>
+<comment type="line">//    for(int i = 0 ; i &lt; arr.size()*(arr.size()-1)/2;i++){</comment>
+<comment type="line">//        cin&gt;&gt;a;</comment>
+<comment type="line">//        answer.data.insert(a);</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    return answer;</comment>
+<comment type="line">//}</comment>
+<comment type="line">//mset F(vector&lt;int&gt; &amp;q,int pos){</comment>
+<comment type="line">//    vector&lt;int&gt; arr =q;</comment>
+<comment type="line">//    arr.push_back(pos);</comment>
+<comment type="line">//    auto t = ask(arr);</comment>
+<comment type="line">//    t-=ask(q);</comment>
+<comment type="line">//    return t;</comment>
+<comment type="line">//}</comment>
+<comment type="line">//vector&lt;pair&lt;ll, ll&gt;&gt; factorize(ll x) {</comment>
+<comment type="line">//    vector&lt;pair&lt;ll, ll&gt;&gt; res;</comment>
+<comment type="line">//    for (ll i = 2; i * i &lt;= x; i++) {</comment>
+<comment type="line">//        if (x % i == 0) {</comment>
+<comment type="line">//            int k = 0;</comment>
+<comment type="line">//            while (x % i == 0) {</comment>
+<comment type="line">//                x /= i;</comment>
+<comment type="line">//                k++;</comment>
+<comment type="line">//            }</comment>
+<comment type="line">//            res.push_back({i, k });</comment>
+<comment type="line">//        }</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    if (x != 1) {</comment>
+<comment type="line">//        res.push_back({x, 1});</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    return res;</comment>
+<comment type="line">//}</comment>
+
+<comment type="line">//ll get(string &amp;a, ll base) {</comment>
+<comment type="line">//    ll answer = 0;</comment>
+<comment type="line">//    ll temp = 1;</comment>
+<comment type="line">//    for (int i = a.length() - 1; i &gt;= 0; i--) {</comment>
+<comment type="line">//        ll k = (a[i] &gt;= '0' &amp;&amp; a[i] &lt;= '9' ? a[i] - '0' : a[i] - 'A' + 10);</comment>
+<comment type="line">//        answer += temp * k;</comment>
+<comment type="line">//        temp *= base;</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    return answer;</comment>
+<comment type="line">//}</comment>
+<comment type="line">//</comment>
+<comment type="line">//set&lt;ll&gt; find_div(ll x, ll z) {</comment>
+<comment type="line">//    set&lt;ll&gt; answer;</comment>
+<comment type="line">//    for (ll i = 2; i * i &lt;= x; i++) {</comment>
+<comment type="line">//        if (x % i == 0) {</comment>
+<comment type="line">//            if (i &gt;= z)</comment>
+<comment type="line">//                answer.insert(i);</comment>
+<comment type="line">//            if (x / i &gt;= z)</comment>
+<comment type="line">//                answer.insert(x / i);</comment>
+<comment type="line">//        }</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    return answer;</comment>
+<comment type="line">//}</comment>
+
+<comment type="line">//void dfs(ll node, vector&lt;vector&lt;ll&gt;&gt; &amp;adj, vector&lt;bool&gt; &amp;used, vector&lt;ll&gt; &amp;color, ll c) {</comment>
+<comment type="line">//    used[node] = true;</comment>
+<comment type="line">//    color[node] = c;</comment>
+<comment type="line">//    for (auto e : adj[node]) {</comment>
+<comment type="line">//        if (!used[e]) {</comment>
+<comment type="line">//            dfs(e, adj, used, color, c);</comment>
+<comment type="line">//        }</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//}</comment>
+<comment type="line">//</comment>
+<comment type="line">//vector&lt;vector&lt;ll&gt;&gt; adj;</comment>
+<comment type="line">//</comment>
+<comment type="line">//bool comp(const ll &amp;a, const ll &amp;b) {</comment>
+<comment type="line">//    return adj[a].size() &lt; adj[b].size();</comment>
+<comment type="line">//}</comment>
+<comment type="line">//</comment>
+<comment type="line">//void solve() {</comment>
+<comment type="line">//    ll n;</comment>
+<comment type="line">//    cin &gt;&gt; n;</comment>
+<comment type="line">//    vector&lt;pair&lt;ll, ll&gt;&gt; edges(n);</comment>
+<comment type="line">//    map&lt;pair&lt;ll, ll&gt;, ll&gt; poses;</comment>
+<comment type="line">//    set&lt;ll&gt; temp;</comment>
+<comment type="line">//    for (int i = 0; i &lt; n; i++) {</comment>
+<comment type="line">//        cin &gt;&gt; edges[i].first &gt;&gt; edges[i].second;</comment>
+<comment type="line">//        temp.insert(edges[i].first);</comment>
+<comment type="line">//        temp.insert(edges[i].second);</comment>
+<comment type="line">//</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    int k = 0;</comment>
+<comment type="line">//    vector&lt;ll&gt; nodes(temp.size());</comment>
+<comment type="line">//    map&lt;ll, ll&gt; pos;</comment>
+<comment type="line">//    for (auto e : temp) {</comment>
+<comment type="line">//        pos[e] = k;</comment>
+<comment type="line">//        nodes[k] = e;</comment>
+<comment type="line">//        k++;</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    for (int i = 0; i &lt; edges.size(); i++) {</comment>
+<comment type="line">//        poses[{pos[edges[i].first], pos[edges[i].second]}] = i + 1;</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    n = nodes.size();</comment>
+<comment type="line">//    adj.clear();</comment>
+<comment type="line">//    adj.resize(n);</comment>
+<comment type="line">//    for (auto e : edges) {</comment>
+<comment type="line">//        adj[pos[e.first]].push_back(pos[e.second]);</comment>
+<comment type="line">//        adj[pos[e.second]].push_back(pos[e.first]);</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    ll am = 0;</comment>
+<comment type="line">//    vector&lt;bool&gt; used(n);</comment>
+<comment type="line">//    vector&lt;ll&gt; color(n);</comment>
+<comment type="line">//</comment>
+<comment type="line">//    for (int i = 0; i &lt; n; i++) {</comment>
+<comment type="line">//        if (!used[i]) {</comment>
+<comment type="line">//            dfs(i, adj, used, color, am);</comment>
+<comment type="line">//            am++;</comment>
+<comment type="line">//        }</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    cout &lt;&lt; am - 1 &lt;&lt; "\n";</comment>
+<comment type="line">//    vector&lt;vector&lt;ll&gt;&gt; t(am);</comment>
+<comment type="line">//    for (int i = 0; i &lt; n; i++) {</comment>
+<comment type="line">//        t[color[i]].push_back(i);</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//</comment>
+<comment type="line">//    for (int i = 0; i &lt; am; i++) {</comment>
+<comment type="line">//        sort(t[i].begin(), t[i].end(), comp);</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    for (int i = 0; i &lt; am - 1; i++) {</comment>
+<comment type="line">//        ll was_to = t[i][0];</comment>
+<comment type="line">//        ll was = adj[was_to][0];</comment>
+<comment type="line">//        ll p;</comment>
+<comment type="line">//        if(poses[{was_to,was}]){</comment>
+<comment type="line">//            p = poses[{was_to,was}];</comment>
+<comment type="line">//        }else{</comment>
+<comment type="line">//            p  =poses[{was,was_to}];</comment>
+<comment type="line">//        }</comment>
+<comment type="line">//        ll to = t[i+1].back();</comment>
+<comment type="line">//        cout&lt;&lt;p&lt;&lt;" "&lt;&lt;nodes[was_to]&lt;&lt;" "&lt;&lt;nodes[to]&lt;&lt;"\n";</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//</comment>
+<comment type="line">//}</comment>
+
+<comment type="line">//bool is_prime(ll x) {</comment>
+<comment type="line">//    for (ll i = 2; i * i &lt;= x; i++) {</comment>
+<comment type="line">//        if (x % i == 0)return false;</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    return true;</comment>
+<comment type="line">//}</comment>
+<comment type="line">//</comment>
+<comment type="line" format="doxygen">////const ll maxN = 1e7;</comment>
+<comment type="line" format="doxygen">////bool b[maxN];</comment>
+<comment type="line" format="doxygen">////vector&lt;ll&gt; primes;</comment>
+<comment type="line" format="doxygen">////</comment>
+<comment type="line" format="doxygen">////void sphene() {</comment>
+<comment type="line" format="doxygen">////    for (ll i = 2; i &lt; maxN; i++) {</comment>
+<comment type="line" format="doxygen">////        if (!b[i]) {</comment>
+<comment type="line" format="doxygen">////            primes.push_back(i);</comment>
+<comment type="line" format="doxygen">////            for (ll j = i * i; j &lt; maxN; j+=i) {</comment>
+<comment type="line" format="doxygen">////                b[j]=true;</comment>
+<comment type="line" format="doxygen">////            }</comment>
+<comment type="line" format="doxygen">////        }</comment>
+<comment type="line" format="doxygen">////    }</comment>
+<comment type="line" format="doxygen">////}</comment>
+<comment type="line">//const ll maxN = 1e5 + 1000;</comment>
+<comment type="line" format="doxygen">////struct wor {</comment>
+<comment type="line" format="doxygen">////    ll mi = 1e17;</comment>
+<comment type="line" format="doxygen">////    ll ma = -1e17;</comment>
+<comment type="line" format="doxygen">////};</comment>
+<comment type="line">//ll t[4 * maxN];</comment>
+<comment type="line">//ll d[4 * maxN];</comment>
+
+<comment type="line">//wor merge(wor a, wor b) {</comment>
+<comment type="line">//    wor res;</comment>
+<comment type="line">//    res.mi = min(a.mi, b.mi);</comment>
+<comment type="line">//    res.ma = max(a.ma, b.ma);</comment>
+<comment type="line">//    return res;</comment>
+<comment type="line">//}</comment>
+
+<comment type="line">//void build(ll v, ll vl, ll vr, vector&lt;ll&gt; &amp;arr) {</comment>
+<comment type="line">//    if (vl == vr) {</comment>
+<comment type="line">//        t[v] = arr[vl];</comment>
+<comment type="line">//        return;</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    ll m = vl + (vr - vl) / 2;</comment>
+<comment type="line">//    build(2 * v + 1, vl, m, arr);</comment>
+<comment type="line">//    build(2 * v + 2, m + 1, vr, arr);</comment>
+<comment type="line">//    t[v] = min(t[2 * v + 1], t[2 * v + 2]);</comment>
+<comment type="line">//}</comment>
+<comment type="line">//void push(ll v, ll vl, ll vr) {</comment>
+<comment type="line">//    if (d[v] &gt;= 0) {</comment>
+<comment type="line">//        if (vl == vr) {</comment>
+<comment type="line">//            t[v] = d[v];</comment>
+<comment type="line">//            d[v] = -1;</comment>
+<comment type="line">//            return;</comment>
+<comment type="line">//        }</comment>
+<comment type="line">//        t[v] = (vr - vl + 1) * d[v];</comment>
+<comment type="line">//        d[2 * v + 1] = d[2 * v + 2] = d[v];</comment>
+<comment type="line">//        d[v] = -1;</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//}</comment>
+
+<comment type="line">//ll query(ll v, ll vl, ll vr, ll l, ll r) {</comment>
+<comment type="line">//    if (vr &lt; l || vl &gt; r) {</comment>
+<comment type="line">//        return 1e18;</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    if (l &lt;= vl &amp;&amp; vr &lt;= r) {</comment>
+<comment type="line">//        return t[v];</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    ll m = vl + (vr - vl) / 2;</comment>
+<comment type="line">//    return min(query(2 * v + 1, vl, m, l, r), query(2 * v + 2, m + 1, vr, l, r));</comment>
+<comment type="line">//</comment>
+<comment type="line">//}</comment>
+
+<comment type="line">//void update(ll v, ll vl, ll vr, ll l, ll r, ll val) {</comment>
+<comment type="line">//    push(v, vl, vr);</comment>
+<comment type="line">//    if (vr &lt; l || vl &gt; r) {</comment>
+<comment type="line">//        return;</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    if (l &lt;= vl &amp;&amp; vr &lt;= r) {</comment>
+<comment type="line">//        d[v] = val;</comment>
+<comment type="line">//        push(v, vl, vr);</comment>
+<comment type="line">//        return;</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    ll m = vl + (vr - vl) / 2;</comment>
+<comment type="line">//    update(2 * v + 1, vl, m, l, r, val);</comment>
+<comment type="line">//    update(2 * v + 2, m + 1, vr, l, r, val);</comment>
+<comment type="line">//    t[v] = t[2 * v + 1] + t[2 * v + 2];</comment>
+<comment type="line">//}</comment>
+
+<comment type="line">//void modify(ll v, ll vl, ll vr, ll pos, ll val) {</comment>
+<comment type="line">//    if (vl == vr) {</comment>
+<comment type="line">//        t[v].mi = val;</comment>
+<comment type="line">//        t[v].ma = val;</comment>
+<comment type="line">//        return;</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    ll m = vl + (vr - vl) / 2;</comment>
+<comment type="line">//    if (pos &lt;= m) {</comment>
+<comment type="line">//        modify(2 * v + 1, vl, m, pos, val);</comment>
+<comment type="line">//    } else {</comment>
+<comment type="line">//        modify(2 * v + 2, m + 1, vr, pos, val);</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    t[v] = merge(t[2 * v + 1], t[2 * v + 2]);</comment>
+<comment type="line">//}</comment>
+<comment type="line">//struct Node {</comment>
+<comment type="line">//    ll count = 0;</comment>
+<comment type="line">//    ll mi=1e18;</comment>
+<comment type="line">//    ll val=0;</comment>
+<comment type="line">//    ll y;</comment>
+<comment type="line">//    Node* left = null;</comment>
+<comment type="line">//    Node* right = null;</comment>
+<comment type="line">//};</comment>
+<comment type="line">//void recalc(Node *T){</comment>
+<comment type="line">//    if(T==null)return;</comment>
+<comment type="line">//    T-&gt;count =1;</comment>
+<comment type="line">//    T-&gt;mi =T-&gt;val;</comment>
+<comment type="line">//    if(T-&gt;left!=null){</comment>
+<comment type="line">//        T-&gt;count +=T-&gt;left-&gt;count;</comment>
+<comment type="line">//        T-&gt;mi = min(T-&gt;mi , T-&gt;left-&gt;mi);</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    if(T-&gt;right!=null){</comment>
+<comment type="line">//        T-&gt;count +=T-&gt;right-&gt;count;</comment>
+<comment type="line">//        T-&gt;mi = min(T-&gt;mi , T-&gt;right-&gt;mi);</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//</comment>
+<comment type="line">//}</comment>
+<comment type="line">//Node * merge(Node* T1,Node *T2){</comment>
+<comment type="line">//    if(T1==null){</comment>
+<comment type="line">//        return T2;</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    if(T2==null){</comment>
+<comment type="line">//        return T1;</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    recalc(T1);</comment>
+<comment type="line">//    recalc(T2);</comment>
+<comment type="line">//    if(T2-&gt;y &gt; T1-&gt;y){</comment>
+<comment type="line">//        T2-&gt;left=merge(T1,T2-&gt;left);</comment>
+<comment type="line">//        recalc(T2);</comment>
+<comment type="line">//        return T2;</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    else{</comment>
+<comment type="line">//        T1-&gt;right = merge(T1-&gt;right,T2);</comment>
+<comment type="line">//        recalc(T1);</comment>
+<comment type="line">//        return T1;</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//}</comment>
+<comment type="line">//ll get_x(Node* T){</comment>
+<comment type="line">//    if(T-&gt;left==null){</comment>
+<comment type="line">//        return 0;</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    return T-&gt;left-&gt;count;</comment>
+<comment type="line">//}</comment>
+<comment type="line">//pair&lt;Node*,Node*&gt; split(Node *T,ll key){</comment>
+<comment type="line">//    if(T==null)return {null,null};</comment>
+<comment type="line">//    if(get_x(T)&lt;=key){</comment>
+<comment type="line">//        auto e = split(T-&gt;right,key-get_x(T)-1);</comment>
+<comment type="line">//        recalc(e.first);</comment>
+<comment type="line">//        recalc(e.second);</comment>
+<comment type="line">//        T-&gt;right = e.first;</comment>
+<comment type="line">//        recalc(T);</comment>
+<comment type="line">//        return {T,e.second};</comment>
+<comment type="line">//    }else{</comment>
+<comment type="line">//        auto e = split(T-&gt;left,key);</comment>
+<comment type="line">//        recalc(e.first);</comment>
+<comment type="line">//        recalc(e.second);</comment>
+<comment type="line">//        T-&gt;left = e.second;</comment>
+<comment type="line">//        recalc(T);</comment>
+<comment type="line">//        return {e.first,T};</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//</comment>
+<comment type="line">//}</comment>
+<comment type="line">//const ll maxN = 2e5+100;</comment>
+<comment type="line">//Node nodes[maxN];</comment>
+<comment type="line">//struct wor {</comment>
+<comment type="line">//    ll mi = 1e18;</comment>
+<comment type="line">//    ll ma = -1e18;</comment>
+<comment type="line">//};</comment>
+<comment type="line">//const ll maxN = 1e5 + 1000;</comment>
+<comment type="line">//wor t[4*maxN];</comment>
+<comment type="line">//</comment>
+<comment type="line">//</comment>
+<comment type="line">//void build(ll v, ll vl, ll vr, vector&lt;ll&gt; &amp;arr) {</comment>
+<comment type="line">//    if (vl == vr) {</comment>
+<comment type="line">//        t[v].mi = arr[vl];</comment>
+<comment type="line">//        t[v].ma = arr[vl];</comment>
+<comment type="line">//        return;</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    ll m = vl + (vr - vl) / 2;</comment>
+<comment type="line">//    build(2 * v + 1, vl, m, arr);</comment>
+<comment type="line">//    build(2 * v + 2, m + 1, vr, arr);</comment>
+<comment type="line">//    t[v].mi = min(t[2 * v + 1].mi, t[2 * v + 2].mi);</comment>
+<comment type="line">//    t[v].ma = max(t[2 * v + 1].ma, t[2 * v + 2].ma);</comment>
+<comment type="line">//}</comment>
+<comment type="line">//</comment>
+<comment type="line">//void modify(ll v, ll vl, ll vr, ll pos, ll val) {</comment>
+<comment type="line">//    if (vl == vr) {</comment>
+<comment type="line">//        t[v].mi = val;</comment>
+<comment type="line">//        t[v].ma = val;</comment>
+<comment type="line">//        return;</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    ll m = vl + (vr - vl) / 2;</comment>
+<comment type="line">//    if (pos &lt;= m) {</comment>
+<comment type="line">//        modify(2 * v + 1, vl, m, pos, val);</comment>
+<comment type="line">//    } else {</comment>
+<comment type="line">//        modify(2 * v + 2, m + 1, vr, pos, val);</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    t[v].mi = min(t[2 * v + 1].mi, t[2 * v + 2].mi);</comment>
+<comment type="line">//    t[v].ma = max(t[2 * v + 1].ma, t[2 * v + 2].ma);</comment>
+<comment type="line">//}</comment>
+
+<comment type="line">//wor query(ll v, ll vl, ll vr, ll l, ll r) {</comment>
+<comment type="line">//    if (vr &lt; l || vl &gt; r) {</comment>
+<comment type="line">//        return {(ll) (1e18), (ll) (-1e18)};</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    if (l &lt;= vl &amp;&amp; vr &lt;= r) {</comment>
+<comment type="line">//        return t[v];</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    ll m = vl + (vr - vl) / 2;</comment>
+<comment type="line">//    return merge(query(2 * v + 1, vl, m, l, r), query(2 * v + 2, m + 1, vr, l, r));</comment>
+<comment type="line">//}</comment>
+<comment type="line">//ll query_min(ll v, ll vl ,ll vr, ll l ,ll r){</comment>
+<comment type="line">//    if(vl&gt;r || vr&lt;l){</comment>
+<comment type="line">//        return LONG_LONG_MAX;</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    if(l&lt;=vl &amp;&amp; vr&lt;=r){</comment>
+<comment type="line">//        return t[v].mi;</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    ll m = vl + (vr-vl)/2;</comment>
+<comment type="line">//    return min(query_min(2*v+1,vl,m,l,r),query_min(2*v+2,m+1,vr,l,r));</comment>
+<comment type="line">//}</comment>
+<comment type="line">//ll query_max(ll v, ll vl ,ll vr, ll l ,ll r){</comment>
+<comment type="line">//    if(vl&gt;r || vr&lt;l){</comment>
+<comment type="line">//        return -LONG_LONG_MAX;</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    if(l&lt;=vl &amp;&amp; vr&lt;=r){</comment>
+<comment type="line">//        return t[v].ma;</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//    ll m = vl + (vr-vl)/2;</comment>
+<comment type="line">//    return max(query_max(2*v+1,vl,m,l,r),query_max(2*v+2,m+1,vr,l,r));</comment>
+<comment type="line">//}</comment>
+<function><type><name>ll</name></type> <name>sum</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>l</name></decl></parameter>, <parameter><decl><type><name>ll</name></type> <name>r</name></decl></parameter>, <parameter><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>ll</name></expr></argument>&gt;</argument_list></name> <modifier>&amp;</modifier></type><name>pref</name></decl></parameter>)</parameter_list> <block>{
+    <return>return <expr><name><name>pref</name><index>[<expr><name>r</name></expr>]</index></name> <operator>-</operator> <name><name>pref</name><index>[<expr><name>l</name> <operator>-</operator> <literal type="number">1</literal></expr>]</index></name></expr>;</return>
+}</block></function>
+
+<function><type><name>ll</name></type> <name>fact</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>x</name></decl></parameter>)</parameter_list> <block>{
+    <if>if <condition>(<expr><name>x</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then><block type="pseudo"><return>return <expr><literal type="number">1</literal></expr>;</return></block></then></if>
+    <return>return <expr><name>x</name> <operator>*</operator> <call><name>fact</name><argument_list>(<argument><expr><name>x</name> <operator>-</operator> <literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</return>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+<comment type="line">//    freopen("rvq.in", "r", stdin);</comment>
+<comment type="line">//    freopen("rvq.out", "w", stdout);</comment>
+    <expr_stmt><expr><call><name><name>ios_base</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>cin</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>cout</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>ll</name></type> <name>t</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>t</name></expr>;</expr_stmt>
+    <while>while <condition>(<expr><name>t</name><operator>--</operator></expr>)</condition> <block>{
+        <decl_stmt><decl><type><name>ll</name></type> <name>n</name></decl>;</decl_stmt>
+        <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>n</name></expr>;</expr_stmt>
+        <decl_stmt><decl><type><name>string</name></type> <name>a</name></decl>,<decl><type ref="prev"/><name>b</name></decl>;</decl_stmt>
+        <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>a</name><operator>&gt;&gt;</operator><name>b</name></expr>;</expr_stmt>
+        <decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>ll</name></expr></argument>&gt;</argument_list></name></type> <name>pos</name></decl>;</decl_stmt>
+        <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl> ;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>n</name></expr> ;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control><block>{
+            <if>if<condition>(<expr><name><name>a</name><index>[<expr><name>i</name></expr>]</index></name><operator>!=</operator><name><name>b</name><index>[<expr><name>i</name></expr>]</index></name></expr>)</condition><then><block type="pseudo"><expr_stmt><expr><call><name><name>pos</name><operator>.</operator><name>push_back</name></name><argument_list>(<argument><expr><name>i</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then></if>
+        }</block></for>
+        <if>if<condition>(<expr><call><name><name>pos</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call><operator>&gt;</operator><literal type="number">2</literal></expr>)</condition><then><block>{
+            <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><literal type="string">"No\n"</literal></expr>;</expr_stmt>
+            <continue>continue;</continue>
+        }</block></then></if>
+        <if>if<condition>(<expr><call><name><name>pos</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call><operator>==</operator><literal type="number">2</literal></expr>)</condition><then><block>{
+            <if>if<condition>(<expr><name><name>a</name><index>[<expr><name><name>pos</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>==</operator><name><name>a</name><index>[<expr><name><name>pos</name><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name> <operator>&amp;&amp;</operator> <name><name>b</name><index>[<expr><name><name>pos</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>==</operator><name><name>b</name><index>[<expr><name><name>pos</name><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name></expr>)</condition><then><block>{
+                <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><literal type="string">"Yes\n"</literal></expr>;</expr_stmt>
+                <continue>continue;</continue>
+            }</block></then><else>else<block>{
+                <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><literal type="string">"No\n"</literal></expr>;</expr_stmt>
+                <continue>continue;</continue>
+            }</block></else></if>
+        }</block></then></if>
+        <if>if<condition>(<expr><call><name><name>pos</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call><operator>==</operator><literal type="number">0</literal></expr>)</condition><then><block>{
+            <decl_stmt><decl><type><name><name>map</name><argument_list type="generic">&lt;<argument><expr><name>char</name></expr></argument>,<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>c</name></decl>;</decl_stmt>
+            <decl_stmt><decl><type><name>bool</name></type> <name>bo</name> <init>=<expr><literal type="boolean">false</literal></expr></init></decl>;</decl_stmt>
+            <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl> ;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>n</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control><block>{
+                <expr_stmt><expr><name><name>c</name><index>[<expr><name><name>a</name><index>[<expr><name>i</name></expr>]</index></name></expr>]</index></name><operator>++</operator></expr>;</expr_stmt>
+                <if>if<condition>(<expr><name><name>c</name><index>[<expr><name><name>a</name><index>[<expr><name>i</name></expr>]</index></name></expr>]</index></name><operator>&gt;=</operator><literal type="number">2</literal></expr>)</condition><then><block type="pseudo"><expr_stmt><expr><name>bo</name><operator>=</operator><literal type="boolean">true</literal></expr>;</expr_stmt></block></then></if>
+            }</block></for>
+            <if>if<condition>(<expr><name>bo</name></expr>)</condition><then><block>{
+                <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><literal type="string">"Yes\n"</literal></expr>;</expr_stmt>
+            }</block></then><else>else<block>{
+                <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><literal type="string">"No\n"</literal></expr>;</expr_stmt>
+            }</block></else></if>
+            <continue>continue;</continue>
+        }</block></then></if>
+        <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><literal type="string">"No\n"</literal></expr>;</expr_stmt>
+    }</block></while>
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+
+}</block></function></unit>

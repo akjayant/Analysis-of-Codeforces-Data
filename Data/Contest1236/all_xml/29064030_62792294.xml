@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1236/all/29064030_62792294.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>fr</name></cpp:macro> <cpp:value>first</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>sc</name></cpp:macro> <cpp:value>second</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>mk</name></cpp:macro> <cpp:value>make_pair</cpp:value></cpp:define>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<decl_stmt><decl><type><name>int</name></type> <name>mod</name> <init>= <expr><literal type="number">1e9</literal> <operator>+</operator> <literal type="number">7</literal></expr></init></decl>;</decl_stmt>
+
+<function><type><name>long</name> <name>long</name></type> <name>binpow</name><parameter_list>(<parameter><decl><type><name>long</name> <name>long</name></type> <name>a</name></decl></parameter>, <parameter><decl><type><name>long</name> <name>long</name></type> <name>b</name></decl></parameter>)</parameter_list> <block>{
+    <if>if <condition>(<expr><name>b</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+        <return>return <expr><literal type="number">1</literal></expr>;</return>
+    }</block></then></if>
+    <if>if <condition>(<expr><name>b</name> <operator>%</operator> <literal type="number">2</literal> <operator>==</operator> <literal type="number">1</literal></expr>)</condition><then> <block>{
+        <return>return <expr><operator>(</operator><name>a</name> <operator>*</operator> <call><name>binpow</name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><name>b</name> <operator>-</operator> <literal type="number">1</literal></expr></argument>)</argument_list></call><operator>)</operator> <operator>%</operator> <name>mod</name></expr>;</return>
+    }</block></then> <else>else <block>{
+        <decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>h</name> <init>= <expr><call><name>binpow</name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><name>b</name> <operator>/</operator> <literal type="number">2</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <return>return <expr><operator>(</operator><name>h</name> <operator>*</operator> <name>h</name><operator>)</operator> <operator>%</operator> <name>mod</name></expr>;</return>
+    }</block></else></if>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+    <decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>n</name></decl>, <decl><type ref="prev"/><name>m</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name> <operator>&gt;&gt;</operator> <name>m</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <call><name>binpow</name><argument_list>(<argument><expr><operator>(</operator><call><name>binpow</name><argument_list>(<argument><expr><literal type="number">2ll</literal></expr></argument>, <argument><expr><name>m</name></expr></argument>)</argument_list></call> <operator>-</operator> <literal type="number">1</literal><operator>)</operator></expr></argument>, <argument><expr><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

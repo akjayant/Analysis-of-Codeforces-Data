@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29565085_64001599.cpp"><cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>X</name></cpp:macro> <cpp:value>first</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>Y</name></cpp:macro> <cpp:value>second</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>endl</name></cpp:macro> <cpp:value>"\n"</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>int</name></cpp:macro> <cpp:value>long long int</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>FASTIO</name></cpp:macro> <cpp:value>ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);</cpp:value></cpp:define>
+
+<function><type><name>string</name></type> <name>to_string</name><parameter_list>(<parameter><decl><type><name>string</name></type> <name>s</name></decl></parameter>)</parameter_list>      <block>{    <return>return <expr><literal type="char">'"'</literal> <operator>+</operator> <name>s</name> <operator>+</operator> <literal type="char">'"'</literal></expr>;</return>   }</block></function>
+<function><type><name>string</name></type> <name>to_string</name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name>char</name><modifier>*</modifier></type> <name>s</name></decl></parameter>)</parameter_list> <block>{   <return>return <expr><call><name>to_string</name><argument_list>(<argument><expr><operator>(</operator><name>string</name><operator>)</operator> <name>s</name></expr></argument>)</argument_list></call></expr>;</return>   }</block></function>
+<function><type><name>string</name></type> <name>to_string</name><parameter_list>(<parameter><decl><type><name>bool</name></type> <name>b</name></decl></parameter>)</parameter_list>        <block>{   <return>return <expr><operator>(</operator><ternary><condition><expr><name>b</name></expr> ?</condition><then> <expr><literal type="string">"true"</literal></expr> </then><else>: <expr><literal type="string">"false"</literal></expr></else></ternary><operator>)</operator></expr>;</return>  }</block></function>
+
+<function><template>template <parameter_list>&lt;<parameter><type><name>typename</name></type> <name>A</name></parameter>, <parameter><type><name>typename</name></type> <name>B</name></parameter>&gt;</parameter_list></template>
+<type><name>string</name></type> <name>to_string</name><parameter_list>(<parameter><decl><type><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>A</name></expr></argument>, <argument><expr><name>B</name></expr></argument>&gt;</argument_list></name></type> <name>p</name></decl></parameter>)</parameter_list> <block>{
+  <return>return <expr><literal type="string">"("</literal> <operator>+</operator> <call><name>to_string</name><argument_list>(<argument><expr><name><name>p</name><operator>.</operator><name>first</name></name></expr></argument>)</argument_list></call> <operator>+</operator> <literal type="string">", "</literal> <operator>+</operator> <call><name>to_string</name><argument_list>(<argument><expr><name><name>p</name><operator>.</operator><name>second</name></name></expr></argument>)</argument_list></call> <operator>+</operator> <literal type="string">")"</literal></expr>;</return>
+}</block></function>
+
+<function><template>template <parameter_list>&lt;<parameter><type><name>typename</name></type> <name>A</name></parameter>&gt;</parameter_list></template>
+<type><name>string</name></type> <name>to_string</name><parameter_list>(<parameter><decl><type><name>A</name></type> <name>v</name></decl></parameter>)</parameter_list> <block>{
+  <decl_stmt><decl><type><name>bool</name></type> <name>first</name> <init>= <expr><literal type="boolean">true</literal></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><name>string</name></type> <name>res</name> <init>= <expr><literal type="string">"{"</literal></expr></init></decl>;</decl_stmt>
+  <for>for <control>(<init><decl><type><specifier>const</specifier> <specifier>auto</specifier> <modifier>&amp;</modifier></type><name>x</name> <range>: <expr><name>v</name></expr></range></decl></init>)</control> <block>{
+    <if>if <condition>(<expr><operator>!</operator><name>first</name></expr>)</condition><then> <block>{
+      <expr_stmt><expr><name>res</name> <operator>+=</operator> <literal type="string">", "</literal></expr>;</expr_stmt>
+    }</block></then></if>
+    <expr_stmt><expr><name>first</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+    <expr_stmt><expr><name>res</name> <operator>+=</operator> <call><name>to_string</name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  }</block></for>
+  <expr_stmt><expr><name>res</name> <operator>+=</operator> <literal type="string">"}"</literal></expr>;</expr_stmt>
+  <return>return <expr><name>res</name></expr>;</return>
+}</block></function>
+
+<function><type><name>void</name></type> <name>debug_out</name><parameter_list>()</parameter_list> <block>{ <expr_stmt><expr><name>cerr</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt> }</block></function>
+
+<function><template>template <parameter_list>&lt;<parameter><type><name>typename</name></type> <name>Head</name></parameter>, <parameter><type><name>typename</name><modifier>...</modifier></type> <name>Tail</name></parameter>&gt;</parameter_list></template>
+<type><name>void</name></type> <name>debug_out</name><parameter_list>(<parameter><decl><type><name>Head</name></type> <name>H</name></decl></parameter>, <parameter><decl><type><name>Tail</name><modifier>...</modifier></type> <name>T</name></decl></parameter>)</parameter_list> <block>{
+  <expr_stmt><expr><name>cerr</name> <operator>&lt;&lt;</operator> <literal type="string">" "</literal> <operator>&lt;&lt;</operator> <call><name>to_string</name><argument_list>(<argument><expr><name>H</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><call><name>debug_out</name><argument_list>(<argument><expr><name>T</name><operator>...</operator></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+}</block></function>
+
+<cpp:ifdef>#<cpp:directive>ifdef</cpp:directive> <name>LOCAL</name></cpp:ifdef>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>debug</name><parameter_list>(<parameter><type><modifier>...</modifier></type></parameter>)</parameter_list></cpp:macro> <cpp:value>cerr &lt;&lt; "[" &lt;&lt; #__VA_ARGS__ &lt;&lt; "]:", debug_out(__VA_ARGS__)</cpp:value></cpp:define>
+<cpp:else>#<cpp:directive>else</cpp:directive></cpp:else>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>debug</name><parameter_list>(<parameter><type><modifier>...</modifier></type></parameter>)</parameter_list></cpp:macro> <cpp:value>42</cpp:value></cpp:define>
+<cpp:endif>#<cpp:directive>endif</cpp:directive></cpp:endif>
+
+<decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>,<decl><type ref="prev"/><name>m</name></decl>,<decl><type ref="prev"/><name>k</name></decl>,<decl><type ref="prev"/><name>i</name></decl>,<decl><type ref="prev"/><name>j</name></decl>,<decl><type ref="prev"/><name>mod</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>a</name></decl>;</decl_stmt>
+
+<function><type><name>int32_t</name></type> <name>main</name><parameter_list>(<parameter><decl><type><name>void</name></type></decl></parameter>)</parameter_list> <block>{
+  <expr_stmt><expr><name>FASTIO</name></expr>;</expr_stmt>
+  <decl_stmt><decl><type><name>int</name></type> <name>tc</name></decl>;</decl_stmt>
+  <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>tc</name></expr>;</expr_stmt>
+  <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>tc</name></expr>;</condition><incr><expr><operator>++</operator><name>i</name></expr></incr>)</control>
+  <block>{
+    <decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>,<decl><type ref="prev"/><name>m</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>n</name><operator>&gt;&gt;</operator><name>m</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><operator>(</operator><ternary><condition><expr><call><name>__gcd</name><argument_list>(<argument><expr><name>n</name></expr></argument>,<argument><expr><name>m</name></expr></argument>)</argument_list></call><operator>==</operator><literal type="number">1</literal></expr>?</condition><then><expr><literal type="string">"Finite"</literal></expr></then><else>:<expr><literal type="string">"Infinite"</literal></expr></else></ternary><operator>)</operator><operator>&lt;&lt;</operator><name>endl</name></expr>;</expr_stmt>
+  }</block></for>
+  <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>

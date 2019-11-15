@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1243/all/29771830_64374464.cpp"><comment type="line">// ContestCoding.cpp : This file contains the 'main' function. Program execution begins and ends there.</comment>
+<comment type="line">//</comment>
+
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;string&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;map&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;set&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;unordered_set&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;unordered_map&gt;</cpp:file></cpp:include>
+
+<using>using <name>ll</name> <init>= <type><name>long</name> <name>long</name></type></init>;</using>
+
+<function><type><name>long</name> <name>long</name></type> <name>gcd</name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name>long</name> <name>long</name></type> <name>a</name></decl></parameter>, <parameter><decl><type><specifier>const</specifier> <name>long</name> <name>long</name></type> <name>b</name></decl></parameter>)</parameter_list>
+<block>{
+    <if>if <condition>(<expr><name>b</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then>
+        <block type="pseudo"><return>return <expr><name>a</name></expr>;</return></block></then></if>
+    <return>return <expr><call><name>gcd</name><argument_list>(<argument><expr><name>b</name></expr></argument>, <argument><expr><name>a</name> <operator>%</operator> <name>b</name></expr></argument>)</argument_list></call></expr>;</return>
+}</block></function>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+    <decl_stmt><decl><type><name>ll</name></type> <name>q</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>q</name></expr>;</expr_stmt>
+    <for>for <control>(<init><decl><type><name>auto</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>q</name></expr>;</condition> <incr><expr><operator>++</operator><name>i</name></expr></incr>)</control>
+    <block>{
+        <decl_stmt><decl><type><name>ll</name></type> <name>n</name></decl>;</decl_stmt>
+        <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name></expr>;</expr_stmt>
+        <decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>a</name><argument_list>(<argument><expr><name>n</name></expr></argument>)</argument_list></decl>;</decl_stmt>
+        <for>for <control>(<init><decl><type><name>auto</name></type> <name>j</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>j</name> <operator>&lt;</operator> <name>n</name></expr>;</condition> <incr><expr><operator>++</operator><name>j</name></expr></incr>)</control>
+            <block type="pseudo"><expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name><name>a</name><index>[<expr><name>j</name></expr>]</index></name></expr>;</expr_stmt></block></for>
+
+        <expr_stmt><expr><call><name>sort</name><argument_list>(<argument><expr><call><name><name>a</name><operator>.</operator><name>begin</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>a</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><lambda><capture>[]</capture><parameter_list>(<parameter><decl><type><name>auto</name></type> <name>l1</name></decl></parameter>, <parameter><decl><type><name>auto</name></type> <name>l2</name></decl></parameter>)</parameter_list> <block>{ <return>return <expr><name>l1</name> <operator>&gt;</operator> <name>l2</name></expr>;</return> }</block></lambda></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <decl_stmt><decl><type><name>auto</name></type> <name>maxlen</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+
+        <for>for <control>(<init><decl><type><specifier>const</specifier> <specifier>auto</specifier><modifier>&amp;</modifier></type> <name>b</name> <range>: <expr><name>a</name></expr></range></decl></init>)</control>
+        <block>{
+            <if>if <condition>(<expr><name>b</name> <operator>&gt;</operator> <name>maxlen</name></expr>)</condition><then>
+                <block type="pseudo"><expr_stmt><expr><operator>++</operator><name>maxlen</name></expr>;</expr_stmt></block></then></if>
+        }</block></for>
+
+        <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>maxlen</name></expr>;</expr_stmt>
+
+        <if>if <condition>(<expr><name>i</name> <operator>&lt;</operator> <name>q</name> <operator>-</operator> <literal type="number">1</literal></expr>)</condition><then>
+            <block type="pseudo"><expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"\n"</literal></expr>;</expr_stmt></block></then></if>
+    }</block></for>
+}</block></function>
+</unit>

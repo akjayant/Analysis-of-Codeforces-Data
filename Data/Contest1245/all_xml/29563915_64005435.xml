@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29563915_64005435.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iomanip&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;utility&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdlib&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdint&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdio&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;string&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;deque&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cmath&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;stack&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;queue&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;map&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;set&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;sstream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstring&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;assert.h&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;chrono&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;random&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;functional&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bitset&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iterator&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<using>using <name>ll</name> <init>= <type><name>long</name> <name>long</name></type></init>;</using>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>MOD</name> <init>= <expr><call>(<name>int</name>)<argument_list>(<argument><expr><literal type="number">1e9</literal> <operator>+</operator> <literal type="number">7</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><specifier>const</specifier> <name>double</name></type> <name>PI</name> <init>= <expr><literal type="number">3.14159265358979323846</literal></expr></init></decl>;</decl_stmt>
+
+<decl_stmt><decl><type><name>string</name></type> <name>S</name></decl>;</decl_stmt>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>MAXN</name> <init>= <expr><literal type="number">1.1e5</literal></expr></init></decl>;</decl_stmt>
+
+<decl_stmt><decl><type><name>int</name></type> <name><name>memo</name><index>[<expr><name>MAXN</name></expr>]</index></name></decl>;</decl_stmt>
+
+<function><type><name>int</name></type> <name>go</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>pos</name></decl></parameter>)</parameter_list> <block>{
+  <if>if <condition>(<expr><name>pos</name> <operator>==</operator> <call><name><name>S</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr>)</condition><then>
+    <block type="pseudo"><return>return <expr><literal type="number">1</literal></expr>;</return></block></then></if>
+  <decl_stmt><decl><type><name>int</name><modifier>&amp;</modifier></type> <name>ref</name> <init>= <expr><name><name>memo</name><index>[<expr><name>pos</name></expr>]</index></name></expr></init></decl>;</decl_stmt>
+  <if>if <condition>(<expr><name>ref</name> <operator>!=</operator> <operator>-</operator><literal type="number">1</literal></expr>)</condition><then>
+    <block type="pseudo"><return>return <expr><name>ref</name></expr>;</return></block></then></if>
+  <expr_stmt><expr><name>ref</name> <operator>=</operator> <call><name>go</name><argument_list>(<argument><expr><name>pos</name> <operator>+</operator> <literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <if>if <condition>(<expr><name>pos</name> <operator>+</operator> <literal type="number">1</literal> <operator>&lt;</operator> <call><name><name>S</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr>)</condition><then> <block>{
+    <if>if <condition>(<expr><name><name>S</name><index>[<expr><name>pos</name></expr>]</index></name> <operator>==</operator> <literal type="char">'n'</literal> <operator>&amp;&amp;</operator> <name><name>S</name><index>[<expr><name>pos</name> <operator>+</operator> <literal type="number">1</literal></expr>]</index></name> <operator>==</operator> <literal type="char">'n'</literal></expr>)</condition><then> <block>{
+      <expr_stmt><expr><name>ref</name> <operator>+=</operator> <call><name>go</name><argument_list>(<argument><expr><name>pos</name> <operator>+</operator> <literal type="number">2</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>ref</name> <operator>%=</operator> <name>MOD</name></expr>;</expr_stmt>
+    }</block></then></if>
+    <if>if <condition>(<expr><name><name>S</name><index>[<expr><name>pos</name></expr>]</index></name> <operator>==</operator> <literal type="char">'u'</literal> <operator>&amp;&amp;</operator> <name><name>S</name><index>[<expr><name>pos</name> <operator>+</operator> <literal type="number">1</literal></expr>]</index></name> <operator>==</operator> <literal type="char">'u'</literal></expr>)</condition><then> <block>{
+      <expr_stmt><expr><name>ref</name> <operator>+=</operator> <call><name>go</name><argument_list>(<argument><expr><name>pos</name> <operator>+</operator> <literal type="number">2</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><name>ref</name> <operator>%=</operator> <name>MOD</name></expr>;</expr_stmt>
+    }</block></then></if>
+  }</block></then></if>
+  <return>return <expr><name>ref</name></expr>;</return>
+}</block></function>
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+  <expr_stmt><expr><call><name><name>ios_base</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><call><name>memset</name><argument_list>(<argument><expr><name>memo</name></expr></argument>, <argument><expr><operator>-</operator><literal type="number">1</literal></expr></argument>, <argument><expr><sizeof>sizeof<argument_list>(<argument><expr><name>memo</name></expr></argument>)</argument_list></sizeof></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>S</name></expr>;</expr_stmt>
+  <if>if <condition>(<expr><call><name>count</name><argument_list>(<argument><expr><call><name><name>S</name><operator>.</operator><name>begin</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>S</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="char">'w'</literal></expr></argument>)</argument_list></call></expr>)</condition><then> <block>{
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"0\n"</literal></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>exit</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  }</block></then></if>
+  <if>if <condition>(<expr><call><name>count</name><argument_list>(<argument><expr><call><name><name>S</name><operator>.</operator><name>begin</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>S</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="char">'m'</literal></expr></argument>)</argument_list></call></expr>)</condition><then> <block>{
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"0\n"</literal></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>exit</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  }</block></then></if>
+  <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <call><name>go</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call> <operator>&lt;&lt;</operator> <literal type="char">'\n'</literal></expr>;</expr_stmt>
+  <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

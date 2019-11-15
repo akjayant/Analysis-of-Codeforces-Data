@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29596672_64003594.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>input</name></cpp:macro>   <cpp:value>std::cin</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>output</name></cpp:macro>  <cpp:value>std::cout</cpp:value></cpp:define>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>num</name></cpp:macro>     <cpp:value>int</cpp:value></cpp:define>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+    <expr_stmt><expr><call><name><name>std</name><operator>::</operator><name>ios_base</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <decl_stmt><decl><type><name>int</name></type> <name>T</name></decl>;</decl_stmt>  <expr_stmt><expr><name>input</name> <operator>&gt;&gt;</operator> <name>T</name></expr>;</expr_stmt>
+    <while>while <condition>(<expr><name>T</name><operator>--</operator></expr>)</condition> <block>{
+        <decl_stmt><decl><type><name>num</name></type> <name>rocks</name></decl>, <decl><type ref="prev"/><name>papers</name></decl>, <decl><type ref="prev"/><name>scissors</name></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name><name>std</name><operator>::</operator><name>string</name></name></type> <name>str</name></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>int</name></type> <name>N</name></decl>;</decl_stmt>
+
+        <expr_stmt><expr><name>input</name> <operator>&gt;&gt;</operator> <name>N</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name>input</name> <operator>&gt;&gt;</operator> <name>rocks</name> <operator>&gt;&gt;</operator> <name>papers</name> <operator>&gt;&gt;</operator> <name>scissors</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name>input</name> <operator>&gt;&gt;</operator> <name>str</name></expr>;</expr_stmt>
+
+        <decl_stmt><decl><type><name>num</name></type> <name>r</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>, <decl><type ref="prev"/><name>p</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>, <decl><type ref="prev"/><name>s</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+        <for>for <control>(<init><expr><name>auto</name> <operator>&amp;</operator><name>ch</name><operator>:</operator><name>str</name></expr></init>)</control>
+            <block type="pseudo"><if>if <condition>(<expr><name>ch</name> <operator>==</operator> <literal type="char">'R'</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>r</name><operator>++</operator></expr>;</expr_stmt></block></then>
+            <elseif>else <if>if <condition>(<expr><name>ch</name> <operator>==</operator> <literal type="char">'P'</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>p</name><operator>++</operator></expr>;</expr_stmt></block></then></if></elseif>
+            <elseif>else <if>if <condition>(<expr><name>ch</name> <operator>==</operator> <literal type="char">'S'</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>s</name><operator>++</operator></expr>;</expr_stmt></block></then></if></elseif></if></block></for>
+
+        <decl_stmt><decl><type><name>num</name></type> <name>cnt</name> <init>= <expr><call><name><name>std</name><operator>::</operator><name>min</name></name><argument_list>(<argument><expr><name>papers</name></expr></argument>, <argument><expr><name>r</name></expr></argument>)</argument_list></call> <operator>+</operator> <call><name><name>std</name><operator>::</operator><name>min</name></name><argument_list>(<argument><expr><name>scissors</name></expr></argument>, <argument><expr><name>p</name></expr></argument>)</argument_list></call> <operator>+</operator> <call><name><name>std</name><operator>::</operator><name>min</name></name><argument_list>(<argument><expr><name>rocks</name></expr></argument>, <argument><expr><name>s</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <if>if <condition>(<expr><name>cnt</name> <operator>&gt;=</operator> <operator>(</operator><name>N</name><operator>+</operator><literal type="number">1</literal><operator>)</operator><operator>/</operator><literal type="number">2</literal></expr>)</condition><then> <block>{
+            <expr_stmt><expr><name>output</name> <operator>&lt;&lt;</operator> <literal type="string">"YES\n"</literal></expr>;</expr_stmt>
+            <decl_stmt><decl><type><name><name>std</name><operator>::</operator><name>string</name></name></type> <name>str2</name><argument_list>(<argument><expr><call><name><name>str</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="char">' '</literal></expr></argument>)</argument_list></decl>;</decl_stmt>
+
+            <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name><operator>&lt;</operator><call><name><name>str</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr>;</condition> <incr><expr><operator>++</operator><name>i</name></expr></incr>)</control>
+                <block type="pseudo"><if>if <condition>(<expr><name><name>str</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="char">'R'</literal> <operator>&amp;&amp;</operator> <name>papers</name></expr>)</condition><then>
+                    <block type="pseudo"><expr_stmt><expr><operator>--</operator> <name>papers</name></expr><operator>,</operator> <expr><name><name>str2</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <literal type="char">'P'</literal></expr>;</expr_stmt></block></then>
+                <elseif>else <if>if <condition>(<expr><name><name>str</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="char">'P'</literal> <operator>&amp;&amp;</operator> <name>scissors</name></expr>)</condition><then>
+                    <block type="pseudo"><expr_stmt><expr><operator>--</operator> <name>scissors</name></expr><operator>,</operator> <expr><name><name>str2</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <literal type="char">'S'</literal></expr>;</expr_stmt></block></then></if></elseif>
+                <elseif>else <if>if <condition>(<expr><name><name>str</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="char">'S'</literal> <operator>&amp;&amp;</operator> <name>rocks</name></expr>)</condition><then>
+                    <block type="pseudo"><expr_stmt><expr><operator>--</operator> <name>rocks</name></expr><operator>,</operator> <expr><name><name>str2</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <literal type="char">'R'</literal></expr>;</expr_stmt></block></then></if></elseif></if></block></for>
+
+            <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name><operator>&lt;</operator><call><name><name>str</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr>;</condition> <incr><expr><operator>++</operator><name>i</name></expr></incr>)</control> <block type="pseudo"><if>if <condition>(<expr><name><name>str2</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="char">' '</literal></expr>)</condition><then> <block>{
+                <if>if <condition>(<expr><name>rocks</name></expr>)</condition><then>
+                    <block type="pseudo"><expr_stmt><expr><operator>--</operator> <name>rocks</name></expr><operator>,</operator> <expr><name><name>str2</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <literal type="char">'R'</literal></expr>;</expr_stmt></block></then>
+                <elseif>else <if>if <condition>(<expr><name>papers</name></expr>)</condition><then>
+                    <block type="pseudo"><expr_stmt><expr><operator>--</operator> <name>papers</name></expr><operator>,</operator> <expr><name><name>str2</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <literal type="char">'P'</literal></expr>;</expr_stmt></block></then></if></elseif>
+                <elseif>else <if>if <condition>(<expr><name>scissors</name></expr>)</condition><then>
+                    <block type="pseudo"><expr_stmt><expr><operator>--</operator> <name>scissors</name></expr><operator>,</operator> <expr><name><name>str2</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <literal type="char">'S'</literal></expr>;</expr_stmt></block></then></if></elseif></if>
+            }</block></then></if></block></for>   <expr_stmt><expr><name>output</name> <operator>&lt;&lt;</operator> <name>str2</name> <operator>&lt;&lt;</operator> <literal type="char">'\n'</literal></expr>;</expr_stmt>
+        }</block></then>
+        <else>else <block>{
+            <expr_stmt><expr><name>output</name> <operator>&lt;&lt;</operator> <literal type="string">"NO\n"</literal></expr>;</expr_stmt>
+        }</block></else></if>
+    }</block></while>
+
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

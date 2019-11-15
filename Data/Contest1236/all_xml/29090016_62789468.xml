@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1236/all/29090016_62789468.cpp"><cpp:pragma>#<cpp:directive>pragma</cpp:directive> <name>comment</name><name>(</name><name>linker</name><name>,</name> <cpp:literal>"/stack:247474112"</cpp:literal><name>)</name></cpp:pragma>
+<cpp:pragma>#<cpp:directive>pragma</cpp:directive> <name>GCC</name> <name>optimize</name><name>(</name><cpp:literal>"Ofast"</cpp:literal><name>)</name></cpp:pragma>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>"bits/stdc++.h"</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>IOS</name></cpp:macro> <cpp:value>ios::sync_with_stdio(0), cin.tie(0), cout.tie(0)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>int</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ends</name></cpp:macro> <cpp:value>' '</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>endl</name></cpp:macro> <cpp:value>'\n'</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pb</name></cpp:macro> <cpp:value>emplace_back</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>x</name></cpp:macro> <cpp:value>first</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>y</name></cpp:macro> <cpp:value>second</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pii</name></cpp:macro> <cpp:value>pair&lt;int, int&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>sz</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>(int)(x).size()</cpp:value></cpp:define>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>prime</name> <init>= <expr><literal type="number">1e9</literal><operator>+</operator><literal type="number">7</literal></expr></init></decl>;</decl_stmt>
+
+<function><type><name>int</name></type> <name>mod</name> <parameter_list>(<parameter><decl><type><name>int</name></type> <name>a</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>p</name> <init>= <expr><name>prime</name></expr></init></decl></parameter>)</parameter_list> <block>{
+	<return>return <expr><operator>(</operator><name>a</name><operator>%</operator><name>p</name> <operator>+</operator> <name>p</name><operator>)</operator> <operator>%</operator> <name>p</name></expr>;</return>
+}</block></function>
+
+<function><type><name>int</name></type> <name>xpo</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>a</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>b</name></decl></parameter>)</parameter_list> <block>{
+	<if>if<condition>(<expr><operator>!</operator><name>b</name></expr>)</condition><then> <block>{
+		<return>return <expr><literal type="number">1</literal></expr>;</return>
+	}</block></then> <else>else <block>{
+		<decl_stmt><decl><type><name>int</name></type> <name>ret</name> <init>= <expr><call><name>xpo</name><argument_list>(<argument><expr><call><name>mod</name><argument_list>(<argument><expr><name>a</name><operator>*</operator><name>a</name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>b</name><operator>/</operator><literal type="number">2</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+		<if>if<condition>(<expr><name>b</name><operator>&amp;</operator><literal type="number">1</literal></expr>)</condition><then> <block>{
+			<expr_stmt><expr><name>ret</name> <operator>=</operator> <call><name>mod</name><argument_list>(<argument><expr><name>ret</name> <operator>*</operator> <name>a</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		}</block></then></if>
+		<return>return <expr><name>ret</name></expr>;</return>
+	}</block></else></if>
+}</block></function>
+
+
+<function><type><name>int32_t</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+	<cpp:ifndef>#<cpp:directive>ifndef</cpp:directive> <name>ONLINE_JUDGE</name></cpp:ifndef>
+		<expr_stmt><expr><call><name>freopen</name><argument_list>(<argument><expr><literal type="string">"input.txt"</literal></expr></argument>, <argument><expr><literal type="string">"r"</literal></expr></argument>, <argument><expr><name>stdin</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<expr_stmt><expr><call><name>freopen</name><argument_list>(<argument><expr><literal type="string">"output.txt"</literal></expr></argument>, <argument><expr><literal type="string">"w"</literal></expr></argument>, <argument><expr><name>stdout</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<cpp:endif>#<cpp:directive>endif</cpp:directive></cpp:endif>
+	<expr_stmt><expr><name>IOS</name></expr>;</expr_stmt>
+
+	<decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>, <decl><type ref="prev"/><name>m</name></decl>;</decl_stmt>
+	<expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name> <operator>&gt;&gt;</operator> <name>m</name></expr>;</expr_stmt>
+
+	<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <call><name>xpo</name><argument_list>(<argument><expr><call><name>xpo</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>, <argument><expr><name>m</name></expr></argument>)</argument_list></call><operator>-</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>

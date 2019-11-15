@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1243/all/29763134_64375968.cpp"><cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;cstring&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;cstdio&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;cmath&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<function><type><name>bool</name></type> <name>cmp</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>a</name></decl></parameter>,<parameter><decl><type><name>int</name></type> <name>b</name></decl></parameter>)</parameter_list>
+<block>{
+    <return>return <expr><name>a</name><operator>&gt;</operator><name>b</name></expr>;</return>
+}</block></function>
+<decl_stmt><decl><type><name>int</name></type> <name><name>an</name><index>[<expr><literal type="number">2100</literal></expr>]</index></name></decl>;</decl_stmt>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+    <decl_stmt><decl><type><name>int</name></type> <name>t</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>t</name></expr>;</expr_stmt>
+    <while>while<condition>(<expr><name>t</name><operator>--</operator></expr>)</condition>
+    <block>{
+        <decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>;</decl_stmt>
+        <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>n</name></expr>;</expr_stmt>
+        <decl_stmt><decl><type><name>int</name></type> <name>i</name></decl>,<decl><type ref="prev"/><name>j</name></decl>,<decl><type ref="prev"/><name>k</name></decl>;</decl_stmt>
+        <for>for<control>(<init><expr><name>i</name> <operator>=</operator> <literal type="number">0</literal></expr>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+            <block type="pseudo"><expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name><name>an</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt></block></for>
+        <expr_stmt><expr><call><name>sort</name><argument_list>(<argument><expr><name>an</name></expr></argument>,<argument><expr><name>an</name><operator>+</operator><name>n</name></expr></argument>,<argument><expr><name>cmp</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <decl_stmt><decl><type><name>int</name></type> <name>ans</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+        <for>for<control>(<init><expr><name>i</name> <operator>=</operator> <literal type="number">0</literal></expr>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+        <block>{
+            <decl_stmt><decl><type><name>int</name></type> <name>tmp</name> <init>= <expr><call><name>min</name><argument_list>(<argument><expr><name>i</name><operator>+</operator><literal type="number">1</literal></expr></argument>,<argument><expr><name><name>an</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <expr_stmt><expr><name>ans</name> <operator>=</operator> <call><name>max</name><argument_list>(<argument><expr><name>ans</name></expr></argument>,<argument><expr><name>tmp</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        }</block></for>
+        <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><name>ans</name><operator>&lt;&lt;</operator><name>endl</name></expr>;</expr_stmt>
+    }</block></while>
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

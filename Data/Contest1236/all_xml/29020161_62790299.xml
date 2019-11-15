@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1236/all/29020161_62790299.cpp"><cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<typedef>typedef  <type><name>long</name> <name>long</name> <name>int</name></type> <name>ll</name>;</typedef>
+<typedef>typedef  <type><name>long</name> <name>double</name></type> <name>ld</name>;</typedef>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>sync</name></cpp:macro> <cpp:value>ios_base::sync_with_stdio(false); cin.tie(NULL)</cpp:value></cpp:define> 
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>input</name><parameter_list>(<parameter><type><name>arr</name></type></parameter>,<parameter><type><name>n</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(ll i1=0;i1&lt;n;i1++ )cin&gt;&gt;arr[i1]</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>mod</name></cpp:macro> <cpp:value>1000000007</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>F</name></cpp:macro> <cpp:value>first</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>S</name></cpp:macro> <cpp:value>second</cpp:value></cpp:define> 
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;ext/pb_ds/assoc_container.hpp&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;ext/pb_ds/tree_policy.hpp&gt;</cpp:file></cpp:include>
+<cpp:pragma>#<cpp:directive>pragma</cpp:directive> <name>GCC</name> <name>optimize</name><name>(</name><cpp:literal>"O3"</cpp:literal><name>)</name></cpp:pragma>
+<comment type="line">//recursions\</comment>
+<cpp:pragma>#<cpp:directive>pragma</cpp:directive> <name>comment</name><name>(</name><name>linker</name><name>,</name> <cpp:literal>"/stack:200000000"</cpp:literal><name>)</name></cpp:pragma>
+<comment type="line">//loops\</comment>
+<cpp:pragma>#<cpp:directive>pragma</cpp:directive> <name>GCC</name> <name>optimize</name><name>(</name><cpp:literal>"unroll-loops"</cpp:literal><name>)</name></cpp:pragma>
+<using>using <namespace>namespace <name>__gnu_pbds</name>;</namespace></using>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ordered_set</name></cpp:macro> <cpp:value>tree&lt;ll, null_type,greater_equal&lt;ll&gt;, rb_tree_tag,tree_order_statistics_node_update&gt;</cpp:value></cpp:define><comment type="line">//s.order_of_key(val) *s.find_by_order(ind)</comment>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<function><type><name>ll</name></type> <name>modexp</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>a</name></decl></parameter>,<parameter><decl><type><name>ll</name></type> <name>b</name></decl></parameter>)</parameter_list>
+<block>{
+	<expr_stmt><expr><name>a</name><operator>%=</operator><name>mod</name></expr>;</expr_stmt>
+	<if>if<condition>(<expr><name>a</name><operator>==</operator><literal type="number">0</literal><operator>||</operator><name>a</name><operator>==</operator><literal type="number">1</literal></expr>)</condition><then>
+	<block type="pseudo"><return>return <expr><name>a</name></expr>;</return></block></then></if>
+	<if>if<condition>(<expr><name>b</name><operator>==</operator><literal type="number">0</literal></expr>)</condition><then>
+	<block type="pseudo"><return>return <expr><literal type="number">1</literal></expr>;</return></block></then></if>
+	<if>if<condition>(<expr><name>b</name><operator>%</operator><literal type="number">2</literal><operator>==</operator><literal type="number">0</literal></expr>)</condition><then>
+	<block>{
+		<decl_stmt><decl><type><name>ll</name></type> <name>res</name><init>=<expr><call><name>modexp</name><argument_list>(<argument><expr><name>a</name></expr></argument>,<argument><expr><name>b</name><operator>/</operator><literal type="number">2</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+		<return>return <expr><operator>(</operator><name>res</name><operator>*</operator><name>res</name><operator>)</operator><operator>%</operator><name>mod</name></expr>;</return>
+	}</block></then></if>
+	<return>return <expr><operator>(</operator><name>a</name><operator>*</operator><call><name>modexp</name><argument_list>(<argument><expr><name>a</name></expr></argument>,<argument><expr><name>b</name><operator>-</operator><literal type="number">1</literal></expr></argument>)</argument_list></call><operator>)</operator><operator>%</operator><name>mod</name></expr>;</return>
+}</block></function>
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+	<expr_stmt><expr><name>sync</name></expr>;</expr_stmt>
+	<decl_stmt><decl><type><name>ll</name></type> <name>n</name></decl>,<decl><type ref="prev"/><name>m</name></decl>;</decl_stmt>
+	<expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>n</name><operator>&gt;&gt;</operator><name>m</name></expr>;</expr_stmt>
+	<decl_stmt><decl><type><name>ll</name></type> <name>ans</name><init>=<expr><operator>(</operator><call><name>modexp</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>,<argument><expr><name>m</name></expr></argument>)</argument_list></call><operator>-</operator><literal type="number">1</literal><operator>+</operator><name>mod</name><operator>)</operator><operator>%</operator><name>mod</name></expr></init></decl>;</decl_stmt>
+	<expr_stmt><expr><name>ans</name><operator>=</operator><call><name>modexp</name><argument_list>(<argument><expr><name>ans</name></expr></argument>,<argument><expr><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><name>ans</name></expr>;</expr_stmt>
+}</block></function></unit>

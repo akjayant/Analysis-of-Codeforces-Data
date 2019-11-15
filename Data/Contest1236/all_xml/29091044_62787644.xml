@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1236/all/29091044_62787644.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdio&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<struct>struct <name>_in</name> <block>{<public type="default">
+	<function type="operator"><type><specifier>const</specifier> <name>_in</name></type> <name>operator <name>,</name></name> <parameter_list>(<parameter><decl><type><name>int</name> <modifier>&amp;</modifier></type> <name>a</name></decl></parameter>)</parameter_list> <specifier>const</specifier> <block>{
+		<expr_stmt><expr><name>a</name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+		<decl_stmt><decl><type><name>char</name></type> <name>k</name> <init>= <expr><call><name>getchar</name> <argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+		<while>while <condition>(<expr><name>k</name> <operator>&gt;</operator> <literal type="char">'9'</literal> <operator>||</operator> <name>k</name> <operator>&lt;</operator> <literal type="char">'0'</literal></expr>)</condition> <block type="pseudo"><expr_stmt><expr><name>k</name> <operator>=</operator> <call><name>getchar</name> <argument_list>()</argument_list></call></expr>;</expr_stmt></block></while>
+		<while>while <condition>(<expr><name>k</name> <operator>&gt;=</operator> <literal type="char">'0'</literal> <operator>&amp;&amp;</operator> <name>k</name> <operator>&lt;=</operator> <literal type="char">'9'</literal></expr>)</condition> <block>{
+			<expr_stmt><expr><name>a</name> <operator>=</operator> <name>a</name> <operator>*</operator> <literal type="number">10</literal> <operator>+</operator> <name>k</name> <operator>-</operator> <literal type="char">'0'</literal></expr>;</expr_stmt>
+			<expr_stmt><expr><name>k</name> <operator>=</operator> <call><name>getchar</name> <argument_list>()</argument_list></call></expr>;</expr_stmt>
+		}</block></while>
+		<return>return <expr><operator>*</operator> <name>this</name></expr>;</return>
+	}</block></function>
+</public>}</block><decl><name>in</name></decl>;</struct>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>mod</name> <init>= <expr><literal type="number">1e9</literal> <operator>+</operator> <literal type="number">7</literal></expr></init></decl>;</decl_stmt>
+<function><specifier>inline</specifier> <type><name>int</name></type> <name>plu</name> <parameter_list>(<parameter><decl><type><name>int</name></type> <name>u</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>v</name></decl></parameter>)</parameter_list> <block>{ <return>return <expr><ternary><condition><expr><name>u</name> <operator>+</operator> <name>v</name> <operator>&gt;=</operator> <literal type="number">0</literal></expr> ?</condition><then> <expr><name>u</name> <operator>+</operator> <name>v</name> <operator>-</operator> <name>mod</name></expr> </then><else>: <expr><name>u</name> <operator>+</operator> <name>v</name></expr></else></ternary></expr>;</return> }</block></function>
+<function><specifier>inline</specifier> <type><name>int</name></type> <name>sub</name> <parameter_list>(<parameter><decl><type><name>int</name></type> <name>u</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>v</name></decl></parameter>)</parameter_list> <block>{ <return>return <expr><ternary><condition><expr><name>u</name> <operator>-</operator> <name>v</name> <operator>&lt;</operator> <literal type="number">0</literal></expr> ?</condition><then> <expr><name>u</name> <operator>-</operator> <name>v</name> <operator>+</operator> <name>mod</name></expr> </then><else>: <expr><name>u</name> <operator>-</operator> <name>v</name></expr></else></ternary></expr>;</return> }</block></function>
+<function><specifier>inline</specifier> <type><name>int</name></type> <name>mul</name> <parameter_list>(<parameter><decl><type><name>int</name></type> <name>u</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>v</name></decl></parameter>)</parameter_list> <block>{ <return>return <expr><literal type="number">1LL</literal> <operator>*</operator> <name>u</name> <operator>*</operator> <name>v</name> <operator>%</operator> <name>mod</name></expr>;</return> }</block></function>
+<function><specifier>inline</specifier> <type><name>int</name></type> <name>fpow</name> <parameter_list>(<parameter><decl><type><name>int</name></type> <name>base</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>v</name></decl></parameter>)</parameter_list>
+<block>{
+	<decl_stmt><decl><type><name>int</name></type> <name>tot</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+	<while>while <condition>(<expr><name>v</name></expr>)</condition>
+	<block>{
+		<if>if <condition>(<expr><name>v</name> <operator>&amp;</operator> <literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>tot</name> <operator>=</operator> <call><name>mul</name> <argument_list>(<argument><expr><name>tot</name></expr></argument>, <argument><expr><name>base</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then></if>
+		<expr_stmt><expr><name>base</name> <operator>=</operator> <call><name>mul</name> <argument_list>(<argument><expr><name>base</name></expr></argument>, <argument><expr><name>base</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<expr_stmt><expr><name>v</name> <operator>&gt;&gt;=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+	}</block></while>
+	<return>return <expr><name>tot</name></expr>;</return>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name> <parameter_list>()</parameter_list> <block>{
+	<decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>, <decl><type ref="prev"/><name>m</name></decl>;</decl_stmt>
+	<expr_stmt><expr><call><name>scanf</name> <argument_list>(<argument><expr><literal type="string">"%d%d"</literal></expr></argument>, <argument><expr><operator>&amp;</operator><name>n</name></expr></argument>, <argument><expr><operator>&amp;</operator><name>m</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<decl_stmt><decl><type><name>int</name></type> <name>per</name> <init>= <expr><call><name>fpow</name> <argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>, <argument><expr><name>m</name></expr></argument>)</argument_list></call> <operator>-</operator> <literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+	<expr_stmt><expr><call><name>printf</name> <argument_list>(<argument><expr><literal type="string">"%d\n"</literal></expr></argument>, <argument><expr><call><name>fpow</name> <argument_list>(<argument><expr><name>per</name></expr></argument>, <argument><expr><name>n</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

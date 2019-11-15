@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29578176_64021785.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<using>using <name>lint</name> <init>= <type><name>long</name> <name>long</name></type></init>;</using>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>lint</name></type> <name>MOD</name> <init>= <expr><literal type="number">1e9</literal> <operator>+</operator> <literal type="number">7</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><specifier>const</specifier> <name>lint</name></type> <name>MAX</name> <init>= <expr><literal type="number">1e5</literal> <operator>+</operator> <literal type="number">7</literal></expr></init></decl>;</decl_stmt>
+
+<decl_stmt><decl><type><name>lint</name></type> <name><name>memo</name><index>[<expr><name>MAX</name></expr>]</index></name></decl>;</decl_stmt>
+
+<decl_stmt><decl><type><name>string</name></type> <name>s</name></decl>;</decl_stmt>
+
+<function><type><name>lint</name></type> <name>solve</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>idx</name></decl></parameter>)</parameter_list> <block>{
+    <if>if <condition>(<expr><name>idx</name> <operator>&gt;=</operator> <literal type="number">0</literal> <operator>&amp;&amp;</operator> <name><name>s</name><index>[<expr><name>idx</name></expr>]</index></name> <operator>==</operator> <literal type="char">'m'</literal> <operator>||</operator> <name><name>s</name><index>[<expr><name>idx</name></expr>]</index></name> <operator>==</operator> <literal type="char">'w'</literal></expr>)</condition><then> <block type="pseudo"><return>return <expr><literal type="number">0</literal></expr>;</return></block></then></if>
+    <if>if <condition>(<expr><name>idx</name> <operator>&lt;=</operator> <literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><return>return <expr><literal type="number">1</literal></expr>;</return></block></then></if>
+    <decl_stmt><decl><type><name>lint</name> <modifier>&amp;</modifier></type><name>ret</name> <init>= <expr><name><name>memo</name><index>[<expr><name>idx</name></expr>]</index></name></expr></init></decl>;</decl_stmt>
+    <if>if <condition>(<expr><name>ret</name> <operator>!=</operator> <operator>-</operator><literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><return>return <expr><name>ret</name></expr>;</return></block></then></if>
+    <expr_stmt><expr><name>ret</name> <operator>=</operator> <literal type="number">0LL</literal></expr>;</expr_stmt>
+    <if>if <condition>(<expr><name>idx</name> <operator>&gt;=</operator> <literal type="number">1</literal> <operator>&amp;&amp;</operator> <name><name>s</name><index>[<expr><name>idx</name></expr>]</index></name> <operator>==</operator> <literal type="char">'u'</literal> <operator>&amp;&amp;</operator> <name><name>s</name><index>[<expr><name>idx</name> <operator>-</operator> <literal type="number">1</literal></expr>]</index></name> <operator>==</operator> <literal type="char">'u'</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>ret</name> <operator>+=</operator> <call><name>solve</name><argument_list>(<argument><expr><name>idx</name> <operator>-</operator> <literal type="number">2</literal></expr></argument>)</argument_list></call> <operator>%</operator> <name>MOD</name></expr>;</expr_stmt></block></then></if>
+    <if>if <condition>(<expr><name>idx</name> <operator>&gt;=</operator> <literal type="number">1</literal> <operator>&amp;&amp;</operator> <name><name>s</name><index>[<expr><name>idx</name></expr>]</index></name> <operator>==</operator> <literal type="char">'n'</literal> <operator>&amp;&amp;</operator> <name><name>s</name><index>[<expr><name>idx</name> <operator>-</operator> <literal type="number">1</literal></expr>]</index></name> <operator>==</operator> <literal type="char">'n'</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>ret</name> <operator>+=</operator> <call><name>solve</name><argument_list>(<argument><expr><name>idx</name> <operator>-</operator> <literal type="number">2</literal></expr></argument>)</argument_list></call> <operator>%</operator> <name>MOD</name></expr>;</expr_stmt></block></then></if>
+    <expr_stmt><expr><name>ret</name> <operator>+=</operator> <call><name>solve</name><argument_list>(<argument><expr><name>idx</name> <operator>-</operator> <literal type="number">1</literal></expr></argument>)</argument_list></call> <operator>%</operator> <name>MOD</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name>ret</name> <operator>%=</operator> <name>MOD</name></expr>;</expr_stmt>
+    <return>return <expr><name>ret</name></expr>;</return>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+    <expr_stmt><expr><call><name><name>ios</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>cin</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt> <expr_stmt><expr><call><name><name>cout</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>s</name></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>memset</name><argument_list>(<argument><expr><name>memo</name></expr></argument>, <argument><expr><operator>-</operator><literal type="number">1LL</literal></expr></argument>, <argument><expr><sizeof>sizeof<argument_list>(<argument><expr><name>memo</name></expr></argument>)</argument_list></sizeof></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <call><name>solve</name><argument_list>(<argument><expr><call><name><name>s</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>-</operator> <literal type="number">1</literal></expr></argument>)</argument_list></call> <operator>&lt;&lt;</operator> <literal type="char">'\n'</literal></expr>;</expr_stmt>
+}</block></function>
+</unit>

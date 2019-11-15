@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1236/all/29086378_62793571.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;string&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;map&gt;</cpp:file></cpp:include> 
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;set&gt;</cpp:file></cpp:include> 
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;cmath&gt;</cpp:file></cpp:include> 
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;queue&gt;</cpp:file></cpp:include> 
+
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>int</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>mod</name> <init>= <expr><literal type="number">1e9</literal> <operator>+</operator> <literal type="number">7</literal></expr></init></decl>;</decl_stmt>
+
+<decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>, <decl><type ref="prev"/><name>m</name></decl>;</decl_stmt>
+
+<function><type><name>int</name></type> <name>bs</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>a</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>b</name></decl></parameter>)</parameter_list> <block>{
+	<if>if <condition>(<expr><name>b</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+		<return>return <expr><literal type="number">1</literal></expr>;</return>
+	}</block></then></if>
+	<if>if <condition>(<expr><name>b</name> <operator>%</operator> <literal type="number">2</literal> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+		<decl_stmt><decl><type><name>int</name></type> <name>t</name> <init>= <expr><call><name>bs</name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><name>b</name> <operator>/</operator> <literal type="number">2</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+		<return>return <expr><operator>(</operator><name>t</name> <operator>*</operator> <name>t</name><operator>)</operator> <operator>%</operator> <name>mod</name></expr>;</return>
+	}</block></then>
+	<else>else <block>{
+		<decl_stmt><decl><type><name>int</name></type> <name>t</name> <init>= <expr><call><name>bs</name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><name>b</name> <operator>-</operator> <literal type="number">1</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+		<return>return <expr><operator>(</operator><name>t</name> <operator>*</operator> <name>a</name><operator>)</operator> <operator>%</operator> <name>mod</name></expr>;</return>
+	}</block></else></if>
+}</block></function>
+
+<function><type><name>signed</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+	<expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name> <operator>&gt;&gt;</operator> <name>m</name></expr>;</expr_stmt>
+	<decl_stmt><decl><type><name>int</name></type> <name>onepres</name> <init>= <expr><call><name>bs</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>, <argument><expr><name>m</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+	<expr_stmt><expr><name>onepres</name> <operator>=</operator> <operator>(</operator><name>onepres</name> <operator>+</operator> <name>mod</name> <operator>-</operator> <literal type="number">1</literal><operator>)</operator> <operator>%</operator> <name>mod</name></expr>;</expr_stmt>
+	<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <call><name>bs</name><argument_list>(<argument><expr><name>onepres</name></expr></argument>, <argument><expr><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+}</block></function></unit>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1236/all/29051006_62800263.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;stdio.h&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>LL</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define> 
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>FOR</name><parameter_list>(<parameter><type><name>i</name></type></parameter>,<parameter><type><name>l</name></type></parameter>,<parameter><type><name>r</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(int i = l; i &lt;= r; ++i)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>REP</name><parameter_list>(<parameter><type><name>i</name></type></parameter>,<parameter><type><name>l</name></type></parameter>,<parameter><type><name>r</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(int i = l; i &lt; r; ++i)</cpp:value></cpp:define>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>maxN</name> <init>= <expr><literal type="number">301</literal> <operator>*</operator> <literal type="number">301</literal></expr></init></decl>;</decl_stmt>
+
+<decl_stmt><decl><type><name>int</name></type> <name>N</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name><name>vector</name> <argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name><name>G</name><index>[<expr><name>maxN</name></expr>]</index></name></decl>,<decl><type ref="prev"/><name><name>S</name><index>[<expr><name>maxN</name></expr>]</index></name></decl>;</decl_stmt>
+
+<function><type><name>int</name></type> <name>cal</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>x</name></decl></parameter>,<parameter><decl><type><name>int</name></type> <name>y</name></decl></parameter>)</parameter_list><block>{
+    <decl_stmt><decl><type><name>int</name></type> <name>rr</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <macro><name>REP</name><argument_list>(<argument>i</argument>,<argument><literal type="number">0</literal></argument>,<argument>N</argument>)</argument_list></macro>
+        <macro><name>REP</name><argument_list>(<argument>j</argument>,<argument><literal type="number">0</literal></argument>,<argument>N</argument>)</argument_list></macro> <if>if<condition>(<expr><name><name>G</name><index>[<expr><name>x</name></expr>]</index><index>[<expr><name>i</name></expr>]</index></name> <operator>&gt;</operator> <name><name>G</name><index>[<expr><name>y</name></expr>]</index><index>[<expr><name>j</name></expr>]</index></name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><operator>++</operator><name>rr</name></expr>;</expr_stmt></block></then></if>
+    <return>return <expr><name>rr</name></expr>;</return>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list><block>{
+    <comment type="line">//freopen("A.INP","r",stdin);</comment>
+    <comment type="line">//freopen("A.OUT","w",stdout);</comment>
+    
+    <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>N</name></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>M</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <macro><name>FOR</name><argument_list>(<argument>i</argument>,<argument><literal type="number">1</literal></argument>,<argument>N</argument>)</argument_list></macro><block>{
+        <macro><name>FOR</name><argument_list>(<argument>j</argument>,<argument><literal type="number">1</literal></argument>,<argument>N</argument>)</argument_list></macro> <expr_stmt><expr><name><name>S</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>push_back</name><argument_list>(<argument><expr><operator>++</operator><name>M</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    }</block>
+
+    <decl_stmt><decl><type><name>int</name></type> <name>l</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>,<decl><type ref="prev"/><name>r</name> <init>= <expr><name>N</name></expr></init></decl>;</decl_stmt>
+    <while>while<condition>(<expr><name>l</name> <operator>&lt;=</operator> <name>r</name></expr>)</condition><block>{
+        <if>if<condition>(<expr><name>l</name> <operator>&lt;</operator> <name>r</name></expr>)</condition><then><block>{
+            <macro><name>REP</name><argument_list>(<argument>i</argument>,<argument><literal type="number">0</literal></argument>,<argument>N</argument>)</argument_list></macro><block>{
+                <expr_stmt><expr><name><name>G</name><index>[<expr><name>i</name> <operator>+</operator> <literal type="number">1</literal></expr>]</index></name><operator>.</operator><call><name>push_back</name><argument_list>(<argument><expr><name><name>S</name><index>[<expr><name>l</name></expr>]</index><index>[<expr><name>i</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            }</block>
+            <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><name>N</name> <operator>-</operator> <literal type="number">1</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&gt;=</operator> <literal type="number">0</literal></expr>;</condition> <incr><expr><operator>--</operator><name>i</name></expr></incr>)</control> <block type="pseudo"><expr_stmt><expr><name><name>G</name><index>[<expr><name>N</name> <operator>-</operator> <name>i</name></expr>]</index></name><operator>.</operator><call><name>push_back</name><argument_list>(<argument><expr><name><name>S</name><index>[<expr><name>r</name></expr>]</index><index>[<expr><name>i</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></for>
+            <expr_stmt><expr><operator>++</operator><name>l</name></expr>;</expr_stmt>
+            <expr_stmt><expr><operator>--</operator><name>r</name></expr>;</expr_stmt>
+        }</block></then><else>else<block>{
+            <macro><name>REP</name><argument_list>(<argument>i</argument>,<argument><literal type="number">0</literal></argument>,<argument>N</argument>)</argument_list></macro><block>{
+                <expr_stmt><expr><name><name>G</name><index>[<expr><name>i</name> <operator>+</operator> <literal type="number">1</literal></expr>]</index></name><operator>.</operator><call><name>push_back</name><argument_list>(<argument><expr><name><name>S</name><index>[<expr><name>l</name></expr>]</index><index>[<expr><name>i</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            }</block>
+            <expr_stmt><expr><operator>++</operator><name>l</name></expr>;</expr_stmt>
+        }</block></else></if>
+    }</block></while>
+
+    <macro><name>FOR</name><argument_list>(<argument>i</argument>,<argument><literal type="number">1</literal></argument>,<argument>N</argument>)</argument_list></macro><block>{
+    <comment type="line">//    cout &lt;&lt; " ::: " ;</comment>
+        <macro><name>REP</name><argument_list>(<argument>j</argument>,<argument><literal type="number">0</literal></argument>,<argument>N</argument>)</argument_list></macro> <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name><name>G</name><index>[<expr><name>i</name></expr>]</index><index>[<expr><name>j</name></expr>]</index></name> <operator>&lt;&lt;</operator> <literal type="string">" "</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+    }</block>
+
+    <comment type="line">//int res = 1234567890;</comment>
+    <comment type="line">//FOR(i,1,N) FOR(j,i + 1,N) res = min(res,min(cal(i,j),cal(j,i)));</comment>
+
+   <comment type="line">// cout &lt;&lt; res;</comment>
+
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>

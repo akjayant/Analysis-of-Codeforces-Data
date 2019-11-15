@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1243/all/29747626_64379405.cpp"><cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ll</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>REP</name><parameter_list>(<parameter><type><name>i</name></type></parameter>,<parameter><type><name>a</name></type></parameter>,<parameter><type><name>b</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(ll i=a;i&lt;b;i++)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>MP</name></cpp:macro> <cpp:value>make_pair</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>PB</name></cpp:macro> <cpp:value>push_back</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>N</name></cpp:macro> <cpp:value>100001</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>HOLE</name></cpp:macro> <cpp:value>1000000007</cpp:value></cpp:define>
+
+<function><type><name>ll</name></type> <name>power</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>x</name></decl></parameter>,<parameter><decl><type><name>ll</name></type> <name>y</name></decl></parameter>)</parameter_list>
+<block>{
+      <decl_stmt><decl><type><name>ll</name></type> <name>res</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt> <comment type="line">// Initialize result</comment>
+
+    <while>while <condition>(<expr><name>y</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{
+        <comment type="line">// If y is odd, multiply x with result</comment>
+        <if>if <condition>(<expr><name>y</name> <operator>&amp;</operator> <literal type="number">1</literal></expr>)</condition><then>
+            <block type="pseudo"><expr_stmt><expr><name>res</name> <operator>=</operator> <operator>(</operator><name>res</name> <operator>*</operator> <name>x</name><operator>)</operator><operator>%</operator><name>HOLE</name></expr>;</expr_stmt></block></then></if>
+
+        <comment type="line">// n must be even now</comment>
+        <expr_stmt><expr><name>y</name> <operator>=</operator> <name>y</name> <operator>&gt;&gt;</operator> <literal type="number">1</literal></expr>;</expr_stmt> <comment type="line">// y = y/2</comment>
+        <expr_stmt><expr><name>x</name> <operator>=</operator> <operator>(</operator><name>x</name> <operator>*</operator> <name>x</name><operator>)</operator><operator>%</operator><name>HOLE</name></expr>;</expr_stmt> <comment type="line">// Change x to x^2</comment>
+    }</block></while>
+    <return>return <expr><name>res</name></expr>;</return>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+      <expr_stmt><expr><call><name><name>ios</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>cin</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <expr_stmt><expr><call><name><name>cout</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+      <decl_stmt><decl><type><name>ll</name></type> <name>q</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>q</name></expr>;</expr_stmt>
+      <while>while<condition>(<expr><name>q</name><operator>--</operator></expr>)</condition>
+      <block>{
+            <decl_stmt><decl><type><name>ll</name></type> <name>n</name></decl>;</decl_stmt>
+            <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>n</name></expr>;</expr_stmt>
+
+            <decl_stmt><decl><type><name>ll</name></type> <name><name>a</name><index>[<expr><name>n</name></expr>]</index></name></decl>;</decl_stmt>
+
+
+            <decl_stmt><decl><type><name>int</name></type> <name>flag</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+            <macro><name>REP</name><argument_list>(<argument>i</argument>,<argument><literal type="number">0</literal></argument>,<argument>n</argument>)</argument_list></macro>
+            <block>{
+                  <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name><name>a</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt>
+            }</block>
+
+            <expr_stmt><expr><call><name>sort</name><argument_list>(<argument><expr><name>a</name></expr></argument>,<argument><expr><name>a</name><operator>+</operator><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+            <decl_stmt><decl><type><name>ll</name></type> <name>csize</name><init>=<expr><name>n</name></expr></init></decl>;</decl_stmt>
+            <decl_stmt><decl><type><name>ll</name></type> <name>msize</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+
+            <for>for<control>(<init><decl><type><name>ll</name></type> <name>i</name><init>=<expr><name>n</name><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</init> <condition><expr><name>i</name><operator>&gt;=</operator><literal type="number">0</literal></expr>;</condition> <incr><expr><name>i</name><operator>--</operator></expr></incr>)</control><block>{
+
+                <expr_stmt><expr><name>csize</name><operator>=</operator><call><name>min</name><argument_list>(<argument><expr><name>n</name><operator>-</operator><name>i</name></expr></argument>, <argument><expr><name><name>a</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <if>if<condition>(<expr><name>csize</name><operator>&lt;</operator><name>msize</name></expr>)</condition><then><block>{
+                    <break>break;</break>
+                }</block></then>
+                <else>else<block>{
+                    <expr_stmt><expr><name>msize</name><operator>=</operator><name>csize</name></expr>;</expr_stmt>
+                }</block></else></if>
+
+            }</block></for>
+
+            <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><name>msize</name><operator>&lt;&lt;</operator><name>endl</name></expr>;</expr_stmt>
+
+      }</block></while>
+
+<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

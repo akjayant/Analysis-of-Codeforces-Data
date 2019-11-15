@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1243/all/29777880_64404934.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<decl_stmt><decl><type><name>mt19937</name></type> <name>rd</name><argument_list>(<argument><expr><call><name><name>chrono</name><operator>::</operator><name>steady_clock</name><operator>::</operator><name>now</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>time_since_epoch</name><argument_list>()</argument_list></call><operator>.</operator><call><name>count</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></decl>;</decl_stmt>
+<function><type><name>long</name> <name>long</name></type> <name>Rand</name><parameter_list>(<parameter><decl><type><name>long</name> <name>long</name></type> <name>L</name></decl></parameter>, <parameter><decl><type><name>long</name> <name>long</name></type> <name>R</name></decl></parameter>)</parameter_list> <block>{
+    <return>return <expr><name>L</name> <operator>+</operator> <call><name>rd</name><argument_list>()</argument_list></call> <operator>%</operator> <operator>(</operator><name>R</name> <operator>-</operator> <name>L</name> <operator>+</operator> <literal type="number">1</literal><operator>)</operator></expr>;</return>
+}</block></function>
+<function><type><name>long</name> <name>long</name></type> <name>MUL</name><parameter_list>(<parameter><decl><type><name>long</name> <name>long</name></type> <name>A</name></decl></parameter>, <parameter><decl><type><name>long</name> <name>long</name></type> <name>B</name></decl></parameter>, <parameter><decl><type><name>long</name> <name>long</name></type> <name>MOD</name></decl></parameter>)</parameter_list> <block>{
+    <decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>r</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <while>while <condition>(<expr><name>B</name></expr>)</condition> <block>{
+        <expr_stmt><expr><name>r</name> <operator>=</operator> <operator>(</operator><name>r</name> <operator>+</operator> <operator>(</operator><name>A</name> <operator>*</operator> <operator>(</operator><name>B</name> <operator>%</operator> <literal type="number">2</literal><operator>)</operator> <operator>%</operator> <name>MOD</name><operator>)</operator><operator>)</operator> <operator>%</operator> <name>MOD</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name>A</name> <operator>=</operator> <operator>(</operator><name>A</name> <operator>+</operator> <name>A</name><operator>)</operator> <operator>%</operator> <name>MOD</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name>B</name> <operator>/=</operator> <literal type="number">2</literal></expr>;</expr_stmt>
+    }</block></while>
+    <return>return <expr><name>r</name></expr>;</return>
+}</block></function>
+<function><type><name>long</name> <name>long</name></type> <name>POW</name><parameter_list>(<parameter><decl><type><name>long</name> <name>long</name></type> <name>A</name></decl></parameter>, <parameter><decl><type><name>long</name> <name>long</name></type> <name>B</name></decl></parameter>, <parameter><decl><type><name>long</name> <name>long</name></type> <name>MOD</name></decl></parameter>)</parameter_list> <block>{
+    <decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>RES</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><name>A</name> <operator>%=</operator> <name>MOD</name></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>assert</name><argument_list>(<argument><expr><name>B</name> <operator>&gt;=</operator> <literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <for>for<control>(<init>;</init> <condition><expr><name>B</name></expr>;</condition> <incr><expr><name>B</name> <operator>&gt;&gt;=</operator> <literal type="number">1</literal></expr></incr>)</control> <block>{
+        <if>if <condition>(<expr><name>B</name> <operator>&amp;</operator> <literal type="number">1</literal></expr>)</condition><then>
+            <block type="pseudo"><expr_stmt><expr><name>RES</name> <operator>=</operator> <call><name>MUL</name><argument_list>(<argument><expr><name>RES</name></expr></argument>, <argument><expr><name>A</name></expr></argument>, <argument><expr><name>MOD</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then></if>
+        <expr_stmt><expr><name>A</name> <operator>=</operator> <call><name>MUL</name><argument_list>(<argument><expr><name>A</name></expr></argument>, <argument><expr><name>A</name></expr></argument>, <argument><expr><name>MOD</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    }</block></for>
+    <return>return <expr><name>RES</name></expr>;</return>
+}</block></function>
+<function><type><name>long</name> <name>long</name></type> <name>GCD</name><parameter_list>(<parameter><decl><type><name>long</name> <name>long</name></type> <name>A</name></decl></parameter>, <parameter><decl><type><name>long</name> <name>long</name></type> <name>B</name></decl></parameter>)</parameter_list> <block>{
+    <return>return <expr><ternary><condition><expr><name>B</name> <operator>==</operator> <literal type="number">0</literal></expr> ?</condition><then> <expr><name>A</name></expr> </then><else>: <expr><call><name>GCD</name><argument_list>(<argument><expr><name>B</name></expr></argument>, <argument><expr><name>A</name> <operator>%</operator> <name>B</name></expr></argument>)</argument_list></call></expr></else></ternary></expr>;</return>
+}</block></function>
+<decl_stmt><decl><type><name>int</name></type> <name><name>dx</name><index>[]</index></name> <init>= <expr><block>{<expr><literal type="number">0</literal></expr>, <expr><operator>-</operator><literal type="number">1</literal></expr>, <expr><literal type="number">0</literal></expr>, <expr><literal type="number">1</literal></expr>, <expr><literal type="number">0</literal></expr>}</block></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name><name>dy</name><index>[]</index></name> <init>= <expr><block>{<expr><literal type="number">0</literal></expr>,  <expr><literal type="number">0</literal></expr>, <expr><literal type="number">1</literal></expr>, <expr><literal type="number">0</literal></expr>,<expr><operator>-</operator><literal type="number">1</literal></expr>}</block></expr></init></decl>;</decl_stmt>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>__gcd</name></cpp:macro> <cpp:value>GCD</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>in</name></cpp:macro> <cpp:value>({int x=0,n=0,c=getchar();for(;!isdigit(c);c=getchar())n=(c=='-');for(;isdigit(c);c=getchar())x=x*10+c-'0';(n)?-x:x;})</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>inc</name></cpp:macro> <cpp:value>({char c=0;for(;c=='\n'||c==' ';c=getchar());c=getchar();c;})</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ins</name></cpp:macro> <cpp:value>({string x;char c=getchar();for(;c==' '||c=='\n';c=getchar());for(;c!=' '&amp;&amp;c!='\n';c=getchar()) x+=c;x;})</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ii</name></cpp:macro> <cpp:value>pair &lt;int, int&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>fi</name></cpp:macro> <cpp:value>first</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>se</name></cpp:macro> <cpp:value>second</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pb</name></cpp:macro> <cpp:value>push_back</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ll</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ull</name></cpp:macro> <cpp:value>unsigned long long</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>db</name></cpp:macro> <cpp:value>double</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>vi</name></cpp:macro> <cpp:value>vector &lt;int&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>vii</name></cpp:macro> <cpp:value>vector &lt;ii&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>reset</name><parameter_list>(<parameter><type><name>f</name></type></parameter>, <parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>memset(f, x, sizeof(f))</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>all</name><parameter_list>(<parameter><type><name>v</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>v.begin(), v.end()</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>bit</name><parameter_list>(<parameter><type><name>mask</name></type></parameter>, <parameter><type><name>i</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>(mask &amp; (1ll &lt;&lt; i))</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>onbit</name><parameter_list>(<parameter><type><name>mask</name></type></parameter>, <parameter><type><name>i</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>(mask | (1ll &lt;&lt; i))</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>offbit</name><parameter_list>(<parameter><type><name>mask</name></type></parameter>, <parameter><type><name>i</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>(mask &amp;~ (1ll &lt;&lt; i))</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>sz</name><parameter_list>(<parameter><type><name>v</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>(int) v.size()</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>bug1</name><parameter_list>(<parameter><type><name>a</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>cout &lt;&lt; #a &lt;&lt; " = " &lt;&lt; a &lt;&lt; ";"</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>bug1l</name><parameter_list>(<parameter><type><name>a</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>cout &lt;&lt; #a &lt;&lt; " = " &lt;&lt; a &lt;&lt; ";" &lt;&lt; '\n'</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>bug2</name><parameter_list>(<parameter><type><name>a</name></type></parameter>, <parameter><type><name>b</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>cout &lt;&lt; #a &lt;&lt; " = " &lt;&lt; a &lt;&lt; "; " &lt;&lt; #b &lt;&lt; " = " &lt;&lt; b &lt;&lt; "; "</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>bug2l</name><parameter_list>(<parameter><type><name>a</name></type></parameter>, <parameter><type><name>b</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>cout &lt;&lt; #a &lt;&lt; " = " &lt;&lt; a &lt;&lt; "; " &lt;&lt; #b &lt;&lt; " = " &lt;&lt; b &lt;&lt; "; " &lt;&lt; '\n'</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>bug3</name><parameter_list>(<parameter><type><name>a</name></type></parameter>, <parameter><type><name>b</name></type></parameter>, <parameter><type><name>c</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>cout &lt;&lt; #a &lt;&lt; " = " &lt;&lt; a &lt;&lt; "; " &lt;&lt; #b &lt;&lt; " = " &lt;&lt; b &lt;&lt; "; " &lt;&lt; #c &lt;&lt; " = " &lt;&lt; c &lt;&lt; "; "</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>bug3l</name><parameter_list>(<parameter><type><name>a</name></type></parameter>, <parameter><type><name>b</name></type></parameter>, <parameter><type><name>c</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>cout &lt;&lt; #a &lt;&lt; " = " &lt;&lt; a &lt;&lt; "; " &lt;&lt; #b &lt;&lt; " = " &lt;&lt; b &lt;&lt; "; " &lt;&lt; #c &lt;&lt; " = " &lt;&lt; c &lt;&lt; "; " &lt;&lt; '\n'</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>bug4</name><parameter_list>(<parameter><type><name>a</name></type></parameter>, <parameter><type><name>b</name></type></parameter>, <parameter><type><name>c</name></type></parameter>, <parameter><type><name>d</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>cout &lt;&lt; #a &lt;&lt; " = " &lt;&lt; a &lt;&lt; "; " &lt;&lt; #b &lt;&lt; " = " &lt;&lt; b &lt;&lt; "; " &lt;&lt; #c &lt;&lt; " = " &lt;&lt; c &lt;&lt; "; " &lt;&lt; #d &lt;&lt; " = " &lt;&lt; d &lt;&lt; "; "</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>bug4l</name><parameter_list>(<parameter><type><name>a</name></type></parameter>, <parameter><type><name>b</name></type></parameter>, <parameter><type><name>c</name></type></parameter>, <parameter><type><name>d</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>cout &lt;&lt; #a &lt;&lt; " = " &lt;&lt; a &lt;&lt; "; " &lt;&lt; #b &lt;&lt; " = " &lt;&lt; b &lt;&lt; ";" &lt;&lt; #c &lt;&lt; " = " &lt;&lt; c &lt;&lt; "; " &lt;&lt; #d &lt;&lt; " = " &lt;&lt; d &lt;&lt; "; " &lt;&lt; '\n'</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>FASTIOS</name></cpp:macro> <cpp:value>ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>TASK</name></cpp:macro> <cpp:value>"1243A"</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>int</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<comment type="line">//</comment>
+<comment type="line">//const int MAXN = 2 * 100005;</comment>
+<comment type="line">//int question, N, buihoatpjkgfjsafdgjsngbngnnagn[MAXN];</comment>
+<comment type="line">//main() {</comment>
+<comment type="line">//    FASTIOS;</comment>
+<comment type="line">//#ifndef ONLINE_JUDGE</comment>
+<comment type="line">//    freopen(TASK".inp", "r", stdin);</comment>
+<comment type="line">//    freopen(TASK".out", "w", stdout);</comment>
+<comment type="line">//#endif</comment>
+<comment type="line">//    cin &gt;&gt; question;</comment>
+<comment type="line">//    while(question--) {</comment>
+<comment type="line">//        cin &gt;&gt; N;</comment>
+<comment type="line">//        for (int i = 1; i &lt;= N; ++i)</comment>
+<comment type="line">//            cin &gt;&gt; buihoatpjkgfjsafdgjsngbngnnagn[i];</comment>
+<comment type="line">//        sort(buihoatpt + 1, buihoatpt + N + 1);</comment>
+<comment type="line">//        int RES = 1;</comment>
+<comment type="line">//        for (int i = 1; i &lt;= N; ++i) {</comment>
+<comment type="line">//            RES=max(RES,min(buihoatpjkgfjsafdgjsngbngnnagn[i], N-i+1));</comment>
+<comment type="line">//        }</comment>
+<comment type="line">//        cout&lt;&lt;RES&lt;&lt;'\n';</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//}</comment>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>int</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ii</name></cpp:macro> <cpp:value>pair &lt;int, int&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>X</name></cpp:macro> <cpp:value>first</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>Y</name></cpp:macro> <cpp:value>second</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>a</name><parameter_list>(<parameter><type><name>i</name></type></parameter>, <parameter><type><name>j</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>aa[(i - 1) * N + j];</cpp:value></cpp:define>
+
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>MAXN</name> <init>= <expr><literal type="number">1000</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>string</name></type> <name>jsgjkjsgkjj</name></decl>, <decl><type ref="prev"/><name>jkgfjsafdgjsngbngnnagn</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name>N</name></decl>, <decl><type ref="prev"/><name>TEST</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name><name>jsdfgjsjfjsgjkjsgkjj</name><index>[<expr><name>MAXN</name></expr>]</index></name></decl>;</decl_stmt>
+
+<function><type><name>bool</name></type> <name>CHECK</name><parameter_list>()</parameter_list> <block>{
+    <decl_stmt><decl><type><name>int</name></type> <name>d</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>N</name></expr>;</condition> <incr><expr><operator>++</operator><name>i</name></expr></incr>)</control> <block>{
+        <if>if <condition>(<expr><name><name>jsgjkjsgkjj</name><index>[<expr><name>i</name></expr>]</index></name> <operator>!=</operator> <name><name>jkgfjsafdgjsngbngnnagn</name><index>[<expr><name>i</name></expr>]</index></name></expr>)</condition><then> <block>{
+            <expr_stmt><expr><operator>++</operator><name>d</name></expr>;</expr_stmt>
+            <if>if <condition>(<expr><name>d</name> <operator>&gt;</operator> <literal type="number">2</literal></expr>)</condition><then> <block>{
+                <return>return <expr><literal type="boolean">false</literal></expr>;</return>
+            }</block></then></if>
+            <expr_stmt><expr><name><name>jsdfgjsjfjsgjkjsgkjj</name><index>[<expr><name>d</name></expr>]</index></name> <operator>=</operator> <name>i</name></expr>;</expr_stmt>
+        }</block></then></if>
+    }</block></for>
+
+    <if>if <condition>(<expr><name>d</name> <operator>==</operator> <literal type="number">2</literal> <operator>&amp;&amp;</operator> <name><name>jsgjkjsgkjj</name><index>[<expr><name><name>jsdfgjsjfjsgjkjsgkjj</name><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name> <operator>==</operator> <name><name>jsgjkjsgkjj</name><index>[<expr><name><name>jsdfgjsjfjsgjkjsgkjj</name><index>[<expr><literal type="number">2</literal></expr>]</index></name></expr>]</index></name> <operator>&amp;&amp;</operator> <name><name>jkgfjsafdgjsngbngnnagn</name><index>[<expr><name><name>jsdfgjsjfjsgjkjsgkjj</name><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name> <operator>==</operator> <name><name>jkgfjsafdgjsngbngnnagn</name><index>[<expr><name><name>jsdfgjsjfjsgjkjsgkjj</name><index>[<expr><literal type="number">2</literal></expr>]</index></name></expr>]</index></name></expr>)</condition><then>
+        <block type="pseudo"><return>return <expr><literal type="boolean">true</literal></expr>;</return></block></then></if>
+    <if>if <condition>(<expr><operator>!</operator><name>d</name></expr>)</condition><then>
+        <block type="pseudo"><return>return <expr><literal type="boolean">true</literal></expr>;</return></block></then></if>
+
+    <return>return <expr><literal type="boolean">false</literal></expr>;</return>
+}</block></function>
+
+<function><name>main</name><parameter_list>()</parameter_list> <block>{
+    <expr_stmt><expr><name>FASTIOS</name></expr>;</expr_stmt>
+<cpp:ifndef>#<cpp:directive>ifndef</cpp:directive> <name>ONLINE_JUDGE</name></cpp:ifndef>
+    <expr_stmt><expr><call><name>freopen</name><argument_list>(<argument><expr><name>TASK</name><literal type="string">".inp"</literal></expr></argument>, <argument><expr><literal type="string">"r"</literal></expr></argument>, <argument><expr><name>stdin</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>freopen</name><argument_list>(<argument><expr><name>TASK</name><literal type="string">".out"</literal></expr></argument>, <argument><expr><literal type="string">"w"</literal></expr></argument>, <argument><expr><name>stdout</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<cpp:endif>#<cpp:directive>endif</cpp:directive></cpp:endif>
+    <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>TEST</name></expr>;</expr_stmt>
+    <while>while <condition>(<expr><name>TEST</name><operator>--</operator></expr>)</condition> <block>{
+        <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>N</name> <operator>&gt;&gt;</operator> <name>jsgjkjsgkjj</name> <operator>&gt;&gt;</operator> <name>jkgfjsafdgjsngbngnnagn</name></expr>;</expr_stmt>
+        <if>if <condition>(<expr><call><name>CHECK</name><argument_list>()</argument_list></call></expr>)</condition><then>
+            <block type="pseudo"><expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"YES"</literal> <operator>&lt;&lt;</operator> <literal type="string">"\n"</literal></expr>;</expr_stmt></block></then>
+        <else>else
+            <block type="pseudo"><expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"NO"</literal> <operator>&lt;&lt;</operator> <literal type="string">"\n"</literal></expr>;</expr_stmt></block></else></if>
+    }</block></while>
+}</block></function>
+</unit>

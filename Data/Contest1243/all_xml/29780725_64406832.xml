@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1243/all/29780725_64406832.cpp"><cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;string&gt;</cpp:file></cpp:include>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>rep</name><parameter_list>(<parameter><type><name>i</name></type></parameter>, <parameter><type><name>start</name></type></parameter>, <parameter><type><name>end</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for (int i = (int)start; i &lt; (int)end; ++i)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>rrep</name><parameter_list>(<parameter><type><name>i</name></type></parameter>, <parameter><type><name>start</name></type></parameter>, <parameter><type><name>end</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for (int i = (int)start - 1; i &gt;= end; --i)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>arep</name><parameter_list>(<parameter><type><name>i</name></type></parameter>, <parameter><type><name>c</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for (auto i = (c).begin(); i != (c).end(); ++i)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>all</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>(x).begin(), (x).end()</cpp:value></cpp:define>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<comment type="line">// void easy() {</comment>
+<comment type="line">//     int N;</comment>
+<comment type="line">//     string S, T;</comment>
+<comment type="line">//     cin &gt;&gt; N &gt;&gt; S &gt;&gt; T;</comment>
+<comment type="line">//     int cnt = 0;</comment>
+<comment type="line">//     rep(i, 0, N) {</comment>
+<comment type="line">//         if (S[i] != T[i]) {</comment>
+<comment type="line">//             ++cnt;</comment>
+<comment type="line">//         }</comment>
+<comment type="line">//     }</comment>
+<comment type="line">//     if (cnt == 0) {</comment>
+<comment type="line">//         cout &lt;&lt; "Yes" &lt;&lt; endl;</comment>
+<comment type="line">//         return;</comment>
+<comment type="line">//     }</comment>
+<comment type="line">//     if (cnt != 2) {</comment>
+<comment type="line">//         cout &lt;&lt; "No" &lt;&lt; endl;</comment>
+<comment type="line">//         return;</comment>
+<comment type="line">//     }</comment>
+<comment type="line">//     vector&lt;int&gt; cnt1(26, 0), cnt2(26, 0);</comment>
+<comment type="line">//     rep(i, 0, N) {</comment>
+<comment type="line">//         if (S[i] != T[i]) {</comment>
+<comment type="line">//             ++cnt1[S[i] - 'a'];</comment>
+<comment type="line">//             ++cnt2[T[i] - 'a'];</comment>
+<comment type="line">//         }</comment>
+<comment type="line">//     }</comment>
+<comment type="line">//     int two1 = 0, two2 = 0;</comment>
+<comment type="line">//     rep(i, 0, 26) {</comment>
+<comment type="line">//         if (cnt1[i] == 2) ++two1;</comment>
+<comment type="line">//         if (cnt2[i] == 2) ++two2;</comment>
+<comment type="line">//     }</comment>
+<comment type="line">//     if (two1 == 1 &amp;&amp; two2 == 1) {</comment>
+<comment type="line">//         cout &lt;&lt; "Yes" &lt;&lt; endl;</comment>
+<comment type="line">//     }</comment>
+<comment type="line">//     else cout &lt;&lt; "No" &lt;&lt; endl;</comment>
+<comment type="line">// }</comment>
+
+<function><type><name>void</name></type> <name>hard</name><parameter_list>()</parameter_list> <block>{
+    <decl_stmt><decl><type><name>int</name></type> <name>N</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>string</name></type> <name>S</name></decl>, <decl><type ref="prev"/><name>T</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>N</name> <operator>&gt;&gt;</operator> <name>S</name> <operator>&gt;&gt;</operator> <name>T</name></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>string</name></type> <name>s</name><argument_list>(<argument><expr><name>S</name></expr></argument>)</argument_list></decl>, <decl><type ref="prev"/><name>t</name><argument_list>(<argument><expr><name>T</name></expr></argument>)</argument_list></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>cnt1</name><argument_list>(<argument><expr><literal type="number">26</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></decl>, <decl><type ref="prev"/><name>cnt2</name><argument_list>(<argument><expr><literal type="number">26</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></decl>;</decl_stmt>
+    <macro><name>rep</name><argument_list>(<argument>i</argument>, <argument><literal type="number">0</literal></argument>, <argument>N</argument>)</argument_list></macro> <block>{
+        <expr_stmt><expr><operator>++</operator><name><name>cnt1</name><index>[<expr><name><name>S</name><index>[<expr><name>i</name></expr>]</index></name> <operator>-</operator> <literal type="char">'a'</literal></expr>]</index></name></expr>;</expr_stmt>
+        <expr_stmt><expr><operator>++</operator><name><name>cnt2</name><index>[<expr><name><name>T</name><index>[<expr><name>i</name></expr>]</index></name> <operator>-</operator> <literal type="char">'a'</literal></expr>]</index></name></expr>;</expr_stmt>
+    }</block>
+    <macro><name>rep</name><argument_list>(<argument>i</argument>, <argument><literal type="number">0</literal></argument>, <argument><literal type="number">26</literal></argument>)</argument_list></macro> <block>{
+        <if>if <condition>(<expr><operator>(</operator><name><name>cnt1</name><index>[<expr><name>i</name></expr>]</index></name> <operator>+</operator> <name><name>cnt2</name><index>[<expr><name>i</name></expr>]</index></name><operator>)</operator> <operator>%</operator> <literal type="number">2</literal></expr>)</condition><then> <block>{
+            <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"No"</literal> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+            <return>return;</return>
+        }</block></then></if>
+    }</block>
+    <decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>si</name></decl>, <decl><type ref="prev"/><name>tj</name></decl>;</decl_stmt>
+    <macro><name>rep</name><argument_list>(<argument>i</argument>, <argument><literal type="number">0</literal></argument>, <argument>N</argument>)</argument_list></macro> <block>{
+        <if>if <condition>(<expr><name><name>S</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <name><name>T</name><index>[<expr><name>i</name></expr>]</index></name></expr>)</condition><then> <block>{
+            <expr_stmt><expr><operator>--</operator><name><name>cnt1</name><index>[<expr><name><name>S</name><index>[<expr><name>i</name></expr>]</index></name> <operator>-</operator> <literal type="char">'a'</literal></expr>]</index></name></expr>;</expr_stmt>
+            <expr_stmt><expr><operator>--</operator><name><name>cnt2</name><index>[<expr><name><name>T</name><index>[<expr><name>i</name></expr>]</index></name> <operator>-</operator> <literal type="char">'a'</literal></expr>]</index></name></expr>;</expr_stmt>
+            <continue>continue;</continue>
+        }</block></then></if>
+        <if>if <condition>(<expr><name><name>cnt1</name><index>[<expr><name><name>S</name><index>[<expr><name>i</name></expr>]</index></name> <operator>-</operator> <literal type="char">'a'</literal></expr>]</index></name> <operator>&gt;</operator> <literal type="number">1</literal></expr>)</condition><then> <block>{
+            <expr_stmt><expr><call><name><name>tj</name><operator>.</operator><name>push_back</name></name><argument_list>(<argument><expr><name>i</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <macro><name>rep</name><argument_list>(<argument>j</argument>, <argument>i + <literal type="number">1</literal></argument>, <argument>N</argument>)</argument_list></macro> <block>{
+                <if>if <condition>(<expr><name><name>S</name><index>[<expr><name>j</name></expr>]</index></name> <operator>==</operator> <name><name>S</name><index>[<expr><name>i</name></expr>]</index></name></expr>)</condition><then> <block>{
+                    <expr_stmt><expr><call><name><name>si</name><operator>.</operator><name>push_back</name></name><argument_list>(<argument><expr><name>j</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                    <expr_stmt><expr><operator>--</operator><name><name>cnt1</name><index>[<expr><name><name>S</name><index>[<expr><name>j</name></expr>]</index></name> <operator>-</operator> <literal type="char">'a'</literal></expr>]</index></name></expr>;</expr_stmt>
+                    <expr_stmt><expr><operator>--</operator><name><name>cnt2</name><index>[<expr><name><name>T</name><index>[<expr><name>i</name></expr>]</index></name> <operator>-</operator> <literal type="char">'a'</literal></expr>]</index></name></expr>;</expr_stmt>
+                    <expr_stmt><expr><operator>++</operator><name><name>cnt1</name><index>[<expr><name><name>T</name><index>[<expr><name>i</name></expr>]</index></name> <operator>-</operator> <literal type="char">'a'</literal></expr>]</index></name></expr>;</expr_stmt>
+                    <expr_stmt><expr><operator>++</operator><name><name>cnt2</name><index>[<expr><name><name>S</name><index>[<expr><name>j</name></expr>]</index></name> <operator>-</operator> <literal type="char">'a'</literal></expr>]</index></name></expr>;</expr_stmt>
+                    <expr_stmt><expr><call><name>swap</name><argument_list>(<argument><expr><name><name>S</name><index>[<expr><name>j</name></expr>]</index></name></expr></argument>, <argument><expr><name><name>T</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                    <break>break;</break>
+                }</block></then></if>
+            }</block>
+        }</block></then>
+        <else>else <block>{
+            <expr_stmt><expr><call><name><name>si</name><operator>.</operator><name>push_back</name></name><argument_list>(<argument><expr><name>i</name> <operator>+</operator> <literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <macro><name>rep</name><argument_list>(<argument>j</argument>, <argument>i + <literal type="number">1</literal></argument>, <argument>N</argument>)</argument_list></macro> <block>{
+                <if>if <condition>(<expr><name><name>T</name><index>[<expr><name>j</name></expr>]</index></name> <operator>==</operator> <name><name>S</name><index>[<expr><name>i</name></expr>]</index></name></expr>)</condition><then> <block>{
+                    <expr_stmt><expr><call><name><name>tj</name><operator>.</operator><name>push_back</name></name><argument_list>(<argument><expr><name>j</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                    <expr_stmt><expr><operator>--</operator><name><name>cnt1</name><index>[<expr><name><name>S</name><index>[<expr><name>i</name> <operator>+</operator> <literal type="number">1</literal></expr>]</index></name> <operator>-</operator> <literal type="char">'a'</literal></expr>]</index></name></expr>;</expr_stmt>
+                    <expr_stmt><expr><operator>--</operator><name><name>cnt2</name><index>[<expr><name><name>T</name><index>[<expr><name>j</name></expr>]</index></name> <operator>-</operator> <literal type="char">'a'</literal></expr>]</index></name></expr>;</expr_stmt>
+                    <expr_stmt><expr><operator>++</operator><name><name>cnt1</name><index>[<expr><name><name>T</name><index>[<expr><name>j</name></expr>]</index></name> <operator>-</operator> <literal type="char">'a'</literal></expr>]</index></name></expr>;</expr_stmt>
+                    <expr_stmt><expr><operator>++</operator><name><name>cnt2</name><index>[<expr><name><name>S</name><index>[<expr><name>i</name> <operator>+</operator> <literal type="number">1</literal></expr>]</index></name> <operator>-</operator> <literal type="char">'a'</literal></expr>]</index></name></expr>;</expr_stmt>
+                    <expr_stmt><expr><call><name>swap</name><argument_list>(<argument><expr><name><name>S</name><index>[<expr><name>i</name> <operator>+</operator> <literal type="number">1</literal></expr>]</index></name></expr></argument>, <argument><expr><name><name>T</name><index>[<expr><name>j</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                    <expr_stmt><expr><call><name><name>si</name><operator>.</operator><name>push_back</name></name><argument_list>(<argument><expr><name>i</name> <operator>+</operator> <literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                    <expr_stmt><expr><call><name><name>tj</name><operator>.</operator><name>push_back</name></name><argument_list>(<argument><expr><name>i</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                    <expr_stmt><expr><operator>--</operator><name><name>cnt1</name><index>[<expr><name><name>S</name><index>[<expr><name>i</name> <operator>+</operator> <literal type="number">1</literal></expr>]</index></name> <operator>-</operator> <literal type="char">'a'</literal></expr>]</index></name></expr>;</expr_stmt>
+                    <expr_stmt><expr><operator>--</operator><name><name>cnt2</name><index>[<expr><name><name>T</name><index>[<expr><name>i</name></expr>]</index></name> <operator>-</operator> <literal type="char">'a'</literal></expr>]</index></name></expr>;</expr_stmt>
+                    <expr_stmt><expr><operator>++</operator><name><name>cnt1</name><index>[<expr><name><name>T</name><index>[<expr><name>i</name></expr>]</index></name> <operator>-</operator> <literal type="char">'a'</literal></expr>]</index></name></expr>;</expr_stmt>
+                    <expr_stmt><expr><operator>++</operator><name><name>cnt2</name><index>[<expr><name><name>S</name><index>[<expr><name>i</name> <operator>+</operator> <literal type="number">1</literal></expr>]</index></name> <operator>-</operator> <literal type="char">'a'</literal></expr>]</index></name></expr>;</expr_stmt>
+                    <expr_stmt><expr><call><name>swap</name><argument_list>(<argument><expr><name><name>S</name><index>[<expr><name>i</name> <operator>+</operator> <literal type="number">1</literal></expr>]</index></name></expr></argument>, <argument><expr><name><name>T</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                    <break>break;</break>
+                }</block></then></if>
+            }</block>
+        }</block></else></if>
+        <expr_stmt><expr><operator>--</operator><name><name>cnt1</name><index>[<expr><name><name>S</name><index>[<expr><name>i</name></expr>]</index></name> <operator>-</operator> <literal type="char">'a'</literal></expr>]</index></name></expr>;</expr_stmt>
+        <expr_stmt><expr><operator>--</operator><name><name>cnt2</name><index>[<expr><name><name>T</name><index>[<expr><name>i</name></expr>]</index></name> <operator>-</operator> <literal type="char">'a'</literal></expr>]</index></name></expr>;</expr_stmt>
+    }</block>
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"Yes"</literal> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <call><name><name>si</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+    <macro><name>rep</name><argument_list>(<argument>i</argument>, <argument><literal type="number">0</literal></argument>, <argument>si.size()</argument>)</argument_list></macro> <block>{
+        <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name><name>si</name><index>[<expr><name>i</name></expr>]</index></name> <operator>+</operator> <literal type="number">1</literal> <operator>&lt;&lt;</operator> <literal type="char">' '</literal> <operator>&lt;&lt;</operator> <name><name>tj</name><index>[<expr><name>i</name></expr>]</index></name> <operator>+</operator> <literal type="number">1</literal> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+    }</block>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+    <expr_stmt><expr><call><name><name>cin</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>ios</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>K</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>K</name></expr>;</expr_stmt>
+    <macro><name>rep</name><argument_list>(<argument>i</argument>, <argument><literal type="number">0</literal></argument>, <argument>K</argument>)</argument_list></macro> <expr_stmt><expr><call><name>hard</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1236/all/29091545_62792186.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;deque&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cmath&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;list&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;map&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstring&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;sstream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;unordered_map&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<decl_stmt><decl><specifier>constexpr</specifier> <type><name>int64_t</name></type> <name>MOD</name> <init>= <expr><literal type="number">1</literal><literal type="char">'000'</literal><literal type="number">000</literal><literal type="char">'</literal></expr></init></decl></decl_stmt>007;
+
+static unordered_map&lt;int64_t, unordered_map&lt;int64_t, int64_t&gt;&gt; cache;
+
+int64_t modpow(int64_t base, int64_t exp) {
+  if (exp == 0) {
+    return 1;
+  } else if (exp == 1) {
+    return base;
+  } else {
+    auto iter = cache[base].find(exp);
+    if (iter != cache[base].end()) {
+      return iter-&gt;second;
+    }
+
+    const auto half = exp / 2LL;
+    const auto otherhalf = exp - half;
+    const auto ans = (modpow(base, half) * modpow(base, otherhalf)) % MOD;
+    cache[base][exp] = ans;
+    return ans;
+  }
+}
+
+int main(int argc, char **argv) {
+  std::ios_base::sync_with_stdio(false);
+  cin.tie(nullptr);
+
+  int64_t n, m;
+  cin &gt;&gt; n &gt;&gt; m;
+
+  int64_t a = modpow(2, m);
+  a = (a + MOD - 1) % MOD;
+  int64_t ans = modpow(a, n);
+
+  cout &lt;&lt; ans &lt;&lt; endl;
+
+  return 0;
+}
+</unit>
