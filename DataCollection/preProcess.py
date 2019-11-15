@@ -96,9 +96,23 @@ def generateStandingStatistics(contest_id, problem_ids, topk=5):
 
     fw.close()
 
-### preprocess data
-contest_id = "1245"
-problemA_id = "456074"
-problemB_id = "456075"
-problemC_id = "456076"
-generateStandingStatistics(contest_id, [problemA_id, problemB_id, problemC_id])
+### preprocess data for contest 1245
+# contest_id = "1245"
+# problemA_id = "456074"
+# problemB_id = "456075"
+# problemC_id = "456076"
+# generateStandingStatistics(contest_id, [problemA_id, problemB_id, problemC_id])
+
+### preprocess data for contest 1245
+# contest_id = "1236"
+# problemA_id = "442393"
+# problemB_id = "442394"
+# problemC_id = "442395"
+# generateStandingStatistics(contest_id, [problemA_id, problemB_id, problemC_id])
+#
+# ### preprocess data for contest 1245
+# contest_id = "1243"
+# problemA_id = "461411"
+# problemB_id = "461412"
+# problemC_id = "461413"
+# generateStandingStatistics(contest_id, [problemA_id, problemB_id, problemC_id])
