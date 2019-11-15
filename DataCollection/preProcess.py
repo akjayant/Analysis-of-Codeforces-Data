@@ -26,8 +26,8 @@ def generateSourceCodeStatistics(contest_id, standings, participant_id, submissi
     ### extract statistics
     submissionid = tds[0].get_text().lstrip().split('\n')[0]
     language = tds[3].get_text().lstrip().split('\n')[0]
-    time = tds[5].get_text().lstrip().split('\n')[0]
-    memory = tds[6].get_text().lstrip().split('\n')[0]
+    time = tds[5].get_text().lstrip().split('\n')[0].split(' ')[0] ### in ms
+    memory = tds[6].get_text().lstrip().split('\n')[0].split(' ')[0] ### in KB
 
     ### extract source code
     contest_id_dir = "Contest"+contest_id
