@@ -56,7 +56,7 @@ def generateSourceCodeStatistics(contest_id, standings, participant_id, submissi
 def generateStandingStatistics(contest_id, problem_ids, topk=5):
     contest_id_dir = "Contest"+contest_id
     fw = open(contest_id_dir+"/standings_statistics", 'w') ## write to statistics file
-    fw.write("ParticipantID\tRank\tProblemA_id\tProblemA_memory\tProblemA_time\tProblemA_language\tProblemB_id\tProblemB_memory\tProblemB_time\tProblemB_language\tProblemC_id\tProblemC_memory\tProblemC_time\tProblemC_language\n")
+    fw.write("ParticipantID\tRank\tCountry\tProblemA_id\tProblemA_memory\tProblemA_time\tProblemA_language\tProblemB_id\tProblemB_memory\tProblemB_time\tProblemB_language\tProblemC_id\tProblemC_memory\tProblemC_time\tProblemC_language\n")
 
     for i in range(topk):
         f = open(contest_id_dir+"/standings_"+str(i+1), 'r')
@@ -74,7 +74,12 @@ def generateStandingStatistics(contest_id, problem_ids, topk=5):
             tds = p.find_all('td')
 
             line += participant_id
-            line += ('\t' + tds[0].get_text().lstrip().split('\n')[0])
+            rank = tds[0].get_text().lstrip().split('\n')[0]
+            country = '-'
+            if len(tds[1].find_all('img')) != 0:
+                country = tds[1].find_all('img')[0]['title']
+            line += ('\t' + rank + '\t' + country)
+            print(line)
 
             for pid in problem_ids:
                 found = False
