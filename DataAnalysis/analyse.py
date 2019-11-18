@@ -55,3 +55,43 @@ f.close()
 # plt.bar(y_pos, countryContestants)
 # plt.xticks(y_pos, countryNames, fontsize=4)
 # plt.savefig('standingsAll_country.pdf')
+
+### distrbution analysis of memory + time for 'China'
+countryNames = []
+countryContestants = []
+
+problemIndex = 3
+program_time = []
+program_memory = []
+
+startPosition = 1
+endPosition = 1000
+
+group1 = 0
+group2 = 0
+
+for i in range(startPosition, endPosition+1):
+    entries = statistic_data[i].split('\t')
+    country = entries[2]
+    if country != 'China' and country != '-':
+        language = entries[6+4*(problemIndex-1)]
+        time = (entries[5+4*(problemIndex-1)].split(' ')[0])
+        memory = (entries[4+4*(problemIndex-1)].split(' ')[0])
+        if "c++" in language.lower():
+            if time != '-':
+                if(int(memory)) <= 1000:
+                    group1 += 1
+                else:
+                    group2 += 1
+
+                program_time.append(int(time))
+                program_memory.append(int(memory))
+
+print(group1, group2)
+
+plt.hist(program_time, bins = 200)
+plt.show()
+
+plt.hist(program_memory, bins = 100)
+plt.xticks(np.arange(0,60000,1000), fontsize=4)
+plt.show()
