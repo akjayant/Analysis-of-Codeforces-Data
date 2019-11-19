@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1244/all/28894868_62501461.cpp">
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ln</name></cpp:macro>                <cpp:value>'\n'</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>all</name><parameter_list>(<parameter><type><name>dat</name></type></parameter>)</parameter_list></cpp:macro>           <cpp:value>dat.begin(), dat.end()</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>loop</name><parameter_list>(<parameter><type><name>i</name></type></parameter>, <parameter><type><name>to</name></type></parameter>)</parameter_list></cpp:macro>        <cpp:value>for (int i = 0; i &lt; to; ++i)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>cont</name><parameter_list>(<parameter><type><name>i</name></type></parameter>, <parameter><type><name>to</name></type></parameter>)</parameter_list></cpp:macro>        <cpp:value>for (int i = 1; i &lt;= to; ++i)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>circ</name><parameter_list>(<parameter><type><name>i</name></type></parameter>, <parameter><type><name>fr</name></type></parameter>, <parameter><type><name>to</name></type></parameter>)</parameter_list></cpp:macro>    <cpp:value>for (int i = fr; i &lt;= to; ++i)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>foreach</name><parameter_list>(<parameter><type><name>i</name></type></parameter>, <parameter><type><name>dat</name></type></parameter>)</parameter_list></cpp:macro>    <cpp:value>for (__typeof(dat.begin()) i = dat.begin(); i != dat.end(); ++i)</cpp:value></cpp:define>
+
+<typedef>typedef <type><name>long</name> <name>long</name></type>          <name>num</name>;</typedef>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>num</name></type> <name>inf</name> <init>= <expr><literal type="number">0x3f3f3f3f3f3f</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>num</name></type> <name>n</name></decl>, <decl><type ref="prev"/><name>k</name></decl>, <decl><type ref="prev"/><name>mn</name> <init>= <expr><name>inf</name></expr></init></decl>, <decl><type ref="prev"/><name>mx</name> <init>= <expr><operator>-</operator><name>inf</name></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><name><name>map</name><argument_list type="generic">&lt;<argument><expr><name>num</name></expr></argument>, <argument><expr><name>num</name></expr></argument>&gt;</argument_list></name></type> <name>cnt</name></decl>;</decl_stmt>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+    <expr_stmt><expr><call><name><name>ios_base</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name> <operator>&gt;&gt;</operator> <name>k</name></expr>;</expr_stmt>
+    <macro><name>cont</name> <argument_list>(<argument>i</argument>, <argument>n</argument>)</argument_list></macro> <block>{
+        <decl_stmt><decl><type><name>num</name></type> <name>a</name></decl>;</decl_stmt>
+        <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>a</name></expr>;</expr_stmt>
+        <expr_stmt><expr><operator>++</operator><name><name>cnt</name><index>[<expr><name>a</name></expr>]</index></name></expr>;</expr_stmt>
+        <expr_stmt><expr><name>mn</name> <operator>=</operator> <call><name>min</name><argument_list>(<argument><expr><name>mn</name></expr></argument>, <argument><expr><name>a</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name>mx</name> <operator>=</operator> <call><name>max</name><argument_list>(<argument><expr><name>mx</name></expr></argument>, <argument><expr><name>a</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    }</block>
+    <decl_stmt><decl><type><name>num</name></type> <name>cn</name> <init>= <expr><name><name>cnt</name><index>[<expr><name>mn</name></expr>]</index></name></expr></init></decl>, <decl><type ref="prev"/><name>cx</name> <init>= <expr><name><name>cnt</name><index>[<expr><name>mx</name></expr>]</index></name></expr></init></decl>;</decl_stmt>
+    <for>for <control>(<init>;</init> <condition><expr><name>mn</name> <operator>&lt;</operator> <name>mx</name></expr>;</condition><incr/>)</control> <block>{
+        <if>if <condition>(<expr><name>cx</name> <operator>&lt;</operator> <name>cn</name></expr>)</condition><then> <block>{
+            <decl_stmt><decl><type><name><name><name>map</name><argument_list type="generic">&lt;<argument><expr><name>num</name></expr></argument>, <argument><expr><name>num</name></expr></argument>&gt;</argument_list></name><operator>::</operator><name>iterator</name></name></type> <name>it</name> <init>= <expr><operator>--</operator><call><name><name>cnt</name><operator>.</operator><name>lower_bound</name></name><argument_list>(<argument><expr><name>mx</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <decl_stmt><decl><type><name>num</name></type> <name>p</name> <init>= <expr><name><name>it</name><operator>-&gt;</operator><name>first</name></name></expr></init></decl>, <decl><type ref="prev"/><name>c</name> <init>= <expr><name><name>it</name><operator>-&gt;</operator><name>second</name></name></expr></init></decl>, <decl><type ref="prev"/><name>del</name> <init>= <expr><name>cx</name> <operator>*</operator> <operator>(</operator><name>mx</name> <operator>-</operator> <name>p</name><operator>)</operator></expr></init></decl>;</decl_stmt>
+            <if>if <condition>(<expr><name>k</name> <operator>&gt;=</operator> <name>del</name></expr>)</condition><then> <block>{
+                <expr_stmt><expr><name>k</name> <operator>-=</operator> <name>del</name></expr>;</expr_stmt>
+                <expr_stmt><expr><name>mx</name> <operator>=</operator> <name>p</name></expr>;</expr_stmt>
+                <expr_stmt><expr><name>cx</name> <operator>+=</operator> <name>c</name></expr>;</expr_stmt>
+            }</block></then> <else>else <block>{
+                <expr_stmt><expr><name>mx</name> <operator>=</operator> <name>mx</name> <operator>-</operator> <name>k</name> <operator>/</operator> <name>cx</name></expr>;</expr_stmt>
+                <expr_stmt><expr><name>k</name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+            }</block></else></if>
+        }</block></then> <else>else <block>{
+            <decl_stmt><decl><type><name><name><name>map</name><argument_list type="generic">&lt;<argument><expr><name>num</name></expr></argument>, <argument><expr><name>num</name></expr></argument>&gt;</argument_list></name><operator>::</operator><name>iterator</name></name></type> <name>it</name> <init>= <expr><call><name><name>cnt</name><operator>.</operator><name>upper_bound</name></name><argument_list>(<argument><expr><name>mn</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <decl_stmt><decl><type><name>num</name></type> <name>p</name> <init>= <expr><name><name>it</name><operator>-&gt;</operator><name>first</name></name></expr></init></decl>, <decl><type ref="prev"/><name>c</name> <init>= <expr><name><name>it</name><operator>-&gt;</operator><name>second</name></name></expr></init></decl>, <decl><type ref="prev"/><name>del</name> <init>= <expr><name>cn</name> <operator>*</operator> <operator>(</operator><name>p</name> <operator>-</operator> <name>mn</name><operator>)</operator></expr></init></decl>;</decl_stmt>
+            <if>if <condition>(<expr><name>k</name> <operator>&gt;=</operator> <name>del</name></expr>)</condition><then> <block>{
+                <expr_stmt><expr><name>k</name> <operator>-=</operator> <name>del</name></expr>;</expr_stmt>
+                <expr_stmt><expr><name>mn</name> <operator>=</operator> <name>p</name></expr>;</expr_stmt>
+                <expr_stmt><expr><name>cn</name> <operator>+=</operator> <name>c</name></expr>;</expr_stmt>
+            }</block></then> <else>else <block>{
+                <expr_stmt><expr><name>mn</name> <operator>=</operator> <name>mn</name> <operator>+</operator> <name>k</name> <operator>/</operator> <name>cn</name></expr>;</expr_stmt>
+                <expr_stmt><expr><name>k</name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+            }</block></else></if>
+        }</block></else></if>
+        <if>if <condition>(<expr><operator>!</operator><name>k</name></expr>)</condition><then>  <block type="pseudo"><break>break;</break></block></then></if>
+    }</block></for>
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>mx</name> <operator>-</operator> <name>mn</name> <operator>&lt;&lt;</operator> <name>ln</name></expr>;</expr_stmt>
+}</block></function>
+</unit>

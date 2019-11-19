@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1244/all/28935188_62481505.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cassert&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cmath&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdio&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;deque&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iomanip&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;map&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;queue&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;set&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;stack&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;unordered_map&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;unordered_set&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;utility&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cfloat&gt;</cpp:file></cpp:include>
+
+<using>using <name><name>std</name><operator>::</operator><name>cerr</name></name>;</using>
+<using>using <name><name>std</name><operator>::</operator><name>cin</name></name>;</using>
+<using>using <name><name>std</name><operator>::</operator><name>cout</name></name>;</using>
+<using>using <name><name>std</name><operator>::</operator><name>endl</name></name>;</using>
+
+<struct><template>template<parameter_list>&lt;<parameter><type><name>typename</name></type> <name>CostType</name></parameter>&gt;</parameter_list></template>
+<comment type="line" format="doxygen">/// \brief è¾ºã®æå ±</comment>
+struct <name>Edge</name><block>{<public type="default">
+  <decl_stmt><decl><type><name>int</name></type>      <name>to</name></decl>;</decl_stmt>
+  <decl_stmt><decl><type><name>CostType</name></type> <name>cost</name></decl>;</decl_stmt>
+
+  <constructor><name>Edge</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>t</name></decl></parameter>, <parameter><decl><type><name>CostType</name></type> <name>c</name></decl></parameter>)</parameter_list><member_init_list>: <call><name>to</name><argument_list>(<argument><expr><name>t</name></expr></argument>)</argument_list></call>, <call><name>cost</name><argument_list>(<argument><expr><name>c</name></expr></argument>)</argument_list></call></member_init_list><block>{
+  }</block></constructor>
+</public>}</block>;</struct>
+
+<class><template>template<parameter_list>&lt;<parameter><type><name>typename</name></type> <name>CostType</name></parameter>&gt;</parameter_list></template>
+class <name>Graph</name><block>{<private type="default">
+
+</private><private>private:
+
+  <comment type="line" format="doxygen">/// \brief adjacent_list_[n]=ãã¼ãnã®é£æ¥ãªã¹ããè¡¨ãvector&lt;Edge&gt;</comment>
+  <decl_stmt><decl><type><name><name>std</name><operator>::</operator><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name><name>std</name><operator>::</operator><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name><name>Edge</name><argument_list type="generic">&lt;<argument><expr><name>CostType</name></expr></argument>&gt;</argument_list></name></expr></argument>&gt;</argument_list></name></name></expr></argument>&gt;</argument_list></name></name></type> <name>adjacent_list_</name></decl>;</decl_stmt>
+
+</private><public>public:
+
+  <comment type="line" format="doxygen">/// \brief é ç¹æ°</comment>
+  <decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>NODE_SIZE_</name></decl>;</decl_stmt>
+
+  <comment type="line" format="doxygen">/// \brief ã³ã³ã¹ãã©ã¯ã¿</comment>
+  <comment type="line" format="doxygen">/// \param node_size é ç¹æ°</comment>
+  <constructor><specifier>explicit</specifier> <name>Graph</name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name>int</name></type> <name>node_size</name></decl></parameter>)</parameter_list><member_init_list>: <call><name>NODE_SIZE_</name><argument_list>(<argument><expr><name>node_size</name></expr></argument>)</argument_list></call>,
+                                       <call><name>adjacent_list_</name><argument_list>(<argument><expr><name>node_size</name></expr></argument>)</argument_list></call></member_init_list><block>{
+  }</block></constructor>
+
+  <comment type="line" format="doxygen">/// \brief æåã°ã©ãã®è¾ºãçãã</comment>
+  <comment type="line" format="doxygen">/// \param from è¾ºã®æ ¹æ¬ã®é ç¹ã®çªå·</comment>
+  <comment type="line" format="doxygen">/// \param to è¾ºã®åã®é ç¹ã®çªå·</comment>
+  <comment type="line" format="doxygen">/// \param cost è¾ºã®ã³ã¹ã</comment>
+  <function><type><name>void</name></type> <name>SetDirectedEdge</name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name>int</name></type> <name>from</name></decl></parameter>, <parameter><decl><type><specifier>const</specifier> <name>int</name></type> <name>to</name></decl></parameter>, <parameter><decl><type><specifier>const</specifier> <name>CostType</name></type> <name>cost</name></decl></parameter>)</parameter_list><block>{
+    <expr_stmt><expr><name><name>adjacent_list_</name><index>[<expr><name>from</name></expr>]</index></name><operator>.</operator><call><name>push_back</name><argument_list>(<argument><expr><call><name><name>Edge</name><argument_list type="generic">&lt;<argument><expr><name>CostType</name></expr></argument>&gt;</argument_list></name><argument_list>(<argument><expr><name>to</name></expr></argument>, <argument><expr><name>cost</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  }</block></function>
+
+  <comment type="line" format="doxygen">/// \brief ç¡åã°ã©ãã®è¾ºãçãã</comment>
+  <comment type="line" format="doxygen">/// \param node_a ä¸æ¹ã®é ç¹ã®çªå·</comment>
+  <comment type="line" format="doxygen">/// \param node_b ããä¸æ¹ã®é ç¹ã®çªå·</comment>
+  <comment type="line" format="doxygen">/// \param cost è¾ºã®ã³ã¹ã</comment>
+  <function><type><name>void</name></type>
+  <name>SetUndirectedEdge</name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name>int</name></type> <name>node_a</name></decl></parameter>, <parameter><decl><type><specifier>const</specifier> <name>int</name></type> <name>node_b</name></decl></parameter>, <parameter><decl><type><specifier>const</specifier> <name>CostType</name></type> <name>cost</name></decl></parameter>)</parameter_list><block>{
+    <expr_stmt><expr><call><name>SetDirectedEdge</name><argument_list>(<argument><expr><name>node_a</name></expr></argument>, <argument><expr><name>node_b</name></expr></argument>, <argument><expr><name>cost</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>SetDirectedEdge</name><argument_list>(<argument><expr><name>node_b</name></expr></argument>, <argument><expr><name>node_a</name></expr></argument>, <argument><expr><name>cost</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  }</block></function>
+
+  <comment type="line" format="doxygen">/// \brief ããé ç¹ã®é£æ¥ãªã¹ããåå¾</comment>
+  <comment type="line" format="doxygen">/// \param node_num é ç¹ã®çªå·</comment>
+  <comment type="line" format="doxygen">/// \return é£æ¥ãªã¹ã</comment>
+  <function><type><name><name>std</name><operator>::</operator><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name><name>Edge</name><argument_list type="generic">&lt;<argument><expr><name>CostType</name></expr></argument>&gt;</argument_list></name></expr></argument>&gt;</argument_list></name></name></type> <name>GetAdjacentList</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>node_num</name></decl></parameter>)</parameter_list> <specifier>const</specifier><block>{
+    <return>return <expr><name><name>adjacent_list_</name><index>[<expr><name>node_num</name></expr>]</index></name></expr>;</return>
+  }</block></function>
+</public>}</block>;</class>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>(<parameter><decl><type><name>void</name></type></decl></parameter>)</parameter_list><block>{
+  <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name><name>std</name><operator>::</operator><name>fixed</name></name> <operator>&lt;&lt;</operator> <call><name><name>std</name><operator>::</operator><name>setprecision</name></name><argument_list>(<argument><expr><literal type="number">16</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><call><name><name>cin</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><call><name><name>std</name><operator>::</operator><name>ios</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+  <decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>;</decl_stmt>
+  <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>n</name></expr>;</expr_stmt>
+  <decl_stmt><decl><type><name><name>std</name><operator>::</operator><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int64_t</name></expr></argument>&gt;</argument_list></name></name></type> <name>red</name><argument_list>(<argument><expr><name>n</name></expr></argument>)</argument_list></decl>,<decl><type ref="prev"/><name>green</name><argument_list>(<argument><expr><name>n</name></expr></argument>)</argument_list></decl>,<decl><type ref="prev"/><name>blue</name><argument_list>(<argument><expr><name>n</name></expr></argument>)</argument_list></decl>;</decl_stmt>
+  <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control><block>{
+    <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name><name>red</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt>
+  }</block></for>
+  <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control><block>{
+    <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name><name>green</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt>
+  }</block></for>
+  <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control><block>{
+    <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name><name>blue</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt>
+  }</block></for>
+
+  <decl_stmt><decl><type><name><name>Graph</name><argument_list type="generic">&lt;<argument><expr><name>int64_t</name></expr></argument>&gt;</argument_list></name></type> <name>graph</name><argument_list>(<argument><expr><name>n</name></expr></argument>)</argument_list></decl>;</decl_stmt>
+  <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>n</name><operator>-</operator><literal type="number">1</literal></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control><block>{
+    <decl_stmt><decl><type><name>int</name></type> <name>a</name></decl>,<decl><type ref="prev"/><name>b</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>a</name><operator>&gt;&gt;</operator><name>b</name></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>graph</name><operator>.</operator><name>SetUndirectedEdge</name></name><argument_list>(<argument><expr><name>a</name><operator>-</operator><literal type="number">1</literal></expr></argument>,<argument><expr><name>b</name><operator>-</operator><literal type="number">1</literal></expr></argument>,<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  }</block></for>
+
+  <decl_stmt><decl><type><name>int</name></type> <name>leftnode</name><init>=<expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>,<decl><type ref="prev"/><name>rightnode</name><init>=<expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+  <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control><block>{
+    <decl_stmt><decl><type><name>int</name></type> <name>size</name><init>=<expr><call><name><name>graph</name><operator>.</operator><name>GetAdjacentList</name></name><argument_list>(<argument><expr><name>i</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>size</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if>if<condition>(<expr><name>size</name><operator>&gt;=</operator><literal type="number">3</literal></expr>)</condition><then><block>{
+      <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><operator>-</operator><literal type="number">1</literal><operator>&lt;&lt;</operator><name>endl</name></expr>;</expr_stmt>
+      <return>return <expr><literal type="number">0</literal></expr>;</return>
+    }</block></then><elseif>else <if>if<condition>(<expr><name>size</name><operator>==</operator><literal type="number">1</literal></expr>)</condition><then><block>{
+      <if>if<condition>(<expr><name>leftnode</name><operator>==</operator><operator>-</operator><literal type="number">1</literal></expr>)</condition><then><block>{
+        <expr_stmt><expr><name>leftnode</name><operator>=</operator><name>i</name></expr>;</expr_stmt>
+      }</block></then><else>else<block>{
+        <expr_stmt><expr><name>rightnode</name><operator>=</operator><name>i</name></expr>;</expr_stmt>
+      }</block></else></if>
+    }</block></then></if></elseif></if>
+  }</block></for>
+
+  <decl_stmt><decl><type><name>int64_t</name></type> <name>result_cost</name><init>=<expr><name>INT64_MAX</name></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><name><name>std</name><operator>::</operator><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></name></type> <name>result_vec</name></decl>;</decl_stmt>
+  <for>for<control>(<init><decl><type><name>int</name></type> <name>sign</name><init>=<expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</init><condition><expr><name>sign</name><operator>&lt;=</operator><literal type="number">1</literal></expr>;</condition><incr><expr><name>sign</name><operator>+=</operator><literal type="number">2</literal></expr></incr>)</control><block>{
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>left_col</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</init><condition><expr><name>left_col</name><operator>&lt;=</operator><literal type="number">3</literal></expr>;</condition><incr><expr><name>left_col</name><operator>++</operator></expr></incr>)</control><block>{
+      <decl_stmt><decl><type><name>int64_t</name></type> <name>cost</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name><name>std</name><operator>::</operator><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></name></type> <name>painting</name><argument_list>(<argument><expr><name>n</name></expr></argument>)</argument_list></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>int</name></type> <name>color</name><init>=<expr><name>left_col</name></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>int</name></type> <name>prev_node</name><init>=<expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+      <decl_stmt><decl><type><name>int</name></type> <name>curr_node</name><init>=<expr><name>leftnode</name></expr></init></decl>;</decl_stmt>
+      <for>for<control>(<init><decl><type><name>int</name></type> <name>count</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>count</name><operator>&lt;</operator><name>n</name></expr>;</condition><incr><expr><name>count</name><operator>++</operator></expr></incr>)</control><block>{
+        <expr_stmt><expr><name><name>painting</name><index>[<expr><name>curr_node</name></expr>]</index></name><operator>=</operator><name>color</name></expr>;</expr_stmt>
+        <if>if<condition>(<expr><name>color</name><operator>==</operator><literal type="number">1</literal></expr>)</condition><then><block>{
+          <expr_stmt><expr><name>cost</name><operator>+=</operator><name><name>red</name><index>[<expr><name>curr_node</name></expr>]</index></name></expr>;</expr_stmt>
+        }</block></then><elseif>else <if>if<condition>(<expr><name>color</name><operator>==</operator><literal type="number">2</literal></expr>)</condition><then><block>{
+          <expr_stmt><expr><name>cost</name><operator>+=</operator><name><name>green</name><index>[<expr><name>curr_node</name></expr>]</index></name></expr>;</expr_stmt>
+        }</block></then></if></elseif><else>else<block>{
+          <expr_stmt><expr><name>cost</name><operator>+=</operator><name><name>blue</name><index>[<expr><name>curr_node</name></expr>]</index></name></expr>;</expr_stmt>
+        }</block></else></if>
+
+        <if>if<condition>(<expr><name>count</name><operator>!=</operator><name>n</name><operator>-</operator><literal type="number">1</literal></expr>)</condition><then><block>{
+          <decl_stmt><decl><type><name><name>std</name><operator>::</operator><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name><name>Edge</name><argument_list type="generic">&lt;<argument><expr><name>int64_t</name></expr></argument>&gt;</argument_list></name></expr></argument>&gt;</argument_list></name></name></type> <name>list</name><init>=<expr><call><name><name>graph</name><operator>.</operator><name>GetAdjacentList</name></name><argument_list>(<argument><expr><name>curr_node</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+          <if>if<condition>(<expr><call><name><name>list</name><operator>.</operator><name>front</name></name><argument_list>()</argument_list></call><operator>.</operator><name>to</name><operator>!=</operator><name>prev_node</name></expr>)</condition><then><block>{
+            <expr_stmt><expr><name>prev_node</name><operator>=</operator><name>curr_node</name></expr>;</expr_stmt>
+            <expr_stmt><expr><name>curr_node</name><operator>=</operator><call><name><name>list</name><operator>.</operator><name>front</name></name><argument_list>()</argument_list></call><operator>.</operator><name>to</name></expr>;</expr_stmt>
+          }</block></then><else>else<block>{
+            <expr_stmt><expr><name>prev_node</name><operator>=</operator><name>curr_node</name></expr>;</expr_stmt>
+            <expr_stmt><expr><name>curr_node</name><operator>=</operator><call><name><name>list</name><operator>.</operator><name>back</name></name><argument_list>()</argument_list></call><operator>.</operator><name>to</name></expr>;</expr_stmt>
+          }</block></else></if>
+        }</block></then></if>
+        <expr_stmt><expr><name>color</name><operator>+=</operator><name>sign</name></expr>;</expr_stmt>
+        <if>if<condition>(<expr><name>color</name><operator>&gt;</operator><literal type="number">3</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>color</name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt></block></then>
+        <elseif>else <if>if<condition>(<expr><name>color</name><operator>&lt;=</operator><literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>color</name><operator>=</operator><literal type="number">3</literal></expr>;</expr_stmt></block></then></if></elseif></if>
+
+      }</block></for>
+
+      <if>if<condition>(<expr><name>cost</name><operator>&lt;</operator><name>result_cost</name></expr>)</condition><then><block>{
+        <expr_stmt><expr><name>result_cost</name><operator>=</operator><name>cost</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name>result_vec</name><operator>=</operator><name>painting</name></expr>;</expr_stmt>
+      }</block></then></if>
+    }</block></for>
+  }</block></for>
+
+  <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><name>result_cost</name><operator>&lt;&lt;</operator><name>endl</name></expr>;</expr_stmt>
+  <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>n</name><operator>-</operator><literal type="number">1</literal></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control><block>{
+    <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><name><name>result_vec</name><index>[<expr><name>i</name></expr>]</index></name><operator>&lt;&lt;</operator><literal type="string">" "</literal></expr>;</expr_stmt>
+  }</block></for>
+  <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><name><name>result_vec</name><index>[<expr><name>n</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name><operator>&lt;&lt;</operator><name>endl</name></expr>;</expr_stmt>
+
+
+
+  <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

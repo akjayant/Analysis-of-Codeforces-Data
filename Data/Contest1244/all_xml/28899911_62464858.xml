@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1244/all/28899911_62464858.cpp"><cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+
+<comment type="block">/*
+#include &lt;ext/pb_ds/assoc_container.hpp&gt; 
+#include &lt;ext/pb_ds/tree_policy.hpp&gt; 
+using namespace __gnu_pbds;
+#define ordered_set tree&lt;int, null_type,less&lt;int&gt;, rb_tree_tag,tree_order_statistics_node_update&gt; 
+//order_of_key (k) : Number of items strictly smaller than k .
+//find_by_order(k) : K-th element in a set (counting from zero).
+*/</comment>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>LL</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>LD</name></cpp:macro> <cpp:value>long double</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>PB</name></cpp:macro> <cpp:value>push_back</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>MP</name></cpp:macro> <cpp:value>make_pair</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>all</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>x.begin(), x.end()</cpp:value></cpp:define>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>LL</name></type> <name>MOD</name> <init>= <expr><operator>(</operator><literal type="number">1e9</literal><operator>)</operator> <operator>+</operator> <literal type="number">7</literal></expr></init></decl> ;</decl_stmt>
+<decl_stmt><decl><type><specifier>const</specifier> <name>LD</name></type> <name>EPS</name> <init>= <expr><literal type="number">0.0000001</literal></expr></init></decl> ;</decl_stmt>
+
+<function><type><name>LL</name></type> <name>pows</name><parameter_list>(<parameter><decl><type><name>LL</name></type> <name>a</name></decl></parameter>, <parameter><decl><type><name>LL</name></type> <name>b</name></decl></parameter>)</parameter_list>
+<block>{
+	<if>if <condition>(<expr><name>b</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><return>return <expr><literal type="number">1LL</literal></expr>;</return></block></then></if>
+	<decl_stmt><decl><type><name>LL</name></type> <name>temp</name> <init>= <expr><call><name>pows</name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><name>b</name> <operator>/</operator> <literal type="number">2</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+	<expr_stmt><expr><name>temp</name> <operator>=</operator> <operator>(</operator><name>temp</name> <operator>*</operator> <name>temp</name><operator>)</operator> <operator>%</operator> <name>MOD</name></expr>;</expr_stmt>
+	<if>if <condition>(<expr><name>b</name> <operator>%</operator> <literal type="number">2</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>temp</name> <operator>=</operator> <operator>(</operator><name>temp</name> <operator>*</operator> <name>a</name><operator>)</operator> <operator>%</operator> <name>MOD</name></expr>;</expr_stmt></block></then></if>
+	<return>return <expr><name>temp</name></expr>;</return>
+}</block></function>
+
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>(<parameter><decl><type><name>void</name></type></decl></parameter>)</parameter_list>
+<block>{
+	<expr_stmt><expr><call><name><name>ios_base</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>cin</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><name>NULL</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <decl_stmt><decl><type><name>int</name></type> <name>t</name></decl>;</decl_stmt> <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>t</name></expr>;</expr_stmt>
+    <while>while <condition>(<expr><name>t</name><operator>--</operator></expr>)</condition><block>{
+    	<decl_stmt><decl><type><name>LD</name></type> <name>a</name></decl>, <decl><type ref="prev"/><name>b</name></decl>, <decl><type ref="prev"/><name>c</name></decl>, <decl><type ref="prev"/><name>d</name></decl>, <decl><type ref="prev"/><name>k</name></decl>;</decl_stmt> <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>a</name> <operator>&gt;&gt;</operator> <name>b</name> <operator>&gt;&gt;</operator> <name>c</name> <operator>&gt;&gt;</operator> <name>d</name> <operator>&gt;&gt;</operator><name>k</name></expr>;</expr_stmt>
+    	<decl_stmt><decl><type><name>int</name></type> <name>pen</name> <init>= <expr><call><name>ceil</name><argument_list>(<argument><expr><name>a</name> <operator>/</operator> <name>c</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    	<decl_stmt><decl><type><name>int</name></type> <name>pencil</name> <init>= <expr><call><name>ceil</name><argument_list>(<argument><expr><name>b</name> <operator>/</operator> <name>d</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    	<if>if <condition>(<expr><name>pen</name> <operator>+</operator> <name>pencil</name> <operator>&gt;</operator> <name>k</name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"-1\n"</literal></expr>;</expr_stmt></block></then>
+    	<else>else <block type="pseudo"><expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>pen</name> <operator>&lt;&lt;</operator> <literal type="string">" "</literal> <operator>&lt;&lt;</operator> <name>pencil</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt></block></else></if>
+    }</block></while>
+
+	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>

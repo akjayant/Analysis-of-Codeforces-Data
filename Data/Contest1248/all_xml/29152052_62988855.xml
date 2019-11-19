@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1248/all/29152052_62988855.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>LL</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>INF</name></cpp:macro> <cpp:value>0x3f3f3f3f</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ULL</name></cpp:macro> <cpp:value>unsigned long long</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>inc</name><parameter_list>(<parameter><type><name>i</name></type></parameter>,<parameter><type><name>j</name></type></parameter>,<parameter><type><name>k</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(int i=j;i&lt;=k;i++)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>dec</name><parameter_list>(<parameter><type><name>i</name></type></parameter>,<parameter><type><name>j</name></type></parameter>,<parameter><type><name>k</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(int i=j;i&gt;=k;i--)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>mem</name><parameter_list>(<parameter><type><name>i</name></type></parameter>,<parameter><type><name>j</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>memset(i,j,sizeof(i))</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>bug</name><parameter_list>(<parameter><type><name>args</name><modifier>...</modifier></type></parameter>)</parameter_list></cpp:macro> <cpp:value>cout&lt;&lt;#args&lt;&lt;"="&lt;&lt;args&lt;&lt;endl;</cpp:value></cpp:define>
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>N</name><init>=<expr><literal type="number">1e5</literal><operator>+</operator><literal type="number">5</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>mod</name><init>=<expr><literal type="number">1e9</literal><operator>+</operator><literal type="number">7</literal></expr></init></decl>;</decl_stmt>
+
+<decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>LL</name></type> <name><name>a</name><index>[<expr><name>N</name></expr>]</index></name></decl>,<decl><type ref="prev"/><name>s</name></decl>;</decl_stmt>
+<function><type><name>LL</name></type> <name>f</name><parameter_list>(<parameter><decl><type><name>LL</name></type> <name>x</name></decl></parameter>)</parameter_list> <block>{
+    <return>return <expr><name>x</name><operator>*</operator><name>x</name><operator>+</operator><operator>(</operator><name>s</name><operator>-</operator><name>x</name><operator>)</operator><operator>*</operator><operator>(</operator><name>s</name><operator>-</operator><name>x</name><operator>)</operator></expr>;</return>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+    <while>while<condition>(<expr><call><name>~<name>scanf</name></name><argument_list>(<argument><expr><literal type="string">"%d"</literal></expr></argument>,<argument><expr><operator>&amp;</operator><name>n</name></expr></argument>)</argument_list></call></expr>)</condition> <block>{
+        <expr_stmt><expr><name>s</name><operator>=</operator><literal type="number">0LL</literal></expr>;</expr_stmt>
+        <macro><name>inc</name><argument_list>(<argument>i</argument>,<argument><literal type="number">1</literal></argument>,<argument>n</argument>)</argument_list></macro> <block>{
+            <expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%lld"</literal></expr></argument>,<argument><expr><operator>&amp;</operator><name><name>a</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt> <expr_stmt><expr><name>s</name><operator>+=</operator><name><name>a</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt>
+        }</block>
+        <expr_stmt><expr><call><name>sort</name><argument_list>(<argument><expr><name>a</name><operator>+</operator><literal type="number">1</literal></expr></argument>,<argument><expr><name>a</name><operator>+</operator><literal type="number">1</literal><operator>+</operator><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <decl_stmt><decl><type><name>LL</name></type> <name>s1</name><init>=<expr><literal type="number">0LL</literal></expr></init></decl>;</decl_stmt>
+        <macro><name>inc</name><argument_list>(<argument>i</argument>,<argument><literal type="number">1</literal></argument>,<argument>n/<literal type="number">2</literal></argument>)</argument_list></macro> <expr_stmt><expr><name>s1</name><operator>+=</operator><name><name>a</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt>
+        <decl_stmt><decl><type><name>LL</name></type> <name>s2</name><init>=<expr><name>s</name><operator>-</operator><name>s1</name></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>LL</name></type> <name>ans</name><init>=<expr><call><name>max</name><argument_list>(<argument><expr><call><name>f</name><argument_list>(<argument><expr><name>s1</name></expr></argument>)</argument_list></call></expr></argument>,<argument><expr><call><name>f</name><argument_list>(<argument><expr><name>s2</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"%lld\n"</literal></expr></argument>,<argument><expr><name>ans</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    }</block></while>
+
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

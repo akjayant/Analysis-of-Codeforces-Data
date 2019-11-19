@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1244/all/28901623_62499236.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bitset&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;string&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;set&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;map&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cmath&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstring&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<function><specifier>inline</specifier> <type><name>int</name></type> <name>read</name><parameter_list>()</parameter_list><block>{
+	<decl_stmt><decl><type><specifier>register</specifier> <name>int</name></type> <name>res</name><init>=<expr><literal type="number">0</literal></expr></init></decl>, <decl><type ref="prev"/><name>c</name></decl>;</decl_stmt>
+	<while>while<condition>(<expr><name>c</name><operator>=</operator><call><name>getchar</name><argument_list>()</argument_list></call></expr><operator>,</operator> <expr><name><name>c</name><argument_list type="generic">&lt;<argument><expr><literal type="char">'0'</literal><operator>||</operator><name>c</name></expr></argument>&gt;</argument_list></name><literal type="char">'9'</literal></expr>)</condition><block type="pseudo"><empty_stmt>;</empty_stmt></block></while>
+	<do>do<block>{
+		<expr_stmt><expr><name>res</name><operator>=</operator><operator>(</operator><name>res</name><operator>*</operator><literal type="number">10</literal><operator>)</operator><operator>+</operator><operator>(</operator><name>c</name><operator>^</operator><literal type="number">48</literal><operator>)</operator></expr>;</expr_stmt>
+	}</block> while<condition>(<expr><name>c</name><operator>=</operator><call><name>getchar</name><argument_list>()</argument_list></call></expr><operator>,</operator> <expr><name>c</name><operator>&gt;=</operator><literal type="char">'0'</literal><operator>&amp;&amp;</operator><name>c</name><operator>&lt;=</operator><literal type="char">'9'</literal></expr>)</condition>;</do>
+	<return>return <expr><name>res</name></expr>;</return>
+}</block></function>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>LL</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<function><type><name>LL</name></type> <name>e_gcd</name><parameter_list>(<parameter><decl><type><name>LL</name></type> <name>a</name></decl></parameter>, <parameter><decl><type><name>LL</name></type> <name>b</name></decl></parameter>, <parameter><decl><type><name>LL</name> <modifier>&amp;</modifier></type><name>x</name></decl></parameter>, <parameter><decl><type><name>LL</name> <modifier>&amp;</modifier></type><name>y</name></decl></parameter>)</parameter_list>
+<block>{
+	<if>if<condition>(<expr><name>b</name><operator>==</operator><literal type="number">0</literal></expr>)</condition><then>
+	<block>{
+		<expr_stmt><expr><name>x</name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+		<expr_stmt><expr><name>y</name><operator>=</operator><literal type="number">0</literal></expr>;</expr_stmt>
+		<return>return <expr><name>a</name></expr>;</return>
+	}</block></then></if>
+	<decl_stmt><decl><type><name>LL</name></type> <name>ans</name><init>=<expr><call><name>e_gcd</name><argument_list>(<argument><expr><name>b</name></expr></argument>, <argument><expr><name>a</name><operator>%</operator><name>b</name></expr></argument>, <argument><expr><name>x</name></expr></argument>, <argument><expr><name>y</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+	<decl_stmt><decl><type><name>LL</name></type> <name>temp</name><init>=<expr><name>x</name></expr></init></decl>;</decl_stmt>
+	<expr_stmt><expr><name>x</name><operator>=</operator><name>y</name></expr>;</expr_stmt>
+	<expr_stmt><expr><name>y</name><operator>=</operator><name>temp</name><operator>-</operator><name>a</name><operator>/</operator><name>b</name><operator>*</operator><name>y</name></expr>;</expr_stmt>
+	<return>return <expr><name>ans</name></expr>;</return>
+}</block></function>
+
+<function><type><name>LL</name></type> <name>cal</name><parameter_list>(<parameter><decl><type><name>LL</name></type> <name>a</name></decl></parameter>, <parameter><decl><type><name>LL</name></type> <name>b</name></decl></parameter>, <parameter><decl><type><name>LL</name></type> <name>c</name></decl></parameter>)</parameter_list>
+<block>{
+	<decl_stmt><decl><type><name>LL</name></type> <name>x</name></decl>, <decl><type ref="prev"/><name>y</name></decl>;</decl_stmt>
+	<decl_stmt><decl><type><name>LL</name></type> <name>gcd</name><init>=<expr><call><name>e_gcd</name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><name>b</name></expr></argument>, <argument><expr><name>x</name></expr></argument>, <argument><expr><name>y</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+	<if>if<condition>(<expr><name>c</name><operator>%</operator><name>gcd</name></expr>)</condition><then> <block type="pseudo"><return>return <expr><operator>-</operator><literal type="number">1</literal></expr>;</return></block></then></if>
+	<expr_stmt><expr><name>b</name><operator>/=</operator><name>gcd</name></expr>;</expr_stmt><comment type="line">//çº¦å»cååæ¥bå°±åä¸ºäºb/gcd;</comment>
+	<expr_stmt><expr><name>x</name><operator>*=</operator><operator>(</operator><name>c</name><operator>/</operator><name>gcd</name><operator>%</operator><name>b</name><operator>)</operator></expr>;</expr_stmt><comment type="line">//è½¬åä¸ºa*x+b*y=cçè§£</comment>
+	<decl_stmt><decl><type><name>LL</name></type> <name>ans</name> <init>= <expr><operator>(</operator><name>x</name><operator>%</operator><name>b</name><operator>+</operator><name>b</name><operator>)</operator><operator>%</operator><name>b</name></expr></init></decl>;</decl_stmt>
+	<return>return <expr><name>ans</name></expr>;</return><comment type="line">//è¿åçå°±æ¯æå°æ­£æ´æ°è§£</comment>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+	<decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>n</name></decl>, <decl><type ref="prev"/><name>c</name></decl>, <decl><type ref="prev"/><name>a</name></decl>, <decl><type ref="prev"/><name>b</name></decl>;</decl_stmt>
+	<expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%lld%lld%lld%lld"</literal></expr></argument>, <argument><expr><operator>&amp;</operator><name>n</name></expr></argument>, <argument><expr><operator>&amp;</operator><name>c</name></expr></argument>, <argument><expr><operator>&amp;</operator><name>a</name></expr></argument>, <argument><expr><operator>&amp;</operator><name>b</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<decl_stmt><decl><type><name>bool</name></type> <name>swaped</name> <init>= <expr><name>a</name><operator>&gt;</operator><name>b</name></expr></init></decl>;</decl_stmt>
+	<if>if<condition>(<expr><name>a</name><operator>&gt;</operator><name>b</name></expr>)</condition><then><block type="pseudo"><expr_stmt><expr><call><name>swap</name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><name>b</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then></if>
+	<decl_stmt><decl><type><name>LL</name></type> <name>x</name> <init>= <expr><call><name>cal</name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><name>b</name></expr></argument>, <argument><expr><name>c</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+	<decl_stmt><decl><type><name>LL</name></type> <name>y</name> <init>= <expr><operator>(</operator><name>c</name><operator>-</operator><name>x</name><operator>*</operator><name>a</name><operator>)</operator><operator>/</operator><name>b</name></expr></init></decl>;</decl_stmt>
+	<if>if<condition>(<expr><name>x</name><operator>==</operator><operator>-</operator><literal type="number">1</literal> <operator>||</operator> <name><name>y</name><argument_list type="generic">&lt;<argument><expr><literal type="number">0</literal> <operator>||</operator> <name>x</name><operator>+</operator><name>y</name></expr></argument>&gt;</argument_list></name><name>n</name></expr>)</condition><then><block type="pseudo"><expr_stmt><expr><call><name>puts</name><argument_list>(<argument><expr><literal type="string">"-1"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then>
+	<comment type="line">//if(x*a+y*b!=c)while(1);</comment>
+	<else>else<block>{
+		<if>if<condition>(<expr><name>swaped</name></expr>)</condition><then><block type="pseudo"><expr_stmt><expr><call><name>swap</name><argument_list>(<argument><expr><name>x</name></expr></argument>, <argument><expr><name>y</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then></if>
+		<expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"%lld %lld %lld\n"</literal></expr></argument>, <argument><expr><name>x</name></expr></argument>, <argument><expr><name>y</name></expr></argument>, <argument><expr><name>n</name><operator>-</operator><name>x</name><operator>-</operator><name>y</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	}</block></else></if>
+
+	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+
+<comment type="block">/*
+1000000000000 77777777 100000 99999
+*/</comment></unit>

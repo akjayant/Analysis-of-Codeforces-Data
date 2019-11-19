@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1248/all/29169835_62978612.cpp"><comment type="block">/*input
+4
+1 1 2 2
+
+
+*/</comment>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;ext/pb_ds/assoc_container.hpp&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;ext/pb_ds/tree_policy.hpp&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<using>using <namespace>namespace <name>__gnu_pbds</name>;</namespace></using>
+<typedef>typedef <type><name><name>tree</name><argument_list type="generic">&lt;<argument><expr><name>long</name> <name>long</name></expr></argument>, <argument><expr><name>null_type</name></expr></argument>, <argument><expr><name><name>less_equal</name><argument_list type="generic">&lt;<argument><expr><name>long</name> <name>long</name></expr></argument>&gt;</argument_list></name></expr></argument>, <argument><expr><name>rb_tree_tag</name></expr></argument>, <argument><expr><name>tree_order_statistics_node_update</name></expr></argument>&gt;</argument_list></name></type> <name>indexed_set</name>;</typedef>
+<cpp:pragma>#<cpp:directive>pragma</cpp:directive> <name>GCC</name> <name>optimize</name><name>(</name><cpp:literal>"unroll-loops,no-stack-protector"</cpp:literal><name>)</name></cpp:pragma>
+<comment type="line">//order_of_key #of elements less than x</comment>
+<comment type="line">// find_by_order kth element</comment>
+<using>using <name>ll</name> <init>= <type><name>long</name> <name>long</name></type></init>;</using>
+<using>using <name>ld</name> <init>= <type><name>long</name> <name>double</name></type></init>;</using>
+<using>using <name>pii</name> <init>= <type><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>ll</name></expr></argument>,<argument><expr><name>ll</name></expr></argument>&gt;</argument_list></name></type></init>;</using>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>f</name></cpp:macro> <cpp:value>first</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>s</name></cpp:macro> <cpp:value>second</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pb</name></cpp:macro> <cpp:value>push_back</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>REP</name><parameter_list>(<parameter><type><name>i</name></type></parameter>,<parameter><type><name>n</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(int i=0;i&lt;n;i++)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>FILL</name><parameter_list>(<parameter><type><name>n</name></type></parameter>,<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>memset(n,x,sizeof(n))</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ALL</name><parameter_list>(<parameter><type><name>_a</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>_a.begin(),_a.end()</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>sz</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>(int)x.size()</cpp:value></cpp:define>
+<decl_stmt><decl><type><specifier>const</specifier> <name>ll</name></type> <name>INF64</name><init>=<expr><literal type="number">4e15</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>INF</name><init>=<expr><literal type="number">0x3f3f3f3f</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><specifier>const</specifier> <name>ll</name></type> <name>MOD</name><init>=<expr><literal type="number">1e9</literal><operator>+</operator><literal type="number">7</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><specifier>const</specifier> <name>ld</name></type> <name>PI</name><init>=<expr><call><name>acos</name><argument_list>(<argument><expr><operator>-</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><specifier>const</specifier> <name>ld</name></type> <name>eps</name><init>=<expr><literal type="number">1e-9</literal></expr></init></decl>;</decl_stmt>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>lowb</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>x&amp;(-x)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>MNTO</name><parameter_list>(<parameter><type><name>x</name></type></parameter>,<parameter><type><name>y</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>x=min(x,(__typeof__(x))y)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>MXTO</name><parameter_list>(<parameter><type><name>x</name></type></parameter>,<parameter><type><name>y</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>x=max(x,(__typeof__(x))y)</cpp:value></cpp:define>
+<function><type><name>ll</name></type> <name>mult</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>a</name></decl></parameter>,<parameter><decl><type><name>ll</name></type> <name>b</name></decl></parameter>)</parameter_list><block>{
+    <return>return <expr><operator>(</operator><operator>(</operator><name>a</name><operator>%</operator><name>MOD</name><operator>)</operator><operator>*</operator><operator>(</operator><name>b</name><operator>%</operator><name>MOD</name><operator>)</operator><operator>)</operator><operator>%</operator><name>MOD</name></expr>;</return>
+}</block></function>
+<function><type><name>ll</name></type> <name>mypow</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>a</name></decl></parameter>,<parameter><decl><type><name>ll</name></type> <name>b</name></decl></parameter>)</parameter_list><block>{
+    <if>if<condition>(<expr><name>b</name><operator>&lt;=</operator><literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><return>return <expr><literal type="number">1</literal></expr>;</return></block></then></if>
+    <decl_stmt><decl><type><name>ll</name></type> <name>res</name><init>=<expr><literal type="number">1LL</literal></expr></init></decl>;</decl_stmt>
+    <while>while<condition>(<expr><name>b</name></expr>)</condition><block>{
+        <if>if<condition>(<expr><name>b</name><operator>&amp;</operator><literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>res</name><operator>=</operator><call><name>mult</name><argument_list>(<argument><expr><name>res</name></expr></argument>,<argument><expr><name>a</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then></if>
+        <expr_stmt><expr><name>a</name><operator>=</operator><call><name>mult</name><argument_list>(<argument><expr><name>a</name></expr></argument>,<argument><expr><name>a</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name>b</name><operator>&gt;&gt;=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+    }</block></while>
+    <return>return <expr><name>res</name></expr>;</return>
+}</block></function>
+<decl_stmt><decl><type><specifier>const</specifier> <name>ll</name></type> <name>maxn</name><init>=<expr><literal type="number">200005</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><specifier>const</specifier> <name>ll</name></type> <name>maxlg</name><init>=<expr><call><name>__lg</name><argument_list>(<argument><expr><name>maxn</name></expr></argument>)</argument_list></call><operator>+</operator><literal type="number">2</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>ll</name></type> <name><name>a</name><index>[<expr><name>maxn</name></expr>]</index></name></decl>;</decl_stmt>
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list><block>{
+    <expr_stmt><expr><call><name><name>ios</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>cin</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr><operator>,</operator><expr><call><name><name>cout</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>n</name></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>ll</name></type> <name>sum</name><init>=<expr><literal type="number">0</literal></expr></init></decl>,<decl><type ref="prev"/><name>sum2</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <macro><name>REP</name><argument_list>(<argument>i</argument>,<argument>n</argument>)</argument_list></macro> <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name><name>a</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>sort</name><argument_list>(<argument><expr><name>a</name></expr></argument>,<argument><expr><name>a</name><operator>+</operator><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <macro><name>REP</name><argument_list>(<argument>i</argument>,<argument>n/<literal type="number">2</literal></argument>)</argument_list></macro><block>{
+        <expr_stmt><expr><name>sum</name><operator>+=</operator><name><name>a</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt>
+    }</block>
+    <macro><name>REP</name><argument_list>(<argument>i</argument>,<argument>n-n/<literal type="number">2</literal></argument>)</argument_list></macro><block>{
+        <expr_stmt><expr><name>sum2</name><operator>+=</operator><name><name>a</name><index>[<expr><name>i</name><operator>+</operator><name>n</name><operator>/</operator><literal type="number">2</literal></expr>]</index></name></expr>;</expr_stmt>
+    }</block>
+    <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><name>sum</name><operator>*</operator><name>sum</name><operator>+</operator><name>sum2</name><operator>*</operator><name>sum2</name></expr>;</expr_stmt>
+}</block></function></unit>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1248/all/29174962_62995258.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdio&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstring&gt;</cpp:file></cpp:include>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>mod</name> <init>= <expr><literal type="number">1</literal><literal type="char">'000'</literal><literal type="number">000</literal><literal type="char">'</literal></expr></init></decl></decl_stmt>007;
+
+int n, m, f[100010][4];
+long long g[100010];
+long long pow[100010];
+
+int main() {
+    scanf("%d%d", &amp;n, &amp;m);
+    pow[0] = 1;
+    for (int i = 1; i &lt;= 100000; i++) pow[i] = pow[i - 1] * 2ll % mod;
+
+    f[2][0] = f[2][1] = f[2][2] = f[2][3] = 1;
+    for (int i = 3; i &lt;= std::max(n, m); i++) {
+        for (int last = 0; last &lt; 4; last++) {
+            for (int p = 0; p &lt; 2; p++) {
+                if (!(last == 0 &amp;&amp; p == 0) &amp;&amp; !(last == 3 &amp;&amp; p == 1)) {
+                    int next = ((last &amp; 1) &lt;&lt; 1) + p;
+                    f[i][next] = ((long long)f[i][next] + f[i - 1][last]) % mod;
+                }
+            }
+        }
+    }
+    g[0] = 1;
+    g[1] = 2;
+    g[2] = 4;
+    for (int i = 3; i &lt;= std::max(n, m); i++) {
+        for (int j = 0; j &lt; 4; j++) g[i] = (g[i] + f[i][j]) % mod;
+    }
+
+    printf("%lld\n", ((g[n] + mod - 2ll) + g[m]) % mod);
+    return 0;
+}
+</unit>

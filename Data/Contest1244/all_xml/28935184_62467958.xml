@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1244/all/28935184_62467958.cpp"><cpp:define>#<cpp:directive>define</cpp:directive>  <cpp:macro><name>REP</name><parameter_list>(<parameter><type><name>i</name></type></parameter>, <parameter><type><name>s</name></type></parameter>, <parameter><type><name>e</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for (register int i = (s), end_##i = (e); i &lt;= end_##i; i++)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>DREP</name><parameter_list>(<parameter><type><name>i</name></type></parameter>, <parameter><type><name>s</name></type></parameter>, <parameter><type><name>e</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for (register int i = (s), end_##i = (e); i &gt;= end_##i; i--)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>DEBUG</name></cpp:macro> <cpp:value>fprintf(stderr, "Passing [%s] in Line %d\n", __FUNCTION__, __LINE__)</cpp:value></cpp:define>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>chkmax</name><parameter_list>(<parameter><type><name>a</name></type></parameter>, <parameter><type><name>b</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>a = max(a, (b))</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>chkmin</name><parameter_list>(<parameter><type><name>a</name></type></parameter>, <parameter><type><name>b</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>a = min(a, (b))</cpp:value></cpp:define>
+
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstring&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdlib&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdio&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cmath&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;queue&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<function><template>template <parameter_list>&lt;<parameter><type><name>typename</name></type> <name>T</name></parameter>&gt;</parameter_list></template> <type><name>T</name></type> <name>read</name><parameter_list>()</parameter_list>
+<block>{
+	<decl_stmt><decl><type><name>T</name></type> <name>ans</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></decl>, <decl><type ref="prev"/><name>flag</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></decl>;</decl_stmt>
+	<decl_stmt><decl><type><name>char</name></type> <name>c</name><argument_list>(<argument><expr><call><name>getchar</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></decl>;</decl_stmt>
+	<while>while <condition>(<expr><operator>!</operator><call><name>isdigit</name><argument_list>(<argument><expr><name>c</name></expr></argument>)</argument_list></call></expr>)</condition>
+	<block>{
+		<if>if <condition>(<expr><name>c</name> <operator>==</operator> <literal type="char">'-'</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>flag</name> <operator>=</operator> <operator>-</operator><literal type="number">1</literal></expr>;</expr_stmt></block></then></if>
+		<expr_stmt><expr><name>c</name> <operator>=</operator> <call><name>getchar</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+	}</block></while>
+	<while>while <condition>(<expr><call><name>isdigit</name><argument_list>(<argument><expr><name>c</name></expr></argument>)</argument_list></call></expr>)</condition>
+	<block>{
+		<expr_stmt><expr><name>ans</name> <operator>=</operator> <name>ans</name> <operator>*</operator> <literal type="number">10</literal> <operator>+</operator> <name>c</name> <operator>-</operator> <literal type="number">48</literal></expr>;</expr_stmt>
+		<expr_stmt><expr><name>c</name> <operator>=</operator> <call><name>getchar</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+	}</block></while>
+	<return>return <expr><name>ans</name> <operator>*</operator> <name>flag</name></expr>;</return>
+}</block></function>
+
+<function><type><name>void</name></type> <name>file</name><parameter_list>(<parameter><decl><type><name>string</name></type> <name>s</name></decl></parameter>)</parameter_list>
+<block>{
+	<expr_stmt><expr><call><name>freopen</name><argument_list>(<argument><expr><operator>(</operator><name>s</name> <operator>+</operator> <literal type="string">".in"</literal><operator>)</operator><operator>.</operator><call><name>c_str</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="string">"r"</literal></expr></argument>, <argument><expr><name>stdin</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<expr_stmt><expr><call><name>freopen</name><argument_list>(<argument><expr><operator>(</operator><name>s</name> <operator>+</operator> <literal type="string">".out"</literal><operator>)</operator><operator>.</operator><call><name>c_str</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><literal type="string">"w"</literal></expr></argument>, <argument><expr><name>stdout</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+<cpp:ifdef>#<cpp:directive>ifdef</cpp:directive> <name>CraZYali</name></cpp:ifdef>
+	<expr_stmt><expr><call><name>file</name><argument_list>(<argument><expr><literal type="string">"A"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<cpp:endif>#<cpp:directive>endif</cpp:directive></cpp:endif>
+	<decl_stmt><decl><type><specifier>register</specifier> <name>int</name></type> <name>T</name> <init>= <expr><call><name><name>read</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+	<while>while <condition>(<expr><name>T</name><operator>--</operator></expr>)</condition>
+	<block>{
+		<decl_stmt><decl><type><name>int</name></type> <name>a</name><argument_list>(<argument><expr><call><name><name>read</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></decl>;</decl_stmt>
+		<decl_stmt><decl><type><name>int</name></type> <name>b</name><argument_list>(<argument><expr><call><name><name>read</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></decl>;</decl_stmt>
+		<decl_stmt><decl><type><name>int</name></type> <name>c</name><argument_list>(<argument><expr><call><name><name>read</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></decl>;</decl_stmt>
+		<decl_stmt><decl><type><name>int</name></type> <name>d</name><argument_list>(<argument><expr><call><name><name>read</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></decl>;</decl_stmt>
+		<decl_stmt><decl><type><name>int</name></type> <name>k</name><argument_list>(<argument><expr><call><name><name>read</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></decl>;</decl_stmt>
+		<decl_stmt><decl><type><name>bool</name></type> <name>flag</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></decl>;</decl_stmt>
+		<macro><name>REP</name><argument_list>(<argument>i</argument>, <argument><literal type="number">0</literal></argument>, <argument>k</argument>)</argument_list></macro>
+			<if>if <condition>(<expr><name>i</name> <operator>*</operator> <name>c</name> <operator>&gt;=</operator> <name>a</name> <operator>&amp;&amp;</operator> <operator>(</operator><name>k</name> <operator>-</operator> <name>i</name><operator>)</operator> <operator>*</operator> <name>d</name> <operator>&gt;=</operator> <name>b</name></expr>)</condition><then>
+			<block>{
+				<expr_stmt><expr><name>flag</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+				<expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"%d %d\n"</literal></expr></argument>, <argument><expr><name>i</name></expr></argument>, <argument><expr><name>k</name> <operator>-</operator> <name>i</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+				<break>break;</break>
+			}</block></then></if>
+		<if>if <condition>(<expr><operator>!</operator><name>flag</name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"-1\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then></if>
+	}</block></while>
+	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

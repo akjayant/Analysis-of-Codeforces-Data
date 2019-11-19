@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1248/all/29139277_62996955.cpp"><comment type="block">/* Dsingh_24 */</comment>
+
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ll</name></cpp:macro>          <cpp:value>long long</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pb</name></cpp:macro>          <cpp:value>push_back</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive>	<cpp:macro><name>endl</name></cpp:macro>		<cpp:value>'\n'</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pii</name></cpp:macro>         <cpp:value>pair&lt;ll int,ll int&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>vi</name></cpp:macro>          <cpp:value>vector&lt;ll int&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>all</name><parameter_list>(<parameter><type><name>a</name></type></parameter>)</parameter_list></cpp:macro>      <cpp:value>(a).begin(),(a).end()</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>F</name></cpp:macro>           <cpp:value>first</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>S</name></cpp:macro>           <cpp:value>second</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>sz</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro>       <cpp:value>(ll int)x.size()</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>hell</name></cpp:macro>        <cpp:value>1000000007</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>rep</name><parameter_list>(<parameter><type><name>i</name></type></parameter>,<parameter><type><name>a</name></type></parameter>,<parameter><type><name>b</name></type></parameter>)</parameter_list></cpp:macro>	<cpp:value>for(ll int i=a;i&lt;b;i++)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>lbnd</name></cpp:macro>        <cpp:value>lower_bound</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ubnd</name></cpp:macro>        <cpp:value>upper_bound</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>bs</name></cpp:macro>          <cpp:value>binary_search</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>mp</name></cpp:macro>          <cpp:value>make_pair</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ios</name></cpp:macro>	    <cpp:value>ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);</cpp:value></cpp:define>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>N</name></cpp:macro>  <cpp:value>100085</cpp:value></cpp:define>
+<decl_stmt><decl><type><name>ll</name></type> <name><name>f</name><index>[<expr><name>N</name></expr>]</index></name></decl>;</decl_stmt>
+<function><type><name>ll</name></type> <name>expo</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>base</name></decl></parameter>, <parameter><decl><type><name>ll</name></type> <name>exponent</name></decl></parameter>, <parameter><decl><type><name>ll</name></type> <name>mod</name></decl></parameter>)</parameter_list> <block>{								<comment type="line">//return base^exponent modulo modulus</comment>
+    <decl_stmt><decl><type><name>ll</name></type> <name>ans</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <while>while<condition>(<expr><name>exponent</name> <operator>!=</operator><literal type="number">0</literal></expr> )</condition> <block>{
+        <if>if<condition>(<expr><operator>(</operator><name>exponent</name><operator>&amp;</operator><literal type="number">1</literal><operator>)</operator> <operator>==</operator> <literal type="number">1</literal></expr>)</condition><then> <block>{
+            <expr_stmt><expr><name>ans</name> <operator>=</operator> <name>ans</name><operator>*</operator><name>base</name></expr> ;</expr_stmt>
+            <expr_stmt><expr><name>ans</name> <operator>=</operator> <name>ans</name><operator>%</operator><name>mod</name></expr>;</expr_stmt>
+        }</block></then></if>
+        <expr_stmt><expr><name>base</name> <operator>=</operator> <name>base</name><operator>*</operator><name>base</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name>base</name> <operator>%=</operator> <name>mod</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name>exponent</name><operator>&gt;&gt;=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+    }</block></while>
+    <return>return <expr><name>ans</name><operator>%</operator><name>mod</name></expr>;</return>
+}</block></function>
+<function><type><name>ll</name></type> <name>inv</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>x</name></decl></parameter>)</parameter_list><block>{
+	<return>return <expr><call><name>expo</name><argument_list>(<argument><expr><name>x</name></expr></argument>,<argument><expr><name>hell</name><operator>-</operator><literal type="number">2</literal></expr></argument>,<argument><expr><name>hell</name></expr></argument>)</argument_list></call><operator>%</operator><name>hell</name></expr>;</return>
+}</block></function>
+<function><type><name>ll</name></type> <name>ncr</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>n</name></decl></parameter>,<parameter><decl><type><name>ll</name></type> <name>r</name></decl></parameter>)</parameter_list><block>{
+	<if>if<condition>(<expr><name>r</name><operator>&gt;</operator><name>n</name><operator>||</operator><name>n</name><operator>&lt;=</operator><literal type="number">0</literal><operator>||</operator><name>r</name><operator>&lt;</operator><literal type="number">0</literal></expr>)</condition><then><block type="pseudo"><return>return <expr><literal type="number">0LL</literal></expr>;</return></block></then></if>
+	<comment type="line">// cout&lt;&lt;f[n]&lt;&lt;" "&lt;&lt;inv(f[n-r])&lt;&lt;" "&lt;&lt;inv(f[r])&lt;&lt;"\n";</comment>
+	<return>return <expr><operator>(</operator><name><name>f</name><index>[<expr><name>n</name></expr>]</index></name><operator>*</operator><call><name>inv</name><argument_list>(<argument><expr><name><name>f</name><index>[<expr><name>n</name><operator>-</operator><name>r</name></expr>]</index></name></expr></argument>)</argument_list></call><operator>%</operator><name>hell</name><operator>*</operator><call><name>inv</name><argument_list>(<argument><expr><name><name>f</name><index>[<expr><name>r</name></expr>]</index></name></expr></argument>)</argument_list></call><operator>)</operator><operator>%</operator><name>hell</name></expr>;</return>
+}</block></function>
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+	<decl_stmt><decl><type><name>ios</name>
+	<name>ll</name></type> <name>n</name></decl>,<decl><type ref="prev"/><name>m</name></decl>,<decl><type ref="prev"/><name>i</name></decl>,<decl><type ref="prev"/><name>j</name></decl>;</decl_stmt>
+	<expr_stmt><expr><name><name>f</name><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+	<for>for<control>(<init><expr><name>i</name><operator>=</operator><literal type="number">1</literal></expr>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>N</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+		<block type="pseudo"><expr_stmt><expr><name><name>f</name><index>[<expr><name>i</name></expr>]</index></name><operator>=</operator><operator>(</operator><name><name>f</name><index>[<expr><name>i</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name><operator>*</operator><name>i</name><operator>)</operator><operator>%</operator><name>hell</name></expr>;</expr_stmt></block></for>
+	<expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>n</name><operator>&gt;&gt;</operator><name>m</name></expr>;</expr_stmt>
+	<decl_stmt><decl><type><name>ll</name></type> <name>ans</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+	<comment type="line">// cout&lt;&lt;ncr(5,2);</comment>
+	<for>for<control>(<init><expr><name>i</name><operator>=</operator><literal type="number">1</literal></expr>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control><block>{
+		<if>if<condition>(<expr><name>n</name><operator>-</operator><name>i</name><operator>&gt;=</operator><name>i</name></expr>)</condition><then>
+		<block type="pseudo"><expr_stmt><expr><name>ans</name><operator>+=</operator><call><name>ncr</name><argument_list>(<argument><expr><name>n</name><operator>-</operator><name>i</name></expr></argument>,<argument><expr><name>i</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then></if>
+		<expr_stmt><expr><name>ans</name><operator>%=</operator><name>hell</name></expr>;</expr_stmt>
+		<comment type="line">// cout&lt;&lt;"yen"&lt;&lt;ncr(n-i,i)&lt;&lt;"\n";</comment>
+	}</block></for>
+	<for>for<control>(<init><expr><name>i</name><operator>=</operator><literal type="number">1</literal></expr>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>m</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control><block>{
+		<if>if<condition>(<expr><name>m</name><operator>-</operator><name>i</name><operator>&gt;=</operator><name>i</name></expr>)</condition><then>
+		<block type="pseudo"><expr_stmt><expr><name>ans</name><operator>+=</operator><call><name>ncr</name><argument_list>(<argument><expr><name>m</name><operator>-</operator><name>i</name></expr></argument>,<argument><expr><name>i</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then></if>
+		<expr_stmt><expr><name>ans</name><operator>%=</operator><name>hell</name></expr>;</expr_stmt>
+		<comment type="line">// cout&lt;&lt;ncr(m-i,i)&lt;&lt;"\n";</comment>
+		<comment type="line">// cout&lt;&lt;ans&lt;&lt;"\n";</comment>
+	}</block></for>
+	<expr_stmt><expr><name>ans</name><operator>=</operator><operator>(</operator><name>ans</name><operator>*</operator><literal type="number">2</literal><operator>+</operator><literal type="number">2</literal><operator>)</operator><operator>%</operator><name>hell</name></expr>;</expr_stmt>
+	<expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><name>ans</name></expr>;</expr_stmt>
+	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1244/all/28931208_62489778.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;functional&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;set&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;numeric&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;queue&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;unordered_set&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;string&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<typedef>typedef <type><name>long</name> <name>long</name></type> <name>ll</name>;</typedef>
+
+<function><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>help</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>a</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>d</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>c</name></decl></parameter>)</parameter_list> <block>{
+    <decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>r</name></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>c</name></expr>;</condition> <incr><expr><operator>++</operator><name>i</name></expr></incr>)</control> <block>{
+        <if>if <condition>(<expr><operator>(</operator><name>i</name> <operator>*</operator> <operator>(</operator><name>long</name> <name>long</name><operator>)</operator><name>a</name><operator>)</operator> <operator>%</operator> <name>c</name> <operator>==</operator> <name>d</name></expr>)</condition><then> <block>{
+            <expr_stmt><expr><call><name><name>r</name><operator>.</operator><name>push_back</name></name><argument_list>(<argument><expr><name>i</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        }</block></then></if>
+    }</block></for>
+    <return>return <expr><name>r</name></expr>;</return>
+}</block></function>
+
+<function><type><name>void</name></type> <name>solve</name><parameter_list>()</parameter_list> <block>{
+    <decl_stmt><decl><type><name>int64_t</name></type> <name>n</name></decl>, <decl><type ref="prev"/><name>p</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>w</name></decl>, <decl><type ref="prev"/><name>d</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name> <operator>&gt;&gt;</operator> <name>p</name> <operator>&gt;&gt;</operator> <name>w</name> <operator>&gt;&gt;</operator> <name>d</name></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>auto</name></type> <name>val</name> <init>= <expr><call><name>help</name><argument_list>(<argument><expr><name>w</name> <operator>%</operator> <name>d</name></expr></argument>, <argument><expr><name>p</name> <operator>%</operator> <name>d</name></expr></argument>, <argument><expr><name>d</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if>if <condition>(<expr><call><name><name>val</name><operator>.</operator><name>empty</name></name><argument_list>()</argument_list></call> <operator>||</operator> <name><name>val</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>&gt;</operator> <name>n</name> <operator>||</operator> <operator>(</operator><name>long</name> <name>long</name><operator>)</operator><name>w</name> <operator>*</operator> <name><name>val</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>&gt;</operator> <name>p</name></expr>)</condition><then> <block>{
+        <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"-1\n"</literal></expr>;</expr_stmt>
+        <return>return;</return>
+    }</block></then></if>
+    <for>for <control>(<init><decl><type><name>auto</name></type> <name>x</name> <range>: <expr><name>val</name></expr></range></decl></init>)</control> <block>{
+        <if>if <condition>(<expr><operator>(</operator><name>long</name> <name>long</name><operator>)</operator><name>x</name> <operator>*</operator> <name>w</name> <operator>&gt;</operator> <name>p</name></expr>)</condition><then>
+            <block type="pseudo"><break>break;</break></block></then></if>
+        <decl_stmt><decl><type><name>ll</name></type> <name>rig</name> <init>= <expr><name>p</name> <operator>-</operator> <operator>(</operator><name>ll</name><operator>)</operator><name>x</name> <operator>*</operator> <name>w</name></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><name>rig</name> <operator>/=</operator> <name>d</name></expr>;</expr_stmt>
+        <decl_stmt><decl><type><name>ll</name></type> <name>k</name> <init>= <expr><call><name>max</name><argument_list>(<argument><expr><literal type="number">0LL</literal></expr></argument>, <argument><expr><operator>(</operator><name>rig</name> <operator>+</operator> <name>x</name> <operator>-</operator> <name>n</name> <operator>+</operator> <name>w</name> <operator>-</operator> <name>d</name> <operator>-</operator> <literal type="number">1</literal><operator>)</operator> <operator>/</operator> <operator>(</operator><name>w</name> <operator>-</operator> <name>d</name><operator>)</operator></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>ll</name></type> <name>y</name> <init>= <expr><name>rig</name> <operator>-</operator> <name>k</name> <operator>*</operator> <name>w</name></expr></init></decl>;</decl_stmt>
+        <if>if <condition>(<expr><name>y</name> <operator>&gt;=</operator> <literal type="number">0</literal> <operator>&amp;&amp;</operator> <name>k</name> <operator>*</operator> <name>d</name> <operator>+</operator> <name>y</name> <operator>+</operator> <name>x</name> <operator>&lt;=</operator> <name>n</name> <operator>&amp;&amp;</operator> <name>w</name> <operator>*</operator> <operator>(</operator><name>k</name> <operator>*</operator> <name>d</name> <operator>+</operator> <name>x</name><operator>)</operator> <operator>+</operator> <name>d</name> <operator>*</operator> <name>y</name> <operator>==</operator> <name>p</name></expr>)</condition><then> <block>{
+            <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>k</name> <operator>*</operator> <name>d</name> <operator>+</operator> <name>x</name> <operator>&lt;&lt;</operator> <literal type="char">' '</literal> <operator>&lt;&lt;</operator> <name>y</name> <operator>&lt;&lt;</operator> <literal type="string">" "</literal> <operator>&lt;&lt;</operator> <name>n</name> <operator>-</operator> <name>k</name> <operator>*</operator> <name>d</name> <operator>-</operator> <name>y</name> <operator>-</operator> <name>x</name> <operator>&lt;&lt;</operator> <literal type="char">'\n'</literal></expr>;</expr_stmt>
+            <return>return;</return>
+        }</block></then></if>
+    }</block></for>
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"-1\n"</literal></expr>;</expr_stmt>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+    <expr_stmt><expr><call><name><name>ios_base</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>t</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <while>while <condition>(<expr><name>t</name><operator>--</operator></expr>)</condition> <block>{
+        <expr_stmt><expr><call><name>solve</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    }</block></while>
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1244/all/28910245_62497118.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>re</name></cpp:macro> <cpp:value>return</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ll</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>du</name></cpp:macro> <cpp:value>double</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>co</name></cpp:macro> <cpp:value>continue</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>gcd</name></cpp:macro> <cpp:value>__gcd</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>br</name></cpp:macro> <cpp:value>break</cpp:value></cpp:define>
+<function><type><name>void</name></type> <name>fast</name><parameter_list>()</parameter_list><block>{
+    <expr_stmt><expr><call><name><name>ios_base</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>cin</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>cout</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+}</block></function>
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+    <expr_stmt><expr><call><name>fast</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>ll</name></type> <name>n</name></decl>,<decl><type ref="prev"/><name>k</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name> <operator>&gt;&gt;</operator> <name>k</name></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>ll</name></type> <name><name>a</name><index>[<expr><name>n</name><operator>+</operator><literal type="number">10</literal></expr>]</index></name></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;=</operator><name>n</name></expr>;</condition><incr><expr><operator>++</operator><name>i</name></expr></incr>)</control> <block type="pseudo"><expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name><name>a</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt></block></for>
+    <expr_stmt><expr><call><name>sort</name><argument_list>(<argument><expr><name>a</name><operator>+</operator><literal type="number">1</literal></expr></argument>,<argument><expr><name>a</name><operator>+</operator><name>n</name><operator>+</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>ll</name></type> <name>mn</name><init>=<expr><name><name>a</name><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr></init></decl>,<decl><type ref="prev"/><name>mx</name><init>=<expr><name><name>a</name><index>[<expr><name>n</name></expr>]</index></name></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>multiset</name> <argument_list type="generic">&lt;<argument><expr><name>ll</name></expr></argument>&gt;</argument_list></name></type> <name>m</name></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;=</operator><name>n</name></expr>;</condition><incr><expr><operator>++</operator><name>i</name></expr></incr>)</control><block>{
+        <expr_stmt><expr><call><name><name>m</name><operator>.</operator><name>insert</name></name><argument_list>(<argument><expr><name><name>a</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    }</block></for>
+    <decl_stmt><decl><type><name>ll</name></type> <name>k1</name><init>=<expr><literal type="number">0</literal></expr></init></decl>,<decl><type ref="prev"/><name>k2</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>ll</name></type> <name>mni</name><init>=<expr><literal type="number">1</literal></expr></init></decl>,<decl><type ref="prev"/><name>mxi</name><init>=<expr><name>n</name></expr></init></decl>;</decl_stmt>
+    <while>while <condition>(<expr><name>k</name><operator>&gt;</operator><literal type="number">0</literal> <operator>&amp;&amp;</operator> <name>mn</name><operator>!=</operator><name>mx</name></expr>)</condition><block>{
+        <comment type="line">//cout &lt;&lt; k &lt;&lt; " " &lt;&lt; mni &lt;&lt; " " &lt;&lt; mxi &lt;&lt; endl;</comment>
+        <if>if <condition>(<expr><name>k1</name><operator>+</operator><call><name><name>m</name><operator>.</operator><name>count</name></name><argument_list>(<argument><expr><name><name>a</name><index>[<expr><name>mni</name></expr>]</index></name></expr></argument>)</argument_list></call><operator>&lt;=</operator><name>k</name> <operator>||</operator> <name>k2</name><operator>+</operator><call><name><name>m</name><operator>.</operator><name>count</name></name><argument_list>(<argument><expr><name><name>a</name><index>[<expr><name>mxi</name></expr>]</index></name></expr></argument>)</argument_list></call><operator>&lt;=</operator><name>k</name></expr>)</condition><then><block>{
+            <if>if <condition>(<expr><name>k1</name><operator>+</operator><call><name><name>m</name><operator>.</operator><name>count</name></name><argument_list>(<argument><expr><name><name>a</name><index>[<expr><name>mni</name></expr>]</index></name></expr></argument>)</argument_list></call><operator>&lt;=</operator><name>k2</name><operator>+</operator><call><name><name>m</name><operator>.</operator><name>count</name></name><argument_list>(<argument><expr><name><name>a</name><index>[<expr><name>mxi</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>)</condition><then><block>{
+                <expr_stmt><expr><name>k1</name><operator>+=</operator><call><name><name>m</name><operator>.</operator><name>count</name></name><argument_list>(<argument><expr><name><name>a</name><index>[<expr><name>mni</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <while>while <condition>(<expr><name><name>a</name><index>[<expr><name>mni</name></expr>]</index></name><operator>==</operator><name><name>a</name><index>[<expr><name>mni</name><operator>+</operator><literal type="number">1</literal></expr>]</index></name> <operator>&amp;&amp;</operator> <name>mni</name><operator>&lt;</operator><name>mxi</name></expr>)</condition> <block type="pseudo"><expr_stmt><expr><name>mni</name><operator>++</operator></expr>;</expr_stmt></block></while>
+                <expr_stmt><expr><name>mni</name><operator>++</operator></expr>;</expr_stmt>
+                <expr_stmt><expr><name>k</name><operator>-=</operator><name>k1</name><operator>*</operator><operator>(</operator><name><name>a</name><index>[<expr><name>mni</name></expr>]</index></name><operator>-</operator><name>mn</name><operator>)</operator></expr>;</expr_stmt>
+                <expr_stmt><expr><name>mn</name><operator>=</operator><name><name>a</name><index>[<expr><name>mni</name></expr>]</index></name></expr>;</expr_stmt>
+                <comment type="line">//cout &lt;&lt; "lol" &lt;&lt; " " &lt;&lt; k &lt;&lt; endl;</comment>
+                <if>if <condition>(<expr><name>k</name><operator>&lt;</operator><literal type="number">0</literal></expr>)</condition><then><block>{
+                    <expr_stmt><expr><name>k</name><operator>=</operator><operator>-</operator><name>k</name></expr>;</expr_stmt>
+                    <comment type="line">//cout &lt;&lt; mx &lt;&lt; " " &lt;&lt; mn &lt;&lt; " " &lt;&lt; k-1 &lt;&lt; " " &lt;&lt; k1 &lt;&lt; endl;</comment>
+                    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>mx</name><operator>-</operator><name>mn</name><operator>+</operator><operator>(</operator><name>k</name><operator>-</operator><literal type="number">1</literal><operator>)</operator><operator>/</operator><name>k1</name><operator>+</operator><literal type="number">1</literal></expr>;</expr_stmt>
+                    <expr_stmt><expr><name>re</name> <literal type="number">0</literal></expr>;</expr_stmt>
+                }</block></then></if>
+            }</block></then>
+            <else>else<block>{
+                <expr_stmt><expr><name>k2</name><operator>+=</operator><call><name><name>m</name><operator>.</operator><name>count</name></name><argument_list>(<argument><expr><name><name>a</name><index>[<expr><name>mxi</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <while>while <condition>(<expr><name><name>a</name><index>[<expr><name>mxi</name></expr>]</index></name><operator>==</operator><name><name>a</name><index>[<expr><name>mxi</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name> <operator>&amp;&amp;</operator> <name>mni</name><operator>&lt;</operator><name>mxi</name></expr>)</condition> <block type="pseudo"><expr_stmt><expr><name>mxi</name><operator>--</operator></expr>;</expr_stmt></block></while>
+                <expr_stmt><expr><name>mxi</name><operator>--</operator></expr>;</expr_stmt>
+                <expr_stmt><expr><name>k</name><operator>-=</operator><name>k2</name><operator>*</operator><operator>(</operator><name>mx</name><operator>-</operator><name><name>a</name><index>[<expr><name>mxi</name></expr>]</index></name><operator>)</operator></expr>;</expr_stmt>
+                <expr_stmt><expr><name>mx</name><operator>=</operator><name><name>a</name><index>[<expr><name>mxi</name></expr>]</index></name></expr>;</expr_stmt>
+                <if>if <condition>(<expr><name>k</name><operator>&lt;</operator><literal type="number">0</literal></expr>)</condition><then><block>{
+                    <expr_stmt><expr><name>k</name><operator>=</operator><operator>-</operator><name>k</name></expr>;</expr_stmt>
+                    <comment type="line">//cout &lt;&lt; mx &lt;&lt; " " &lt;&lt; mn &lt;&lt; k-1 &lt;&lt; k1 &lt;&lt; endl;</comment>
+                    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>mx</name><operator>-</operator><name>mn</name><operator>+</operator><operator>(</operator><name>k</name><operator>-</operator><literal type="number">1</literal><operator>)</operator><operator>/</operator><name>k2</name><operator>+</operator><literal type="number">1</literal></expr>;</expr_stmt>
+                    <expr_stmt><expr><name>re</name> <literal type="number">0</literal></expr>;</expr_stmt>
+                }</block></then></if>
+            }</block></else></if>
+        }</block></then>
+        <else>else <block type="pseudo"><expr_stmt><expr><name>br</name></expr>;</expr_stmt></block></else></if>
+    }</block></while>
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>mx</name><operator>-</operator><name>mn</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name>re</name> <literal type="number">0</literal></expr>;</expr_stmt>
+}</block></function>
+<comment type="block">/*
+4 14
+1 1 9 9
+*/</comment>
+</unit>

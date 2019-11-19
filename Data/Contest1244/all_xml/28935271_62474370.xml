@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1244/all/28935271_62474370.cpp"><comment type="line">// ConsoleApplication11.cpp : Ð­ÑÐ¾Ñ ÑÐ°Ð¹Ð» ÑÐ¾Ð´ÐµÑÐ¶Ð¸Ñ ÑÑÐ½ÐºÑÐ¸Ñ "main". ÐÐ´ÐµÑÑ Ð½Ð°ÑÐ¸Ð½Ð°ÐµÑÑÑ Ð¸ Ð·Ð°ÐºÐ°Ð½ÑÐ¸Ð²Ð°ÐµÑÑÑ Ð²ÑÐ¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ðµ Ð¿ÑÐ¾Ð³ÑÐ°Ð¼Ð¼Ñ.</comment>
+<comment type="line">//</comment>
+ 
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;string&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+ 
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>var</name></cpp:macro> <cpp:value>auto</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ll</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>endl</name></cpp:macro> <cpp:value>'\n'</cpp:value></cpp:define>
+ 
+<function><type><name>int</name></type> <name>upperd</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>a</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>b</name></decl></parameter>)</parameter_list>
+<block>{
+	<if>if <condition>(<expr><name>a</name><operator>%</operator><name>b</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then>
+		<block type="pseudo"><return>return <expr><name>a</name> <operator>/</operator> <name>b</name></expr>;</return></block></then>
+	<else>else
+		<block type="pseudo"><return>return <expr><name>a</name> <operator>/</operator> <name>b</name> <operator>+</operator> <literal type="number">1</literal></expr>;</return></block></else></if>
+}</block></function>
+<function><type><name>ll</name></type> <name>gcd</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>a</name></decl></parameter>, <parameter><decl><type><name>ll</name></type> <name>b</name></decl></parameter>)</parameter_list>
+<block>{
+	<return>return <expr><ternary><condition><expr><name>b</name> <operator>==</operator> <literal type="number">0</literal></expr> ?</condition><then> <expr><name>a</name></expr> </then><else>: <expr><call><name>gcd</name><argument_list>(<argument><expr><name>b</name></expr></argument>, <argument><expr><name>a</name><operator>%</operator><name>b</name></expr></argument>)</argument_list></call></expr></else></ternary></expr>;</return>
+}</block></function>
+<function><type><name>void</name></type> <name>solve</name><parameter_list>()</parameter_list>
+<block>{
+	<comment type="block">/*
+	ll n, p, w, d;
+	cin &gt;&gt; n &gt;&gt; p &gt;&gt; d &gt;&gt; w;
+	var md = p % w;
+	int dCnt = 0;
+	ll curd = 0;
+	while (curd%w != md)
+	{
+		dCnt++;
+		curd = (curd + d) % w;
+	}
+	n -= dCnt;
+	p -= dCnt * d;
+	if (n &lt; 0 || p &lt; 0)
+	{
+		cout &lt;&lt; -1;
+		return;
+	}
+	var c = w / gcd(d,w);
+	var x = (p / (c*d))*c;
+	dCnt += x;
+	n -= x;
+	p = p % (c*d);
+	var wCnt = p / w;
+	n -= wCnt;
+	if (n &lt; 0)
+	{
+		cout &lt;&lt; -1;
+	}
+	else
+	{
+		cout &lt;&lt; dCnt &lt;&lt; " " &lt;&lt; wCnt &lt;&lt; " " &lt;&lt; n;
+	}*/</comment>
+	<decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>;</decl_stmt>
+	<expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name></expr>;</expr_stmt>
+	<decl_stmt><decl><type><name>string</name></type> <name>str</name></decl>;</decl_stmt>
+	<expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>str</name></expr>;</expr_stmt>
+	<decl_stmt><decl><type><name>int</name></type> <name>firstOne</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+	<decl_stmt><decl><type><name>int</name></type> <name>lastOne</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+	<for>for<control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl> ;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>n</name></expr>;</condition> <incr><expr><operator>++</operator><name>i</name></expr></incr>)</control>
+		<block type="pseudo"><if>if <condition>(<expr><name><name>str</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="char">'1'</literal></expr>)</condition><then>
+		<block>{
+			<if>if <condition>(<expr><name>firstOne</name> <operator>==</operator> <operator>-</operator><literal type="number">1</literal></expr>)</condition><then>
+				<block type="pseudo"><expr_stmt><expr><name>firstOne</name> <operator>=</operator> <name>i</name></expr>;</expr_stmt></block></then></if>
+			<expr_stmt><expr><name>lastOne</name> <operator>=</operator> <name>i</name></expr>;</expr_stmt>
+		}</block></then></if></block></for>
+	<if>if <condition>(<expr><name>firstOne</name> <operator>==</operator> <operator>-</operator><literal type="number">1</literal></expr>)</condition><then>
+		<block type="pseudo"><expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>n</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt></block></then>
+	<else>else
+	<block>{
+ 
+		<decl_stmt><decl><type><name>int</name></type> <name>m</name> <init>= <expr><call><name>min</name><argument_list>(<argument><expr><name>firstOne</name></expr></argument>, <argument><expr><name>n</name> <operator>-</operator> <literal type="number">1</literal> <operator>-</operator> <name>lastOne</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+		<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="number">2</literal> <operator>*</operator> <name>n</name> <operator>-</operator> <literal type="number">2</literal> <operator>*</operator> <name>m</name><operator>&lt;&lt;</operator><name>endl</name></expr>;</expr_stmt>
+	}</block></else></if>
+}</block></function>
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+	<decl_stmt><decl><type><name>int</name></type> <name>t</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+	<expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>t</name></expr>;</expr_stmt>
+	<for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>t</name></expr>;</condition> <incr><expr><operator>++</operator><name>i</name></expr></incr>)</control>
+		<block type="pseudo"><expr_stmt><expr><call><name>solve</name><argument_list>()</argument_list></call></expr>;</expr_stmt></block></for>
+}</block></function></unit>

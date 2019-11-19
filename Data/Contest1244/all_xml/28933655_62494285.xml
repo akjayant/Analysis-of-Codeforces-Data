@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1244/all/28933655_62494285.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ll</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>ll</name></type> <name>k</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>ll</name></type> <name><name>a</name><index>[<expr><literal type="number">100100</literal></expr>]</index></name></decl>;</decl_stmt> 
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+    <expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%d %I64d"</literal></expr></argument>, <argument><expr><operator>&amp;</operator><name>n</name></expr></argument>, <argument><expr><operator>&amp;</operator><name>k</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <comment type="line">// scanf("%d %lld", &amp;n, &amp;k);</comment>
+
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>n</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+        <block type="pseudo"><expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%I64d"</literal></expr></argument>, <argument><expr><operator>&amp;</operator><name><name>a</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></for>
+        <comment type="line">// scanf("%lld", &amp;a[i]);</comment>
+
+    <expr_stmt><expr><call><name>sort</name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><name>a</name><operator>+</operator><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <decl_stmt><decl><type><name>int</name></type> <name>p</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>q</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>ans</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <while>while <condition>(<expr><name>p</name> <operator>&lt;</operator> <name>n</name> <operator>&amp;&amp;</operator> <name><name>a</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>==</operator> <name><name>a</name><index>[<expr><name>p</name></expr>]</index></name></expr>)</condition> <block type="pseudo"><expr_stmt><expr><name>p</name><operator>++</operator></expr>;</expr_stmt></block></while>
+    <while>while <condition>(<expr><name>q</name> <operator>&lt;</operator> <name>n</name> <operator>&amp;&amp;</operator> <name><name>a</name><index>[<expr><name>n</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name> <operator>==</operator> <name><name>a</name><index>[<expr><name>n</name><operator>-</operator><literal type="number">1</literal> <operator>-</operator> <name>q</name></expr>]</index></name></expr>)</condition> <block type="pseudo"><expr_stmt><expr><name>q</name><operator>++</operator></expr>;</expr_stmt></block></while>
+
+    <while>while <condition>(<expr><name>p</name> <operator>+</operator> <name>q</name> <operator>&lt;=</operator> <name>n</name> <operator>&amp;&amp;</operator> <name>k</name> <operator>&gt;=</operator> <literal type="number">0</literal></expr>)</condition> <block>{
+        <if>if <condition>(<expr><name>p</name> <operator>&lt;=</operator> <name>q</name></expr>)</condition><then> <block>{
+            <if>if <condition>(<expr><operator>(</operator><name><name>a</name><index>[<expr><name>p</name></expr>]</index></name> <operator>-</operator> <name><name>a</name><index>[<expr><name>p</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name><operator>)</operator> <operator>*</operator> <name>p</name> <operator>&lt;=</operator> <name>k</name></expr>)</condition><then> <block>{
+                <expr_stmt><expr><name>k</name> <operator>-=</operator> <operator>(</operator><name><name>a</name><index>[<expr><name>p</name></expr>]</index></name> <operator>-</operator> <name><name>a</name><index>[<expr><name>p</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name><operator>)</operator> <operator>*</operator> <name>p</name></expr>;</expr_stmt>
+
+                <decl_stmt><decl><type><name>int</name></type> <name>pp</name> <init>= <expr><name>p</name></expr></init></decl>;</decl_stmt>
+                <while>while <condition>(<expr><name>p</name> <operator>&lt;</operator> <name>n</name> <operator>&amp;&amp;</operator> <name><name>a</name><index>[<expr><name>pp</name></expr>]</index></name> <operator>==</operator> <name><name>a</name><index>[<expr><name>p</name></expr>]</index></name></expr>)</condition> <block type="pseudo"><expr_stmt><expr><name>p</name><operator>++</operator></expr>;</expr_stmt></block></while>
+            }</block></then> <else>else <block>{
+                <expr_stmt><expr><name><name>a</name><index>[<expr><name>p</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name> <operator>+=</operator> <name>k</name><operator>/</operator><name>p</name></expr>;</expr_stmt>
+                <break>break;</break>
+            }</block></else></if>
+        }</block></then>
+        <else>else <block>{
+            <if>if <condition>(<expr><operator>(</operator><name><name>a</name><index>[<expr><name>n</name><operator>-</operator><name>q</name></expr>]</index></name> <operator>-</operator> <name><name>a</name><index>[<expr><name>n</name><operator>-</operator><literal type="number">1</literal><operator>-</operator><name>q</name></expr>]</index></name><operator>)</operator> <operator>*</operator> <name>q</name> <operator>&lt;=</operator> <name>k</name></expr>)</condition><then> <block>{
+                <expr_stmt><expr><name>k</name> <operator>-=</operator> <operator>(</operator><name><name>a</name><index>[<expr><name>n</name><operator>-</operator><name>q</name></expr>]</index></name> <operator>-</operator> <name><name>a</name><index>[<expr><name>n</name><operator>-</operator><literal type="number">1</literal><operator>-</operator><name>q</name></expr>]</index></name><operator>)</operator> <operator>*</operator> <name>q</name></expr>;</expr_stmt>
+
+                <decl_stmt><decl><type><name>int</name></type> <name>qq</name> <init>= <expr><name>n</name><operator>-</operator><literal type="number">1</literal><operator>-</operator><name>q</name></expr></init></decl>;</decl_stmt>
+                <while>while <condition>(<expr><name>q</name> <operator>&lt;</operator> <name>n</name> <operator>&amp;&amp;</operator> <name><name>a</name><index>[<expr><name>qq</name></expr>]</index></name> <operator>==</operator> <name><name>a</name><index>[<expr><name>n</name><operator>-</operator><literal type="number">1</literal><operator>-</operator><name>q</name></expr>]</index></name></expr>)</condition> <block type="pseudo"><expr_stmt><expr><name>q</name><operator>++</operator></expr>;</expr_stmt></block></while>
+            }</block></then> <else>else <block>{
+                <expr_stmt><expr><name><name>a</name><index>[<expr><name>n</name><operator>-</operator><name>q</name></expr>]</index></name> <operator>-=</operator> <name>k</name><operator>/</operator><name>q</name></expr>;</expr_stmt>
+                <break>break;</break>
+            }</block></else></if>
+        }</block></else></if>
+    }</block></while>
+
+    <if>if <condition>(<expr><name>p</name><operator>+</operator><name>q</name> <operator>&gt;</operator> <name>n</name></expr>)</condition><then>
+        <block type="pseudo"><expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"0\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then>
+    <else>else
+        <block type="pseudo"><expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"%I64d\n"</literal></expr></argument>, <argument><expr><name><name>a</name><index>[<expr><name>n</name><operator>-</operator><name>q</name></expr>]</index></name> <operator>-</operator> <name><name>a</name><index>[<expr><name>p</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></else></if>
+        <comment type="line">// printf("%lld\n", a[n-q] - a[p-1]);</comment>
+
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

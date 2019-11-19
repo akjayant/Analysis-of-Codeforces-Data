@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1244/all/28935318_62491556.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<typedef>typedef <type><name>long</name> <name>long</name></type> <name>LL</name>;</typedef>
+
+<function><type><name>void</name></type> <name>gcd</name><parameter_list>(<parameter><decl><type><name>LL</name></type> <name>a</name></decl></parameter>, <parameter><decl><type><name>LL</name></type> <name>b</name></decl></parameter>, <parameter><decl><type><name>LL</name><modifier>&amp;</modifier></type> <name>d</name></decl></parameter>, <parameter><decl><type><name>LL</name><modifier>&amp;</modifier></type><name>x</name></decl></parameter>, <parameter><decl><type><name>LL</name><modifier>&amp;</modifier></type> <name>y</name></decl></parameter>)</parameter_list> <block>{
+	<if>if <condition>(<expr><operator>!</operator><name>b</name></expr>)</condition><then> <block>{ <expr_stmt><expr><name>d</name> <operator>=</operator> <name>a</name></expr>;</expr_stmt> <expr_stmt><expr><name>x</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt> <expr_stmt><expr><name>y</name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt> }</block></then>
+	<else>else <block>{ <expr_stmt><expr><call><name>gcd</name><argument_list>(<argument><expr><name>b</name></expr></argument>, <argument><expr><name>a</name><operator>%</operator><name>b</name></expr></argument>, <argument><expr><name>d</name></expr></argument>, <argument><expr><name>y</name></expr></argument>, <argument><expr><name>x</name></expr></argument>)</argument_list></call></expr>;</expr_stmt> <expr_stmt><expr><name>y</name> <operator>-=</operator> <name>x</name> <operator>*</operator> <operator>(</operator><name>a</name> <operator>/</operator> <name>b</name><operator>)</operator></expr>;</expr_stmt> }</block></else></if>
+}</block></function>
+
+<function><type><name>LL</name></type> <name>modFunc</name><parameter_list>(<parameter><decl><type><name>LL</name></type> <name>a</name></decl></parameter>, <parameter><decl><type><name>LL</name></type> <name>b</name></decl></parameter>, <parameter><decl><type><name>LL</name></type> <name>n</name></decl></parameter>, <parameter><decl><type><name>LL</name> <modifier>&amp;</modifier></type><name>d</name></decl></parameter>)</parameter_list> <block>{
+	<decl_stmt><decl><type><name>LL</name></type> <name>x</name></decl>, <decl><type ref="prev"/><name>y</name></decl>;</decl_stmt>
+	<expr_stmt><expr><call><name>gcd</name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><name>n</name></expr></argument>, <argument><expr><name>d</name></expr></argument>, <argument><expr><name>x</name></expr></argument>, <argument><expr><name>y</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<if>if <condition>(<expr><name>b</name> <operator>%</operator> <name>d</name></expr>)</condition><then> <block type="pseudo"><return>return <expr><operator>-</operator><literal type="number">1</literal></expr>;</return></block></then></if>
+	<expr_stmt><expr><name>x</name> <operator>*=</operator> <operator>(</operator><name>b</name> <operator>/</operator> <name>d</name><operator>)</operator></expr>;</expr_stmt>
+	<expr_stmt><expr><name>x</name> <operator>=</operator> <operator>(</operator><name>x</name><operator>%</operator><name>n</name> <operator>+</operator> <name>n</name><operator>)</operator> <operator>%</operator> <name>n</name></expr>;</expr_stmt>
+	<expr_stmt><expr><name>x</name> <operator>=</operator> <name>x</name> <operator>%</operator> <operator>(</operator><name>n</name><operator>/</operator><name>d</name><operator>)</operator></expr>;</expr_stmt>
+	<return>return <expr><name>x</name></expr>;</return>
+}</block></function>
+
+<function><type><name>int</name></type> <name>work</name><parameter_list>()</parameter_list> <block>{
+    <decl_stmt><decl><type><name>LL</name></type> <name>w</name></decl>, <decl><type ref="prev"/><name>d</name></decl>, <decl><type ref="prev"/><name>n</name></decl>, <decl><type ref="prev"/><name>p</name></decl>, <decl><type ref="prev"/><name>x</name></decl>, <decl><type ref="prev"/><name>y</name></decl>, <decl><type ref="prev"/><name>g</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name> <operator>&gt;&gt;</operator> <name>p</name> <operator>&gt;&gt;</operator> <name>w</name> <operator>&gt;&gt;</operator> <name>d</name></expr>;</expr_stmt>
+    <comment type="line">//if (!p) { cout &lt;&lt; "0 0 " &lt;&lt; n &lt;&lt; endl; return 0; }</comment>
+
+    <expr_stmt><expr><name>y</name> <operator>=</operator> <call><name>modFunc</name><argument_list>(<argument><expr><name>d</name></expr></argument>, <argument><expr><name>p</name><operator>%</operator><name>w</name></expr></argument>, <argument><expr><name>w</name></expr></argument>, <argument><expr><name>g</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <comment type="line">//cout &lt;&lt; y &lt;&lt; endl &lt;&lt; g &lt;&lt; endl;</comment>
+
+    <comment type="line">//if (y &lt; 0 || (p-d*y) &lt; 0) { cout &lt;&lt; -1 &lt;&lt; endl; return 0; }</comment>
+    <expr_stmt><expr><name>x</name> <operator>=</operator> <operator>(</operator><name>p</name><operator>-</operator><name>d</name><operator>*</operator><name>y</name><operator>)</operator> <operator>/</operator> <name>w</name></expr>;</expr_stmt>
+    <if>if <condition>(<expr><name>x</name> <operator>&lt;</operator> <literal type="number">0</literal> <operator>||</operator> <name><name>y</name> <argument_list type="generic">&lt; <argument><expr><literal type="number">0</literal> <operator>||</operator> <name>x</name> <operator>+</operator> <name>y</name></expr></argument> &gt;</argument_list></name> <name>n</name></expr>)</condition><then> <block>{ <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <operator>-</operator><literal type="number">1</literal> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt> <return>return <expr><literal type="number">0</literal></expr>;</return> }</block></then></if>
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>x</name> <operator>&lt;&lt;</operator> <literal type="string">" "</literal> <operator>&lt;&lt;</operator> <name>y</name> <operator>&lt;&lt;</operator> <literal type="string">" "</literal> <operator>&lt;&lt;</operator> <name>n</name><operator>-</operator><name>x</name><operator>-</operator><name>y</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+    <comment type="line">//while (1)</comment>
+    <expr_stmt><expr><call><name>work</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+
+</unit>

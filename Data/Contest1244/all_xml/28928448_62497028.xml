@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1244/all/28928448_62497028.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdio&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>N</name></cpp:macro> <cpp:value>200005</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ll</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>;</decl_stmt> <decl_stmt><decl><type><name>ll</name></type> <name><name>a</name><index>[<expr><name>N</name></expr>]</index></name></decl>;</decl_stmt> <decl_stmt><decl><type><name>ll</name></type> <name>mn</name></decl>;</decl_stmt> <decl_stmt><decl><type><name>ll</name></type> <name>mx</name></decl>;</decl_stmt> <decl_stmt><decl><type><name>ll</name></type> <name>k</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name>ltag</name></decl>;</decl_stmt> <decl_stmt><decl><type><name>int</name></type> <name>rtag</name></decl>;</decl_stmt>
+
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list><block>{
+    <expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%d %lld"</literal></expr></argument>,<argument><expr><operator>&amp;</operator><name>n</name></expr></argument>,<argument><expr><operator>&amp;</operator><name>k</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;=</operator><name>n</name></expr>;</condition><incr><expr><operator>++</operator><name>i</name></expr></incr>)</control> <block type="pseudo"><expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%lld"</literal></expr></argument>,<argument><expr><name>a</name><operator>+</operator><name>i</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></for>
+    <expr_stmt><expr><call><name>sort</name><argument_list>(<argument><expr><name>a</name><operator>+</operator><literal type="number">1</literal></expr></argument>,<argument><expr><name>a</name><operator>+</operator><literal type="number">1</literal><operator>+</operator><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>  <expr_stmt><expr><name>ltag</name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt> <expr_stmt><expr><name>rtag</name><operator>=</operator><name>n</name></expr>;</expr_stmt> <expr_stmt><expr><name>mn</name><operator>=</operator><name><name>a</name><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>;</expr_stmt> <expr_stmt><expr><name>mx</name><operator>=</operator><name><name>a</name><index>[<expr><name>n</name></expr>]</index></name></expr>;</expr_stmt>
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">2</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;=</operator><name>n</name></expr>;</condition><incr><expr><operator>++</operator><name>i</name></expr></incr>)</control><block>{
+        <if>if<condition>(<expr><name><name>a</name><index>[<expr><name>i</name></expr>]</index></name><operator>==</operator><name><name>a</name><index>[<expr><name>i</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>ltag</name><operator>=</operator><name>i</name></expr>;</expr_stmt></block></then>
+        <else>else             <block type="pseudo"><break>break;</break></block></else></if>
+    }</block></for>
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><name>n</name><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&gt;=</operator><literal type="number">1</literal></expr>;</condition><incr><expr><operator>--</operator><name>i</name></expr></incr>)</control><block>{
+        <if>if<condition>(<expr><name><name>a</name><index>[<expr><name>i</name></expr>]</index></name><operator>==</operator><name><name>a</name><index>[<expr><name>i</name><operator>+</operator><literal type="number">1</literal></expr>]</index></name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>rtag</name><operator>=</operator><name>i</name></expr>;</expr_stmt></block></then>
+        <else>else             <block type="pseudo"><break>break;</break></block></else></if>
+    }</block></for>
+    <if>if<condition>(<expr><name>ltag</name><operator>&gt;=</operator><name>rtag</name></expr>)</condition><then><block>{
+        <expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"0\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <return>return <expr><literal type="number">0</literal></expr>;</return>
+    }</block></then>
+    <else>else<block>{
+        <while>while<condition>(<expr><name>ltag</name><operator>&lt;</operator><name>rtag</name></expr>)</condition><block>{
+            <decl_stmt><decl><type><name>int</name></type> <name>lnum</name><init>=<expr><name>ltag</name></expr></init></decl>;</decl_stmt> <comment type="line">//ä¸åå·¦è¾¹ç­æ¡-1éè¦è±è´¹lnumçä»£ä»·</comment>
+            <decl_stmt><decl><type><name>int</name></type> <name>rnum</name><init>=<expr><name>n</name><operator>-</operator><name>rtag</name><operator>+</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt> <comment type="line">//ä¸éå³è¾¹ç­æ¡-1éè¦è±è´¹rnumçä»£ä»·</comment>
+            <if>if<condition>(<expr><name>lnum</name><operator>&lt;</operator><name>rnum</name></expr>)</condition><then><block>{  <comment type="line">// ä¸åçä»£ä»·å° èªç¶æ¯ä¸å</comment>
+                <decl_stmt><decl><type><name>ll</name></type> <name>up_times</name><init>=<expr><call><name>min</name><argument_list>(<argument><expr><name>k</name><operator>/</operator><name>lnum</name></expr></argument>,<argument><expr><name><name>a</name><index>[<expr><name>ltag</name><operator>+</operator><literal type="number">1</literal></expr>]</index></name><operator>-</operator><name><name>a</name><index>[<expr><name>ltag</name></expr>]</index></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+                <expr_stmt><expr><name>mn</name><operator>+=</operator><name>up_times</name></expr>;</expr_stmt>
+                <if>if<condition>(<expr><name>mn</name><operator>!=</operator><name><name>a</name><index>[<expr><name>ltag</name><operator>+</operator><literal type="number">1</literal></expr>]</index></name></expr>)</condition><then><block>{
+                    <expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"%lld\n"</literal></expr></argument>,<argument><expr><name>mx</name><operator>-</operator><name>mn</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                    <return>return <expr><literal type="number">0</literal></expr>;</return>
+                }</block></then></if>
+                <expr_stmt><expr><name>k</name><operator>-=</operator><name>up_times</name><operator>*</operator><name>lnum</name></expr>;</expr_stmt>
+                <decl_stmt><decl><type><name>int</name></type> <name>new_ltag</name><init>=<expr><name>ltag</name><operator>+</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt> <expr_stmt><expr><name>ltag</name><operator>=</operator><name>ltag</name><operator>+</operator><literal type="number">1</literal></expr>;</expr_stmt>
+                <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><name>new_ltag</name><operator>+</operator><literal type="number">1</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;=</operator><name>n</name></expr>;</condition><incr><expr><operator>++</operator><name>i</name></expr></incr>)</control><block>{
+                    <if>if<condition>(<expr><name><name>a</name><index>[<expr><name>i</name></expr>]</index></name><operator>==</operator><name><name>a</name><index>[<expr><name>i</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>ltag</name><operator>=</operator><name>i</name></expr>;</expr_stmt></block></then>
+                    <else>else <block type="pseudo"><break>break;</break></block></else></if>
+                }</block></for>
+                <if>if<condition>(<expr><name>ltag</name><operator>&gt;=</operator><name>rtag</name></expr>)</condition><then><block>{
+                    <expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"%lld\n"</literal></expr></argument>,<argument><expr><name>mx</name><operator>-</operator><name>mn</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                    <return>return <expr><literal type="number">0</literal></expr>;</return>
+                }</block></then></if>
+            }</block></then>
+            <else>else<block>{
+                <decl_stmt><decl><type><name>ll</name></type> <name>down_times</name><init>=<expr><call><name>min</name><argument_list>(<argument><expr><name>k</name><operator>/</operator><name>rnum</name></expr></argument>,<argument><expr><name><name>a</name><index>[<expr><name>rtag</name></expr>]</index></name><operator>-</operator><name><name>a</name><index>[<expr><name>rtag</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+                <expr_stmt><expr><name>mx</name><operator>-=</operator><name>down_times</name></expr>;</expr_stmt>
+                <if>if<condition>(<expr><name>mx</name><operator>!=</operator><name><name>a</name><index>[<expr><name>rtag</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name></expr>)</condition><then><block>{
+                    <expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"%lld\n"</literal></expr></argument>,<argument><expr><name>mx</name><operator>-</operator><name>mn</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                    <return>return <expr><literal type="number">0</literal></expr>;</return>
+                }</block></then></if>
+                <expr_stmt><expr><name>k</name><operator>-=</operator><name>down_times</name><operator>*</operator><name>rnum</name></expr>;</expr_stmt>
+                <decl_stmt><decl><type><name>int</name></type> <name>new_rtag</name><init>=<expr><name>rtag</name><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt> <expr_stmt><expr><name>rtag</name><operator>=</operator><name>rtag</name><operator>-</operator><literal type="number">1</literal></expr>;</expr_stmt>
+                <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><name>new_rtag</name><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&gt;=</operator><literal type="number">1</literal></expr>;</condition><incr><expr><operator>--</operator><name>i</name></expr></incr>)</control><block>{
+                    <if>if<condition>(<expr><name><name>a</name><index>[<expr><name>i</name></expr>]</index></name><operator>==</operator><name><name>a</name><index>[<expr><name>i</name><operator>+</operator><literal type="number">1</literal></expr>]</index></name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>rtag</name><operator>=</operator><name>i</name></expr>;</expr_stmt></block></then>
+                    <else>else  <block type="pseudo"><break>break;</break></block></else></if>
+                }</block></for>
+                <if>if<condition>(<expr><name>ltag</name><operator>&gt;=</operator><name>rtag</name></expr>)</condition><then><block>{
+                    <expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"%lld\n"</literal></expr></argument>,<argument><expr><name>mx</name><operator>-</operator><name>mn</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                    <return>return <expr><literal type="number">0</literal></expr>;</return>
+                }</block></then></if>
+            }</block></else></if>
+        }</block></while>
+    }</block></else></if>
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+    
+}</block></function>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</unit>

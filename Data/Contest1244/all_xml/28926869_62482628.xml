@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1244/all/28926869_62482628.cpp"><cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ll</name></cpp:macro> <cpp:value>long long int</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ld</name></cpp:macro> <cpp:value>long double</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ff</name></cpp:macro> <cpp:value>first</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ss</name></cpp:macro> <cpp:value>second</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pb</name></cpp:macro> <cpp:value>push_back</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pi</name></cpp:macro> <cpp:value>pair&lt;ll,ll&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>mod</name></cpp:macro> <cpp:value>(ll)(1e9+7)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>debug</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>cerr &lt;&lt; #x &lt;&lt; " is " &lt;&lt; x &lt;&lt; endl;</cpp:value></cpp:define>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+	
+	<decl_stmt><decl><type><name>ll</name></type> <name>n</name></decl>,<decl><type ref="prev"/><name>p</name></decl>,<decl><type ref="prev"/><name>w</name></decl>,<decl><type ref="prev"/><name>d</name></decl>;</decl_stmt>
+	<expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name> <operator>&gt;&gt;</operator> <name>p</name> <operator>&gt;&gt;</operator> <name>w</name> <operator>&gt;&gt;</operator> <name>d</name></expr>;</expr_stmt>
+
+	<decl_stmt><decl><type><name>ll</name></type> <name>minwin</name> <init>= <expr><name>p</name><operator>/</operator><name>w</name></expr></init></decl>;</decl_stmt>
+	<if>if<condition>( <expr><name>p</name> <operator>%</operator> <name>w</name></expr>)</condition><then>
+		<block type="pseudo"><expr_stmt><expr><name>minwin</name> <operator>+=</operator> <literal type="number">1</literal></expr>;</expr_stmt></block></then></if>
+
+	
+	<if>if<condition>(<expr><name>minwin</name> <operator>&gt;</operator> <name>n</name></expr>)</condition><then><block>{
+		<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <operator>-</operator><literal type="number">1</literal> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+		<return>return <expr><literal type="number">0</literal></expr>;</return>
+	}</block></then></if>
+
+	<decl_stmt><decl><type><name>ll</name></type> <name>delta</name> <init>= <expr><name>minwin</name><operator>*</operator><name>w</name> <operator>-</operator> <name>p</name></expr></init></decl>;</decl_stmt>
+
+	<if>if<condition>(<expr><name>delta</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then><block>{
+		<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>minwin</name> <operator>&lt;&lt;</operator> <literal type="string">" "</literal> <operator>&lt;&lt;</operator>  <literal type="number">0</literal> <operator>&lt;&lt;</operator> <literal type="string">" "</literal> <operator>&lt;&lt;</operator> <name>n</name><operator>-</operator><name>minwin</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>  
+		<return>return <expr><literal type="number">0</literal></expr>;</return>
+	}</block></then>
+	<comment type="line">//  delta - 10**5</comment>
+
+	<else>else<block>{
+		
+		<comment type="line">// ll each = w - d;</comment>
+		
+		<comment type="line">// if(delta % each == 0){</comment>
+		<comment type="line">// 	ll changes = delta/each;</comment>
+		<comment type="line">// 	cout &lt;&lt; minwin-changes &lt;&lt; " " &lt;&lt; changes &lt;&lt; " " &lt;&lt; n-minwin &lt;&lt; endl;</comment>
+		<comment type="line">// 	return 0;</comment>
+		<comment type="line">// }</comment>
+
+		<comment type="line">// else{</comment>
+		<comment type="line">// 	cout &lt;&lt; -1 &lt;&lt; endl;</comment>
+		<comment type="line">// 	return 0;</comment>
+		<comment type="line">// }</comment>
+
+		<for>for<control>(<init><decl><type><name>ll</name></type> <name>x1</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>x1</name> <operator>&lt;=</operator> <literal type="number">100000</literal></expr>;</condition> <incr><expr><name>x1</name><operator>++</operator></expr></incr>)</control>
+		<block>{	
+			<decl_stmt><decl><type><name>ll</name></type> <name>val1</name> <init>= <expr><operator>(</operator><name>w</name><operator>-</operator><name>d</name><operator>)</operator><operator>*</operator><name>x1</name></expr></init></decl>;</decl_stmt>
+
+			<decl_stmt><decl><type><name>ll</name></type> <name>pos</name> <init>= <expr><name>val1</name> <operator>-</operator> <name>delta</name></expr></init></decl>;</decl_stmt>
+			<if>if<condition>(<expr><name>pos</name> <operator>&gt;=</operator> <literal type="number">0</literal></expr>)</condition><then><block>{
+				<if>if<condition>(<expr><name>pos</name><operator>%</operator><name>d</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then><block>{
+					<decl_stmt><decl><type><name>ll</name></type> <name>x2</name> <init>= <expr><name>pos</name><operator>/</operator><name>d</name></expr></init></decl>;</decl_stmt>
+
+					<decl_stmt><decl><type><name>ll</name></type> <name>winm</name> <init>= <expr><name>minwin</name><operator>-</operator><name>x1</name></expr></init></decl>;</decl_stmt> 
+					<decl_stmt><decl><type><name>ll</name></type> <name>drawm</name> <init>= <expr><name>x1</name><operator>+</operator><name>x2</name></expr></init></decl>;</decl_stmt>
+
+					<if>if<condition>(<expr><name>winm</name> <operator>+</operator> <name>drawm</name> <operator>&lt;=</operator> <name>n</name> <operator>and</operator> <name>winm</name> <operator>&gt;=</operator> <literal type="number">0</literal></expr>)</condition><then><block>{
+						<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>winm</name> <operator>&lt;&lt;</operator> <literal type="string">" "</literal> <operator>&lt;&lt;</operator> <name>drawm</name> <operator>&lt;&lt;</operator> <literal type="string">" "</literal> <operator>&lt;&lt;</operator> <name>n</name><operator>-</operator><name>winm</name><operator>-</operator><name>drawm</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+						<return>return <expr><literal type="number">0</literal></expr>;</return>
+					}</block></then></if>
+
+				}</block></then></if>
+			}</block></then></if>
+
+		}</block></for>
+
+		<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <operator>-</operator><literal type="number">1</literal> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+		<return>return <expr><literal type="number">0</literal></expr>;</return>
+
+	}</block></else></if>
+
+}</block></function></unit>

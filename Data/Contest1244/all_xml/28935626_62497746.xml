@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1244/all/28935626_62497746.cpp"><cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;cstdio&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;cstring&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>LL</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define> 
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>M</name> <init>= <expr><literal type="number">250000</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>LL</name></type> <name>k</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>,<decl><type ref="prev"/><name>m</name></decl>;</decl_stmt>
+<struct>struct <name>vv</name>
+<block>{<public type="default">
+	<decl_stmt><decl><type><name>int</name></type> <name>a</name></decl>,<decl><type ref="prev"/><name>c</name></decl>;</decl_stmt>
+</public>}</block> <decl><name><name>t</name><index>[<expr><name>M</name></expr>]</index></name></decl>, <decl><type ref="prev"/><name><name>w</name><index>[<expr><name>M</name></expr>]</index></name></decl>;</struct>
+<function><type><name>bool</name></type> <name>cmp</name><parameter_list>(<parameter><decl><type><name>vv</name></type> <name>a</name></decl></parameter>,<parameter><decl><type><name>vv</name></type> <name>b</name></decl></parameter>)</parameter_list><block>{<return>return <expr><name><name>a</name><operator>.</operator><name>a</name></name><operator>&lt;</operator><name><name>b</name><operator>.</operator><name>a</name></name></expr>;</return>}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+	<expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator> <name>n</name><operator>&gt;&gt;</operator><name>k</name></expr>;</expr_stmt>
+	<for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;=</operator><name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block type="pseudo"><expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%d"</literal></expr></argument>,<argument><expr><operator>&amp;</operator><name><name>t</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><name>a</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></for>
+	<expr_stmt><expr><call><name>sort</name><argument_list>(<argument><expr><name>t</name><operator>+</operator><literal type="number">1</literal></expr></argument>,<argument><expr><name>t</name><operator>+</operator><literal type="number">1</literal><operator>+</operator><name>n</name></expr></argument>,<argument><expr><name>cmp</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;=</operator><name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+	<block>{
+		<if>if<condition>(<expr><name><name>t</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><name>a</name><operator>==</operator><name><name>t</name><index>[<expr><name>i</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name><operator>.</operator><name>a</name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name><name>w</name><index>[<expr><name>m</name></expr>]</index></name><operator>.</operator><name>c</name><operator>++</operator></expr>;</expr_stmt></block></then>
+		<else>else 
+		<block>{
+			<expr_stmt><expr><name><name>w</name><index>[<expr><operator>++</operator><name>m</name></expr>]</index></name><operator>=</operator><name><name>t</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt>
+			<expr_stmt><expr><name><name>w</name><index>[<expr><name>m</name></expr>]</index></name><operator>.</operator><name>c</name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+		}</block></else></if>
+	}</block></for>
+	<decl_stmt><decl><type><name>int</name></type> <name>l</name><init>=<expr><literal type="number">1</literal></expr></init></decl>,<decl><type ref="prev"/><name>r</name><init>=<expr><name>m</name></expr></init></decl>;</decl_stmt>
+	<while>while<condition>(<expr><name>k</name> <operator>&amp;&amp;</operator> <name>l</name><operator>!=</operator><name>r</name></expr>)</condition>
+	<block>{
+		<if>if<condition>(<expr><name><name>w</name><index>[<expr><name>r</name></expr>]</index></name><operator>.</operator><name>c</name><operator>&lt;</operator><name><name>w</name><index>[<expr><name>l</name></expr>]</index></name><operator>.</operator><name>c</name></expr>)</condition><then> 
+		<block>{
+			<decl_stmt><decl><type><name>int</name></type> <name>v</name><init>=<expr><name><name>w</name><index>[<expr><name>r</name></expr>]</index></name><operator>.</operator><name>a</name><operator>-</operator><name><name>w</name><index>[<expr><name>r</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name><operator>.</operator><name>a</name></expr></init></decl>;</decl_stmt>
+			<if>if<condition>(<expr><operator>(</operator><name>LL</name><operator>)</operator><name>v</name><operator>*</operator><name><name>w</name><index>[<expr><name>r</name></expr>]</index></name><operator>.</operator><name>c</name><operator>&gt;</operator><name>k</name></expr>)</condition><then> 
+			<block>{
+				<decl_stmt><decl><type><name>int</name></type> <name>o</name><init>=<expr><name>k</name><operator>/</operator><name><name>w</name><index>[<expr><name>r</name></expr>]</index></name><operator>.</operator><name>c</name></expr></init></decl>;</decl_stmt>
+				<expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"%d"</literal></expr></argument>,<argument><expr><name><name>w</name><index>[<expr><name>r</name></expr>]</index></name><operator>.</operator><name>a</name><operator>-</operator><name><name>w</name><index>[<expr><name>l</name></expr>]</index></name><operator>.</operator><name>a</name><operator>-</operator><name>o</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+				<return>return <expr><literal type="number">0</literal></expr>;</return>
+			}</block></then></if>
+			<expr_stmt><expr><name>k</name><operator>-=</operator><operator>(</operator><name>LL</name><operator>)</operator><name>v</name><operator>*</operator><name><name>w</name><index>[<expr><name>r</name></expr>]</index></name><operator>.</operator><name>c</name></expr>;</expr_stmt>
+			<expr_stmt><expr><name><name>w</name><index>[<expr><name>r</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name><operator>.</operator><name>c</name><operator>+=</operator><name><name>w</name><index>[<expr><name>r</name></expr>]</index></name><operator>.</operator><name>c</name></expr>;</expr_stmt>
+			<expr_stmt><expr><name>r</name><operator>-=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+		}</block></then>
+		<else>else 
+		<block>{
+			<decl_stmt><decl><type><name>int</name></type> <name>v</name><init>=<expr><name><name>w</name><index>[<expr><name>l</name><operator>+</operator><literal type="number">1</literal></expr>]</index></name><operator>.</operator><name>a</name><operator>-</operator><name><name>w</name><index>[<expr><name>l</name></expr>]</index></name><operator>.</operator><name>a</name></expr></init></decl>;</decl_stmt>
+			<if>if<condition>(<expr><operator>(</operator><name>LL</name><operator>)</operator><name>v</name><operator>*</operator><name><name>w</name><index>[<expr><name>l</name></expr>]</index></name><operator>.</operator><name>c</name><operator>&gt;</operator><name>k</name></expr>)</condition><then> 
+			<block>{
+				<decl_stmt><decl><type><name>int</name></type> <name>o</name><init>=<expr><name>k</name><operator>/</operator><name><name>w</name><index>[<expr><name>l</name></expr>]</index></name><operator>.</operator><name>c</name></expr></init></decl>;</decl_stmt>
+				<expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"%d"</literal></expr></argument>,<argument><expr><name><name>w</name><index>[<expr><name>r</name></expr>]</index></name><operator>.</operator><name>a</name><operator>-</operator><name><name>w</name><index>[<expr><name>l</name></expr>]</index></name><operator>.</operator><name>a</name><operator>-</operator><name>o</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+				<return>return <expr><literal type="number">0</literal></expr>;</return>
+			}</block></then></if>
+			<expr_stmt><expr><name>k</name><operator>-=</operator><operator>(</operator><name>LL</name><operator>)</operator><name>v</name><operator>*</operator><name><name>w</name><index>[<expr><name>l</name></expr>]</index></name><operator>.</operator><name>c</name></expr>;</expr_stmt>
+			<expr_stmt><expr><name><name>w</name><index>[<expr><name>l</name><operator>+</operator><literal type="number">1</literal></expr>]</index></name><operator>.</operator><name>c</name><operator>+=</operator><name><name>w</name><index>[<expr><name>l</name></expr>]</index></name><operator>.</operator><name>c</name></expr>;</expr_stmt>
+			<expr_stmt><expr><name>l</name><operator>+=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+		}</block></else></if>
+	}</block></while>
+	
+	<expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"%d"</literal></expr></argument>,<argument><expr><name><name>w</name><index>[<expr><name>r</name></expr>]</index></name><operator>.</operator><name>a</name><operator>-</operator><name><name>w</name><index>[<expr><name>l</name></expr>]</index></name><operator>.</operator><name>a</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+}</block></function></unit>

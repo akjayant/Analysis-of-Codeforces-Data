@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1248/all/29178181_62995710.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdio&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstring&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;queue&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;map&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iterator&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cmath&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;set&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;deque&gt;</cpp:file></cpp:include> 
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;string&gt;</cpp:file></cpp:include>
+
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>char</name></type> <name><name>a</name><index>[<expr><literal type="number">100010</literal></expr>]</index></name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name><name>level</name><index>[<expr><literal type="number">100010</literal></expr>]</index></name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name>l</name></decl>, <decl><type ref="prev"/><name>r</name></decl>;</decl_stmt>
+
+<function><type><name>int</name></type> <name>calcCurCycle</name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name>char</name> <modifier>*</modifier></type><name>a</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>szA</name></decl></parameter>)</parameter_list>
+<block>{
+	<decl_stmt><decl><type><name>int</name></type> <name>minLevel</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+	<decl_stmt><decl><type><name>int</name></type> <name>minLevelCount</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+	<decl_stmt><decl><type><name>int</name></type> <name>curLevel</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+	<for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl> ;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>szA</name></expr> ;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+	<block>{
+		<if>if <condition>(<expr><name><name>a</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="char">'('</literal></expr>)</condition><then>
+			<block type="pseudo"><expr_stmt><expr><name>curLevel</name><operator>++</operator></expr>;</expr_stmt></block></then>
+		<else>else
+			<block type="pseudo"><expr_stmt><expr><name>curLevel</name><operator>--</operator></expr>;</expr_stmt></block></else></if>
+			
+		<expr_stmt><expr><name><name>level</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <name>curLevel</name></expr>;</expr_stmt>
+			
+		<if>if <condition>(<expr><name>minLevel</name> <operator>&gt;</operator> <name>curLevel</name></expr>)</condition><then> <block>{
+			<expr_stmt><expr><name>minLevel</name> <operator>=</operator> <name>curLevel</name></expr>;</expr_stmt>
+			<expr_stmt><expr><name>minLevelCount</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+		}</block></then>
+		<elseif>else <if>if <condition>(<expr><name>minLevel</name> <operator>==</operator> <name>curLevel</name></expr>)</condition><then> <block>{
+			<expr_stmt><expr><name>minLevelCount</name><operator>++</operator></expr>;</expr_stmt>
+		}</block></then></if></elseif></if>
+	}</block></for>
+	
+	<return>return <expr><name>minLevelCount</name></expr>;</return>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+	<expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%d\n"</literal></expr></argument>, <argument><expr><operator>&amp;</operator><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%s"</literal></expr></argument>, <argument><expr><name>a</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+	<comment type="line">//å·¦å³ä¸ç¸ç­å°±ç´æ¥å¹²æ­»</comment>
+	<decl_stmt><decl><type><name>int</name></type> <name>level</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+	<for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl> ;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>n</name></expr> ;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+	<block>{
+		<if>if <condition>(<expr><name><name>a</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="char">'('</literal></expr>)</condition><then>
+			<block type="pseudo"><expr_stmt><expr><name>level</name><operator>++</operator></expr>;</expr_stmt></block></then>
+		<elseif>else <if>if <condition>(<expr><name><name>a</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="char">')'</literal></expr>)</condition><then>
+			<block type="pseudo"><expr_stmt><expr><name>level</name><operator>--</operator></expr>;</expr_stmt></block></then></if></elseif></if>
+	}</block></for>
+
+	<comment type="line">//å·¦å³ä¸ç¸ç­å°±ç´æ¥å¹²æ­»</comment>
+	<if>if <condition>(<expr><name>level</name> <operator>!=</operator> <literal type="number">0</literal></expr>)</condition><then>
+	<block>{
+		<expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"0\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"1 1\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<return>return <expr><literal type="number">0</literal></expr>;</return>
+	}</block></then></if>
+	
+	<decl_stmt><decl><type><name>int</name></type> <name>maxL</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>, <decl><type ref="prev"/><name>maxR</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+	<decl_stmt><decl><type><name>int</name></type> <name>maxCycle</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+	
+	<expr_stmt><expr><name>maxCycle</name> <operator>=</operator> <call><name>calcCurCycle</name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	
+	<for>for <control>(<init><decl><type><name>int</name></type> <name>l</name> <init>= <expr><literal type="number">0</literal></expr></init></decl> ;</init> <condition><expr><name>l</name> <operator>&lt;</operator> <name>n</name></expr> ;</condition> <incr><expr><name>l</name><operator>++</operator></expr></incr>)</control>
+		<block type="pseudo"><for>for <control>(<init><decl><type><name>int</name></type> <name>r</name> <init>= <expr><name>l</name> <operator>+</operator> <literal type="number">1</literal></expr></init></decl> ;</init> <condition><expr><name>r</name> <operator>&lt;</operator> <name>n</name></expr> ;</condition> <incr><expr><name>r</name><operator>++</operator></expr></incr>)</control>
+		<block>{
+			<decl_stmt><decl><type><name>char</name></type> <name>tmp</name></decl>;</decl_stmt>
+			<expr_stmt><expr><name>tmp</name> <operator>=</operator> <name><name>a</name><index>[<expr><name>l</name></expr>]</index></name></expr>;</expr_stmt>
+			<expr_stmt><expr><name><name>a</name><index>[<expr><name>l</name></expr>]</index></name> <operator>=</operator> <name><name>a</name><index>[<expr><name>r</name></expr>]</index></name></expr>;</expr_stmt>
+			<expr_stmt><expr><name><name>a</name><index>[<expr><name>r</name></expr>]</index></name> <operator>=</operator> <name>tmp</name></expr>;</expr_stmt>
+			
+			<decl_stmt><decl><type><name>int</name></type> <name>curCycle</name> <init>= <expr><call><name>calcCurCycle</name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><name>n</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+			<if>if <condition>(<expr><name>maxCycle</name> <operator>&lt;</operator> <name>curCycle</name></expr>)</condition><then>
+			<block>{
+				<expr_stmt><expr><name>maxCycle</name> <operator>=</operator> <name>curCycle</name></expr>;</expr_stmt>
+				<expr_stmt><expr><name>maxL</name> <operator>=</operator> <name>l</name></expr>;</expr_stmt>
+				<expr_stmt><expr><name>maxR</name> <operator>=</operator> <name>r</name></expr>;</expr_stmt>
+			}</block></then></if>
+			
+			<expr_stmt><expr><name>tmp</name> <operator>=</operator> <name><name>a</name><index>[<expr><name>l</name></expr>]</index></name></expr>;</expr_stmt>
+			<expr_stmt><expr><name><name>a</name><index>[<expr><name>l</name></expr>]</index></name> <operator>=</operator> <name><name>a</name><index>[<expr><name>r</name></expr>]</index></name></expr>;</expr_stmt>
+			<expr_stmt><expr><name><name>a</name><index>[<expr><name>r</name></expr>]</index></name> <operator>=</operator> <name>tmp</name></expr>;</expr_stmt>			
+		}</block></for></block></for>
+		
+	<expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"%d\n"</literal></expr></argument>, <argument><expr><name>maxCycle</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"%d %d\n"</literal></expr></argument>, <argument><expr><name>maxL</name> <operator>+</operator> <literal type="number">1</literal></expr></argument>, <argument><expr><name>maxR</name> <operator>+</operator> <literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	
+	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

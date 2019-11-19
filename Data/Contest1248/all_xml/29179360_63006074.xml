@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1248/all/29179360_63006074.cpp"><comment type="line">// I am grateful to everyone who taught or motivated me to code.</comment>
+<comment type="line">// Without your support, nothing would have been done.</comment>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iomanip&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;fstream&gt;</cpp:file></cpp:include>
+<cpp:ifdef>#<cpp:directive>ifdef</cpp:directive> <name>SEM_LOCAL</name></cpp:ifdef>
+<decl_stmt><decl><type><name>bool</name></type> <name>DEBUG</name> <init>= <expr><literal type="boolean">true</literal></expr></init></decl>;</decl_stmt>
+<cpp:else>#<cpp:directive>else</cpp:directive></cpp:else>
+<decl_stmt><decl><type><name>bool</name></type> <name>DEBUG</name> <init>= <expr><literal type="boolean">false</literal></expr></init></decl>;</decl_stmt>
+<cpp:endif>#<cpp:directive>endif</cpp:directive></cpp:endif>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>FAST</name></cpp:macro> <cpp:value>{ios::sync_with_stdio(0);cin.tie(0);cout&lt;&lt;setprecision(10)&lt;&lt;fixed;}</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>FOR</name><parameter_list>(<parameter><type><name>a</name></type></parameter>,<parameter><type><name>b</name></type></parameter>,<parameter><type><name>c</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(int a=(b); a&lt;(int)(c); ++a)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>DB</name><parameter_list>(<parameter><type><name>a</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>if(DEBUG) cerr&lt;&lt;#a&lt;&lt;" "&lt;&lt;a&lt;&lt; "\n";</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>all</name><parameter_list>(<parameter><type><name>v</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>(v).begin(),(v).end()</cpp:value></cpp:define>
+<using>using <name>ll</name> <init>= <type><name>long</name> <name>long</name></type></init>;</using>
+<using>using <name>ull</name> <init>= <type><name>unsigned</name> <name>long</name> <name>long</name></type></init>;</using>
+<decl_stmt><decl><type><name>int</name></type> <name>MAXINT</name><init>=<expr><literal type="number">2e9</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>ll</name></type> <name>MAXLL</name><init>=<expr><literal type="number">9e18</literal></expr></init></decl>;</decl_stmt>
+
+<comment type="line">// Includes</comment>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;map&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;set&gt;</cpp:file></cpp:include>
+
+<comment type="line">// Variables</comment>
+
+<comment type="line">// Functions</comment>
+
+<decl_stmt><decl><type><name>int</name></type> <name>bestans</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name>besti</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt> <comment type="line">// 0-not</comment>
+<decl_stmt><decl><type><name>int</name></type> <name>bestu</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt> <comment type="line">// 0-not</comment>
+
+<function><type><name>void</name></type> <name>updans</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>myans</name></decl></parameter>, <parameter><decl><type><name>ll</name></type> <name>myi</name></decl></parameter>, <parameter><decl><type><name>ll</name></type> <name>myu</name></decl></parameter>)</parameter_list>
+<block>{
+    <if>if <condition>(<expr><name>bestans</name> <operator>&lt;</operator> <name>myans</name></expr>)</condition><then>
+    <block>{
+        <expr_stmt><expr><name>bestans</name> <operator>=</operator> <name>myans</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name>besti</name> <operator>=</operator> <name>myi</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name>bestu</name> <operator>=</operator> <name>myu</name></expr>;</expr_stmt>
+    }</block></then></if>
+}</block></function>
+
+<function><type><name>ll</name></type> <name>prefdif</name><parameter_list>(<parameter><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name><modifier>&amp;</modifier></type> <name>pref</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>pos0</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>pos1</name></decl></parameter>)</parameter_list>
+<block>{
+    <if>if <condition>(<expr><name>pos0</name> <operator>==</operator> <operator>-</operator><literal type="number">1</literal></expr>)</condition><then>
+        <block type="pseudo"><return>return <expr><name>pos1</name></expr>;</return></block></then></if>
+    <return>return <expr><name><name>pref</name><index>[<expr><name>pos1</name></expr>]</index></name> <operator>-</operator> <name><name>pref</name><index>[<expr><name>pos0</name></expr>]</index></name></expr>;</return>
+}</block></function>
+
+<comment type="line">// Main</comment>
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+<comment type="line">//#ifdef SEM_LOCAL</comment>
+<comment type="line">//    ifstream cin("tortsis.txt");</comment>
+<comment type="line">//    ofstream cout("tortval.txt");</comment>
+<comment type="line">//#endif</comment>
+    <decl_stmt><decl><type><name>FAST</name>
+    <comment type="line">//</comment>
+
+    <name>int</name></type> <name>n</name></decl>;</decl_stmt> <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>string</name></type> <name>d</name></decl>;</decl_stmt> <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>d</name></expr>;</expr_stmt>
+
+    <decl_stmt><decl><type><name>int</name></type> <name>gminbal</name> <init>= <expr><literal type="number">1e7</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>gbalance</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <macro><name>FOR</name><argument_list>(<argument>i</argument>,<argument><literal type="number">0</literal></argument>,<argument>n</argument>)</argument_list></macro>
+    <block>{
+        <if>if <condition>(<expr><name><name>d</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="char">'('</literal></expr>)</condition><then>
+            <block type="pseudo"><expr_stmt><expr><name>gbalance</name><operator>++</operator></expr>;</expr_stmt></block></then>
+        <else>else
+            <block type="pseudo"><expr_stmt><expr><name>gbalance</name><operator>--</operator></expr>;</expr_stmt></block></else></if>
+    }</block>
+    <if>if <condition>(<expr><name>gbalance</name> <operator>!=</operator> <literal type="number">0</literal></expr>)</condition><then>
+    <block>{
+        <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"0\n1 1"</literal></expr>;</expr_stmt>
+        <return>return <expr><literal type="number">0</literal></expr>;</return>
+    }</block></then></if>
+    <if>if <condition>(<expr><name>n</name> <operator>==</operator> <literal type="number">2</literal></expr>)</condition><then>
+    <block>{
+        <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"1\n1 1"</literal></expr>;</expr_stmt>
+        <return>return <expr><literal type="number">0</literal></expr>;</return>
+    }</block></then></if>
+
+    <decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>curbal</name><argument_list>(<argument><expr><name>n</name></expr></argument>,<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></decl>;</decl_stmt>
+    <expr_stmt><expr><name><name>curbal</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>=</operator> <operator>(</operator><ternary><condition><expr><name><name>d</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>==</operator> <literal type="char">'('</literal></expr> ?</condition><then> <expr><literal type="number">1</literal></expr> </then><else>: <expr><operator>-</operator><literal type="number">1</literal></expr></else></ternary><operator>)</operator></expr>;</expr_stmt>
+    <expr_stmt><expr><name>gminbal</name> <operator>=</operator> <call><name>min</name><argument_list>(<argument><expr><name>gminbal</name></expr></argument>, <argument><expr><name><name>curbal</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <macro><name>FOR</name><argument_list>(<argument>i</argument>,<argument><literal type="number">1</literal></argument>,<argument>d.size()</argument>)</argument_list></macro>
+    <block>{
+        <expr_stmt><expr><name><name>curbal</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <name><name>curbal</name><index>[<expr><name>i</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name> <operator>+</operator> <operator>(</operator><ternary><condition><expr><name><name>d</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="char">'('</literal></expr> ?</condition><then> <expr><literal type="number">1</literal></expr> </then><else>: <expr><operator>-</operator><literal type="number">1</literal></expr></else></ternary><operator>)</operator></expr>;</expr_stmt>
+        <expr_stmt><expr><name>gminbal</name> <operator>=</operator> <call><name>min</name><argument_list>(<argument><expr><name>gminbal</name></expr></argument>, <argument><expr><name><name>curbal</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    }</block>
+
+    <decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></expr></argument>&gt;</argument_list></name></type> <name>mpref</name> <argument_list>(<argument><expr><literal type="number">3</literal></expr></argument>, <argument><expr><call><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name> <argument_list>(<argument><expr><name>n</name></expr></argument>,<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></decl>;</decl_stmt> <comment type="line">// mpref[delta][pos]</comment>
+    <comment type="line">// How many elements gminbal + delta before pos (incl.)</comment>
+    <macro><name>FOR</name><argument_list>(<argument>delta</argument>,<argument><literal type="number">0</literal></argument>,<argument><literal type="number">3</literal></argument>)</argument_list></macro>
+    <block>{
+        <macro><name>FOR</name><argument_list>(<argument>pos</argument>,<argument><literal type="number">0</literal></argument>,<argument>d.size()</argument>)</argument_list></macro>
+        <block>{
+            <expr_stmt><expr><name><name>mpref</name><index>[<expr><name>delta</name></expr>]</index><index>[<expr><name>pos</name></expr>]</index></name> <operator>=</operator> <operator>(</operator><ternary><condition><expr><name><name>curbal</name><index>[<expr><name>pos</name></expr>]</index></name> <operator>==</operator> <name>gminbal</name> <operator>+</operator> <name>delta</name></expr> ?</condition><then> <expr><literal type="number">1</literal></expr> </then><else>: <expr><literal type="number">0</literal></expr></else></ternary><operator>)</operator></expr>;</expr_stmt>
+            <if>if <condition>(<expr><name>pos</name> <operator>!=</operator> <literal type="number">0</literal></expr>)</condition><then>
+                <block type="pseudo"><expr_stmt><expr><name><name>mpref</name><index>[<expr><name>delta</name></expr>]</index><index>[<expr><name>pos</name></expr>]</index></name> <operator>+=</operator> <name><name>mpref</name><index>[<expr><name>delta</name></expr>]</index><index>[<expr><name>pos</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name></expr>;</expr_stmt></block></then></if>
+        }</block>
+    }</block>
+
+    <expr_stmt><expr><call><name>updans</name><argument_list>(<argument><expr><name><name>mpref</name><index>[<expr><literal type="number">0</literal></expr>]</index><index>[<expr><name>n</name> <operator>-</operator> <literal type="number">1</literal></expr>]</index></name></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <macro><name>FOR</name><argument_list>(<argument>pos0</argument>, <argument><literal type="number">0</literal></argument>, <argument>n</argument>)</argument_list></macro>
+    <block>{
+        <macro><name>FOR</name><argument_list>(<argument>pos1</argument>, <argument>pos0 + <literal type="number">1</literal></argument>, <argument>n</argument>)</argument_list></macro>
+        <block>{
+            <if>if <condition>(<expr><name><name>d</name><index>[<expr><name>pos0</name></expr>]</index></name> <operator>==</operator> <name><name>d</name><index>[<expr><name>pos1</name></expr>]</index></name></expr>)</condition><then>
+                <block type="pseudo"><continue>continue;</continue></block></then></if>
+            <decl_stmt><decl><type><name>int</name></type> <name>delta</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+            <if>if <condition>(<expr><name><name>d</name><index>[<expr><name>pos0</name></expr>]</index></name> <operator>==</operator> <literal type="char">'('</literal></expr>)</condition><then>
+                <block type="pseudo"><expr_stmt><expr><name>delta</name> <operator>=</operator> <operator>-</operator><literal type="number">2</literal></expr>;</expr_stmt></block></then>
+            <else>else
+                <block type="pseudo"><expr_stmt><expr><name>delta</name> <operator>=</operator> <literal type="number">2</literal></expr>;</expr_stmt></block></else></if>
+
+            <decl_stmt><decl><type><name>int</name></type> <name>newmin</name> <init>= <expr><literal type="number">1e7</literal></expr></init></decl>;</decl_stmt>
+            <macro><name>FOR</name><argument_list>(<argument>i</argument>,<argument><literal type="number">0</literal></argument>,<argument>n</argument>)</argument_list></macro>
+            <block>{
+                <decl_stmt><decl><type><name>int</name></type> <name>el</name> <init>= <expr><name><name>curbal</name><index>[<expr><name>i</name></expr>]</index></name></expr></init></decl>;</decl_stmt>
+                <if>if <condition>(<expr><name>i</name> <operator>&gt;=</operator> <name>pos0</name> <operator>&amp;&amp;</operator> <name>i</name> <operator>&lt;</operator> <name>pos1</name></expr>)</condition><then>
+                    <block type="pseudo"><expr_stmt><expr><name>el</name> <operator>+=</operator> <name>delta</name></expr>;</expr_stmt></block></then></if>
+                <expr_stmt><expr><name>newmin</name> <operator>=</operator> <call><name>min</name><argument_list>(<argument><expr><name>newmin</name></expr></argument>, <argument><expr><name>el</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            }</block>
+
+            <decl_stmt><decl><type><name>int</name></type> <name>newmins</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+            <macro><name>FOR</name><argument_list>(<argument>i</argument>,<argument><literal type="number">0</literal></argument>,<argument>n</argument>)</argument_list></macro>
+            <block>{
+                <decl_stmt><decl><type><name>int</name></type> <name>el</name> <init>= <expr><name><name>curbal</name><index>[<expr><name>i</name></expr>]</index></name></expr></init></decl>;</decl_stmt>
+                <if>if <condition>(<expr><name>i</name> <operator>&gt;=</operator> <name>pos0</name> <operator>&amp;&amp;</operator> <name>i</name> <operator>&lt;</operator> <name>pos1</name></expr>)</condition><then>
+                    <block type="pseudo"><expr_stmt><expr><name>el</name> <operator>+=</operator> <name>delta</name></expr>;</expr_stmt></block></then></if>
+                <if>if <condition>(<expr><name>el</name> <operator>==</operator> <name>newmin</name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>newmins</name><operator>++</operator></expr>;</expr_stmt></block></then></if>
+
+
+            }</block>
+
+            <expr_stmt><expr><call><name>updans</name><argument_list>(<argument><expr><name>newmins</name></expr></argument>, <argument><expr><name>pos0</name></expr></argument>, <argument><expr><name>pos1</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        }</block>
+    }</block>
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>bestans</name> <operator>&lt;&lt;</operator> <literal type="char">'\n'</literal></expr>;</expr_stmt>
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>besti</name> <operator>+</operator> <literal type="number">1</literal> <operator>&lt;&lt;</operator> <literal type="char">' '</literal> <operator>&lt;&lt;</operator> <name>bestu</name> <operator>+</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+}</block></function>
+</unit>

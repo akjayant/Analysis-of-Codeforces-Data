@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1248/all/29139400_62996066.cpp"><cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;string&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;iomanip&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;cmath&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>int</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>endl</name></cpp:macro> <cpp:value>"\n"</cpp:value></cpp:define>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>long</name> <name>long</name></type> <name>INF</name> <init>= <expr><operator>(</operator><name>long</name> <name>long</name><operator>)</operator><literal type="number">1e18</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><specifier>const</specifier> <name>long</name> <name>long</name></type> <name>MOD</name> <init>= <expr><literal type="number">1</literal><literal type="char">'000'</literal><literal type="number">000</literal><literal type="char">'</literal></expr></init></decl></decl_stmt>007; 
+
+string yn(bool f){return f?"Yes":"No";}
+string YN(bool f){return f?"YES":"NO";}
+
+
+int n, m;
+
+int check(vector&lt;vector&lt;int&gt;&gt;&amp; f){
+	for(int i = 0; i &lt; n; i++){
+		for(int j = 0; j &lt; m; j++){
+			int con = 1;
+			
+			for(int k = 0; k &lt; 4; k++){
+				int ny = i + (2-k)%2, nx = j + (k-1)%2;
+				
+				if(ny &lt; 0 || ny &gt;= n || nx &lt; 0 || nx &gt;= m) continue;
+				
+				if(f[i][j] == f[ny][nx]) con++;
+			}
+			
+			if(con &gt;= 3) return 0;
+		}
+	}
+	// cout&lt;&lt;"&lt;&gt;&lt;&gt;&lt;&gt; "&lt;&lt;endl;
+	// for(int i = 0; i &lt; n; i++){
+		// for(int j = 0; j &lt; m; j++){
+			// cout&lt;&lt;f[i][j];
+		// }
+		// cout&lt;&lt;endl;
+	// }
+	
+	return 1;
+}
+
+int solve(int con, vector&lt;vector&lt;int&gt;&gt;&amp; f){
+	int res = 0;
+	
+	if(con == n*m) return check(f);
+	
+	f[con/m][con%m] = 1;
+	res += solve(con+1, f);
+	
+	f[con/m][con%m] = 2;
+	res += solve(con+1, f);
+	
+	return res;
+}
+
+int solve2(int n, int m){
+	int res = 2;
+	int a = 0, b = 0;
+	
+	for(int i = 0; i &lt; n-1; i++){
+		int c = a + b;
+		c %= MOD;
+		
+		if(!i) c = 2;
+		
+		res += c;
+		
+		res %= MOD;
+		
+		a = b;
+		
+		b = c;
+	}
+	
+	a = 0, b = 0;
+	
+	for(int i = 0; i &lt; m-1; i++){
+		int c = a + b;
+		c %= MOD;
+		
+		if(!i){
+			c = 2;
+		}
+		
+		res += c;
+		
+		res %= MOD;
+		
+		a = b;
+		
+		b = c;
+	}
+	
+	return res;
+}
+
+signed main(){
+	// cin.tie(nullptr);
+	// ios::sync_with_stdio(false);
+	// cout&lt;&lt;fixed&lt;&lt;setprecision(10);
+	
+	vector&lt;vector&lt;int&gt;&gt; f;
+	int x, y;
+
+	// cin&gt;&gt;n&gt;&gt;m;
+
+	cin&gt;&gt;x&gt;&gt;y;
+	
+	cout&lt;&lt;solve2(x,y)&lt;&lt;endl;
+	
+	return 0;
+	
+	for(int i = 1; i &lt;= y; i++){
+		cout&lt;&lt;endl;
+		for(int j = 1; i*j &lt;= 20; j++){
+			f.clear();
+			f.resize(i,vector&lt;int&gt;(j));
+			n = i;
+			m = j;
+			cout&lt;&lt;"i = "&lt;&lt;i&lt;&lt;" j = "&lt;&lt;j&lt;&lt;" f = "&lt;&lt;solve(0, f)&lt;&lt;endl;
+			cout&lt;&lt;"i = "&lt;&lt;i&lt;&lt;" j = "&lt;&lt;j&lt;&lt;" f = "&lt;&lt;solve2(i,j)&lt;&lt;endl;
+		}
+	}
+	
+	// f.resize(n,vector&lt;int&gt;(m));
+	
+	// cout&lt;&lt;solve(0, f)&lt;&lt;endl;
+	
+	
+	return 0;
+}</unit>

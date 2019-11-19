@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1244/all/28894540_62496820.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>n</name></decl>,<decl><type ref="prev"/><name>k</name></decl>;</decl_stmt>
+<struct>struct <name>node</name>
+<block>{<public type="default">
+	<decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>num</name></decl>,<decl><type ref="prev"/><name>val</name></decl>;</decl_stmt>
+	<function type="operator"><type><name>bool</name></type> <name>operator<name>&lt;</name></name><parameter_list>(<parameter><decl><type><name>node</name></type> <name>x</name></decl></parameter>)</parameter_list><specifier>const</specifier>
+	<block>{
+		<return>return <expr><name>num</name><operator>&gt;</operator><name><name>x</name><operator>.</operator><name>num</name></name></expr>;</return>
+	}</block></function>
+</public>}</block>;</struct>
+<decl_stmt><decl><type><name>int</name></type> <name><name>a</name><index>[<expr><literal type="number">100005</literal></expr>]</index></name></decl>,<decl><type ref="prev"/><name><name>sum</name><index>[<expr><literal type="number">100005</literal></expr>]</index></name></decl>,<decl><type ref="prev"/><name>maxn</name></decl>,<decl><type ref="prev"/><name>minn</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name><name>priority_queue</name><argument_list type="generic">&lt;<argument><expr><name>node</name></expr></argument>&gt;</argument_list></name></type> <name>q1</name></decl>,<decl><type ref="prev"/><name>q2</name></decl>;</decl_stmt>
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+	<expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>n</name><operator>&gt;&gt;</operator><name>k</name></expr>;</expr_stmt>
+	<for>for <control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;=</operator><name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+		<block type="pseudo"><expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%d"</literal></expr></argument>,<argument><expr><operator>&amp;</operator><name><name>a</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></for>
+	<expr_stmt><expr><call><name>sort</name><argument_list>(<argument><expr><name>a</name><operator>+</operator><literal type="number">1</literal></expr></argument>,<argument><expr><name>a</name><operator>+</operator><name>n</name><operator>+</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<decl_stmt><decl><type><name>int</name></type> <name>las</name><init>=<expr><name><name>a</name><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr></init></decl>,<decl><type ref="prev"/><name>pos</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+	<expr_stmt><expr><name>maxn</name><operator>=</operator><name><name>a</name><index>[<expr><name>n</name></expr>]</index></name></expr><operator>,</operator><expr><name>minn</name><operator>=</operator><name><name>a</name><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>;</expr_stmt>
+	<for>for <control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">2</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;=</operator><name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+	<block>{
+		<if>if <condition>(<expr><name><name>a</name><index>[<expr><name>i</name></expr>]</index></name><operator>!=</operator><name>las</name></expr>)</condition><then>
+		<block>{
+			<expr_stmt><expr><call><name><name>q1</name><operator>.</operator><name>push</name></name><argument_list>(<argument><expr><operator>(</operator><name>node</name><operator>)</operator><block>{<expr><name>i</name><operator>-</operator><literal type="number">1</literal></expr>,<expr><name><name>a</name><index>[<expr><name>i</name></expr>]</index></name><operator>-</operator><name>las</name></expr>}</block></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+			<expr_stmt><expr><name>las</name><operator>=</operator><name><name>a</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt>
+		}</block></then></if>
+	}</block></for>
+	<expr_stmt><expr><name>las</name><operator>=</operator><name><name>a</name><index>[<expr><name>n</name></expr>]</index></name></expr>;</expr_stmt>
+	<for>for <control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><name>n</name><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&gt;=</operator><literal type="number">1</literal></expr>;</condition><incr><expr><name>i</name><operator>--</operator></expr></incr>)</control>
+	<block>{
+		<if>if <condition>(<expr><name><name>a</name><index>[<expr><name>i</name></expr>]</index></name><operator>!=</operator><name>las</name></expr>)</condition><then>
+		<block>{
+			<expr_stmt><expr><call><name><name>q2</name><operator>.</operator><name>push</name></name><argument_list>(<argument><expr><operator>(</operator><name>node</name><operator>)</operator><block>{<expr><name>n</name><operator>-</operator><name>i</name></expr>,<expr><name>las</name><operator>-</operator><name><name>a</name><index>[<expr><name>i</name></expr>]</index></name></expr>}</block></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+			<expr_stmt><expr><name>las</name><operator>=</operator><name><name>a</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt>
+		}</block></then></if>
+	}</block></for>
+	<while>while<condition>(<expr><name>k</name><operator>&amp;&amp;</operator><operator>!</operator><call><name><name>q1</name><operator>.</operator><name>empty</name></name><argument_list>()</argument_list></call><operator>&amp;&amp;</operator><operator>!</operator><call><name><name>q2</name><operator>.</operator><name>empty</name></name><argument_list>()</argument_list></call></expr>)</condition>
+	<block>{
+		<if>if <condition>(<expr><call><name><name>q1</name><operator>.</operator><name>top</name></name><argument_list>()</argument_list></call><operator>.</operator><name>num</name><operator>&gt;</operator><call><name><name>q2</name><operator>.</operator><name>top</name></name><argument_list>()</argument_list></call><operator>.</operator><name>num</name></expr>)</condition><then>
+		<block>{
+			<if>if <condition>(<expr><call><name>min</name><argument_list>(<argument><expr><call><name><name>q2</name><operator>.</operator><name>top</name></name><argument_list>()</argument_list></call><operator>.</operator><name>val</name></expr></argument>,<argument><expr><name>k</name><operator>/</operator><call><name><name>q2</name><operator>.</operator><name>top</name></name><argument_list>()</argument_list></call><operator>.</operator><name>num</name></expr></argument>)</argument_list></call><operator>==</operator><name>k</name><operator>/</operator><call><name><name>q2</name><operator>.</operator><name>top</name></name><argument_list>()</argument_list></call><operator>.</operator><name>num</name></expr>)</condition><then>
+			<block>{
+				<expr_stmt><expr><name>minn</name><operator>+=</operator><name>k</name><operator>/</operator><call><name><name>q2</name><operator>.</operator><name>top</name></name><argument_list>()</argument_list></call><operator>.</operator><name>num</name></expr>;</expr_stmt>
+				<if>if <condition>(<expr><name>minn</name><operator>&gt;=</operator><name>maxn</name></expr>)</condition><then>
+				<block>{
+					<expr_stmt><expr><call><name>puts</name><argument_list>(<argument><expr><literal type="string">"0"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+					<return>return <expr><literal type="number">0</literal></expr>;</return>
+				}</block></then></if>
+				<expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><name>maxn</name><operator>-</operator><name>minn</name><operator>&lt;&lt;</operator><name>endl</name></expr>;</expr_stmt>
+				<return>return <expr><literal type="number">0</literal></expr>;</return>
+			}</block></then></if>
+			<expr_stmt><expr><name>minn</name><operator>+=</operator><call><name>min</name><argument_list>(<argument><expr><call><name><name>q2</name><operator>.</operator><name>top</name></name><argument_list>()</argument_list></call><operator>.</operator><name>val</name></expr></argument>,<argument><expr><name>k</name><operator>/</operator><call><name><name>q2</name><operator>.</operator><name>top</name></name><argument_list>()</argument_list></call><operator>.</operator><name>num</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+			<expr_stmt><expr><name>k</name><operator>-=</operator><call><name><name>q2</name><operator>.</operator><name>top</name></name><argument_list>()</argument_list></call><operator>.</operator><name>num</name><operator>*</operator><call><name>min</name><argument_list>(<argument><expr><call><name><name>q2</name><operator>.</operator><name>top</name></name><argument_list>()</argument_list></call><operator>.</operator><name>val</name></expr></argument>,<argument><expr><name>k</name><operator>/</operator><call><name><name>q2</name><operator>.</operator><name>top</name></name><argument_list>()</argument_list></call><operator>.</operator><name>num</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+			<expr_stmt><expr><call><name><name>q2</name><operator>.</operator><name>pop</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+		}</block></then>
+		<else>else
+		<block>{
+			<if>if <condition>(<expr><call><name>min</name><argument_list>(<argument><expr><call><name><name>q1</name><operator>.</operator><name>top</name></name><argument_list>()</argument_list></call><operator>.</operator><name>val</name></expr></argument>,<argument><expr><name>k</name><operator>/</operator><call><name><name>q1</name><operator>.</operator><name>top</name></name><argument_list>()</argument_list></call><operator>.</operator><name>num</name></expr></argument>)</argument_list></call><operator>==</operator><name>k</name><operator>/</operator><call><name><name>q1</name><operator>.</operator><name>top</name></name><argument_list>()</argument_list></call><operator>.</operator><name>num</name></expr>)</condition><then>
+			<block>{
+				<expr_stmt><expr><name>maxn</name><operator>-=</operator><name>k</name><operator>/</operator><call><name><name>q1</name><operator>.</operator><name>top</name></name><argument_list>()</argument_list></call><operator>.</operator><name>num</name></expr>;</expr_stmt>
+				<if>if <condition>(<expr><name>minn</name><operator>&gt;=</operator><name>maxn</name></expr>)</condition><then>
+				<block>{
+					<expr_stmt><expr><call><name>puts</name><argument_list>(<argument><expr><literal type="string">"0"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+					<return>return <expr><literal type="number">0</literal></expr>;</return>
+				}</block></then></if>
+				<expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><name>maxn</name><operator>-</operator><name>minn</name><operator>&lt;&lt;</operator><name>endl</name></expr>;</expr_stmt>
+				<return>return <expr><literal type="number">0</literal></expr>;</return>
+			}</block></then></if>
+			<expr_stmt><expr><name>maxn</name><operator>-=</operator><call><name>min</name><argument_list>(<argument><expr><call><name><name>q1</name><operator>.</operator><name>top</name></name><argument_list>()</argument_list></call><operator>.</operator><name>val</name></expr></argument>,<argument><expr><name>k</name><operator>/</operator><call><name><name>q1</name><operator>.</operator><name>top</name></name><argument_list>()</argument_list></call><operator>.</operator><name>num</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+			<expr_stmt><expr><name>k</name><operator>-=</operator><call><name><name>q1</name><operator>.</operator><name>top</name></name><argument_list>()</argument_list></call><operator>.</operator><name>num</name><operator>*</operator><call><name>min</name><argument_list>(<argument><expr><call><name><name>q1</name><operator>.</operator><name>top</name></name><argument_list>()</argument_list></call><operator>.</operator><name>val</name></expr></argument>,<argument><expr><name>k</name><operator>/</operator><call><name><name>q1</name><operator>.</operator><name>top</name></name><argument_list>()</argument_list></call><operator>.</operator><name>num</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+			<expr_stmt><expr><call><name><name>q1</name><operator>.</operator><name>pop</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+		}</block></else></if>
+		<comment type="block">/*cout&lt;&lt;q1.top().num&lt;&lt;' '&lt;&lt;q1.top().val&lt;&lt;endl;
+		cout&lt;&lt;q2.top().num&lt;&lt;' '&lt;&lt;q2.top().num&lt;&lt;endl;
+		cout&lt;&lt;maxn&lt;&lt;' '&lt;&lt;minn&lt;&lt;' '&lt;&lt;k&lt;&lt;endl;*/</comment>
+	}</block></while>
+	<expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><name>maxn</name><operator>-</operator><name>minn</name><operator>&lt;&lt;</operator><name>endl</name></expr>;</expr_stmt>
+	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

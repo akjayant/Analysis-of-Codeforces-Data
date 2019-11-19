@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1248/all/29158108_62978717.cpp"><comment type="block">/*
+   we will use dp , our state will be the current number and the state of the previous two numbers .
+   state ---&gt; if we changed them or no .
+   we need only to check if we can change the current number with the the previous two numbers and
+   the next number .
+   if it hold the all condition then all contiguous subsequence will also hold .
+*/</comment>
+<cpp:pragma>#<cpp:directive>pragma</cpp:directive> <name>GCC</name> <name>optimize</name><name>(</name><cpp:literal>"O3"</cpp:literal><name>)</name></cpp:pragma>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;queue&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cmath&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;complex&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;map&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;string&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdio&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdlib&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstring&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;string&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;stdio.h&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+
+
+<comment type="block">/*
+#define x real()
+#define y imag()
+#define angle(a)                (atan2((a).imag(), (a).real()))
+#define vec(a,b)                ((b)-(a))
+#define same(p1,p2)             (dp(vec(p1,p2),vec(p1,p2)) &lt; EPS)
+#define dp(a,b)                 ( (conj(a)*(b)).real() )	// a*b cos(T), if zero -&gt; prep
+#define cp(a,b)                 ( (conj(a)*(b)).imag() )	// a*b sin(T), if zero -&gt; parllel
+#define length(a)               (hypot((a).imag(), (a).real()))
+#define normalize(a)            (a)/length(a)
+//#define polar(r,ang)            ((r)*exp(point(0,ang)))  ==&gt; Already added in c++11
+#define rotateO(p,ang)          ((p)*exp(point(0,ang)))
+#define rotateA(p,ang,about)  (rotateO(vec(about,p),ang)+about)
+#define reflectO(v,m)  (conj((v)/(m))*(m))
+*/</comment>
+
+<comment type="line">//#define pi 3.141592654</comment>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>forr</name><parameter_list>(<parameter><type><name>i</name></type></parameter>,<parameter><type><name>a</name></type></parameter>,<parameter><type><name>b</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(int i=a;i&lt;=b;i++)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>F</name></cpp:macro> <cpp:value>first</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>S</name></cpp:macro> <cpp:value>second</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>input</name></cpp:macro> <cpp:value>ios_base::sync_with_stdio(0);cin.tie(0);</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>NOT</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>(1^x)</cpp:value></cpp:define>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>double</name></type> <name>PI</name>  <init>= <expr><call><name>acos</name><argument_list>(<argument><expr><operator>-</operator><literal type="number">1.0</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<typedef>typedef <type><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>double</name></expr></argument>,<argument><expr><name>double</name></expr></argument>&gt;</argument_list></name></type><name>pdd</name>;</typedef>
+<typedef>typedef <type><name>long</name> <name>long</name></type>  <name>ll</name>;</typedef>
+<typedef>typedef <type><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>ll</name></expr></argument>, <argument><expr><name>ll</name></expr></argument>&gt;</argument_list></name></type><name>pii</name>;</typedef>
+<typedef>typedef <type><name><name>complex</name><argument_list type="generic">&lt;<argument><expr><name>double</name></expr></argument>&gt;</argument_list></name></type> <name>point</name>;</typedef>
+
+<comment type="line">//int x[8]={1,0,0,-1,-1,-1,1,1};</comment>
+<comment type="line">//int y[8]={0,1,-1,0,-1,1,-1,1};</comment>
+<comment type="line">//const int N=500009,M=1000000;</comment>
+<decl_stmt><decl><type><specifier>const</specifier> <name>double</name></type> <name>EPS</name><init>= <expr><literal type="number">1e-9</literal></expr></init></decl>,<decl><type ref="prev"/><name>eps</name><init>=<expr><operator>-</operator><literal type="number">1e9</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>N</name> <init>=<expr><literal type="number">100005</literal></expr></init></decl>;</decl_stmt>
+
+<decl_stmt><decl><type><name>int</name></type> <name>t</name></decl>,<decl><type ref="prev"/><name>n</name></decl>,<decl><type ref="prev"/><name>m</name></decl>;</decl_stmt>
+ <function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+<comment type="line">//freopen("travel.in","r",stdin);</comment>
+<comment type="line">//freopen("travel.out","w",stdout);</comment>
+<comment type="line">//__builtin_popcount()</comment>
+<expr_stmt><expr><name>input</name></expr>;</expr_stmt>
+
+  <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>t</name></expr>;</expr_stmt>
+  <while>while<condition>(<expr><name>t</name><operator>--</operator></expr>)</condition>
+  <block>{
+      <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>n</name></expr>;</expr_stmt>
+      <decl_stmt><decl><type><name>ll</name></type> <name>a</name><init>=<expr><literal type="number">0</literal></expr></init></decl>,<decl><type ref="prev"/><name>b</name><init>=<expr><literal type="number">0</literal></expr></init></decl>,<decl><type ref="prev"/><name>c</name><init>=<expr><literal type="number">0</literal></expr></init></decl>,<decl><type ref="prev"/><name>d</name><init>=<expr><literal type="number">0</literal></expr></init></decl>,<decl><type ref="prev"/><name>x</name></decl>;</decl_stmt>
+      <macro><name>forr</name><argument_list>(<argument>i</argument>,<argument><literal type="number">1</literal></argument>,<argument>n</argument>)</argument_list></macro>
+      <block>{
+          <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>x</name></expr>;</expr_stmt>
+          <if>if<condition>(<expr><name>x</name><operator>%</operator><literal type="number">2</literal></expr>)</condition><then><block type="pseudo"><expr_stmt><expr><name>a</name><operator>++</operator></expr>;</expr_stmt></block></then>
+          <else>else <block type="pseudo"><expr_stmt><expr><name>b</name><operator>++</operator></expr>;</expr_stmt></block></else></if>
+      }</block>
+      <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>m</name></expr>;</expr_stmt>
+      <macro><name>forr</name><argument_list>(<argument>i</argument>,<argument><literal type="number">1</literal></argument>,<argument>m</argument>)</argument_list></macro>
+      <block>{
+          <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>x</name></expr>;</expr_stmt>
+          <if>if<condition>(<expr><name>x</name><operator>%</operator><literal type="number">2</literal></expr>)</condition><then><block type="pseudo"><expr_stmt><expr><name>c</name><operator>++</operator></expr>;</expr_stmt></block></then>
+          <else>else <block type="pseudo"><expr_stmt><expr><name>d</name><operator>++</operator></expr>;</expr_stmt></block></else></if>
+      }</block>
+      <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><name>a</name><operator>*</operator><name>c</name><operator>+</operator><name>b</name><operator>*</operator><name>d</name><operator>&lt;&lt;</operator><name>endl</name></expr>;</expr_stmt>
+  }</block></while>
+
+
+
+
+
+
+
+<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

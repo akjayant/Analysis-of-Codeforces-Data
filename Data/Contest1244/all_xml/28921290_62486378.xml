@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1244/all/28921290_62486378.cpp"><comment type="line">//RAB RAKHA</comment>
+
+<comment type="block">/* Code till every compiler has crashed */</comment>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<typedef>typedef <type><name>long</name> <name>long</name></type> <name>ll</name>;</typedef>
+<typedef>typedef <type><name>long</name> <name>double</name></type> <name>ld</name>;</typedef>
+
+<comment type="block">/*-----------------------------------------------------------------
+                            Templates
+----------------------------------------------------------------*/</comment>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>FASTIO</name></cpp:macro> <cpp:value>ios_base::sync_with_stdio(false);cin.tie(NULL);</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>in1</name><parameter_list>(<parameter><type><name>n</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>cin &gt;&gt; n;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>in2</name><parameter_list>(<parameter><type><name>a</name></type></parameter>,<parameter><type><name>b</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>cin &gt;&gt; a &gt;&gt; b;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>in3</name><parameter_list>(<parameter><type><name>a</name></type></parameter>,<parameter><type><name>b</name></type></parameter>,<parameter><type><name>c</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>out1</name><parameter_list>(<parameter><type><name>n</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>cout &lt;&lt; n &lt;&lt; "\n";</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>out2</name><parameter_list>(<parameter><type><name>a</name></type></parameter>,<parameter><type><name>b</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>cout &lt;&lt; a &lt;&lt; " " &lt;&lt; b &lt;&lt; "\n";</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>out3</name><parameter_list>(<parameter><type><name>a</name></type></parameter>,<parameter><type><name>b</name></type></parameter>,<parameter><type><name>c</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>cout &lt;&lt; a &lt;&lt; " " &lt;&lt; b &lt;&lt; " " &lt;&lt; c &lt;&lt; "\n";</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>inputarr</name><parameter_list>(<parameter><type><name>a</name></type></parameter>,<parameter><type><name>n</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(int i=0;i&lt;n;i++) cin&gt;&gt;a[i];</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>printarr</name><parameter_list>(<parameter><type><name>a</name></type></parameter>,<parameter><type><name>n</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(int i=0;i&lt;n;i++) cout&lt;&lt;a[i]&lt;&lt;" ";</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>initarr</name><parameter_list>(<parameter><type><name>a</name></type></parameter>,<parameter><type><name>n</name></type></parameter>,<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(int i=0;i&lt;n;i++) a[i]=x;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>veci</name></cpp:macro> <cpp:value>vector&lt;int&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>seti</name></cpp:macro> <cpp:value>set&lt;int&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>mapi</name></cpp:macro> <cpp:value>map&lt;int,int&gt;</cpp:value></cpp:define>
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>MOD</name><init>=<expr><literal type="number">1e9</literal><operator>+</operator><literal type="number">7</literal></expr></init></decl>;</decl_stmt>
+<comment type="block">/*-----------------------------------------------------------------
+                            Templates
+----------------------------------------------------------------*/</comment>
+<function><type><name>ll</name></type> <name>gcd</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>a</name></decl></parameter>, <parameter><decl><type><name>ll</name></type> <name>b</name></decl></parameter>)</parameter_list>
+<block>{
+    <if>if <condition>(<expr><name>a</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then>
+       <block type="pseudo"><return>return <expr><name>b</name></expr>;</return></block></then></if>
+    <if>if <condition>(<expr><name>b</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then>
+       <block type="pseudo"><return>return <expr><name>a</name></expr>;</return></block></then></if>
+
+    <if>if <condition>(<expr><name>a</name> <operator>==</operator> <name>b</name></expr>)</condition><then>
+        <block type="pseudo"><return>return <expr><name>a</name></expr>;</return></block></then></if>
+
+    <if>if <condition>(<expr><name>a</name> <operator>&gt;</operator> <name>b</name></expr>)</condition><then>
+        <block type="pseudo"><return>return <expr><call><name>gcd</name><argument_list>(<argument><expr><name>a</name><operator>%</operator><name>b</name></expr></argument>, <argument><expr><name>b</name></expr></argument>)</argument_list></call></expr>;</return></block></then></if>
+    <return>return <expr><call><name>gcd</name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><name>b</name><operator>%</operator><name>a</name></expr></argument>)</argument_list></call></expr>;</return>
+}</block></function>
+<function><type><name>void</name></type> <name>swap</name><parameter_list>(<parameter><decl><type><name>ll</name> <modifier>&amp;</modifier></type><name>a</name></decl></parameter>, <parameter><decl><type><name>ll</name> <modifier>&amp;</modifier></type><name>b</name></decl></parameter>)</parameter_list>
+<block>{
+     <expr_stmt><expr><name>b</name> <operator>=</operator> <name>a</name> <operator>+</operator> <name>b</name></expr>;</expr_stmt>
+     <expr_stmt><expr><name>a</name> <operator>=</operator> <name>b</name> <operator>-</operator> <name>a</name></expr>;</expr_stmt>
+     <expr_stmt><expr><name>b</name> <operator>=</operator> <name>b</name> <operator>-</operator> <name>a</name></expr>;</expr_stmt>
+}</block></function>
+<comment type="block">/*
+if()
+cout &lt;&lt; "YES\n";
+else
+cout &lt;&lt; "NO\n";
+*/</comment>
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+    <decl_stmt><decl><type><name>FASTIO</name>
+    <name>int</name></type> <name>t</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <while>while<condition>(<expr><name>t</name><operator>--</operator></expr>)</condition>
+    <block>{
+        <decl_stmt><decl><type><name>ll</name></type> <name>n</name></decl>,<decl><type ref="prev"/><name>m</name></decl>,<decl><type ref="prev"/><name>ans</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>ll</name></type> <name>i</name></decl>,<decl><type ref="prev"/><name>j</name></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name>in1</name><argument_list>(<argument><expr><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <decl_stmt><decl><type><name>ll</name></type> <name><name>c1</name><index>[<expr><name>n</name></expr>]</index></name></decl>,<decl><type ref="prev"/><name><name>c2</name><index>[<expr><name>n</name></expr>]</index></name></decl>,<decl><type ref="prev"/><name><name>c3</name><index>[<expr><name>n</name></expr>]</index></name></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name>inputarr</name><argument_list>(<argument><expr><name>c1</name></expr></argument>,<argument><expr><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name>inputarr</name><argument_list>(<argument><expr><name>c2</name></expr></argument>,<argument><expr><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name>inputarr</name><argument_list>(<argument><expr><name>c3</name></expr></argument>,<argument><expr><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <decl_stmt><decl><type><name><name>vector</name> <argument_list type="generic">&lt;<argument><expr><name>ll</name></expr></argument>&gt;</argument_list></name></type> <name><name>v</name><index>[<expr><name>n</name></expr>]</index></name></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>ll</name></type> <name>x</name></decl>,<decl><type ref="prev"/><name>y</name></decl>;</decl_stmt>
+        <for>for<control>(<init><expr><name>i</name><operator>=</operator><literal type="number">0</literal></expr>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>n</name><operator>-</operator><literal type="number">1</literal></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+        <block>{
+            <expr_stmt><expr><call><name>in2</name><argument_list>(<argument><expr><name>x</name></expr></argument>,<argument><expr><name>y</name></expr></argument>)</argument_list></call></expr>;</expr_stmt><expr_stmt><expr><name><name>v</name><index>[<expr><name>x</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name><operator>.</operator><call><name>push_back</name><argument_list>(<argument><expr><name>y</name><operator>-</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt><expr_stmt><expr><name><name>v</name><index>[<expr><name>y</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name><operator>.</operator><call><name>push_back</name><argument_list>(<argument><expr><name>x</name><operator>-</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        }</block></for>
+        <for>for<control>(<init><expr><name>i</name><operator>=</operator><literal type="number">0</literal></expr>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+        <block>{
+            <if>if<condition>(<expr><name><name>v</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>size</name><argument_list>()</argument_list></call><operator>&gt;</operator><literal type="number">2</literal></expr>)</condition><then>
+            <block>{
+                <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"-1\n"</literal></expr>;</expr_stmt>
+                <return>return <expr><literal type="number">0</literal></expr>;</return>
+            }</block></then></if>
+        }</block></for>
+        <for>for<control>(<init><expr><name>i</name><operator>=</operator><literal type="number">0</literal></expr>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+        <block>{
+            <if>if<condition>(<expr><name><name>v</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>size</name><argument_list>()</argument_list></call><operator>==</operator><literal type="number">2</literal></expr>)</condition><then>
+            <block type="pseudo"><break>break;</break></block></then></if>
+        }</block></for>
+        <decl_stmt><decl><type><name>ll</name></type> <name>beginwiththisindex</name><init>=<expr><name>i</name></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>ll</name></type> <name>count</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>ll</name></type> <name><name>c</name><index>[<expr><name>n</name></expr>]</index></name></decl>;</decl_stmt><expr_stmt><expr><call><name>initarr</name><argument_list>(<argument><expr><name>c</name></expr></argument>,<argument><expr><name>n</name></expr></argument>,<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt><expr_stmt><expr><name>count</name><operator>=</operator><literal type="number">3</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>c</name><index>[<expr><name>beginwiththisindex</name></expr>]</index></name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>beginwiththisindex</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">2</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>beginwiththisindex</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">3</literal></expr>;</expr_stmt>
+        <decl_stmt><decl><type><name>ll</name></type> <name>curr</name><init>=<expr><name><name>v</name><index>[<expr><name>beginwiththisindex</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></init></decl>;</decl_stmt>
+        <while>while<condition>(<expr><name>count</name><operator>&lt;</operator><name>n</name></expr>)</condition>
+        <block>{
+            <if>if<condition>(<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index></name><operator>.</operator><call><name>size</name><argument_list>()</argument_list></call><operator>==</operator><literal type="number">1</literal></expr>)</condition><then>
+            <block type="pseudo"><break>break;</break></block></then></if>
+            <if>if<condition>(<expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>==</operator><literal type="number">0</literal><operator>&amp;&amp;</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>&gt;</operator><literal type="number">0</literal></expr>)</condition><then>
+            <block>{
+                <expr_stmt><expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">6</literal><operator>-</operator><name><name>c</name><index>[<expr><name>curr</name></expr>]</index></name><operator>-</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name></expr>;</expr_stmt>
+                <expr_stmt><expr><name>count</name><operator>++</operator></expr>;</expr_stmt>
+                <expr_stmt><expr><name>curr</name><operator>=</operator><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>;</expr_stmt>
+            }</block></then>
+            <elseif>else <if>if<condition>(<expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>==</operator><literal type="number">0</literal><operator>&amp;&amp;</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>&gt;</operator><literal type="number">0</literal></expr>)</condition><then>
+            <block>{
+                <expr_stmt><expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">6</literal><operator>-</operator><name><name>c</name><index>[<expr><name>curr</name></expr>]</index></name><operator>-</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name></expr>;</expr_stmt>
+                <expr_stmt><expr><name>count</name><operator>++</operator></expr>;</expr_stmt>
+                <expr_stmt><expr><name>curr</name><operator>=</operator><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>;</expr_stmt>
+            }</block></then></if></elseif></if>
+        }</block></while>
+        <expr_stmt><expr><name>curr</name><operator>=</operator><name><name>v</name><index>[<expr><name>beginwiththisindex</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>;</expr_stmt>
+        <while>while<condition>(<expr><name>count</name><operator>&lt;</operator><name>n</name></expr>)</condition>
+        <block>{
+            <if>if<condition>(<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index></name><operator>.</operator><call><name>size</name><argument_list>()</argument_list></call><operator>==</operator><literal type="number">1</literal></expr>)</condition><then>
+            <block type="pseudo"><break>break;</break></block></then></if>
+            <if>if<condition>(<expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>==</operator><literal type="number">0</literal><operator>&amp;&amp;</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>&gt;</operator><literal type="number">0</literal></expr>)</condition><then>
+            <block>{
+                <expr_stmt><expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">6</literal><operator>-</operator><name><name>c</name><index>[<expr><name>curr</name></expr>]</index></name><operator>-</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name></expr>;</expr_stmt>
+                <expr_stmt><expr><name>count</name><operator>++</operator></expr>;</expr_stmt>
+                <expr_stmt><expr><name>curr</name><operator>=</operator><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>;</expr_stmt>
+            }</block></then>
+            <elseif>else <if>if<condition>(<expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>==</operator><literal type="number">0</literal><operator>&amp;&amp;</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>&gt;</operator><literal type="number">0</literal></expr>)</condition><then>
+            <block>{
+                <expr_stmt><expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">6</literal><operator>-</operator><name><name>c</name><index>[<expr><name>curr</name></expr>]</index></name><operator>-</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name></expr>;</expr_stmt>
+                <expr_stmt><expr><name>count</name><operator>++</operator></expr>;</expr_stmt>
+                <expr_stmt><expr><name>curr</name><operator>=</operator><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>;</expr_stmt>
+            }</block></then></if></elseif></if>
+        }</block></while>
+        <decl_stmt><decl><type><name>ll</name></type> <name>cost1</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+        <for>for<control>(<init><expr><name>i</name><operator>=</operator><literal type="number">0</literal></expr>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+        <block>{
+            <if>if<condition>(<expr><name><name>c</name><index>[<expr><name>i</name></expr>]</index></name><operator>==</operator><literal type="number">1</literal></expr>)</condition><then>
+            <block type="pseudo"><expr_stmt><expr><name>cost1</name><operator>+=</operator><name><name>c1</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt></block></then>
+            <elseif>else <if>if<condition>(<expr><name><name>c</name><index>[<expr><name>i</name></expr>]</index></name><operator>==</operator><literal type="number">2</literal></expr>)</condition><then>
+            <block type="pseudo"><expr_stmt><expr><name>cost1</name><operator>+=</operator><name><name>c2</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt></block></then></if></elseif>
+            <else>else
+            <block type="pseudo"><expr_stmt><expr><name>cost1</name><operator>+=</operator><name><name>c3</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt></block></else></if>
+        }</block></for>
+        <decl_stmt><decl><type><name>ll</name></type> <name><name>c11</name><index>[<expr><name>n</name></expr>]</index></name></decl>;</decl_stmt>
+        <for>for<control>(<init><expr><name>i</name><operator>=</operator><literal type="number">0</literal></expr>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+        <block type="pseudo"><expr_stmt><expr><name><name>c11</name><index>[<expr><name>i</name></expr>]</index></name><operator>=</operator><name><name>c</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt></block></for>
+        
+        <expr_stmt><expr><call><name>initarr</name><argument_list>(<argument><expr><name>c</name></expr></argument>,<argument><expr><name>n</name></expr></argument>,<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt><expr_stmt><expr><name>count</name><operator>=</operator><literal type="number">3</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>c</name><index>[<expr><name>beginwiththisindex</name></expr>]</index></name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>beginwiththisindex</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">3</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>beginwiththisindex</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">2</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name>curr</name><operator>=</operator><name><name>v</name><index>[<expr><name>beginwiththisindex</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>;</expr_stmt>
+        <while>while<condition>(<expr><name>count</name><operator>&lt;</operator><name>n</name></expr>)</condition>
+        <block>{
+            <if>if<condition>(<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index></name><operator>.</operator><call><name>size</name><argument_list>()</argument_list></call><operator>==</operator><literal type="number">1</literal></expr>)</condition><then>
+            <block type="pseudo"><break>break;</break></block></then></if>
+            <if>if<condition>(<expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>==</operator><literal type="number">0</literal><operator>&amp;&amp;</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>&gt;</operator><literal type="number">0</literal></expr>)</condition><then>
+            <block>{
+                <expr_stmt><expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">6</literal><operator>-</operator><name><name>c</name><index>[<expr><name>curr</name></expr>]</index></name><operator>-</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name></expr>;</expr_stmt>
+                <expr_stmt><expr><name>count</name><operator>++</operator></expr>;</expr_stmt>
+                <expr_stmt><expr><name>curr</name><operator>=</operator><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>;</expr_stmt>
+            }</block></then>
+            <elseif>else <if>if<condition>(<expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>==</operator><literal type="number">0</literal><operator>&amp;&amp;</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>&gt;</operator><literal type="number">0</literal></expr>)</condition><then>
+            <block>{
+                <expr_stmt><expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">6</literal><operator>-</operator><name><name>c</name><index>[<expr><name>curr</name></expr>]</index></name><operator>-</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name></expr>;</expr_stmt>
+                <expr_stmt><expr><name>count</name><operator>++</operator></expr>;</expr_stmt>
+                <expr_stmt><expr><name>curr</name><operator>=</operator><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>;</expr_stmt>
+            }</block></then></if></elseif></if>
+        }</block></while>
+        <expr_stmt><expr><name>curr</name><operator>=</operator><name><name>v</name><index>[<expr><name>beginwiththisindex</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>;</expr_stmt>
+        <while>while<condition>(<expr><name>count</name><operator>&lt;</operator><name>n</name></expr>)</condition>
+        <block>{
+            <if>if<condition>(<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index></name><operator>.</operator><call><name>size</name><argument_list>()</argument_list></call><operator>==</operator><literal type="number">1</literal></expr>)</condition><then>
+            <block type="pseudo"><break>break;</break></block></then></if>
+            <if>if<condition>(<expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>==</operator><literal type="number">0</literal><operator>&amp;&amp;</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>&gt;</operator><literal type="number">0</literal></expr>)</condition><then>
+            <block>{
+                <expr_stmt><expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">6</literal><operator>-</operator><name><name>c</name><index>[<expr><name>curr</name></expr>]</index></name><operator>-</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name></expr>;</expr_stmt>
+                <expr_stmt><expr><name>count</name><operator>++</operator></expr>;</expr_stmt>
+                <expr_stmt><expr><name>curr</name><operator>=</operator><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>;</expr_stmt>
+            }</block></then>
+            <elseif>else <if>if<condition>(<expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>==</operator><literal type="number">0</literal><operator>&amp;&amp;</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>&gt;</operator><literal type="number">0</literal></expr>)</condition><then>
+            <block>{
+                <expr_stmt><expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">6</literal><operator>-</operator><name><name>c</name><index>[<expr><name>curr</name></expr>]</index></name><operator>-</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name></expr>;</expr_stmt>
+                <expr_stmt><expr><name>count</name><operator>++</operator></expr>;</expr_stmt>
+                <expr_stmt><expr><name>curr</name><operator>=</operator><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>;</expr_stmt>
+            }</block></then></if></elseif></if>
+        }</block></while>
+        <decl_stmt><decl><type><name>ll</name></type> <name>cost2</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+        <for>for<control>(<init><expr><name>i</name><operator>=</operator><literal type="number">0</literal></expr>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+        <block>{
+            <if>if<condition>(<expr><name><name>c</name><index>[<expr><name>i</name></expr>]</index></name><operator>==</operator><literal type="number">1</literal></expr>)</condition><then>
+            <block type="pseudo"><expr_stmt><expr><name>cost2</name><operator>+=</operator><name><name>c1</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt></block></then>
+            <elseif>else <if>if<condition>(<expr><name><name>c</name><index>[<expr><name>i</name></expr>]</index></name><operator>==</operator><literal type="number">2</literal></expr>)</condition><then>
+            <block type="pseudo"><expr_stmt><expr><name>cost2</name><operator>+=</operator><name><name>c2</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt></block></then></if></elseif>
+            <else>else
+            <block type="pseudo"><expr_stmt><expr><name>cost2</name><operator>+=</operator><name><name>c3</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt></block></else></if>
+        }</block></for>
+        <decl_stmt><decl><type><name>ll</name></type> <name><name>c21</name><index>[<expr><name>n</name></expr>]</index></name></decl>;</decl_stmt>
+        <for>for<control>(<init><expr><name>i</name><operator>=</operator><literal type="number">0</literal></expr>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+        <block type="pseudo"><expr_stmt><expr><name><name>c21</name><index>[<expr><name>i</name></expr>]</index></name><operator>=</operator><name><name>c</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt></block></for>
+        
+        
+        <expr_stmt><expr><call><name>initarr</name><argument_list>(<argument><expr><name>c</name></expr></argument>,<argument><expr><name>n</name></expr></argument>,<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt><expr_stmt><expr><name>count</name><operator>=</operator><literal type="number">3</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>c</name><index>[<expr><name>beginwiththisindex</name></expr>]</index></name><operator>=</operator><literal type="number">2</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>beginwiththisindex</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>beginwiththisindex</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">3</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name>curr</name><operator>=</operator><name><name>v</name><index>[<expr><name>beginwiththisindex</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>;</expr_stmt>
+        <while>while<condition>(<expr><name>count</name><operator>&lt;</operator><name>n</name></expr>)</condition>
+        <block>{
+            <if>if<condition>(<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index></name><operator>.</operator><call><name>size</name><argument_list>()</argument_list></call><operator>==</operator><literal type="number">1</literal></expr>)</condition><then>
+            <block type="pseudo"><break>break;</break></block></then></if>
+            <if>if<condition>(<expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>==</operator><literal type="number">0</literal><operator>&amp;&amp;</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>&gt;</operator><literal type="number">0</literal></expr>)</condition><then>
+            <block>{
+                <expr_stmt><expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">6</literal><operator>-</operator><name><name>c</name><index>[<expr><name>curr</name></expr>]</index></name><operator>-</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name></expr>;</expr_stmt>
+                <expr_stmt><expr><name>count</name><operator>++</operator></expr>;</expr_stmt>
+                <expr_stmt><expr><name>curr</name><operator>=</operator><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>;</expr_stmt>
+            }</block></then>
+            <elseif>else <if>if<condition>(<expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>==</operator><literal type="number">0</literal><operator>&amp;&amp;</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>&gt;</operator><literal type="number">0</literal></expr>)</condition><then>
+            <block>{
+                <expr_stmt><expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">6</literal><operator>-</operator><name><name>c</name><index>[<expr><name>curr</name></expr>]</index></name><operator>-</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name></expr>;</expr_stmt>
+                <expr_stmt><expr><name>count</name><operator>++</operator></expr>;</expr_stmt>
+                <expr_stmt><expr><name>curr</name><operator>=</operator><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>;</expr_stmt>
+            }</block></then></if></elseif></if>
+        }</block></while>
+        <expr_stmt><expr><name>curr</name><operator>=</operator><name><name>v</name><index>[<expr><name>beginwiththisindex</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>;</expr_stmt>
+        <while>while<condition>(<expr><name>count</name><operator>&lt;</operator><name>n</name></expr>)</condition>
+        <block>{
+            <if>if<condition>(<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index></name><operator>.</operator><call><name>size</name><argument_list>()</argument_list></call><operator>==</operator><literal type="number">1</literal></expr>)</condition><then>
+            <block type="pseudo"><break>break;</break></block></then></if>
+            <if>if<condition>(<expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>==</operator><literal type="number">0</literal><operator>&amp;&amp;</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>&gt;</operator><literal type="number">0</literal></expr>)</condition><then>
+            <block>{
+                <expr_stmt><expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">6</literal><operator>-</operator><name><name>c</name><index>[<expr><name>curr</name></expr>]</index></name><operator>-</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name></expr>;</expr_stmt>
+                <expr_stmt><expr><name>count</name><operator>++</operator></expr>;</expr_stmt>
+                <expr_stmt><expr><name>curr</name><operator>=</operator><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>;</expr_stmt>
+            }</block></then>
+            <elseif>else <if>if<condition>(<expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>==</operator><literal type="number">0</literal><operator>&amp;&amp;</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>&gt;</operator><literal type="number">0</literal></expr>)</condition><then>
+            <block>{
+                <expr_stmt><expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">6</literal><operator>-</operator><name><name>c</name><index>[<expr><name>curr</name></expr>]</index></name><operator>-</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name></expr>;</expr_stmt>
+                <expr_stmt><expr><name>count</name><operator>++</operator></expr>;</expr_stmt>
+                <expr_stmt><expr><name>curr</name><operator>=</operator><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>;</expr_stmt>
+            }</block></then></if></elseif></if>
+        }</block></while>
+        <decl_stmt><decl><type><name>ll</name></type> <name>cost3</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+        <for>for<control>(<init><expr><name>i</name><operator>=</operator><literal type="number">0</literal></expr>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+        <block>{
+            <if>if<condition>(<expr><name><name>c</name><index>[<expr><name>i</name></expr>]</index></name><operator>==</operator><literal type="number">1</literal></expr>)</condition><then>
+            <block type="pseudo"><expr_stmt><expr><name>cost3</name><operator>+=</operator><name><name>c1</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt></block></then>
+            <elseif>else <if>if<condition>(<expr><name><name>c</name><index>[<expr><name>i</name></expr>]</index></name><operator>==</operator><literal type="number">2</literal></expr>)</condition><then>
+            <block type="pseudo"><expr_stmt><expr><name>cost3</name><operator>+=</operator><name><name>c2</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt></block></then></if></elseif>
+            <else>else
+            <block type="pseudo"><expr_stmt><expr><name>cost3</name><operator>+=</operator><name><name>c3</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt></block></else></if>
+        }</block></for>
+        <decl_stmt><decl><type><name>ll</name></type> <name><name>c31</name><index>[<expr><name>n</name></expr>]</index></name></decl>;</decl_stmt>
+        <for>for<control>(<init><expr><name>i</name><operator>=</operator><literal type="number">0</literal></expr>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+        <block type="pseudo"><expr_stmt><expr><name><name>c31</name><index>[<expr><name>i</name></expr>]</index></name><operator>=</operator><name><name>c</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt></block></for>
+        
+        
+        
+        
+        <expr_stmt><expr><call><name>initarr</name><argument_list>(<argument><expr><name>c</name></expr></argument>,<argument><expr><name>n</name></expr></argument>,<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt><expr_stmt><expr><name>count</name><operator>=</operator><literal type="number">3</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>c</name><index>[<expr><name>beginwiththisindex</name></expr>]</index></name><operator>=</operator><literal type="number">2</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>beginwiththisindex</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">3</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>beginwiththisindex</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name>curr</name><operator>=</operator><name><name>v</name><index>[<expr><name>beginwiththisindex</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>;</expr_stmt>
+        <while>while<condition>(<expr><name>count</name><operator>&lt;</operator><name>n</name></expr>)</condition>
+        <block>{
+            <if>if<condition>(<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index></name><operator>.</operator><call><name>size</name><argument_list>()</argument_list></call><operator>==</operator><literal type="number">1</literal></expr>)</condition><then>
+            <block type="pseudo"><break>break;</break></block></then></if>
+            <if>if<condition>(<expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>==</operator><literal type="number">0</literal><operator>&amp;&amp;</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>&gt;</operator><literal type="number">0</literal></expr>)</condition><then>
+            <block>{
+                <expr_stmt><expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">6</literal><operator>-</operator><name><name>c</name><index>[<expr><name>curr</name></expr>]</index></name><operator>-</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name></expr>;</expr_stmt>
+                <expr_stmt><expr><name>count</name><operator>++</operator></expr>;</expr_stmt>
+                <expr_stmt><expr><name>curr</name><operator>=</operator><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>;</expr_stmt>
+            }</block></then>
+            <elseif>else <if>if<condition>(<expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>==</operator><literal type="number">0</literal><operator>&amp;&amp;</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>&gt;</operator><literal type="number">0</literal></expr>)</condition><then>
+            <block>{
+                <expr_stmt><expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">6</literal><operator>-</operator><name><name>c</name><index>[<expr><name>curr</name></expr>]</index></name><operator>-</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name></expr>;</expr_stmt>
+                <expr_stmt><expr><name>count</name><operator>++</operator></expr>;</expr_stmt>
+                <expr_stmt><expr><name>curr</name><operator>=</operator><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>;</expr_stmt>
+            }</block></then></if></elseif></if>
+        }</block></while>
+        <expr_stmt><expr><name>curr</name><operator>=</operator><name><name>v</name><index>[<expr><name>beginwiththisindex</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>;</expr_stmt>
+        <while>while<condition>(<expr><name>count</name><operator>&lt;</operator><name>n</name></expr>)</condition>
+        <block>{
+            <if>if<condition>(<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index></name><operator>.</operator><call><name>size</name><argument_list>()</argument_list></call><operator>==</operator><literal type="number">1</literal></expr>)</condition><then>
+            <block type="pseudo"><break>break;</break></block></then></if>
+            <if>if<condition>(<expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>==</operator><literal type="number">0</literal><operator>&amp;&amp;</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>&gt;</operator><literal type="number">0</literal></expr>)</condition><then>
+            <block>{
+                <expr_stmt><expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">6</literal><operator>-</operator><name><name>c</name><index>[<expr><name>curr</name></expr>]</index></name><operator>-</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name></expr>;</expr_stmt>
+                <expr_stmt><expr><name>count</name><operator>++</operator></expr>;</expr_stmt>
+                <expr_stmt><expr><name>curr</name><operator>=</operator><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>;</expr_stmt>
+            }</block></then>
+            <elseif>else <if>if<condition>(<expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>==</operator><literal type="number">0</literal><operator>&amp;&amp;</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>&gt;</operator><literal type="number">0</literal></expr>)</condition><then>
+            <block>{
+                <expr_stmt><expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">6</literal><operator>-</operator><name><name>c</name><index>[<expr><name>curr</name></expr>]</index></name><operator>-</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name></expr>;</expr_stmt>
+                <expr_stmt><expr><name>count</name><operator>++</operator></expr>;</expr_stmt>
+                <expr_stmt><expr><name>curr</name><operator>=</operator><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>;</expr_stmt>
+            }</block></then></if></elseif></if>
+        }</block></while>
+        <decl_stmt><decl><type><name>ll</name></type> <name>cost4</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+        <for>for<control>(<init><expr><name>i</name><operator>=</operator><literal type="number">0</literal></expr>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+        <block>{
+            <if>if<condition>(<expr><name><name>c</name><index>[<expr><name>i</name></expr>]</index></name><operator>==</operator><literal type="number">1</literal></expr>)</condition><then>
+            <block type="pseudo"><expr_stmt><expr><name>cost4</name><operator>+=</operator><name><name>c1</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt></block></then>
+            <elseif>else <if>if<condition>(<expr><name><name>c</name><index>[<expr><name>i</name></expr>]</index></name><operator>==</operator><literal type="number">2</literal></expr>)</condition><then>
+            <block type="pseudo"><expr_stmt><expr><name>cost4</name><operator>+=</operator><name><name>c2</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt></block></then></if></elseif>
+            <else>else
+            <block type="pseudo"><expr_stmt><expr><name>cost4</name><operator>+=</operator><name><name>c3</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt></block></else></if>
+        }</block></for>
+        <decl_stmt><decl><type><name>ll</name></type> <name><name>c4</name><index>[<expr><name>n</name></expr>]</index></name></decl>;</decl_stmt>
+        <for>for<control>(<init><expr><name>i</name><operator>=</operator><literal type="number">0</literal></expr>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+        <block type="pseudo"><expr_stmt><expr><name><name>c4</name><index>[<expr><name>i</name></expr>]</index></name><operator>=</operator><name><name>c</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt></block></for>
+        
+        
+        
+        
+        <expr_stmt><expr><call><name>initarr</name><argument_list>(<argument><expr><name>c</name></expr></argument>,<argument><expr><name>n</name></expr></argument>,<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt><expr_stmt><expr><name>count</name><operator>=</operator><literal type="number">3</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>c</name><index>[<expr><name>beginwiththisindex</name></expr>]</index></name><operator>=</operator><literal type="number">3</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>beginwiththisindex</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">2</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>beginwiththisindex</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name>curr</name><operator>=</operator><name><name>v</name><index>[<expr><name>beginwiththisindex</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>;</expr_stmt>
+        <while>while<condition>(<expr><name>count</name><operator>&lt;</operator><name>n</name></expr>)</condition>
+        <block>{
+            <if>if<condition>(<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index></name><operator>.</operator><call><name>size</name><argument_list>()</argument_list></call><operator>==</operator><literal type="number">1</literal></expr>)</condition><then>
+            <block type="pseudo"><break>break;</break></block></then></if>
+            <if>if<condition>(<expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>==</operator><literal type="number">0</literal><operator>&amp;&amp;</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>&gt;</operator><literal type="number">0</literal></expr>)</condition><then>
+            <block>{
+                <expr_stmt><expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">6</literal><operator>-</operator><name><name>c</name><index>[<expr><name>curr</name></expr>]</index></name><operator>-</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name></expr>;</expr_stmt>
+                <expr_stmt><expr><name>count</name><operator>++</operator></expr>;</expr_stmt>
+                <expr_stmt><expr><name>curr</name><operator>=</operator><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>;</expr_stmt>
+            }</block></then>
+            <elseif>else <if>if<condition>(<expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>==</operator><literal type="number">0</literal><operator>&amp;&amp;</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>&gt;</operator><literal type="number">0</literal></expr>)</condition><then>
+            <block>{
+                <expr_stmt><expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">6</literal><operator>-</operator><name><name>c</name><index>[<expr><name>curr</name></expr>]</index></name><operator>-</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name></expr>;</expr_stmt>
+                <expr_stmt><expr><name>count</name><operator>++</operator></expr>;</expr_stmt>
+                <expr_stmt><expr><name>curr</name><operator>=</operator><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>;</expr_stmt>
+            }</block></then></if></elseif></if>
+        }</block></while>
+        <expr_stmt><expr><name>curr</name><operator>=</operator><name><name>v</name><index>[<expr><name>beginwiththisindex</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>;</expr_stmt>
+        <while>while<condition>(<expr><name>count</name><operator>&lt;</operator><name>n</name></expr>)</condition>
+        <block>{
+            <if>if<condition>(<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index></name><operator>.</operator><call><name>size</name><argument_list>()</argument_list></call><operator>==</operator><literal type="number">1</literal></expr>)</condition><then>
+            <block type="pseudo"><break>break;</break></block></then></if>
+            <if>if<condition>(<expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>==</operator><literal type="number">0</literal><operator>&amp;&amp;</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>&gt;</operator><literal type="number">0</literal></expr>)</condition><then>
+            <block>{
+                <expr_stmt><expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">6</literal><operator>-</operator><name><name>c</name><index>[<expr><name>curr</name></expr>]</index></name><operator>-</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name></expr>;</expr_stmt>
+                <expr_stmt><expr><name>count</name><operator>++</operator></expr>;</expr_stmt>
+                <expr_stmt><expr><name>curr</name><operator>=</operator><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>;</expr_stmt>
+            }</block></then>
+            <elseif>else <if>if<condition>(<expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>==</operator><literal type="number">0</literal><operator>&amp;&amp;</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>&gt;</operator><literal type="number">0</literal></expr>)</condition><then>
+            <block>{
+                <expr_stmt><expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">6</literal><operator>-</operator><name><name>c</name><index>[<expr><name>curr</name></expr>]</index></name><operator>-</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name></expr>;</expr_stmt>
+                <expr_stmt><expr><name>count</name><operator>++</operator></expr>;</expr_stmt>
+                <expr_stmt><expr><name>curr</name><operator>=</operator><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>;</expr_stmt>
+            }</block></then></if></elseif></if>
+        }</block></while>
+        <decl_stmt><decl><type><name>ll</name></type> <name>cost5</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+        <for>for<control>(<init><expr><name>i</name><operator>=</operator><literal type="number">0</literal></expr>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+        <block>{
+            <if>if<condition>(<expr><name><name>c</name><index>[<expr><name>i</name></expr>]</index></name><operator>==</operator><literal type="number">1</literal></expr>)</condition><then>
+            <block type="pseudo"><expr_stmt><expr><name>cost5</name><operator>+=</operator><name><name>c1</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt></block></then>
+            <elseif>else <if>if<condition>(<expr><name><name>c</name><index>[<expr><name>i</name></expr>]</index></name><operator>==</operator><literal type="number">2</literal></expr>)</condition><then>
+            <block type="pseudo"><expr_stmt><expr><name>cost5</name><operator>+=</operator><name><name>c2</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt></block></then></if></elseif>
+            <else>else
+            <block type="pseudo"><expr_stmt><expr><name>cost5</name><operator>+=</operator><name><name>c3</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt></block></else></if>
+        }</block></for>
+        <decl_stmt><decl><type><name>ll</name></type> <name><name>c5</name><index>[<expr><name>n</name></expr>]</index></name></decl>;</decl_stmt>
+        <for>for<control>(<init><expr><name>i</name><operator>=</operator><literal type="number">0</literal></expr>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+        <block type="pseudo"><expr_stmt><expr><name><name>c5</name><index>[<expr><name>i</name></expr>]</index></name><operator>=</operator><name><name>c</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt></block></for>
+        
+        
+        
+        
+        
+        <expr_stmt><expr><call><name>initarr</name><argument_list>(<argument><expr><name>c</name></expr></argument>,<argument><expr><name>n</name></expr></argument>,<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt><expr_stmt><expr><name>count</name><operator>=</operator><literal type="number">3</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>c</name><index>[<expr><name>beginwiththisindex</name></expr>]</index></name><operator>=</operator><literal type="number">3</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>beginwiththisindex</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>beginwiththisindex</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">2</literal></expr>;</expr_stmt>
+        
+        <expr_stmt><expr><name>curr</name><operator>=</operator><name><name>v</name><index>[<expr><name>beginwiththisindex</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>;</expr_stmt>
+        <while>while<condition>(<expr><name>count</name><operator>&lt;</operator><name>n</name></expr>)</condition>
+        <block>{
+            <if>if<condition>(<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index></name><operator>.</operator><call><name>size</name><argument_list>()</argument_list></call><operator>==</operator><literal type="number">1</literal></expr>)</condition><then>
+            <block type="pseudo"><break>break;</break></block></then></if>
+            <if>if<condition>(<expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>==</operator><literal type="number">0</literal><operator>&amp;&amp;</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>&gt;</operator><literal type="number">0</literal></expr>)</condition><then>
+            <block>{
+                <expr_stmt><expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">6</literal><operator>-</operator><name><name>c</name><index>[<expr><name>curr</name></expr>]</index></name><operator>-</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name></expr>;</expr_stmt>
+                <expr_stmt><expr><name>count</name><operator>++</operator></expr>;</expr_stmt>
+                <expr_stmt><expr><name>curr</name><operator>=</operator><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>;</expr_stmt>
+            }</block></then>
+            <elseif>else <if>if<condition>(<expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>==</operator><literal type="number">0</literal><operator>&amp;&amp;</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>&gt;</operator><literal type="number">0</literal></expr>)</condition><then>
+            <block>{
+                <expr_stmt><expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">6</literal><operator>-</operator><name><name>c</name><index>[<expr><name>curr</name></expr>]</index></name><operator>-</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name></expr>;</expr_stmt>
+                <expr_stmt><expr><name>count</name><operator>++</operator></expr>;</expr_stmt>
+                <expr_stmt><expr><name>curr</name><operator>=</operator><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>;</expr_stmt>
+            }</block></then></if></elseif></if>
+        }</block></while>
+        <expr_stmt><expr><name>curr</name><operator>=</operator><name><name>v</name><index>[<expr><name>beginwiththisindex</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>;</expr_stmt>
+        <while>while<condition>(<expr><name>count</name><operator>&lt;</operator><name>n</name></expr>)</condition>
+        <block>{
+            <if>if<condition>(<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index></name><operator>.</operator><call><name>size</name><argument_list>()</argument_list></call><operator>==</operator><literal type="number">1</literal></expr>)</condition><then>
+            <block type="pseudo"><break>break;</break></block></then></if>
+            <if>if<condition>(<expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>==</operator><literal type="number">0</literal><operator>&amp;&amp;</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>&gt;</operator><literal type="number">0</literal></expr>)</condition><then>
+            <block>{
+                <expr_stmt><expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">6</literal><operator>-</operator><name><name>c</name><index>[<expr><name>curr</name></expr>]</index></name><operator>-</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name></expr>;</expr_stmt>
+                <expr_stmt><expr><name>count</name><operator>++</operator></expr>;</expr_stmt>
+                <expr_stmt><expr><name>curr</name><operator>=</operator><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>;</expr_stmt>
+            }</block></then>
+            <elseif>else <if>if<condition>(<expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>==</operator><literal type="number">0</literal><operator>&amp;&amp;</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name><operator>&gt;</operator><literal type="number">0</literal></expr>)</condition><then>
+            <block>{
+                <expr_stmt><expr><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name><operator>=</operator><literal type="number">6</literal><operator>-</operator><name><name>c</name><index>[<expr><name>curr</name></expr>]</index></name><operator>-</operator><name><name>c</name><index>[<expr><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name></expr>;</expr_stmt>
+                <expr_stmt><expr><name>count</name><operator>++</operator></expr>;</expr_stmt>
+                <expr_stmt><expr><name>curr</name><operator>=</operator><name><name>v</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>;</expr_stmt>
+            }</block></then></if></elseif></if>
+        }</block></while>
+        <decl_stmt><decl><type><name>ll</name></type> <name>cost6</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+        <for>for<control>(<init><expr><name>i</name><operator>=</operator><literal type="number">0</literal></expr>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+        <block>{
+            <if>if<condition>(<expr><name><name>c</name><index>[<expr><name>i</name></expr>]</index></name><operator>==</operator><literal type="number">1</literal></expr>)</condition><then>
+            <block type="pseudo"><expr_stmt><expr><name>cost6</name><operator>+=</operator><name><name>c1</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt></block></then>
+            <elseif>else <if>if<condition>(<expr><name><name>c</name><index>[<expr><name>i</name></expr>]</index></name><operator>==</operator><literal type="number">2</literal></expr>)</condition><then>
+            <block type="pseudo"><expr_stmt><expr><name>cost6</name><operator>+=</operator><name><name>c2</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt></block></then></if></elseif>
+            <else>else
+            <block type="pseudo"><expr_stmt><expr><name>cost6</name><operator>+=</operator><name><name>c3</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt></block></else></if>
+        }</block></for>
+        <decl_stmt><decl><type><name>ll</name></type> <name><name>c6</name><index>[<expr><name>n</name></expr>]</index></name></decl>;</decl_stmt>
+        <for>for<control>(<init><expr><name>i</name><operator>=</operator><literal type="number">0</literal></expr>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+        <block type="pseudo"><expr_stmt><expr><name><name>c6</name><index>[<expr><name>i</name></expr>]</index></name><operator>=</operator><name><name>c</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt></block></for>
+        
+        <decl_stmt><decl><type><name>ll</name></type> <name><name>costs</name><index>[]</index></name><init>=<expr><block>{<expr><name>cost1</name></expr>,<expr><name>cost2</name></expr>,<expr><name>cost3</name></expr>,<expr><name>cost4</name></expr>,<expr><name>cost5</name></expr>,<expr><name>cost6</name></expr>}</block></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name>sort</name><argument_list>(<argument><expr><name>costs</name></expr></argument>,<argument><expr><name>costs</name><operator>+</operator><literal type="number">6</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <decl_stmt><decl><type><name>ll</name></type> <name>mincost</name><init>=<expr><name><name>costs</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name>out1</name><argument_list>(<argument><expr><name>mincost</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <if>if<condition>(<expr><name>cost1</name><operator>==</operator><name>mincost</name></expr>)</condition><then>
+        <block>{
+            <expr_stmt><expr><call><name>printarr</name><argument_list>(<argument><expr><name>c11</name></expr></argument>,<argument><expr><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <return>return <expr><literal type="number">0</literal></expr>;</return>
+        }</block></then></if>
+        <if>if<condition>(<expr><name>cost2</name><operator>==</operator><name>mincost</name></expr>)</condition><then>
+        <block>{
+            <expr_stmt><expr><call><name>printarr</name><argument_list>(<argument><expr><name>c21</name></expr></argument>,<argument><expr><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <return>return <expr><literal type="number">0</literal></expr>;</return>
+        }</block></then></if>
+        <if>if<condition>(<expr><name>cost3</name><operator>==</operator><name>mincost</name></expr>)</condition><then>
+        <block>{
+            <expr_stmt><expr><call><name>printarr</name><argument_list>(<argument><expr><name>c31</name></expr></argument>,<argument><expr><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <return>return <expr><literal type="number">0</literal></expr>;</return>
+        }</block></then></if>
+        <if>if<condition>(<expr><name>cost4</name><operator>==</operator><name>mincost</name></expr>)</condition><then>
+        <block>{
+            <expr_stmt><expr><call><name>printarr</name><argument_list>(<argument><expr><name>c4</name></expr></argument>,<argument><expr><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <return>return <expr><literal type="number">0</literal></expr>;</return>
+        }</block></then></if>
+        <if>if<condition>(<expr><name>cost5</name><operator>==</operator><name>mincost</name></expr>)</condition><then>
+        <block>{
+            <expr_stmt><expr><call><name>printarr</name><argument_list>(<argument><expr><name>c5</name></expr></argument>,<argument><expr><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <return>return <expr><literal type="number">0</literal></expr>;</return>
+        }</block></then></if>
+        <if>if<condition>(<expr><name>cost6</name><operator>==</operator><name>mincost</name></expr>)</condition><then>
+        <block>{
+            <expr_stmt><expr><call><name>printarr</name><argument_list>(<argument><expr><name>c6</name></expr></argument>,<argument><expr><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <return>return <expr><literal type="number">0</literal></expr>;</return>
+        }</block></then></if>
+    }</block></while>
+}</block></function></unit>

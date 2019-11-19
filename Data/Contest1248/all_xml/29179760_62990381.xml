@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1248/all/29179760_62990381.cpp"><typedef>typedef <type><name>long</name> <name>long</name></type> <name>ll</name>;</typedef>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>MAX</name> <init>= <expr><literal type="number">510000</literal></expr></init></decl>;</decl_stmt>
+ <decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>MOD</name> <init>= <expr><literal type="number">1000000007</literal></expr></init></decl>;</decl_stmt>
+ 
+ <decl_stmt><decl><type><name>long</name> <name>long</name></type> <name><name>fac</name><index>[<expr><name>MAX</name></expr>]</index></name></decl>, <decl><type ref="prev"/><name><name>finv</name><index>[<expr><name>MAX</name></expr>]</index></name></decl>, <decl><type ref="prev"/><name><name>inv</name><index>[<expr><name>MAX</name></expr>]</index></name></decl>;</decl_stmt>
+ 
+ <comment type="line">// ãã¼ãã«ãä½ãåå¦ç</comment>
+ <function><type><name>void</name></type> <name>COMinit</name><parameter_list>()</parameter_list> <block>{
+     <expr_stmt><expr><name><name>fac</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>=</operator> <name><name>fac</name><index>[<expr><literal type="number">1</literal></expr>]</index></name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+     <expr_stmt><expr><name><name>finv</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>=</operator> <name><name>finv</name><index>[<expr><literal type="number">1</literal></expr>]</index></name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+     <expr_stmt><expr><name><name>inv</name><index>[<expr><literal type="number">1</literal></expr>]</index></name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+     <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">2</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>MAX</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control><block>{
+         <expr_stmt><expr><name><name>fac</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <name><name>fac</name><index>[<expr><name>i</name> <operator>-</operator> <literal type="number">1</literal></expr>]</index></name> <operator>*</operator> <name>i</name> <operator>%</operator> <name>MOD</name></expr>;</expr_stmt>
+         <expr_stmt><expr><name><name>inv</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <name>MOD</name> <operator>-</operator> <name><name>inv</name><index>[<expr><name>MOD</name><operator>%</operator><name>i</name></expr>]</index></name> <operator>*</operator> <operator>(</operator><name>MOD</name> <operator>/</operator> <name>i</name><operator>)</operator> <operator>%</operator> <name>MOD</name></expr>;</expr_stmt>
+         <expr_stmt><expr><name><name>finv</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <name><name>finv</name><index>[<expr><name>i</name> <operator>-</operator> <literal type="number">1</literal></expr>]</index></name> <operator>*</operator> <name><name>inv</name><index>[<expr><name>i</name></expr>]</index></name> <operator>%</operator> <name>MOD</name></expr>;</expr_stmt>
+     }</block></for>
+ }</block></function>
+ 
+ <comment type="line">// äºé ä¿æ°è¨ç®</comment>
+ <function><type><name>long</name> <name>long</name></type> <name>COM</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>n</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>k</name></decl></parameter>)</parameter_list><block>{
+     <if>if <condition>(<expr><name>n</name> <operator>&lt;</operator> <name>k</name></expr>)</condition><then> <block type="pseudo"><return>return <expr><literal type="number">0</literal></expr>;</return></block></then></if>
+     <if>if <condition>(<expr><name>n</name> <operator>&lt;</operator> <literal type="number">0</literal> <operator>||</operator> <name>k</name> <operator>&lt;</operator> <literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><return>return <expr><literal type="number">0</literal></expr>;</return></block></then></if>
+     <return>return <expr><name><name>fac</name><index>[<expr><name>n</name></expr>]</index></name> <operator>*</operator> <operator>(</operator><name><name>finv</name><index>[<expr><name>k</name></expr>]</index></name> <operator>*</operator> <name><name>finv</name><index>[<expr><name>n</name> <operator>-</operator> <name>k</name></expr>]</index></name> <operator>%</operator> <name>MOD</name><operator>)</operator> <operator>%</operator> <name>MOD</name></expr>;</return>
+ }</block></function>
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+    <decl_stmt><decl><type><name>ll</name></type> <name>n</name></decl>,<decl><type ref="prev"/><name>m</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name><name>std</name><operator>::</operator><name>cin</name></name> <operator>&gt;&gt;</operator> <name>n</name><operator>&gt;&gt;</operator><name>m</name></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>COMinit</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>ll</name></type> <name>res</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;=</operator> <name>n</name><operator>/</operator><literal type="number">2</literal></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{
+        <expr_stmt><expr><name>res</name> <operator>+=</operator> <call><name>COM</name><argument_list>(<argument><expr><name>n</name><operator>-</operator><name>i</name></expr></argument>,<argument><expr><name>i</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name>res</name> <operator>%=</operator> <name>MOD</name></expr>;</expr_stmt>
+    }</block></for>
+
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;=</operator> <name>m</name><operator>/</operator><literal type="number">2</literal></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{
+        <expr_stmt><expr><name>res</name> <operator>+=</operator> <call><name>COM</name><argument_list>(<argument><expr><name>m</name><operator>-</operator><name>i</name></expr></argument>,<argument><expr><name>i</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name>res</name> <operator>%=</operator> <name>MOD</name></expr>;</expr_stmt>
+    }</block></for>
+    <expr_stmt><expr><name>res</name> <operator>%=</operator> <name>MOD</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name>res</name> <operator>*=</operator> <literal type="number">2</literal></expr>;</expr_stmt>
+    <expr_stmt><expr><name>res</name> <operator>%=</operator> <name>MOD</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>std</name><operator>::</operator><name>cout</name></name> <operator>&lt;&lt;</operator> <name>res</name> <operator>&lt;&lt;</operator> <name><name>std</name><operator>::</operator><name>endl</name></name></expr>;</expr_stmt>
+}</block></function>
+</unit>

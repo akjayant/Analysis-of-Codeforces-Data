@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1244/all/28931484_62469343.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>endl</name></cpp:macro> <cpp:value>'\n'</cpp:value></cpp:define>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>N</name> <init>= <expr><literal type="number">100007</literal></expr></init></decl>;</decl_stmt>
+
+<decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>, <decl><type ref="prev"/><name><name>a</name><index>[<expr><name>N</name></expr>]</index></name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>k</name></decl>, <decl><type ref="prev"/><name><name>ps</name><index>[<expr><name>N</name></expr>]</index></name></decl>;</decl_stmt>
+
+<function><type><name>bool</name></type> <name>check</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>diff</name></decl></parameter>)</parameter_list> <block>{
+  <decl_stmt><decl><type><name>int</name></type> <name>i</name></decl>, <decl><type ref="prev"/><name>j</name></decl>;</decl_stmt>
+
+  <for>for<control>(<init><expr><name>i</name><operator>=</operator><literal type="number">1</literal></expr><operator>,</operator> <expr><name>j</name><operator>=</operator><literal type="number">1</literal></expr>;</init><condition><expr><name>i</name><operator>&lt;=</operator><name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{
+    <while>while<condition>(<expr><name>j</name><operator>&lt;</operator><name>n</name> <operator>&amp;&amp;</operator> <name><name>a</name><index>[<expr><name>j</name> <operator>+</operator> <literal type="number">1</literal></expr>]</index></name> <operator>-</operator> <name><name>a</name><index>[<expr><name>i</name></expr>]</index></name><operator>&lt;=</operator><name>diff</name></expr>)</condition> <block>{
+      <expr_stmt><expr><operator>++</operator><name>j</name></expr>;</expr_stmt>
+    }</block></while>
+  
+    <decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>cost</name> <init>= <expr><operator>(</operator><name><name>a</name><index>[<expr><name>i</name></expr>]</index></name> <operator>*</operator> <literal type="number">1ll</literal> <operator>*</operator> <operator>(</operator><name>i</name> <operator>-</operator> <literal type="number">1</literal><operator>)</operator> <operator>-</operator> <name><name>ps</name><index>[<expr><name>i</name> <operator>-</operator> <literal type="number">1</literal></expr>]</index></name><operator>)</operator> <operator>+</operator> <operator>(</operator><operator>(</operator><name><name>ps</name><index>[<expr><name>n</name></expr>]</index></name> <operator>-</operator> <name><name>ps</name><index>[<expr><name>j</name></expr>]</index></name><operator>)</operator> <operator>-</operator> <operator>(</operator><name><name>a</name><index>[<expr><name>i</name></expr>]</index></name> <operator>+</operator> <name>diff</name><operator>)</operator> <operator>*</operator> <literal type="number">1ll</literal> <operator>*</operator> <operator>(</operator><name>n</name> <operator>-</operator> <name>j</name><operator>)</operator><operator>)</operator></expr></init></decl>;</decl_stmt>
+
+    <if>if<condition>(<expr><name>cost</name><operator>&lt;=</operator><name>k</name></expr>)</condition><then> <block type="pseudo"><return>return <expr><literal type="boolean">true</literal></expr>;</return></block></then></if>
+  }</block></for>
+
+  <for>for<control>(<init><expr><name>j</name><operator>=</operator><name>n</name></expr><operator>,</operator> <expr><name>i</name><operator>=</operator><name>n</name></expr>;</init><condition><expr><name>j</name><operator>&gt;=</operator><literal type="number">1</literal></expr>;</condition><incr><expr><name>j</name><operator>--</operator></expr></incr>)</control> <block>{
+    <while>while<condition>(<expr><name>i</name><operator>&gt;</operator><literal type="number">1</literal> <operator>&amp;&amp;</operator> <name><name>a</name><index>[<expr><name>j</name></expr>]</index></name> <operator>-</operator> <name><name>a</name><index>[<expr><name>i</name> <operator>-</operator> <literal type="number">1</literal></expr>]</index></name><operator>&lt;=</operator><name>diff</name></expr>)</condition> <block>{
+      <expr_stmt><expr><operator>--</operator><name>i</name></expr>;</expr_stmt>
+    }</block></while>
+
+    <decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>cost</name> <init>= <expr><operator>(</operator><operator>(</operator><name><name>a</name><index>[<expr><name>j</name></expr>]</index></name> <operator>-</operator> <name>diff</name><operator>)</operator> <operator>*</operator> <literal type="number">1ll</literal> <operator>*</operator> <operator>(</operator><name>i</name> <operator>-</operator> <literal type="number">1</literal><operator>)</operator> <operator>-</operator> <name><name>ps</name><index>[<expr><name>i</name> <operator>-</operator> <literal type="number">1</literal></expr>]</index></name><operator>)</operator> <operator>+</operator> <operator>(</operator><operator>(</operator><name><name>ps</name><index>[<expr><name>n</name></expr>]</index></name> <operator>-</operator> <name><name>ps</name><index>[<expr><name>j</name></expr>]</index></name><operator>)</operator> <operator>-</operator> <name><name>a</name><index>[<expr><name>j</name></expr>]</index></name> <operator>*</operator> <literal type="number">1ll</literal> <operator>*</operator> <operator>(</operator><name>n</name> <operator>-</operator> <name>j</name><operator>)</operator><operator>)</operator></expr></init></decl>;</decl_stmt>
+
+    <if>if<condition>(<expr><name>cost</name><operator>&lt;=</operator><name>k</name></expr>)</condition><then> <block type="pseudo"><return>return <expr><literal type="boolean">true</literal></expr>;</return></block></then></if>
+  }</block></for>
+
+  <return>return <expr><literal type="boolean">false</literal></expr>;</return>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+  <expr_stmt><expr><call><name><name>ios_base</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><call><name><name>cin</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><name>NULL</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <decl_stmt><decl><type><name>int</name></type> <name>i</name></decl>, <decl><type ref="prev"/><name>left</name></decl>, <decl><type ref="prev"/><name>right</name></decl>, <decl><type ref="prev"/><name>middle</name></decl>;</decl_stmt>
+
+  <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>n</name><operator>&gt;&gt;</operator><name>k</name></expr>;</expr_stmt>
+  <for>for<control>(<init><expr><name>i</name><operator>=</operator><literal type="number">1</literal></expr>;</init><condition><expr><name>i</name><operator>&lt;=</operator><name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{
+    <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name><name>a</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt>
+  }</block></for>
+  <expr_stmt><expr><call><name>sort</name><argument_list>(<argument><expr><name>a</name> <operator>+</operator> <literal type="number">1</literal></expr></argument>, <argument><expr><name>a</name> <operator>+</operator> <literal type="number">1</literal> <operator>+</operator> <name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <for>for<control>(<init><expr><name>i</name><operator>=</operator><literal type="number">1</literal></expr>;</init><condition><expr><name>i</name><operator>&lt;=</operator><name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{
+    <expr_stmt><expr><name><name>ps</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <name><name>ps</name><index>[<expr><name>i</name> <operator>-</operator> <literal type="number">1</literal></expr>]</index></name> <operator>+</operator> <name><name>a</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt>
+  }</block></for>
+
+  <expr_stmt><expr><name>left</name> <operator>=</operator> <operator>-</operator><literal type="number">1</literal></expr>;</expr_stmt>
+  <expr_stmt><expr><name>right</name> <operator>=</operator> <literal type="number">1000000000</literal></expr>;</expr_stmt>
+
+  <while>while<condition>(<expr><name>right</name><operator>-</operator><name>left</name><operator>&gt;</operator><literal type="number">1</literal></expr>)</condition> <block>{
+    <expr_stmt><expr><name>middle</name> <operator>=</operator> <operator>(</operator><name>left</name> <operator>+</operator> <name>right</name><operator>)</operator> <operator>/</operator> <literal type="number">2</literal></expr>;</expr_stmt>
+    
+    <if>if<condition>(<expr><call><name>check</name><argument_list>(<argument><expr><name>middle</name></expr></argument>)</argument_list></call></expr>)</condition><then> <block>{
+      <expr_stmt><expr><name>right</name> <operator>=</operator> <name>middle</name></expr>;</expr_stmt>
+    }</block></then> <else>else <block>{
+      <expr_stmt><expr><name>left</name> <operator>=</operator> <name>middle</name></expr>;</expr_stmt>
+    }</block></else></if>
+  }</block></while>
+
+  <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><name>right</name><operator>&lt;&lt;</operator><name>endl</name></expr>;</expr_stmt>
+
+  <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

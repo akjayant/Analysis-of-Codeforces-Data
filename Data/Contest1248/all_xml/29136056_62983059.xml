@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1248/all/29136056_62983059.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>input</name></cpp:macro>   <cpp:value>std::cin</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>output</name></cpp:macro>  <cpp:value>std::cout</cpp:value></cpp:define>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>llg</name></cpp:macro>     <cpp:value>long long</cpp:value></cpp:define>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+    <expr_stmt><expr><call><name><name>std</name><operator>::</operator><name>ios_base</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <comment type="line">// x^2 + y^2 maxim</comment>
+    <comment type="line">// sume din v[i]</comment>
+    <comment type="line">// (S-x)^2 + x^2</comment>
+    <comment type="line">// S^2 + 2*x^2 - 2S*x maxim</comment>
+    <comment type="line">// 2*x^2 - 2S*x maxim</comment>
+    <comment type="line">// x^2 - S*x maxim</comment>
+
+    <decl_stmt><decl><type><name>int</name></type> <name>N</name></decl>;</decl_stmt>  <expr_stmt><expr><name>input</name> <operator>&gt;&gt;</operator> <name>N</name></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name><name>std</name><operator>::</operator><name><name>vector</name> <argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></name></type> <name>V</name><argument_list>(<argument><expr><name>N</name></expr></argument>)</argument_list></decl>;</decl_stmt>
+    <for>for <control>(<init><expr><name>auto</name> <operator>&amp;</operator><name>it</name><operator>:</operator><name>V</name></expr></init>)</control>
+        <block type="pseudo"><expr_stmt><expr><name>input</name> <operator>&gt;&gt;</operator> <name>it</name></expr>;</expr_stmt></block></for>
+    <expr_stmt><expr><call><name><name>std</name><operator>::</operator><name>sort</name></name><argument_list>(<argument><expr><call><name><name>V</name><operator>.</operator><name>begin</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>V</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>ptr1</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>ptr2</name> <init>= <expr><call><name><name>V</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>l1</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>, <decl><type ref="prev"/><name>l2</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <while>while <condition>(<expr><name>ptr1</name> <operator>&lt;=</operator> <name>ptr2</name></expr>)</condition> <block>{
+        <expr_stmt><expr><name>l2</name> <operator>+=</operator> <name><name>V</name><index>[<expr><name>ptr2</name><operator>--</operator></expr>]</index></name></expr>;</expr_stmt>
+        <if>if <condition>(<expr><name>ptr1</name> <operator>&gt;</operator> <name>ptr2</name></expr>)</condition><then> <block type="pseudo"><break>break;</break></block></then></if>
+        <expr_stmt><expr><name>l1</name> <operator>+=</operator> <name><name>V</name><index>[<expr><name>ptr1</name><operator>++</operator></expr>]</index></name></expr>;</expr_stmt>
+    }</block></while>
+
+    <decl_stmt><decl><type><name>llg</name></type> <name>x</name> <init>= <expr><name>l1</name></expr></init></decl>, <decl><type ref="prev"/><name>y</name> <init>= <expr><name>l2</name></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><name>output</name> <operator>&lt;&lt;</operator> <name>x</name><operator>*</operator><name>x</name> <operator>+</operator> <name>y</name><operator>*</operator><name>y</name> <operator>&lt;&lt;</operator> <literal type="char">'\n'</literal></expr>;</expr_stmt>
+
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

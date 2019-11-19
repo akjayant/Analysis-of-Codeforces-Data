@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1244/all/28921400_62492900.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;ext/pb_ds/assoc_container.hpp&gt;</cpp:file></cpp:include> <comment type="line">// include pb_ds</comment>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<using>using <namespace>namespace <name>__gnu_pbds</name>;</namespace></using> <comment type="line">// namespace for pb_ds</comment>
+
+<comment type="block">/* short forms */</comment>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>Accelerate</name></cpp:macro>                    \
+    <cpp:value>ios_base::sync_with_stdio(false); \
+    cin.tie(NULL)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ll</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pb</name></cpp:macro> <cpp:value>push_back</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ff</name></cpp:macro> <cpp:value>first</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ss</name></cpp:macro> <cpp:value>second</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>mp</name></cpp:macro> <cpp:value>make_pair</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>mt</name></cpp:macro> <cpp:value>make_tuple</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>cld</name><parameter_list>(<parameter><type><name>x</name></type></parameter>, <parameter><type><name>y</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>(((x) / (y)) + ((x) % (y) != 0))</cpp:value></cpp:define> <comment type="line">//integer ceil division</comment>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>tc</name><parameter_list>(<parameter><type><name>tt</name></type></parameter>)</parameter_list></cpp:macro> \
+    <cpp:value>int tt;    \
+    cin &gt;&gt; tt; \
+    for (int _tt = 0; _tt &lt; tt; _tt++)</cpp:value></cpp:define> <comment type="line">// testcase</comment>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>all</name><parameter_list>(<parameter><type><name>cont</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>(cont).begin(), (cont).end()</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>sz</name><parameter_list>(<parameter><type><name>cont</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>(int)(cont).size()</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>endl</name></cpp:macro> <cpp:value>'\n'</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>cout_p</name><parameter_list>(<parameter><type><name>x</name></type></parameter>, <parameter><type><name>p</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>cout &lt;&lt; fixed &lt;&lt; setprecision((p)) &lt;&lt; x &lt;&lt; endl</cpp:value></cpp:define> <comment type="line">//print with precision</comment>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>dbg</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>cerr &lt;&lt; #x &lt;&lt; "is" &lt;&lt; (x) &lt;&lt; endl</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>leadzero</name><parameter_list>(<parameter><type><name>a</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>__builtin_clz(a)</cpp:value></cpp:define>      <comment type="line">// count leading zeroes</comment>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>trailzero</name><parameter_list>(<parameter><type><name>a</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>__builtin_ctz(a)</cpp:value></cpp:define>     <comment type="line">// count trailing zeroes</comment>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>bitcount</name><parameter_list>(<parameter><type><name>a</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>__builtin_popcount(a)</cpp:value></cpp:define> <comment type="line">// count set bits (add ll)</comment>
+
+<comment type="block">/* constants */</comment>
+<decl_stmt><decl><type><specifier>const</specifier> <name>double</name></type> <name>PI</name> <init>= <expr><literal type="number">3.1415926535897932384626433832795</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><specifier>const</specifier> <name>double</name></type> <name>EPS</name> <init>= <expr><literal type="number">1e-9</literal></expr></init></decl>;</decl_stmt>
+
+<comment type="block">/* typedefs */</comment>
+<typedef>typedef <type><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>, <argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>pii</name>;</typedef>
+<typedef>typedef <type><name><name>priority_queue</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>, <argument><expr><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></expr></argument>, <argument><expr><name><name>greater</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></expr></argument>&gt;</argument_list></name></type> <name>min_heap</name>;</typedef>
+<typedef>typedef <type><name><name>priority_queue</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>, <argument><expr><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></expr></argument>&gt;</argument_list></name></type> <name>max_heap</name>;</typedef>
+<typedef>typedef <type><name><name>tree</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>, <argument><expr><name>null_type</name></expr></argument>, <argument><expr><name><name>less</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></expr></argument>, <argument><expr><name>rb_tree_tag</name></expr></argument>, <argument><expr><name>tree_order_statistics_node_update</name></expr></argument>&gt;</argument_list></name></type>
+    <name>indexed_set</name>;</typedef> <comment type="line">// integer set with indexing / pb_ds</comment>
+
+<decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></expr></argument> &gt;</argument_list></name></type> <name>adj</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>path</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>bool</name></expr></argument>&gt;</argument_list></name></type> <name>vis</name></decl>;</decl_stmt>
+<function><type><name>void</name></type> <name>dfs</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>s</name></decl></parameter>)</parameter_list> <block>{
+    <expr_stmt><expr><name><name>vis</name><index>[<expr><name>s</name></expr>]</index></name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>path</name><operator>.</operator><name>pb</name></name><argument_list>(<argument><expr><name>s</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <comment type="line">// cout &lt;&lt; path[path.size()-1] &lt;&lt; endl;</comment>
+    <for>for<control>(<init><decl><type><name>auto</name></type> <name>v</name><range>:<expr><name><name>adj</name><index>[<expr><name>s</name></expr>]</index></name></expr></range></decl></init>)</control> <block>{
+        <if>if<condition>(<expr><operator>!</operator><name><name>vis</name><index>[<expr><name>v</name></expr>]</index></name></expr>)</condition><then><block type="pseudo"><expr_stmt><expr><call><name>dfs</name><argument_list>(<argument><expr><name>v</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then></if>
+    }</block></for>
+}</block></function>
+<comment type="block">/* main program */</comment>
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+    <expr_stmt><expr><name>Accelerate</name></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>ll</name> <name>int</name></type> <name><name>c</name><index>[<expr><name>n</name><operator>+</operator><literal type="number">1</literal></expr>]</index><index>[<expr><literal type="number">3</literal></expr>]</index></name></decl>;</decl_stmt>
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;</operator><literal type="number">3</literal></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{
+        <for>for<control>(<init><decl><type><name>int</name></type> <name>j</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</init><condition><expr><name>j</name><operator>&lt;=</operator><name>n</name></expr>;</condition><incr><expr><name>j</name><operator>++</operator></expr></incr>)</control> <block type="pseudo"><expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name><name>c</name><index>[<expr><name>j</name></expr>]</index><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt></block></for>
+    }</block></for>
+    <expr_stmt><expr><call><name><name>adj</name><operator>.</operator><name>resize</name></name><argument_list>(<argument><expr><name>n</name><operator>+</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>n</name><operator>-</operator><literal type="number">1</literal></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{
+        <decl_stmt><decl><type><name>int</name></type> <name>u</name></decl>,<decl><type ref="prev"/><name>v</name></decl>;</decl_stmt>
+        <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>u</name> <operator>&gt;&gt;</operator> <name>v</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>adj</name><index>[<expr><name>u</name></expr>]</index></name><operator>.</operator><call><name>pb</name><argument_list>(<argument><expr><name>v</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>adj</name><index>[<expr><name>v</name></expr>]</index></name><operator>.</operator><call><name>pb</name><argument_list>(<argument><expr><name>u</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    }</block></for>
+    <decl_stmt><decl><type><name>int</name></type> <name>st</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>bool</name></type> <name>flag</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;=</operator><name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{
+        <if>if<condition>(<expr><name><name>adj</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>size</name><argument_list>()</argument_list></call><operator>==</operator><literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>st</name><operator>=</operator><name>i</name></expr>;</expr_stmt></block></then></if>
+        <if>if<condition>(<expr><name><name>adj</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>size</name><argument_list>()</argument_list></call><operator>&gt;</operator><literal type="number">2</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>flag</name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt></block></then></if>
+    }</block></for>
+    <if>if<condition>(<expr><operator>!</operator><name>flag</name></expr>)</condition><then> <block>{
+        <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <operator>-</operator><literal type="number">1</literal> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+        <return>return <expr><literal type="number">0</literal></expr>;</return>
+    }</block></then></if>
+    <comment type="line">// cout &lt;&lt; st &lt;&lt; endl;</comment>
+    <expr_stmt><expr><call><name><name>vis</name><operator>.</operator><name>resize</name></name><argument_list>(<argument><expr><name>n</name><operator>+</operator><literal type="number">1</literal></expr></argument>,<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>dfs</name><argument_list>(<argument><expr><name>st</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <comment type="line">// for(int i=0;i&lt;n;i++) cout &lt;&lt; path[i] &lt;&lt; " ";</comment>
+    <comment type="line">// cout &lt;&lt; endl;</comment>
+    
+    <decl_stmt><decl><type><name>ll</name> <name>int</name></type> <name>ans</name> <init>= <expr><name>LLONG_MAX</name></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name><name>tuple</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>,<argument><expr><name>int</name></expr></argument>,<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></expr></argument> &gt;</argument_list></name></type> <name>comb</name></decl> ;</decl_stmt>
+    <expr_stmt><expr><call><name><name>comb</name><operator>.</operator><name>pb</name></name><argument_list>(<argument><expr><call><name>mt</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>,<argument><expr><literal type="number">1</literal></expr></argument>,<argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>comb</name><operator>.</operator><name>pb</name></name><argument_list>(<argument><expr><call><name>mt</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>,<argument><expr><literal type="number">2</literal></expr></argument>,<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>comb</name><operator>.</operator><name>pb</name></name><argument_list>(<argument><expr><call><name>mt</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>,<argument><expr><literal type="number">0</literal></expr></argument>,<argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>comb</name><operator>.</operator><name>pb</name></name><argument_list>(<argument><expr><call><name>mt</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>,<argument><expr><literal type="number">2</literal></expr></argument>,<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>comb</name><operator>.</operator><name>pb</name></name><argument_list>(<argument><expr><call><name>mt</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>,<argument><expr><literal type="number">0</literal></expr></argument>,<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>comb</name><operator>.</operator><name>pb</name></name><argument_list>(<argument><expr><call><name>mt</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>,<argument><expr><literal type="number">1</literal></expr></argument>,<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>mini</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>cnum</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>cnum</name><operator>&lt;</operator><literal type="number">6</literal></expr>;</condition><incr><expr><name>cnum</name><operator>++</operator></expr></incr>)</control> <block>{
+        <decl_stmt><decl><type><name>int</name></type> <name><name>col</name><index>[<expr><literal type="number">3</literal></expr>]</index></name></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name>tie</name><argument_list>(<argument><expr><name><name>col</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>,<argument><expr><name><name>col</name><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr></argument>,<argument><expr><name><name>col</name><index>[<expr><literal type="number">2</literal></expr>]</index></name></expr></argument>)</argument_list></call> <operator>=</operator> <name><name>comb</name><index>[<expr><name>cnum</name></expr>]</index></name></expr>;</expr_stmt> 
+        <decl_stmt><decl><type><name>ll</name> <name>int</name></type> <name>cost</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+        <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{
+            <expr_stmt><expr><name>cost</name> <operator>+=</operator> <name><name>c</name><index>[<expr><name><name>path</name><index>[<expr><name>i</name></expr>]</index></name></expr>]</index><index>[<expr><name><name>col</name><index>[<expr><name>i</name><operator>%</operator><literal type="number">3</literal></expr>]</index></name></expr>]</index></name></expr>;</expr_stmt>
+        }</block></for>
+        <if>if<condition>(<expr><name>cost</name> <operator>&lt;=</operator> <name>ans</name></expr>)</condition><then> <block>{
+            <expr_stmt><expr><name>ans</name> <operator>=</operator> <name>cost</name></expr>;</expr_stmt>
+            <expr_stmt><expr><name>mini</name> <operator>=</operator> <name>cnum</name></expr>;</expr_stmt>
+        }</block></then></if>
+        <expr_stmt><expr><name>ans</name> <operator>=</operator> <call><name>min</name><argument_list>(<argument><expr><name>ans</name></expr></argument>,<argument><expr><name>cost</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    }</block></for>
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>ans</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+    
+    <decl_stmt><decl><type><name>int</name></type> <name><name>col</name><index>[<expr><literal type="number">3</literal></expr>]</index></name></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>tie</name><argument_list>(<argument><expr><name><name>col</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>,<argument><expr><name><name>col</name><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr></argument>,<argument><expr><name><name>col</name><index>[<expr><literal type="number">2</literal></expr>]</index></name></expr></argument>)</argument_list></call> <operator>=</operator> <name><name>comb</name><index>[<expr><name>mini</name></expr>]</index></name></expr>;</expr_stmt> 
+    <decl_stmt><decl><type><name>int</name></type> <name><name>res</name><index>[<expr><name>n</name><operator>+</operator><literal type="number">1</literal></expr>]</index></name></decl>;</decl_stmt>
+    
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{
+        <expr_stmt><expr><name><name>res</name><index>[<expr><name><name>path</name><index>[<expr><name>i</name></expr>]</index></name></expr>]</index></name> <operator>=</operator> <name><name>col</name><index>[<expr><name>i</name><operator>%</operator><literal type="number">3</literal></expr>]</index></name><operator>+</operator><literal type="number">1</literal></expr>;</expr_stmt>
+    }</block></for>
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;=</operator><name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block type="pseudo"><expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name><name>res</name><index>[<expr><name>i</name></expr>]</index></name> <operator>&lt;&lt;</operator> <literal type="string">" "</literal></expr>;</expr_stmt></block></for>
+
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>
