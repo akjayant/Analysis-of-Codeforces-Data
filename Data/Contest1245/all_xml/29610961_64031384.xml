@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29610961_64031384.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cmath&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;queue&gt;</cpp:file></cpp:include>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>int</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<decl_stmt><decl><type><name>int</name></type> <name><name>x</name><index>[<expr><literal type="number">2000</literal></expr>]</index></name></decl>, <decl><type ref="prev"/><name><name>y</name><index>[<expr><literal type="number">2000</literal></expr>]</index></name></decl>, <decl><type ref="prev"/><name><name>k</name><index>[<expr><literal type="number">2000</literal></expr>]</index></name></decl>, <decl><type ref="prev"/><name><name>c</name><index>[<expr><literal type="number">2000</literal></expr>]</index></name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>bool</name></type> <name><name>fait</name><index>[<expr><literal type="number">2000</literal></expr>]</index></name></decl>;</decl_stmt>
+
+
+<struct>struct <name>Event</name>
+<block>{<public type="default">
+    <decl_stmt><decl><type><name>int</name></type> <name>cout</name></decl>, <decl><type ref="prev"/><name>ville1</name></decl>, <decl><type ref="prev"/><name>ville2</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>bool</name></type> <name>type</name></decl>;</decl_stmt>
+    
+    <function type="operator"><type><name>bool</name></type> <name>operator <name>&lt;</name></name> <parameter_list>(<parameter><decl><type><specifier>const</specifier> <name>Event</name> <modifier>&amp;</modifier></type><name>autre</name></decl></parameter>)</parameter_list> <specifier>const</specifier>
+    <block>{
+        <return>return <expr><name>cout</name> <operator>&gt;</operator> <name><name>autre</name><operator>.</operator><name>cout</name></name></expr>;</return>
+    }</block></function>
+</public>}</block>;</struct>
+
+<decl_stmt><decl><type><name><name>priority_queue</name><argument_list type="generic">&lt;<argument><expr><name>Event</name></expr></argument>&gt;</argument_list></name></type> <name>sac</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>Event</name></expr></argument>&gt;</argument_list></name></type> <name>res1</name></decl>, <decl><type ref="prev"/><name>res2</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name>cost</name></decl>;</decl_stmt>
+
+<function><type><name>signed</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+    <decl_stmt><decl><type><name>int</name></type> <name>nbVilles</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>nbVilles</name></expr>;</expr_stmt>
+    
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>iVille</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>iVille</name> <operator>&lt;</operator> <name>nbVilles</name></expr>;</condition> <incr><expr><operator>++</operator> <name>iVille</name></expr></incr>)</control><block>{
+        <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name><name>x</name><index>[<expr><name>iVille</name></expr>]</index></name> <operator>&gt;&gt;</operator> <name><name>y</name><index>[<expr><name>iVille</name></expr>]</index></name></expr>;</expr_stmt>
+    }</block></for>
+    
+    
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>iVille</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>iVille</name> <operator>&lt;</operator> <name>nbVilles</name></expr>;</condition> <incr><expr><operator>++</operator> <name>iVille</name></expr></incr>)</control><block>{
+        <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name><name>c</name><index>[<expr><name>iVille</name></expr>]</index></name></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>sac</name><operator>.</operator><name>push</name></name><argument_list>(<argument><expr><block>{<expr><name><name>c</name><index>[<expr><name>iVille</name></expr>]</index></name></expr>, <expr><name>iVille</name></expr>, <expr><operator>-</operator><literal type="number">1</literal></expr>, <expr><literal type="number">0</literal></expr>}</block></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    }</block></for>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>iVille</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>iVille</name> <operator>&lt;</operator> <name>nbVilles</name></expr>;</condition> <incr><expr><operator>++</operator><name>iVille</name></expr></incr>)</control>
+        <block type="pseudo"><expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name><name>k</name><index>[<expr><name>iVille</name></expr>]</index></name></expr>;</expr_stmt></block></for>
+    
+    
+    <decl_stmt><decl><type><name>int</name></type> <name>nbFaits</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <while>while <condition>(<expr><name>nbFaits</name> <operator>!=</operator> <name>nbVilles</name></expr>)</condition>
+    <block>{
+        <decl_stmt><decl><type><name>Event</name></type> <name>event</name> <init>= <expr><call><name><name>sac</name><operator>.</operator><name>top</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name><name>sac</name><operator>.</operator><name>pop</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        
+      <comment type="line">//  cout &lt;&lt; event.ville1 &lt;&lt; " " &lt;&lt; event.ville2 &lt;&lt; " " &lt;&lt;event.cout &lt;&lt; " " &lt;&lt; event.type &lt;&lt; endl;</comment>
+        
+        <if>if <condition>(<expr><operator>!</operator><name><name>event</name><operator>.</operator><name>type</name></name></expr>)</condition><then>
+        <block>{
+            <if>if <condition>(<expr><name><name>fait</name><index>[<expr><name><name>event</name><operator>.</operator><name>ville1</name></name></expr>]</index></name></expr>)</condition><then>
+                <block type="pseudo"><continue>continue;</continue></block></then></if>
+            <expr_stmt><expr><name><name>fait</name><index>[<expr><name><name>event</name><operator>.</operator><name>ville1</name></name></expr>]</index></name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+            <expr_stmt><expr><name>nbFaits</name><operator>++</operator></expr>;</expr_stmt>
+            <expr_stmt><expr><name>cost</name> <operator>+=</operator> <name><name>event</name><operator>.</operator><name>cout</name></name></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>res1</name><operator>.</operator><name>push_back</name></name><argument_list>(<argument><expr><block>{<expr><literal type="number">0</literal></expr>, <expr><name><name>event</name><operator>.</operator><name>ville1</name></name></expr>, <expr><literal type="number">0</literal></expr>, <expr><literal type="number">0</literal></expr>}</block></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <for>for <control>(<init><decl><type><name>int</name></type> <name>iVille</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>iVille</name> <operator>&lt;</operator> <name>nbVilles</name></expr>;</condition> <incr><expr><operator>++</operator> <name>iVille</name></expr></incr>)</control>
+                <block type="pseudo"><expr_stmt><expr><call><name><name>sac</name><operator>.</operator><name>push</name></name><argument_list>(<argument><expr><block>{<expr><operator>(</operator><name><name>k</name><index>[<expr><name>iVille</name></expr>]</index></name> <operator>+</operator> <name><name>k</name><index>[<expr><name><name>event</name><operator>.</operator><name>ville1</name></name></expr>]</index></name><operator>)</operator> <operator>*</operator> <operator>(</operator><call><name>abs</name><argument_list>(<argument><expr><name><name>x</name><index>[<expr><name>iVille</name></expr>]</index></name> <operator>-</operator> <name><name>x</name><index>[<expr><name><name>event</name><operator>.</operator><name>ville1</name></name></expr>]</index></name></expr></argument>)</argument_list></call> <operator>+</operator> <call><name>abs</name><argument_list>(<argument><expr><name><name>y</name><index>[<expr><name>iVille</name></expr>]</index></name> <operator>-</operator> <name><name>y</name><index>[<expr><name><name>event</name><operator>.</operator><name>ville1</name></name></expr>]</index></name></expr></argument>)</argument_list></call><operator>)</operator></expr>, <expr><name><name>event</name><operator>.</operator><name>ville1</name></name></expr>, <expr><name>iVille</name></expr>, <expr><literal type="number">1</literal></expr>}</block></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></for>
+        }</block></then>
+        <else>else
+        <block>{
+            <if>if <condition>(<expr><name><name>fait</name><index>[<expr><name><name>event</name><operator>.</operator><name>ville2</name></name></expr>]</index></name></expr>)</condition><then>
+                <block type="pseudo"><continue>continue;</continue></block></then></if>
+            <expr_stmt><expr><name><name>fait</name><index>[<expr><name><name>event</name><operator>.</operator><name>ville2</name></name></expr>]</index></name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+            <expr_stmt><expr><name>cost</name> <operator>+=</operator> <name><name>event</name><operator>.</operator><name>cout</name></name></expr>;</expr_stmt>
+            <expr_stmt><expr><name>nbFaits</name><operator>++</operator></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>res2</name><operator>.</operator><name>push_back</name></name><argument_list>(<argument><expr><block>{<expr><literal type="number">0</literal></expr>, <expr><name><name>event</name><operator>.</operator><name>ville1</name></name></expr>, <expr><name><name>event</name><operator>.</operator><name>ville2</name></name></expr>, <expr><literal type="number">0</literal></expr>}</block></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <for>for <control>(<init><decl><type><name>int</name></type> <name>iVille</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>iVille</name> <operator>&lt;</operator> <name>nbVilles</name></expr>;</condition> <incr><expr><operator>++</operator> <name>iVille</name></expr></incr>)</control>
+                <block type="pseudo"><expr_stmt><expr><call><name><name>sac</name><operator>.</operator><name>push</name></name><argument_list>(<argument><expr><block>{<expr><operator>(</operator><name><name>k</name><index>[<expr><name>iVille</name></expr>]</index></name> <operator>+</operator> <name><name>k</name><index>[<expr><name><name>event</name><operator>.</operator><name>ville2</name></name></expr>]</index></name><operator>)</operator> <operator>*</operator> <operator>(</operator><call><name>abs</name><argument_list>(<argument><expr><name><name>x</name><index>[<expr><name>iVille</name></expr>]</index></name> <operator>-</operator> <name><name>x</name><index>[<expr><name><name>event</name><operator>.</operator><name>ville2</name></name></expr>]</index></name></expr></argument>)</argument_list></call> <operator>+</operator> <call><name>abs</name><argument_list>(<argument><expr><name><name>y</name><index>[<expr><name>iVille</name></expr>]</index></name> <operator>-</operator> <name><name>y</name><index>[<expr><name><name>event</name><operator>.</operator><name>ville2</name></name></expr>]</index></name></expr></argument>)</argument_list></call><operator>)</operator></expr>, <expr><name><name>event</name><operator>.</operator><name>ville2</name></name></expr>, <expr><name>iVille</name></expr>, <expr><literal type="number">1</literal></expr>}</block></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></for>
+        }</block></else></if>
+    }</block></while>
+    
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>cost</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <call><name><name>res1</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+    <for>for <control>(<init><decl><type><name>Event</name></type> <name>a</name> <range>: <expr><name>res1</name></expr></range></decl></init>)</control> <block type="pseudo"><expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name><name>a</name><operator>.</operator><name>ville1</name></name> <operator>+</operator> <literal type="number">1</literal><operator>&lt;&lt;</operator> <literal type="string">" "</literal></expr>;</expr_stmt></block></for>
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <call><name><name>res2</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+    <for>for <control>(<init><decl><type><name>Event</name></type> <name>a</name> <range>: <expr><name>res2</name></expr></range></decl></init>)</control> <block type="pseudo"><expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name><name>a</name><operator>.</operator><name>ville1</name></name> <operator>+</operator> <literal type="number">1</literal><operator>&lt;&lt;</operator> <literal type="string">" "</literal> <operator>&lt;&lt;</operator> <name><name>a</name><operator>.</operator><name>ville2</name></name> <operator>+</operator> <literal type="number">1</literal><operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt></block></for>
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+    
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function> </unit>

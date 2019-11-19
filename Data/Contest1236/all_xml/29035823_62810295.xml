@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1236/all/29035823_62810295.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;stdio.h&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;stdlib.h&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;ctype.h&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;string.h&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;limits.h&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;math.h&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;time.h&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;queue&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;stdarg.h&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;map&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;numeric&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<function><type><name>int</name></type>
+<name>main</name><parameter_list>()</parameter_list> <block>{
+
+  <decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>, <decl><type ref="prev"/><name>m</name></decl>, <decl><type ref="prev"/><name>k</name></decl>;</decl_stmt>
+  <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>n</name><operator>&gt;&gt;</operator><name>m</name><operator>&gt;&gt;</operator><name>k</name></expr>;</expr_stmt>
+
+  <decl_stmt><decl><type><name><name>map</name><argument_list type="generic">&lt;<argument><expr><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>, <argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></expr></argument>, <argument><expr><name>bool</name></expr></argument>&gt;</argument_list></name></type> <name>matrix</name></decl>;</decl_stmt>
+  <decl_stmt><decl><type><name>int</name></type> <name>x</name></decl>, <decl><type ref="prev"/><name>y</name></decl>;</decl_stmt>
+  <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name><operator>&lt;</operator><name>k</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{
+    <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>x</name><operator>&gt;&gt;</operator><name>y</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>matrix</name><index>[<expr><block>{<expr><name>x</name></expr>, <expr><name>y</name></expr>}</block></expr>]</index></name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+  }</block></for>
+
+  <decl_stmt><decl><type><name>int</name></type> <name>top</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>, <decl><type ref="prev"/><name>left</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>, <decl><type ref="prev"/><name>right</name> <init>= <expr><name>m</name></expr></init></decl>, <decl><type ref="prev"/><name>bottom</name> <init>= <expr><name>n</name></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><name>int</name></type> <name>d</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><name>int</name></type> <name>path</name> <init>= <expr><name>m</name><operator>*</operator><name>n</name><operator>-</operator><name>k</name></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><name>int</name></type> <name>count</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+
+  <while>while <condition>(<expr><literal type="number">1</literal></expr>)</condition> <block>{
+    <if>if <condition>(<expr><name>right</name> <operator>&lt;</operator> <name>left</name> <operator>||</operator> <name>bottom</name> <operator>&lt;</operator> <name>top</name></expr>)</condition><then> <block type="pseudo"><break>break;</break></block></then></if>
+
+    <if>if <condition>(<expr><name>d</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+      <while>while <condition>(<expr><name>right</name> <operator>&gt;=</operator> <name>left</name> <operator>&amp;&amp;</operator> <name><name>matrix</name><index>[<expr><block>{<expr><name>top</name></expr>, <expr><name>right</name></expr>}</block></expr>]</index></name></expr>)</condition> <block>{
+        <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><name>top</name></expr></init></decl>;</init> <condition><expr><name>i</name><operator>&lt;=</operator><name>bottom</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+          <block type="pseudo"><if>if <condition>(<expr><operator>!</operator><name><name>matrix</name><index>[<expr><block>{<expr><name>i</name></expr>, <expr><name>right</name></expr>}</block></expr>]</index></name></expr>)</condition><then> <block>{
+            <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><literal type="string">"No"</literal><operator>&lt;&lt;</operator><name>endl</name></expr>;</expr_stmt>
+            <return>return <expr><literal type="number">0</literal></expr>;</return>
+          }</block></then></if></block></for>
+        <expr_stmt><expr><name>right</name><operator>--</operator></expr>;</expr_stmt>
+      }</block></while>
+      <expr_stmt><expr><name>top</name><operator>++</operator></expr>;</expr_stmt>
+      <if>if <condition>(<expr><name>right</name> <operator>&gt;=</operator> <name>left</name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>count</name> <operator>+=</operator> <name>right</name><operator>-</operator><name>left</name><operator>+</operator><literal type="number">1</literal></expr>;</expr_stmt></block></then></if>
+    }</block></then>
+    <elseif>else <if>if <condition>(<expr><name>d</name> <operator>==</operator> <literal type="number">1</literal></expr>)</condition><then> <block>{
+      <while>while <condition>(<expr><name>bottom</name> <operator>&gt;=</operator> <name>top</name> <operator>&amp;&amp;</operator> <name><name>matrix</name><index>[<expr><block>{<expr><name>bottom</name></expr>, <expr><name>right</name></expr>}</block></expr>]</index></name></expr>)</condition> <block>{
+        <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><name>left</name></expr></init></decl>;</init> <condition><expr><name>i</name><operator>&lt;=</operator><name>right</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> 
+          <block type="pseudo"><if>if <condition>(<expr><operator>!</operator><name><name>matrix</name><index>[<expr><block>{<expr><name>bottom</name></expr>, <expr><name>i</name></expr>}</block></expr>]</index></name></expr>)</condition><then> <block>{
+            <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><literal type="string">"No"</literal><operator>&lt;&lt;</operator><name>endl</name></expr>;</expr_stmt>
+            <return>return <expr><literal type="number">0</literal></expr>;</return>
+          }</block></then></if></block></for>
+        <expr_stmt><expr><name>bottom</name><operator>--</operator></expr>;</expr_stmt>
+      }</block></while>
+      <expr_stmt><expr><name>right</name><operator>--</operator></expr>;</expr_stmt>
+      <if>if <condition>(<expr><name>bottom</name> <operator>&gt;=</operator> <name>top</name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>count</name> <operator>+=</operator> <name>bottom</name><operator>-</operator><name>top</name><operator>+</operator><literal type="number">1</literal></expr>;</expr_stmt></block></then></if>
+    }</block></then></if></elseif>
+    <elseif>else <if>if <condition>(<expr><name>d</name> <operator>==</operator> <literal type="number">2</literal></expr>)</condition><then> <block>{
+      <while>while <condition>(<expr><name>left</name> <operator>&lt;=</operator> <name>right</name> <operator>&amp;&amp;</operator> <name><name>matrix</name><index>[<expr><block>{<expr><name>bottom</name></expr>, <expr><name>left</name></expr>}</block></expr>]</index></name></expr>)</condition> <block>{
+        <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><name>top</name></expr></init></decl>;</init> <condition><expr><name>i</name><operator>&lt;=</operator><name>bottom</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> 
+          <block type="pseudo"><if>if <condition>(<expr><operator>!</operator><name><name>matrix</name><index>[<expr><block>{<expr><name>i</name></expr>, <expr><name>left</name></expr>}</block></expr>]</index></name></expr>)</condition><then> <block>{
+            <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><literal type="string">"No"</literal><operator>&lt;&lt;</operator><name>endl</name></expr>;</expr_stmt>
+            <return>return <expr><literal type="number">0</literal></expr>;</return>
+          }</block></then></if></block></for>
+        <expr_stmt><expr><name>left</name><operator>++</operator></expr>;</expr_stmt>
+      }</block></while>
+      <expr_stmt><expr><name>bottom</name><operator>--</operator></expr>;</expr_stmt>
+      <if>if <condition>(<expr><name>left</name> <operator>&lt;=</operator> <name>right</name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>count</name> <operator>+=</operator> <name>right</name><operator>-</operator><name>left</name><operator>+</operator><literal type="number">1</literal></expr>;</expr_stmt></block></then></if>
+    }</block></then></if></elseif>
+    <else>else <block>{
+      <while>while <condition>(<expr><name>top</name> <operator>&lt;=</operator> <name>bottom</name> <operator>&amp;&amp;</operator> <name><name>matrix</name><index>[<expr><block>{<expr><name>top</name></expr>, <expr><name>left</name></expr>}</block></expr>]</index></name></expr>)</condition> <block>{
+        <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><name>left</name></expr></init></decl>;</init> <condition><expr><name>i</name><operator>&lt;=</operator><name>right</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> 
+          <block type="pseudo"><if>if <condition>(<expr><operator>!</operator><name><name>matrix</name><index>[<expr><block>{<expr><name>top</name></expr>, <expr><name>i</name></expr>}</block></expr>]</index></name></expr>)</condition><then> <block>{
+            <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><literal type="string">"No"</literal><operator>&lt;&lt;</operator><name>endl</name></expr>;</expr_stmt>
+            <return>return <expr><literal type="number">0</literal></expr>;</return>
+          }</block></then></if></block></for>
+        <expr_stmt><expr><name>top</name><operator>++</operator></expr>;</expr_stmt>
+      }</block></while>
+      <expr_stmt><expr><name>left</name><operator>++</operator></expr>;</expr_stmt>
+      <if>if <condition>(<expr><name>top</name> <operator>&lt;=</operator> <name>bottom</name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>count</name> <operator>+=</operator> <name>bottom</name><operator>-</operator><name>top</name><operator>+</operator><literal type="number">1</literal></expr>;</expr_stmt></block></then></if>
+    }</block></else></if>
+
+    <expr_stmt><expr><name>d</name> <operator>=</operator> <operator>(</operator><name>d</name><operator>+</operator><literal type="number">1</literal><operator>)</operator><operator>%</operator><literal type="number">4</literal></expr>;</expr_stmt>
+  }</block></while>
+
+  <if>if <condition>(<expr><name>count</name> <operator>==</operator> <name>path</name></expr>)</condition><then>
+    <block type="pseudo"><expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><literal type="string">"Yes"</literal><operator>&lt;&lt;</operator><name>endl</name></expr>;</expr_stmt></block></then>
+  <else>else
+    <block type="pseudo"><expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><literal type="string">"No"</literal><operator>&lt;&lt;</operator><name>endl</name></expr>;</expr_stmt></block></else></if>
+
+  <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+
+
+</unit>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1243/all/29729738_64393857.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;stdio.h&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;string.h&gt;</cpp:file></cpp:include>
+
+<comment type="line">//ç´ æ°ç­éååæ°åè§£</comment>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>LL</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>MAXN</name> <init>= <expr><literal type="number">1000000</literal></expr></init></decl> ;</decl_stmt>
+<decl_stmt><decl><type><name>LL</name></type> <name><name>prime</name><index>[<expr><name>MAXN</name> <operator>+</operator> <literal type="number">1</literal></expr>]</index></name></decl> ;</decl_stmt>
+<function><type><name>void</name></type> <name>getPrime</name><parameter_list>()</parameter_list>
+<block>{
+    <expr_stmt><expr><call><name>memset</name> <argument_list>(<argument><expr><name>prime</name></expr></argument> , <argument><expr><literal type="number">0</literal></expr></argument> , <argument><expr><sizeof>sizeof <argument_list>(<argument><expr><name>prime</name></expr></argument>)</argument_list></sizeof></expr></argument>)</argument_list></call></expr> ;</expr_stmt>
+    <for>for <control>(<init><decl><type><name>LL</name></type> <name>i</name> <init>= <expr><literal type="number">2</literal></expr></init></decl> ;</init> <condition><expr><name>i</name> <operator>&lt;=</operator> <name>MAXN</name></expr> ;</condition> <incr><expr><operator>++</operator><name>i</name></expr></incr>)</control>
+    <block>{
+        <if>if <condition>(<expr><operator>!</operator><name><name>prime</name><index>[<expr><name>i</name></expr>]</index></name></expr>)</condition><then>
+            <block type="pseudo"><expr_stmt><expr><name><name>prime</name><index>[<expr><operator>++</operator><name><name>prime</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name> <operator>=</operator> <name>i</name></expr> ;</expr_stmt></block></then></if>
+        <for>for <control>(<init><decl><type><name>LL</name></type> <name>j</name> <init>= <expr><literal type="number">1</literal></expr></init></decl> ;</init> <condition><expr><name>j</name> <operator>&lt;=</operator> <name><name>prime</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>&amp;&amp;</operator> <name><name>prime</name><index>[<expr><name>j</name></expr>]</index></name> <operator>&lt;=</operator> <name>MAXN</name> <operator>/</operator> <name>i</name></expr> ;</condition> <incr><expr><operator>++</operator><name>j</name></expr></incr>)</control>
+        <block>{
+            <expr_stmt><expr><name><name>prime</name><index>[<expr><name><name>prime</name><index>[<expr><name>j</name></expr>]</index></name> <operator>*</operator> <name>i</name></expr>]</index></name> <operator>=</operator> <literal type="number">1</literal></expr> ;</expr_stmt>
+            <if>if <condition>(<expr><name>i</name> <operator>%</operator> <name><name>prime</name><index>[<expr><name>j</name></expr>]</index></name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then>
+                <block type="pseudo"><break>break ;</break></block></then></if>
+        }</block></for>
+    }</block></for>
+}</block></function>
+
+<comment type="line">//factor[i][0]  ä»£è¡¨ç¬¬iä¸ªç´ æ°çå¼</comment>
+<comment type="line">//factor[i][1]  ä»£è¡¨ç¬¬iä¸ªç´ æ°çä¸ªæ°</comment>
+<decl_stmt><decl><type><name>long</name> <name>long</name></type> <name><name>factor</name><index>[<expr><literal type="number">100</literal></expr>]</index><index>[<expr><literal type="number">2</literal></expr>]</index></name></decl> ;</decl_stmt>
+<decl_stmt><decl><type><name>LL</name></type> <name>fatCnt</name></decl> ;</decl_stmt>
+
+<function><type><name>LL</name></type> <name>getFactors</name><parameter_list>(<parameter><decl><type><name>long</name> <name>long</name></type> <name>x</name></decl></parameter>)</parameter_list>
+<block>{
+    <expr_stmt><expr><name>fatCnt</name> <operator>=</operator> <literal type="number">0</literal></expr> ;</expr_stmt>
+    <decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>tmp</name> <init>= <expr><name>x</name></expr></init></decl> ;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>LL</name></type> <name>i</name> <init>= <expr><literal type="number">1</literal></expr></init></decl> ;</init> <condition><expr><name><name>prime</name><index>[<expr><name>i</name></expr>]</index></name> <operator>&lt;=</operator> <name>tmp</name> <operator>/</operator> <name><name>prime</name><index>[<expr><name>i</name></expr>]</index></name></expr> ;</condition> <incr><expr><operator>++</operator><name>i</name></expr></incr>)</control>
+    <block>{
+        <expr_stmt><expr><name><name>factor</name><index>[<expr><name>fatCnt</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name> <operator>=</operator> <literal type="number">0</literal></expr> ;</expr_stmt>
+        <if>if <condition>(<expr><name>tmp</name> <operator>%</operator> <name><name>prime</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then>
+        <block>{
+            <expr_stmt><expr><name><name>factor</name><index>[<expr><name>fatCnt</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>=</operator> <name><name>prime</name><index>[<expr><name>i</name></expr>]</index></name></expr> ;</expr_stmt>
+            <while>while <condition>(<expr><name>tmp</name> <operator>%</operator> <name><name>prime</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition>
+            <block>{
+                <expr_stmt><expr><name><name>factor</name><index>[<expr><name>fatCnt</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name><operator>++</operator></expr> ;</expr_stmt>
+                <expr_stmt><expr><name>tmp</name> <operator>/=</operator> <name><name>prime</name><index>[<expr><name>i</name></expr>]</index></name></expr> ;</expr_stmt>
+            }</block></while>
+            <expr_stmt><expr><name>fatCnt</name><operator>++</operator></expr> ;</expr_stmt>
+        }</block></then></if>
+    }</block></for>
+    <if>if <condition>(<expr><name>tmp</name> <operator>!=</operator> <literal type="number">1</literal></expr>)</condition><then>
+    <block>{
+        <expr_stmt><expr><name><name>factor</name><index>[<expr><name>fatCnt</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>=</operator> <name>tmp</name></expr> ;</expr_stmt>
+        <expr_stmt><expr><name><name>factor</name><index>[<expr><name>fatCnt</name><operator>++</operator></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name> <operator>=</operator> <literal type="number">1</literal></expr> ;</expr_stmt>
+    }</block></then></if>
+    <return>return <expr><name>fatCnt</name></expr> ;</return>
+}</block></function>
+
+<decl_stmt><decl><type><name>LL</name></type> <name>now</name></decl> ;</decl_stmt>
+<decl_stmt><decl><type><name>LL</name></type> <name>u</name></decl> ;</decl_stmt>
+<function><type><name>int</name></type> <name>main</name> <parameter_list>()</parameter_list>
+<block>{
+    <expr_stmt><expr><call><name>getPrime</name><argument_list>()</argument_list></call></expr> ;</expr_stmt>
+    <expr_stmt><expr><call><name>scanf</name> <argument_list>(<argument><expr><literal type="string">"%lld"</literal></expr></argument> , <argument><expr><operator>&amp;</operator><name>now</name></expr></argument>)</argument_list></call></expr> ;</expr_stmt>
+    <expr_stmt><expr><name>u</name> <operator>=</operator> <call><name>getFactors</name><argument_list>(<argument><expr><name>now</name></expr></argument>)</argument_list></call></expr> ;</expr_stmt>
+    <if>if <condition>(<expr><name>u</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then>
+    <block>{
+        <expr_stmt><expr><call><name>printf</name> <argument_list>(<argument><expr><literal type="string">"%lld"</literal></expr></argument> , <argument><expr><name>now</name></expr></argument>)</argument_list></call></expr> ;</expr_stmt>
+    }</block></then>
+    <elseif>else <if>if <condition>(<expr><name>u</name> <operator>==</operator> <literal type="number">1</literal></expr>)</condition><then>
+    <block>{
+        <expr_stmt><expr><call><name>printf</name> <argument_list>(<argument><expr><literal type="string">"%lld"</literal></expr></argument> , <argument><expr><name><name>factor</name><index>[<expr><literal type="number">0</literal></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr> ;</expr_stmt>
+    }</block></then></if></elseif>
+    <else>else
+        <block type="pseudo"><expr_stmt><expr><call><name>printf</name> <argument_list>(<argument><expr><literal type="string">"1"</literal></expr></argument>)</argument_list></call></expr> ;</expr_stmt></block></else></if>
+}</block></function>
+</unit>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1236/all/29058912_62802950.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>int</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>endl</name></cpp:macro> <cpp:value>'\n'</cpp:value></cpp:define>
+<typedef>typedef <type><name>long</name> <name>long</name></type> <name>ll</name>;</typedef>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>N</name> <init>= <expr><literal type="number">1e5</literal><operator>+</operator><literal type="number">5</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><name><name>set</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name><name>iToj</name><index>[<expr><name>N</name></expr>]</index></name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name><name>set</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name><name>jToi</name><index>[<expr><name>N</name></expr>]</index></name></decl>;</decl_stmt>
+
+<function><type><name>signed</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+    <comment type="line">//ios::sync_with_stdio(false);</comment>
+    <comment type="line">//cin.tie(0);</comment>
+    <comment type="line">//cout.tie(0);</comment>
+    <decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>,<decl><type ref="prev"/><name>m</name></decl>,<decl><type ref="prev"/><name>k</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>n</name><operator>&gt;&gt;</operator><name>m</name><operator>&gt;&gt;</operator><name>k</name></expr>;</expr_stmt>
+
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>k</name></expr>;</condition><incr><expr><operator>++</operator><name>i</name></expr></incr>)</control><block>{
+        <decl_stmt><decl><type><name>int</name></type> <name>I</name></decl>,<decl><type ref="prev"/><name>J</name></decl>;</decl_stmt>
+        <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>I</name><operator>&gt;&gt;</operator><name>J</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>iToj</name><index>[<expr><name>I</name></expr>]</index></name><operator>.</operator><call><name>insert</name><argument_list>(<argument><expr><name>J</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>jToi</name><index>[<expr><name>J</name></expr>]</index></name><operator>.</operator><call><name>insert</name><argument_list>(<argument><expr><name>I</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    }</block></for>
+    <decl_stmt><decl><type><name>int</name></type> <name>mni</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>, <decl><type ref="prev"/><name>mxi</name> <init>= <expr><name>n</name><operator>+</operator><literal type="number">1</literal></expr></init></decl>, <decl><type ref="prev"/><name>mnj</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>, <decl><type ref="prev"/><name>mxj</name> <init>= <expr><name>m</name><operator>+</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>, <argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>pos</name> <init>= <expr><block>{<expr><literal type="number">1</literal></expr>,<expr><literal type="number">1</literal></expr>}</block></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>dir</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>cnt</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>bool</name></type> <name>First</name> <init>= <expr><literal type="boolean">true</literal></expr></init></decl>;</decl_stmt>
+    <while>while<condition>(<expr><literal type="boolean">true</literal></expr>)</condition> <block>{
+        <expr_stmt><expr><call><name>assert</name><argument_list>(<argument><expr><operator>!</operator><name><name>iToj</name><index>[<expr><name><name>pos</name><operator>.</operator><name>first</name></name></expr>]</index></name><operator>.</operator><call><name>count</name><argument_list>(<argument><expr><name><name>pos</name><operator>.</operator><name>second</name></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt><comment type="line">//remove</comment>
+        <comment type="line">//cout &lt;&lt; "here, cnt: " &lt;&lt; cnt &lt;&lt; endl;</comment>
+        <comment type="line">//cout &lt;&lt; "here, pos: " &lt;&lt; pos.first &lt;&lt; ' '&lt;&lt; pos.second &lt;&lt; endl;</comment>
+        <comment type="line">//cout &lt;&lt; "bounds: "&lt;&lt; mni &lt;&lt; ' ' &lt;&lt; mnj &lt;&lt; ' ' &lt;&lt; mxi &lt;&lt; ' ' &lt;&lt; mxj &lt;&lt; endl;</comment>
+            <comment type="line">//cout &lt;&lt; "\n\n";</comment>
+        <if>if<condition>(<expr><name>dir</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+            <decl_stmt><decl><type><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>,<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>next</name> <init>= <expr><name>pos</name></expr></init></decl>;</decl_stmt>
+            <expr_stmt><expr><name><name>next</name><operator>.</operator><name>second</name></name> <operator>=</operator> <name>mxj</name><operator>-</operator><literal type="number">1</literal></expr>;</expr_stmt>
+            <decl_stmt><decl><type><name>auto</name></type> <name>it</name> <init>= <expr><name><name>iToj</name><index>[<expr><name><name>pos</name><operator>.</operator><name>first</name></name></expr>]</index></name><operator>.</operator><call><name>upper_bound</name><argument_list>(<argument><expr><name><name>pos</name><operator>.</operator><name>second</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <if>if<condition>(<expr><name>it</name> <operator>!=</operator> <name><name>iToj</name><index>[<expr><name><name>pos</name><operator>.</operator><name>first</name></name></expr>]</index></name><operator>.</operator><call><name>end</name><argument_list>()</argument_list></call></expr>)</condition><then> <block>{
+                <expr_stmt><expr><name><name>next</name><operator>.</operator><name>second</name></name> <operator>=</operator> <call><name>min</name><argument_list>(<argument><expr><name><name>next</name><operator>.</operator><name>second</name></name></expr></argument>, <argument><expr><operator>*</operator><name>it</name><operator>-</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            }</block></then></if>
+            <if>if<condition>(<expr><name><name>next</name><operator>.</operator><name>second</name></name> <operator>&lt;=</operator> <name><name>pos</name><operator>.</operator><name>second</name></name></expr>)</condition><then> <block>{
+                <if>if<condition>(<expr><name>First</name></expr>)</condition><then> <block>{
+                    <expr_stmt><expr><name>dir</name> <operator>=</operator> <operator>(</operator><name>dir</name><operator>+</operator><literal type="number">1</literal><operator>)</operator><operator>%</operator><literal type="number">4</literal></expr>;</expr_stmt>
+                    <expr_stmt><expr><name>First</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+                    <continue>continue;</continue>
+                }</block></then></if>
+                <break>break;</break>
+            }</block></then></if>
+            <expr_stmt><expr><name>cnt</name> <operator>+=</operator> <name><name>next</name><operator>.</operator><name>second</name></name> <operator>-</operator> <name><name>pos</name><operator>.</operator><name>second</name></name></expr>;</expr_stmt>
+            <expr_stmt><expr><name>mxj</name> <operator>=</operator> <name><name>next</name><operator>.</operator><name>second</name></name></expr>;</expr_stmt>
+            <expr_stmt><expr><name>mni</name> <operator>=</operator> <name><name>next</name><operator>.</operator><name>first</name></name></expr>;</expr_stmt>
+            <expr_stmt><expr><name>pos</name> <operator>=</operator> <name>next</name></expr>;</expr_stmt>
+        }</block></then> <elseif>else <if>if<condition>(<expr><name>dir</name> <operator>==</operator> <literal type="number">1</literal></expr>)</condition><then> <block>{
+
+
+            <decl_stmt><decl><type><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>,<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>next</name> <init>= <expr><name>pos</name></expr></init></decl>;</decl_stmt>
+            <expr_stmt><expr><name><name>next</name><operator>.</operator><name>first</name></name> <operator>=</operator> <name>mxi</name><operator>-</operator><literal type="number">1</literal></expr>;</expr_stmt>
+            <decl_stmt><decl><type><name>auto</name></type> <name>it</name> <init>= <expr><name><name>jToi</name><index>[<expr><name><name>pos</name><operator>.</operator><name>second</name></name></expr>]</index></name><operator>.</operator><call><name>upper_bound</name><argument_list>(<argument><expr><name><name>pos</name><operator>.</operator><name>first</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <if>if<condition>(<expr><name>it</name> <operator>!=</operator> <name><name>jToi</name><index>[<expr><name><name>pos</name><operator>.</operator><name>second</name></name></expr>]</index></name><operator>.</operator><call><name>end</name><argument_list>()</argument_list></call></expr>)</condition><then> <block>{
+                <expr_stmt><expr><name><name>next</name><operator>.</operator><name>first</name></name> <operator>=</operator> <call><name>min</name><argument_list>(<argument><expr><name><name>next</name><operator>.</operator><name>first</name></name></expr></argument>, <argument><expr><operator>*</operator><name>it</name><operator>-</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            }</block></then></if>
+            <if>if<condition>(<expr><name><name>next</name><operator>.</operator><name>first</name></name> <operator>&lt;=</operator> <name><name>pos</name><operator>.</operator><name>first</name></name></expr>)</condition><then> <block>{
+                <comment type="line">//cout &lt;&lt; "deuaslfj\n";</comment>
+                <break>break;</break>
+            }</block></then></if>
+
+            <expr_stmt><expr><name>cnt</name> <operator>+=</operator> <name><name>next</name><operator>.</operator><name>first</name></name> <operator>-</operator> <name><name>pos</name><operator>.</operator><name>first</name></name></expr>;</expr_stmt>
+            <expr_stmt><expr><name>mxi</name> <operator>=</operator> <name><name>next</name><operator>.</operator><name>first</name></name></expr>;</expr_stmt>
+            <expr_stmt><expr><name>mxj</name> <operator>=</operator> <name><name>next</name><operator>.</operator><name>second</name></name></expr>;</expr_stmt>
+            <expr_stmt><expr><name>pos</name> <operator>=</operator> <name>next</name></expr>;</expr_stmt>
+
+
+
+        }</block></then></if></elseif> <elseif>else <if>if<condition>(<expr><name>dir</name> <operator>==</operator> <literal type="number">2</literal></expr>)</condition><then> <block>{
+            <decl_stmt><decl><type><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>,<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>next</name> <init>= <expr><name>pos</name></expr></init></decl>;</decl_stmt>
+            <expr_stmt><expr><name><name>next</name><operator>.</operator><name>second</name></name> <operator>=</operator> <name>mnj</name><operator>+</operator><literal type="number">1</literal></expr>;</expr_stmt>
+            <decl_stmt><decl><type><name>auto</name></type> <name>it</name> <init>= <expr><name><name>iToj</name><index>[<expr><name><name>pos</name><operator>.</operator><name>first</name></name></expr>]</index></name><operator>.</operator><call><name>lower_bound</name><argument_list>(<argument><expr><name><name>pos</name><operator>.</operator><name>second</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <if>if<condition>(<expr><name>it</name> <operator>!=</operator> <name><name>iToj</name><index>[<expr><name><name>pos</name><operator>.</operator><name>first</name></name></expr>]</index></name><operator>.</operator><call><name>begin</name><argument_list>()</argument_list></call></expr>)</condition><then> <block>{
+                <expr_stmt><expr><operator>--</operator><name>it</name></expr>;</expr_stmt>
+                <expr_stmt><expr><name><name>next</name><operator>.</operator><name>second</name></name> <operator>=</operator> <call><name>max</name><argument_list>(<argument><expr><name><name>next</name><operator>.</operator><name>second</name></name></expr></argument>, <argument><expr><operator>*</operator><name>it</name><operator>+</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            }</block></then></if>
+            <if>if<condition>(<expr><name><name>next</name><operator>.</operator><name>second</name></name> <operator>&gt;=</operator> <name><name>pos</name><operator>.</operator><name>second</name></name></expr>)</condition><then> <block>{
+
+                <break>break;</break>
+            }</block></then></if>
+            <expr_stmt><expr><name>cnt</name> <operator>+=</operator> <name><name>pos</name><operator>.</operator><name>second</name></name> <operator>-</operator> <name><name>next</name><operator>.</operator><name>second</name></name></expr>;</expr_stmt>
+            <expr_stmt><expr><name>mnj</name> <operator>=</operator> <name><name>next</name><operator>.</operator><name>second</name></name></expr>;</expr_stmt>
+            <expr_stmt><expr><name>mxi</name> <operator>=</operator> <name><name>next</name><operator>.</operator><name>first</name></name></expr>;</expr_stmt>
+            <expr_stmt><expr><name>pos</name> <operator>=</operator> <name>next</name></expr>;</expr_stmt>
+
+        }</block></then></if></elseif> <else>else <block>{
+            <decl_stmt><decl><type><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>,<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>next</name> <init>= <expr><name>pos</name></expr></init></decl>;</decl_stmt>
+            <expr_stmt><expr><name><name>next</name><operator>.</operator><name>first</name></name> <operator>=</operator> <name>mni</name><operator>+</operator><literal type="number">1</literal></expr>;</expr_stmt>
+            <decl_stmt><decl><type><name>auto</name></type> <name>it</name> <init>= <expr><name><name>jToi</name><index>[<expr><name><name>pos</name><operator>.</operator><name>second</name></name></expr>]</index></name><operator>.</operator><call><name>lower_bound</name><argument_list>(<argument><expr><name><name>pos</name><operator>.</operator><name>first</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <if>if<condition>(<expr><name>it</name> <operator>!=</operator> <name><name>jToi</name><index>[<expr><name><name>pos</name><operator>.</operator><name>second</name></name></expr>]</index></name><operator>.</operator><call><name>begin</name><argument_list>()</argument_list></call></expr>)</condition><then> <block>{
+                <expr_stmt><expr><operator>--</operator><name>it</name></expr>;</expr_stmt>
+                <expr_stmt><expr><name><name>next</name><operator>.</operator><name>first</name></name> <operator>=</operator> <call><name>max</name><argument_list>(<argument><expr><name><name>next</name><operator>.</operator><name>first</name></name></expr></argument>, <argument><expr><operator>*</operator><name>it</name><operator>+</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            }</block></then></if>
+            <if>if<condition>(<expr><name><name>next</name><operator>.</operator><name>first</name></name> <operator>&gt;=</operator> <name><name>pos</name><operator>.</operator><name>first</name></name></expr>)</condition><then> <block>{
+
+                <break>break;</break>
+            }</block></then></if>
+            <expr_stmt><expr><name>cnt</name> <operator>+=</operator> <name><name>pos</name><operator>.</operator><name>first</name></name> <operator>-</operator> <name><name>next</name><operator>.</operator><name>first</name></name></expr>;</expr_stmt>
+            <expr_stmt><expr><name>mni</name> <operator>=</operator> <name><name>next</name><operator>.</operator><name>first</name></name></expr>;</expr_stmt>
+            <expr_stmt><expr><name>mnj</name> <operator>=</operator> <name><name>next</name><operator>.</operator><name>second</name></name></expr>;</expr_stmt>
+            <expr_stmt><expr><name>pos</name> <operator>=</operator> <name>next</name></expr>;</expr_stmt>
+
+        }</block></else></if>
+        <expr_stmt><expr><name>dir</name> <operator>=</operator> <operator>(</operator><name>dir</name><operator>+</operator><literal type="number">1</literal><operator>)</operator><operator>%</operator><literal type="number">4</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name>First</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+    }</block></while>
+    <comment type="line">//cout &lt;&lt; "cnt: " &lt;&lt; cnt &lt;&lt; endl;</comment>
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <operator>(</operator><ternary><condition><expr><name>cnt</name> <operator>+</operator> <name>k</name> <operator>==</operator> <name>n</name><operator>*</operator><name>m</name></expr> ?</condition><then> <expr><literal type="string">"Yes"</literal></expr></then><else>:<expr><literal type="string">"No"</literal></expr></else></ternary><operator>)</operator></expr>;</expr_stmt>
+}</block></function>
+</unit>

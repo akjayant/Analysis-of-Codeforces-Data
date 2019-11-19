@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29602452_64032177.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>IOS</name></cpp:macro> <cpp:value>ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>endl</name></cpp:macro> <cpp:value>"\n"</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>mod</name></cpp:macro> <cpp:value>1000000007</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>int</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ll</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>EPS</name></cpp:macro> <cpp:value>0.00000000000001</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ld</name></cpp:macro> <cpp:value>long double</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>inf</name></cpp:macro> <cpp:value>10000000002</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>N</name></cpp:macro> <cpp:value>2001</cpp:value></cpp:define>
+
+<decl_stmt><decl><type><name>int</name></type> <name><name>dp</name><index>[<expr><literal type="number">32</literal></expr>]</index><index>[<expr><literal type="number">2</literal></expr>]</index><index>[<expr><literal type="number">2</literal></expr>]</index><index>[<expr><literal type="number">2</literal></expr>]</index><index>[<expr><literal type="number">2</literal></expr>]</index></name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name>l</name></decl>,<decl><type ref="prev"/><name>r</name></decl>;</decl_stmt>
+
+
+<function><type><name>int</name></type> <name>rec</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>i</name></decl></parameter>,<parameter><decl><type><name>int</name></type> <name>c1</name></decl></parameter>,<parameter><decl><type><name>int</name></type> <name>c2</name></decl></parameter>,<parameter><decl><type><name>int</name></type> <name>c3</name></decl></parameter>,<parameter><decl><type><name>int</name></type> <name>c4</name></decl></parameter>)</parameter_list>
+<block>{
+	<comment type="line">// cerr &lt;&lt; i &lt;&lt; " " &lt;&lt; c1 &lt;&lt; " " &lt;&lt; c2 &lt;&lt; " " &lt;&lt; c3 &lt;&lt; " " &lt;&lt; c4 &lt;&lt; endl;</comment>
+	<if>if<condition>(<expr><name>i</name> <operator>==</operator> <operator>-</operator><literal type="number">1</literal></expr>)</condition><then>
+		<block type="pseudo"><return>return <expr><literal type="number">1</literal></expr>;</return></block></then></if>
+	<if>if<condition>(<expr><name><name>dp</name><index>[<expr><name>i</name></expr>]</index><index>[<expr><name>c1</name></expr>]</index><index>[<expr><name>c2</name></expr>]</index><index>[<expr><name>c3</name></expr>]</index><index>[<expr><name>c4</name></expr>]</index></name> <operator>==</operator> <operator>-</operator><literal type="number">1</literal></expr>)</condition><then>
+	<block>{
+		<decl_stmt><decl><type><name>int</name><modifier>&amp;</modifier></type> <name>ans</name>  <init>= <expr><name><name>dp</name><index>[<expr><name>i</name></expr>]</index><index>[<expr><name>c1</name></expr>]</index><index>[<expr><name>c2</name></expr>]</index><index>[<expr><name>c3</name></expr>]</index><index>[<expr><name>c4</name></expr>]</index></name></expr></init></decl>;</decl_stmt>
+		<expr_stmt><expr><name>ans</name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+		<decl_stmt><decl><type><name>int</name></type> <name>rbit</name> <init>= <expr><operator>(</operator><name>r</name> <operator>&amp;</operator> <operator>(</operator><literal type="number">1</literal> <operator>&lt;&lt;</operator> <name>i</name><operator>)</operator><operator>)</operator> <operator>&gt;</operator> <literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+		<decl_stmt><decl><type><name>int</name></type> <name>lbit</name> <init>= <expr><operator>(</operator><name>l</name> <operator>&amp;</operator> <operator>(</operator><literal type="number">1</literal> <operator>&lt;&lt;</operator> <name>i</name><operator>)</operator><operator>)</operator> <operator>&gt;</operator> <literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+		<comment type="line">//case zero zero</comment>
+		<comment type="line">// cerr &lt;&lt; lbit &lt;&lt; " " &lt;&lt; rbit &lt;&lt; endl;</comment>
+		<decl_stmt><decl><type><name>int</name></type> <name><name>can</name><index>[<expr><literal type="number">2</literal></expr>]</index><index>[<expr><literal type="number">2</literal></expr>]</index></name></decl>;</decl_stmt>
+		<expr_stmt><expr><call><name>memset</name><argument_list>(<argument><expr><name>can</name></expr></argument>,<argument><expr><literal type="number">0</literal></expr></argument>,<argument><expr><sizeof>sizeof<argument_list>(<argument><expr><name>can</name></expr></argument>)</argument_list></sizeof></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<block>{
+			<comment type="line">//r zero</comment>
+			<if>if<condition>(<expr><name>c2</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then>
+			<block>{
+				<expr_stmt><expr><name><name>can</name><index>[<expr><literal type="number">1</literal></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>=</operator> <operator>(</operator><name>lbit</name> <operator>==</operator> <literal type="number">0</literal><operator>)</operator></expr>;</expr_stmt>
+			}</block></then>
+			<else>else
+				<block type="pseudo"><expr_stmt><expr><name><name>can</name><index>[<expr><literal type="number">1</literal></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt></block></else></if>
+			<comment type="line">//r one</comment>
+			<if>if<condition>(<expr><name>c1</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then>
+			<block>{
+
+				<expr_stmt><expr><name><name>can</name><index>[<expr><literal type="number">1</literal></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name> <operator>=</operator> <name>rbit</name></expr>;</expr_stmt>
+			}</block></then>
+			<else>else
+			<block>{
+				<expr_stmt><expr><name><name>can</name><index>[<expr><literal type="number">1</literal></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name> <operator>=</operator> <name>c1</name> <operator>|</operator> <name>rbit</name></expr>;</expr_stmt>
+			}</block></else></if>
+		}</block>
+		<block>{
+			<if>if<condition>(<expr><name>c4</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then>
+			<block>{
+				<expr_stmt><expr><name><name>can</name><index>[<expr><literal type="number">0</literal></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>=</operator> <operator>(</operator><name>lbit</name> <operator>==</operator> <literal type="number">0</literal><operator>)</operator></expr>;</expr_stmt>
+			}</block></then>
+			<else>else
+				<block type="pseudo"><expr_stmt><expr><name><name>can</name><index>[<expr><literal type="number">0</literal></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt></block></else></if>
+			<comment type="line">//r one</comment>
+			<if>if<condition>(<expr><name>c3</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then>
+			<block>{
+				<expr_stmt><expr><name><name>can</name><index>[<expr><literal type="number">0</literal></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name> <operator>=</operator> <name>rbit</name></expr>;</expr_stmt>
+			}</block></then>
+			<else>else
+			<block>{
+				<expr_stmt><expr><name><name>can</name><index>[<expr><literal type="number">0</literal></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name> <operator>=</operator> <name>c3</name> <operator>|</operator> <name>rbit</name></expr>;</expr_stmt>
+			}</block></else></if>
+		}</block>
+		<comment type="line">// for(int i = 0;i &lt; 2;i++)</comment>
+		<comment type="line">// {</comment>
+		<comment type="line">// 	for(int j = 0;j &lt; 2;j++)</comment>
+		<comment type="line">// 	{</comment>
+		<comment type="line">// 		cerr &lt;&lt; can[i][j] &lt;&lt; " " ;</comment>
+		<comment type="line">// 	}</comment>
+		<comment type="line">// 	cerr &lt;&lt; endl;</comment>
+		<comment type="line">// }</comment>
+		<if>if<condition>(<expr><name><name>can</name><index>[<expr><literal type="number">1</literal></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>and</operator> <name><name>can</name><index>[<expr><literal type="number">0</literal></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>)</condition><then>
+		<block>{
+			<expr_stmt><expr><name>ans</name> <operator>+=</operator> <call><name>rec</name><argument_list>(<argument><expr><name>i</name> <operator>-</operator> <literal type="number">1</literal></expr></argument>,<argument><expr><name>c1</name> <operator>|</operator> <name>rbit</name></expr></argument>,<argument><expr><name>c2</name></expr></argument>,<argument><expr><name>c3</name> <operator>|</operator> <name>rbit</name></expr></argument>,<argument><expr><name>c4</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		}</block></then></if>
+		<if>if<condition>(<expr><name><name>can</name><index>[<expr><literal type="number">0</literal></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name> <operator>and</operator> <name><name>can</name><index>[<expr><literal type="number">1</literal></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>)</condition><then>
+		<block>{
+			<expr_stmt><expr><name>ans</name> <operator>+=</operator> <call><name>rec</name><argument_list>(<argument><expr><name>i</name> <operator>-</operator> <literal type="number">1</literal></expr></argument>,<argument><expr><name>c1</name> <operator>|</operator> <name>rbit</name></expr></argument>,<argument><expr><name>c2</name></expr></argument>,<argument><expr><name>c3</name></expr></argument>,<argument><expr><name>c4</name> <operator>|</operator> <operator>(</operator><operator>!</operator><name>lbit</name><operator>)</operator></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		}</block></then></if>
+		<if>if<condition>(<expr><name><name>can</name><index>[<expr><literal type="number">0</literal></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>and</operator> <name><name>can</name><index>[<expr><literal type="number">1</literal></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>)</condition><then>
+		<block>{
+			<expr_stmt><expr><name>ans</name> <operator>+=</operator> <call><name>rec</name><argument_list>(<argument><expr><name>i</name> <operator>-</operator> <literal type="number">1</literal></expr></argument>,<argument><expr><name>c1</name></expr></argument>,<argument><expr><name>c2</name> <operator>|</operator> <operator>(</operator><operator>!</operator><name>lbit</name><operator>)</operator></expr></argument>,<argument><expr><name>c3</name> <operator>|</operator> <name>rbit</name></expr></argument>,<argument><expr><name>c4</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		}</block></then></if>
+		<comment type="line">// cerr &lt;&lt; i &lt;&lt; " " &lt;&lt; c1 &lt;&lt; " " &lt;&lt; c2 &lt;&lt; " " &lt;&lt; c3 &lt;&lt; " " &lt;&lt; c4 &lt;&lt; " " &lt;&lt; ans &lt;&lt; endl;</comment>
+		<return>return <expr><name>ans</name></expr>;</return>
+	}</block></then>
+	<else>else
+		<block type="pseudo"><return>return <expr><name><name>dp</name><index>[<expr><name>i</name></expr>]</index><index>[<expr><name>c1</name></expr>]</index><index>[<expr><name>c2</name></expr>]</index><index>[<expr><name>c3</name></expr>]</index><index>[<expr><name>c4</name></expr>]</index></name></expr>;</return></block></else></if>
+}</block></function>
+
+
+<function><type><name>int</name></type> <name>solve</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>a</name></decl></parameter>,<parameter><decl><type><name>int</name></type> <name>b</name></decl></parameter>)</parameter_list>
+<block>{
+	<expr_stmt><expr><call><name>memset</name><argument_list>(<argument><expr><name>dp</name></expr></argument>,<argument><expr><operator>-</operator><literal type="number">1</literal></expr></argument>,<argument><expr><sizeof>sizeof<argument_list>(<argument><expr><name>dp</name></expr></argument>)</argument_list></sizeof></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<expr_stmt><expr><name>l</name> <operator>=</operator> <name>a</name></expr>;</expr_stmt>
+	<expr_stmt><expr><name>r</name> <operator>=</operator> <name>b</name></expr>;</expr_stmt>
+	<return>return <expr><call><name>rec</name><argument_list>(<argument><expr><literal type="number">30</literal></expr></argument>,<argument><expr><literal type="number">0</literal></expr></argument>,<argument><expr><literal type="number">0</literal></expr></argument>,<argument><expr><literal type="number">0</literal></expr></argument>,<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</return>
+
+}</block></function>
+
+<function><type><name>int32_t</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+	<expr_stmt><expr><name>IOS</name></expr>;</expr_stmt>
+	<cpp:ifndef>#<cpp:directive>ifndef</cpp:directive> <name>ONLINE_JUDGE</name></cpp:ifndef>
+    <expr_stmt><expr><call><name>freopen</name><argument_list>(<argument><expr><literal type="string">"int.txt"</literal></expr></argument>,<argument><expr><literal type="string">"r"</literal></expr></argument>,<argument><expr><name>stdin</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>freopen</name><argument_list>(<argument><expr><literal type="string">"out.txt"</literal></expr></argument>,<argument><expr><literal type="string">"w"</literal></expr></argument>,<argument><expr><name>stdout</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <cpp:endif>#<cpp:directive>endif</cpp:directive></cpp:endif>
+   	<decl_stmt><decl><type><name>int</name></type> <name>t</name></decl>;</decl_stmt>
+   	<expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>t</name></expr>;</expr_stmt>
+   	<while>while<condition>(<expr><name>t</name><operator>--</operator></expr>)</condition>
+   	<block>{
+   		<decl_stmt><decl><type><name>int</name></type> <name>a</name></decl>,<decl><type ref="prev"/><name>b</name></decl>;</decl_stmt>
+   		<expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>a</name> <operator>&gt;&gt;</operator> <name>b</name></expr>;</expr_stmt>
+   		<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <call><name>solve</name><argument_list>(<argument><expr><name>a</name></expr></argument>,<argument><expr><name>b</name></expr></argument>)</argument_list></call> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt><empty_stmt>;</empty_stmt>
+   	}</block></while>
+
+
+
+	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>

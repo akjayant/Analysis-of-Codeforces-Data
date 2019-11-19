@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1236/all/29069490_62814444.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;unordered_map&gt;</cpp:file></cpp:include>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>MAXN</name> <init>= <expr><literal type="number">100010</literal></expr></init></decl>;</decl_stmt>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>MIN_MODE</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>MAX_MODE</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+
+<decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>, <decl><type ref="prev"/><name>m</name></decl>, <decl><type ref="prev"/><name>k</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name>l</name></decl>, <decl><type ref="prev"/><name>r</name></decl>, <decl><type ref="prev"/><name>u</name></decl>, <decl><type ref="prev"/><name>b</name></decl>;</decl_stmt>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<decl_stmt><decl><type><name><name>unordered_map</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>, <argument><expr><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></expr></argument>&gt;</argument_list></name></type> <name>x_obs</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name><name>unordered_map</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>, <argument><expr><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></expr></argument>&gt;</argument_list></name></type> <name>y_obs</name></decl>;</decl_stmt>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>DEBUG</name></cpp:macro> <cpp:value>false</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>PRT</name></cpp:macro></cpp:define> 
+
+<decl_stmt><decl><type><name>int</name></type> <name>status</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+
+<function><type><name>void</name></type> <name>AddObs</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>x</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>y</name></decl></parameter>)</parameter_list> <block>{
+  <if>if <condition>(<expr><call><name><name>x_obs</name><operator>.</operator><name>find</name></name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call> <operator>==</operator> <call><name><name>x_obs</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call></expr>)</condition><then> <block>{
+    <expr_stmt><expr><name><name>x_obs</name><index>[<expr><name>x</name></expr>]</index></name> <operator>=</operator> <call><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+  }</block></then></if>
+  <if>if <condition>(<expr><call><name><name>y_obs</name><operator>.</operator><name>find</name></name><argument_list>(<argument><expr><name>y</name></expr></argument>)</argument_list></call> <operator>==</operator> <call><name><name>y_obs</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call></expr>)</condition><then> <block>{
+    <expr_stmt><expr><name><name>y_obs</name><index>[<expr><name>y</name></expr>]</index></name> <operator>=</operator> <call><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+  }</block></then></if>
+  <expr_stmt><expr><name><name>x_obs</name><index>[<expr><name>x</name></expr>]</index></name><operator>.</operator><call><name>push_back</name><argument_list>(<argument><expr><name>y</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><name><name>y_obs</name><index>[<expr><name>y</name></expr>]</index></name><operator>.</operator><call><name>push_back</name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+}</block></function>
+
+<function><type><name>void</name></type> <name>PrepareObs</name><parameter_list>()</parameter_list> <block>{
+  <for>for <control>(<init><decl><type><specifier>const</specifier> <specifier>auto</specifier><modifier>&amp;</modifier></type> <name>it</name> <range>: <expr><name>x_obs</name></expr></range></decl></init>)</control> <block>{
+    <decl_stmt><decl><type><name>auto</name></type> <name>k</name> <init>= <expr><name><name>it</name><operator>.</operator><name>first</name></name></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><name>auto</name><operator>&amp;</operator> <name>v</name> <operator>=</operator> <name><name>x_obs</name><index>[<expr><name>k</name></expr>]</index></name></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>sort</name><argument_list>(<argument><expr><call><name><name>v</name><operator>.</operator><name>begin</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>v</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  }</block></for>
+  <for>for <control>(<init><decl><type><specifier>const</specifier> <specifier>auto</specifier><modifier>&amp;</modifier></type> <name>it</name> <range>: <expr><name>y_obs</name></expr></range></decl></init>)</control> <block>{
+    <decl_stmt><decl><type><name>auto</name></type> <name>k</name> <init>= <expr><name><name>it</name><operator>.</operator><name>first</name></name></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><name>auto</name><operator>&amp;</operator> <name>v</name> <operator>=</operator> <name><name>y_obs</name><index>[<expr><name>k</name></expr>]</index></name></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>sort</name><argument_list>(<argument><expr><call><name><name>v</name><operator>.</operator><name>begin</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>v</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  }</block></for>
+  <if>if <condition>(<expr><name>DEBUG</name></expr>)</condition><then> <block>{
+    <for>for <control>(<init><decl><type><specifier>const</specifier> <specifier>auto</specifier><modifier>&amp;</modifier></type> <name>it</name> <range>: <expr><name>x_obs</name></expr></range></decl></init>)</control> <block>{
+      <expr_stmt><expr><call><name>PRT</name><argument_list>(<argument><expr><literal type="string">"X=%d "</literal></expr></argument>, <argument><expr><name><name>it</name><operator>.</operator><name>first</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <for>for <control>(<init><decl><type><name>auto</name></type> <name>k</name> <range>: <expr><name><name>x_obs</name><index>[<expr><name><name>it</name><operator>.</operator><name>first</name></name></expr>]</index></name></expr></range></decl></init>)</control> <block>{
+        <expr_stmt><expr><call><name>PRT</name><argument_list>(<argument><expr><literal type="string">"%d "</literal></expr></argument>, <argument><expr><name>k</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      }</block></for>
+      <expr_stmt><expr><call><name>PRT</name><argument_list>(<argument><expr><literal type="string">"\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    }</block></for>
+    <for>for <control>(<init><decl><type><specifier>const</specifier> <specifier>auto</specifier><modifier>&amp;</modifier></type> <name>it</name> <range>: <expr><name>y_obs</name></expr></range></decl></init>)</control> <block>{
+      <expr_stmt><expr><call><name>PRT</name><argument_list>(<argument><expr><literal type="string">"Y=%d "</literal></expr></argument>, <argument><expr><name><name>it</name><operator>.</operator><name>first</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <for>for <control>(<init><decl><type><name>auto</name></type> <name>k</name> <range>: <expr><name><name>y_obs</name><index>[<expr><name><name>it</name><operator>.</operator><name>first</name></name></expr>]</index></name></expr></range></decl></init>)</control> <block>{
+        <expr_stmt><expr><call><name>PRT</name><argument_list>(<argument><expr><literal type="string">"%d "</literal></expr></argument>, <argument><expr><name>k</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      }</block></for>
+      <expr_stmt><expr><call><name>PRT</name><argument_list>(<argument><expr><literal type="string">"\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    }</block></for>
+  }</block></then></if>
+}</block></function>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>MAX_V</name> <init>= <expr><literal type="number">2147483647</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>MIN_V</name> <init>= <expr><operator>-</operator><literal type="number">2147483647</literal></expr></init></decl>;</decl_stmt>
+
+<function><type><name>int</name></type> <name>QueryMin</name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name><modifier>&amp;</modifier></type> <name>v</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>least</name></decl></parameter>)</parameter_list> <block>{
+  <decl_stmt><decl><type><name>int</name></type> <name>l</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><name>int</name></type> <name>r</name> <init>= <expr><call><name><name>v</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>-</operator> <literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+  <comment type="line">// v[l] &lt; least &lt;= v[r]</comment>
+  <if>if <condition>(<expr><name>least</name> <operator>&gt;</operator> <name><name>v</name><index>[<expr><name>r</name></expr>]</index></name></expr>)</condition><then> <block type="pseudo"><return>return <expr><name>MAX_V</name></expr>;</return></block></then></if>
+  <if>if <condition>(<expr><name><name>v</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>&gt;=</operator> <name>least</name></expr>)</condition><then> <block type="pseudo"><return>return <expr><name><name>v</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>;</return></block></then></if>
+  <while>while <condition>(<expr><name>l</name> <operator>&lt;</operator> <name>r</name> <operator>-</operator> <literal type="number">1</literal></expr>)</condition> <block>{
+    <decl_stmt><decl><type><name>int</name></type> <name>mid</name> <init>= <expr><operator>(</operator><name>l</name> <operator>+</operator> <name>r</name><operator>)</operator> <operator>/</operator> <literal type="number">2</literal></expr></init></decl>;</decl_stmt>
+    <if>if <condition>(<expr><name><name>v</name><index>[<expr><name>mid</name></expr>]</index></name> <operator>&gt;=</operator> <name>least</name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>r</name> <operator>=</operator> <name>mid</name></expr>;</expr_stmt></block></then> <else>else <block type="pseudo"><expr_stmt><expr><name>l</name> <operator>=</operator> <name>mid</name></expr>;</expr_stmt></block></else></if>
+  }</block></while>
+  <return>return <expr><name><name>v</name><index>[<expr><name>r</name></expr>]</index></name></expr>;</return>
+}</block></function>
+ 
+<function><type><name>int</name></type> <name>QueryMax</name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name><modifier>&amp;</modifier></type> <name>v</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>most</name></decl></parameter>)</parameter_list> <block>{
+  <decl_stmt><decl><type><name>int</name></type> <name>l</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><name>int</name></type> <name>r</name> <init>= <expr><call><name><name>v</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>-</operator> <literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+  <comment type="line">// v[l] &lt;= most &lt; v[r]</comment>
+  <if>if <condition>(<expr><name>most</name> <operator>&gt;=</operator> <name><name>v</name><index>[<expr><name>r</name></expr>]</index></name></expr>)</condition><then> <block type="pseudo"><return>return <expr><name><name>v</name><index>[<expr><name>r</name></expr>]</index></name></expr>;</return></block></then></if>
+  <if>if <condition>(<expr><name><name>v</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>&gt;</operator> <name>most</name></expr>)</condition><then> <block type="pseudo"><return>return <expr><name>MIN_V</name></expr>;</return></block></then></if>
+  <while>while <condition>(<expr><name>l</name> <operator>&lt;</operator> <name>r</name> <operator>-</operator> <literal type="number">1</literal></expr>)</condition> <block>{
+    <decl_stmt><decl><type><name>int</name></type> <name>mid</name> <init>= <expr><operator>(</operator><name>l</name> <operator>+</operator> <name>r</name><operator>)</operator> <operator>/</operator> <literal type="number">2</literal></expr></init></decl>;</decl_stmt>
+    <if>if <condition>(<expr><name><name>v</name><index>[<expr><name>mid</name></expr>]</index></name> <operator>&gt;</operator> <name>most</name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>r</name> <operator>=</operator> <name>mid</name></expr>;</expr_stmt></block></then> <else>else <block type="pseudo"><expr_stmt><expr><name>l</name> <operator>=</operator> <name>mid</name></expr>;</expr_stmt></block></else></if>
+  }</block></while>
+  <return>return <expr><name><name>v</name><index>[<expr><name>l</name></expr>]</index></name></expr>;</return>
+}</block></function>
+
+<function><type><name>int</name></type> <name>QueryXMin</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>x</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>least</name></decl></parameter>)</parameter_list> <block>{
+  <expr_stmt><expr><call><name>PRT</name><argument_list>(<argument><expr><literal type="string">"query x min %d %d\n"</literal></expr></argument>, <argument><expr><name>x</name></expr></argument>, <argument><expr><name>least</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <if>if <condition>(<expr><call><name><name>x_obs</name><operator>.</operator><name>find</name></name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call> <operator>==</operator> <call><name><name>x_obs</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call></expr>)</condition><then> <block>{
+    <return>return <expr><name>MAX_V</name></expr>;</return>
+  }</block></then></if>
+  <return>return <expr><call><name>QueryMin</name><argument_list>(<argument><expr><name><name>x_obs</name><index>[<expr><name>x</name></expr>]</index></name></expr></argument>, <argument><expr><name>least</name></expr></argument>)</argument_list></call></expr>;</return>
+}</block></function> 
+
+<function><type><name>int</name></type> <name>QueryXMax</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>x</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>most</name></decl></parameter>)</parameter_list> <block>{
+  <expr_stmt><expr><call><name>PRT</name><argument_list>(<argument><expr><literal type="string">"query x max %d %d\n"</literal></expr></argument>, <argument><expr><name>x</name></expr></argument>, <argument><expr><name>most</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <if>if <condition>(<expr><call><name><name>x_obs</name><operator>.</operator><name>find</name></name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call> <operator>==</operator> <call><name><name>x_obs</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call></expr>)</condition><then> <block>{
+    <return>return <expr><name>MIN_V</name></expr>;</return>
+  }</block></then></if>
+  <return>return <expr><call><name>QueryMax</name><argument_list>(<argument><expr><name><name>x_obs</name><index>[<expr><name>x</name></expr>]</index></name></expr></argument>, <argument><expr><name>most</name></expr></argument>)</argument_list></call></expr>;</return>
+}</block></function> 
+
+<function><type><name>int</name></type> <name>QueryYMin</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>y</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>least</name></decl></parameter>)</parameter_list> <block>{
+  <expr_stmt><expr><call><name>PRT</name><argument_list>(<argument><expr><literal type="string">"query y min %d %d\n"</literal></expr></argument>, <argument><expr><name>y</name></expr></argument>, <argument><expr><name>least</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <if>if <condition>(<expr><call><name><name>y_obs</name><operator>.</operator><name>find</name></name><argument_list>(<argument><expr><name>y</name></expr></argument>)</argument_list></call> <operator>==</operator> <call><name><name>y_obs</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call></expr>)</condition><then> <block>{
+    <return>return <expr><name>MAX_V</name></expr>;</return>
+  }</block></then></if>
+  <if>if <condition>(<expr><name>DEBUG</name></expr>)</condition><then> <block>{
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>k</name> <range>: <expr><name><name>y_obs</name><index>[<expr><name>y</name></expr>]</index></name></expr></range></decl></init>)</control> <block>{
+      <expr_stmt><expr><call><name>PRT</name><argument_list>(<argument><expr><literal type="string">"%d "</literal></expr></argument>, <argument><expr><name>k</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    }</block></for>
+    <expr_stmt><expr><call><name>PRT</name><argument_list>(<argument><expr><literal type="string">"\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  }</block></then></if>
+  <return>return <expr><call><name>QueryMin</name><argument_list>(<argument><expr><name><name>y_obs</name><index>[<expr><name>y</name></expr>]</index></name></expr></argument>, <argument><expr><name>least</name></expr></argument>)</argument_list></call></expr>;</return>
+}</block></function> 
+
+<function><type><name>int</name></type> <name>QueryYMax</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>y</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>most</name></decl></parameter>)</parameter_list> <block>{
+  <expr_stmt><expr><call><name>PRT</name><argument_list>(<argument><expr><literal type="string">"query y max %d %d\n"</literal></expr></argument>, <argument><expr><name>y</name></expr></argument>, <argument><expr><name>most</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <if>if <condition>(<expr><call><name><name>y_obs</name><operator>.</operator><name>find</name></name><argument_list>(<argument><expr><name>y</name></expr></argument>)</argument_list></call> <operator>==</operator> <call><name><name>y_obs</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call></expr>)</condition><then> <block>{
+    <return>return <expr><name>MIN_V</name></expr>;</return>
+  }</block></then></if>
+  <return>return <expr><call><name>QueryMax</name><argument_list>(<argument><expr><name><name>y_obs</name><index>[<expr><name>y</name></expr>]</index></name></expr></argument>, <argument><expr><name>most</name></expr></argument>)</argument_list></call></expr>;</return>
+}</block></function> 
+
+<function><type><name>int</name></type> <name>GetIndex</name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name><modifier>&amp;</modifier></type> <name>v</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>x</name></decl></parameter>)</parameter_list> <block>{
+  <decl_stmt><decl><type><name>int</name></type> <name>l</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+  <decl_stmt><decl><type><name>int</name></type> <name>r</name> <init>= <expr><call><name><name>v</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>-</operator> <literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+  <comment type="line">// v[l] &lt;= x &lt; v[r]</comment>
+  <if>if <condition>(<expr><name>x</name> <operator>&lt;</operator> <name><name>v</name><index>[<expr><name>l</name></expr>]</index></name></expr>)</condition><then> <block type="pseudo"><return>return <expr><operator>-</operator><literal type="number">1</literal></expr>;</return></block></then></if>
+  <if>if <condition>(<expr><name>x</name> <operator>&gt;</operator> <name><name>v</name><index>[<expr><name>r</name></expr>]</index></name></expr>)</condition><then> <block type="pseudo"><return>return <expr><operator>-</operator><literal type="number">1</literal></expr>;</return></block></then></if>
+  <if>if <condition>(<expr><name>x</name> <operator>==</operator> <name><name>v</name><index>[<expr><name>r</name></expr>]</index></name></expr>)</condition><then> <block type="pseudo"><return>return <expr><name>r</name></expr>;</return></block></then></if>
+  <while>while <condition>(<expr><name>l</name> <operator>&lt;</operator> <name>r</name> <operator>-</operator> <literal type="number">1</literal></expr>)</condition> <block>{
+    <decl_stmt><decl><type><name>int</name></type> <name>mid</name> <init>= <expr><operator>(</operator><name>l</name> <operator>+</operator> <name>r</name><operator>)</operator> <operator>/</operator> <literal type="number">2</literal></expr></init></decl>;</decl_stmt>
+    <if>if <condition>(<expr><name><name>v</name><index>[<expr><name>mid</name></expr>]</index></name> <operator>&gt;</operator> <name>x</name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>r</name> <operator>=</operator> <name>mid</name></expr>;</expr_stmt></block></then> <else>else <block type="pseudo"><expr_stmt><expr><name>l</name> <operator>=</operator> <name>mid</name></expr>;</expr_stmt></block></else></if>
+  }</block></while>
+  <if>if <condition>(<expr><name>x</name> <operator>==</operator> <name><name>v</name><index>[<expr><name>l</name></expr>]</index></name></expr>)</condition><then> <block type="pseudo"><return>return <expr><name>l</name></expr>;</return></block></then></if>
+  <return>return <expr><operator>-</operator><literal type="number">1</literal></expr>;</return>
+}</block></function>
+
+<function><type><name>int</name></type> <name>CheckAll</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>l</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>r</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>u</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>b</name></decl></parameter>)</parameter_list> <block>{
+  <expr_stmt><expr><call><name>PRT</name><argument_list>(<argument><expr><literal type="string">"Check all %d %d %d %d\n"</literal></expr></argument>, <argument><expr><name>l</name></expr></argument>, <argument><expr><name>r</name></expr></argument>, <argument><expr><name>u</name></expr></argument>, <argument><expr><name>b</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><name>u</name></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;=</operator> <name>b</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{
+    <if>if <condition>(<expr><call><name><name>x_obs</name><operator>.</operator><name>find</name></name><argument_list>(<argument><expr><name>i</name></expr></argument>)</argument_list></call> <operator>==</operator> <call><name><name>x_obs</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call></expr>)</condition><then> <block>{
+      <expr_stmt><expr><name>status</name> <operator>=</operator> <operator>-</operator><literal type="number">1</literal></expr>;</expr_stmt>
+      <return>return <expr><literal type="number">0</literal></expr>;</return>
+    }</block></then></if>
+    <decl_stmt><decl><type><name>int</name></type> <name>lid</name> <init>= <expr><call><name>GetIndex</name><argument_list>(<argument><expr><name><name>x_obs</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>, <argument><expr><name>l</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>rid</name> <init>= <expr><call><name>GetIndex</name><argument_list>(<argument><expr><name><name>x_obs</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>, <argument><expr><name>r</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if>if <condition>(<expr><name>lid</name> <operator>==</operator> <operator>-</operator><literal type="number">1</literal> <operator>||</operator> <name>rid</name> <operator>==</operator> <operator>-</operator><literal type="number">1</literal></expr>)</condition><then> <block>{
+      <expr_stmt><expr><name>status</name> <operator>=</operator> <operator>-</operator><literal type="number">1</literal></expr>;</expr_stmt>
+      <return>return <expr><literal type="number">0</literal></expr>;</return>
+    }</block></then></if>
+    <if>if <condition>(<expr><name>rid</name> <operator>-</operator> <name>lid</name> <operator>!=</operator> <name>r</name> <operator>-</operator> <name>l</name></expr>)</condition><then> <block>{
+      <expr_stmt><expr><name>status</name> <operator>=</operator> <operator>-</operator><literal type="number">1</literal></expr>;</expr_stmt>
+      <return>return <expr><literal type="number">0</literal></expr>;</return>
+    }</block></then></if>
+  }</block></for>
+  <return>return <expr><literal type="number">1</literal></expr>;</return>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+  <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name> <operator>&gt;&gt;</operator> <name>m</name> <operator>&gt;&gt;</operator> <name>k</name></expr>;</expr_stmt>
+  <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>k</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{
+    <decl_stmt><decl><type><name>int</name></type> <name>x</name></decl>, <decl><type ref="prev"/><name>y</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>x</name> <operator>&gt;&gt;</operator> <name>y</name></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>AddObs</name><argument_list>(<argument><expr><name>x</name></expr></argument>, <argument><expr><name>y</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  }</block></for>
+  <expr_stmt><expr><call><name>PrepareObs</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+  <decl_stmt><decl><type><name>int</name></type> <name>dir</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>  <comment type="line">// 0 East 1 South 2 West 3 North</comment>
+  <expr_stmt><expr><name>l</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+  <expr_stmt><expr><name>r</name> <operator>=</operator> <name>m</name></expr>;</expr_stmt>
+  <expr_stmt><expr><name>u</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+  <expr_stmt><expr><name>b</name> <operator>=</operator> <name>n</name></expr>;</expr_stmt>
+  <while>while <condition>(<expr><name>l</name> <operator>&lt;=</operator> <name>r</name> <operator>&amp;&amp;</operator> <name>u</name> <operator>&lt;=</operator> <name>b</name></expr>)</condition> <block>{
+    <expr_stmt><expr><call><name>PRT</name><argument_list>(<argument><expr><literal type="string">"State %d %d %d %d %d\n"</literal></expr></argument>, <argument><expr><name>l</name></expr></argument>, <argument><expr><name>r</name></expr></argument>, <argument><expr><name>u</name></expr></argument>, <argument><expr><name>b</name></expr></argument>, <argument><expr><name>dir</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <if>if <condition>(<expr><name>dir</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{  <comment type="line">// E</comment>
+      <decl_stmt><decl><type><name>int</name></type> <name>t</name> <init>= <expr><call><name>QueryXMin</name><argument_list>(<argument><expr><name>u</name></expr></argument>, <argument><expr><name>l</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name>PRT</name><argument_list>(<argument><expr><literal type="string">"obs %d\n"</literal></expr></argument>, <argument><expr><name>t</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <if>if <condition>(<expr><name>t</name> <operator>&lt;=</operator> <name>r</name></expr>)</condition><then> <block>{
+        <if>if <condition>(<expr><operator>!</operator><call><name>CheckAll</name><argument_list>(<argument><expr><name>t</name></expr></argument>, <argument><expr><name>r</name></expr></argument>, <argument><expr><name>u</name></expr></argument>, <argument><expr><name>b</name></expr></argument>)</argument_list></call></expr>)</condition><then> <block type="pseudo"><break>break;</break></block></then></if>
+        <expr_stmt><expr><name>r</name> <operator>=</operator> <name>t</name> <operator>-</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+      }</block></then></if>
+      <expr_stmt><expr><name>u</name> <operator>+=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+    }</block></then> <elseif>else <if>if <condition>(<expr><name>dir</name> <operator>==</operator> <literal type="number">1</literal></expr>)</condition><then> <block>{  <comment type="line">// S</comment>
+      <decl_stmt><decl><type><name>int</name></type> <name>t</name> <init>= <expr><call><name>QueryYMin</name><argument_list>(<argument><expr><name>r</name></expr></argument>, <argument><expr><name>u</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name>PRT</name><argument_list>(<argument><expr><literal type="string">"obs %d\n"</literal></expr></argument>, <argument><expr><name>t</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <if>if <condition>(<expr><name>t</name> <operator>&lt;=</operator> <name>b</name></expr>)</condition><then> <block>{
+        <if>if <condition>(<expr><operator>!</operator><call><name>CheckAll</name><argument_list>(<argument><expr><name>l</name></expr></argument>, <argument><expr><name>r</name></expr></argument>, <argument><expr><name>t</name></expr></argument>, <argument><expr><name>b</name></expr></argument>)</argument_list></call></expr>)</condition><then> <block type="pseudo"><break>break;</break></block></then></if>
+        <expr_stmt><expr><name>b</name> <operator>=</operator> <name>t</name> <operator>-</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+      }</block></then></if>
+      <expr_stmt><expr><name>r</name> <operator>-=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+    }</block></then></if></elseif> <elseif>else <if>if <condition>(<expr><name>dir</name> <operator>==</operator> <literal type="number">2</literal></expr>)</condition><then> <block>{  <comment type="line">// W</comment>
+      <decl_stmt><decl><type><name>int</name></type> <name>t</name> <init>= <expr><call><name>QueryXMax</name><argument_list>(<argument><expr><name>b</name></expr></argument>, <argument><expr><name>r</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name>PRT</name><argument_list>(<argument><expr><literal type="string">"obs %d\n"</literal></expr></argument>, <argument><expr><name>t</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <if>if <condition>(<expr><name>t</name> <operator>&gt;=</operator> <name>l</name></expr>)</condition><then> <block>{
+        <if>if <condition>(<expr><operator>!</operator><call><name>CheckAll</name><argument_list>(<argument><expr><name>l</name></expr></argument>, <argument><expr><name>t</name></expr></argument>, <argument><expr><name>u</name></expr></argument>, <argument><expr><name>b</name></expr></argument>)</argument_list></call></expr>)</condition><then> <block type="pseudo"><break>break;</break></block></then></if>
+        <expr_stmt><expr><name>l</name> <operator>=</operator> <name>t</name> <operator>+</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+      }</block></then></if>
+      <expr_stmt><expr><name>b</name> <operator>-=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+    }</block></then></if></elseif> <elseif>else <if>if <condition>(<expr><name>dir</name> <operator>==</operator> <literal type="number">3</literal></expr>)</condition><then> <block>{  <comment type="line">// N</comment>
+      <decl_stmt><decl><type><name>int</name></type> <name>t</name> <init>= <expr><call><name>QueryYMax</name><argument_list>(<argument><expr><name>l</name></expr></argument>, <argument><expr><name>b</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+      <expr_stmt><expr><call><name>PRT</name><argument_list>(<argument><expr><literal type="string">"obs %d\n"</literal></expr></argument>, <argument><expr><name>t</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      <if>if <condition>(<expr><name>t</name> <operator>&gt;=</operator> <name>u</name></expr>)</condition><then> <block>{
+        <if>if <condition>(<expr><operator>!</operator><call><name>CheckAll</name><argument_list>(<argument><expr><name>l</name></expr></argument>, <argument><expr><name>r</name></expr></argument>, <argument><expr><name>u</name></expr></argument>, <argument><expr><name>t</name></expr></argument>)</argument_list></call></expr>)</condition><then> <block type="pseudo"><break>break;</break></block></then></if>
+        <expr_stmt><expr><name>u</name> <operator>=</operator> <name>t</name> <operator>+</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+      }</block></then></if>
+      <expr_stmt><expr><name>l</name> <operator>+=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+    }</block></then></if></elseif></if>
+    <expr_stmt><expr><name>dir</name> <operator>=</operator> <operator>(</operator><name>dir</name> <operator>+</operator> <literal type="number">1</literal><operator>)</operator> <operator>%</operator> <literal type="number">4</literal></expr>;</expr_stmt>
+  }</block></while>
+  <if>if <condition>(<expr><name>status</name> <operator>==</operator> <operator>-</operator><literal type="number">1</literal></expr>)</condition><then> <block>{
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"No"</literal> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+  }</block></then> <else>else <block>{
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"Yes"</literal> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+  }</block></else></if>
+  <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function> 
+</unit>

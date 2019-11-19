@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1236/all/29087421_62813983.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<using>using <name>ll</name> <init>= <type><name>long</name> <name>long</name></type></init>;</using>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+    <decl_stmt><decl><type><name>ll</name></type> <name>n</name></decl>, <decl><type ref="prev"/><name>m</name></decl>;</decl_stmt> <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name> <operator>&gt;&gt;</operator> <name>m</name></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name><name>set</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name><name>atrow</name><index>[<expr><name>n</name></expr>]</index></name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>set</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name><name>atcol</name><index>[<expr><name>m</name></expr>]</index></name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>k</name></decl>;</decl_stmt> <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>k</name></expr>;</expr_stmt>
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>k</name></expr>;</condition> <incr><expr><operator>++</operator><name>i</name></expr></incr>)</control> <block>{
+        <decl_stmt><decl><type><name>int</name></type> <name>x</name></decl>, <decl><type ref="prev"/><name>y</name></decl>;</decl_stmt> <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>x</name> <operator>&gt;&gt;</operator> <name>y</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name>x</name> <operator>-=</operator> <literal type="number">1</literal></expr>;</expr_stmt> <expr_stmt><expr><name>y</name> <operator>-=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>atrow</name><index>[<expr><name>x</name></expr>]</index></name><operator>.</operator><call><name>insert</name><argument_list>(<argument><expr><name>y</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>atcol</name><index>[<expr><name>y</name></expr>]</index></name><operator>.</operator><call><name>insert</name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    }</block></for>
+    <decl_stmt><decl><type><name>int</name></type> <name>currx</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>curry</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>topx</name></decl>, <decl><type ref="prev"/><name>downx</name></decl>, <decl><type ref="prev"/><name>leftx</name></decl>, <decl><type ref="prev"/><name>rightx</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>topx</name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+    <expr_stmt><expr><name>downx</name> <operator>=</operator> <name>n</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name>leftx</name> <operator>=</operator> <operator>-</operator><literal type="number">1</literal></expr>;</expr_stmt>
+    <expr_stmt><expr><name>rightx</name> <operator>=</operator> <name>m</name></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>ll</name></type> <name>visited</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>bool</name></type> <name>first</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <while>while<condition>(<expr><literal type="boolean">true</literal></expr>)</condition> <block>{
+        <decl_stmt><decl><type><name>int</name></type> <name>newy</name></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>int</name></type> <name>newx</name></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>auto</name></type> <name>it</name> <init>= <expr><name><name>atrow</name><index>[<expr><name>currx</name></expr>]</index></name><operator>.</operator><call><name>upper_bound</name><argument_list>(<argument><expr><name>curry</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <if>if<condition>(<expr><name>it</name> <operator>==</operator> <name><name>atrow</name><index>[<expr><name>currx</name></expr>]</index></name><operator>.</operator><call><name>end</name><argument_list>()</argument_list></call></expr>)</condition><then> <block>{
+            <expr_stmt><expr><name>newy</name> <operator>=</operator> <name>rightx</name> <operator>-</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+        }</block></then> <else>else <block>{
+            <expr_stmt><expr><name>newy</name> <operator>=</operator> <call><name>min</name><argument_list>(<argument><expr><operator>*</operator><name>it</name> <operator>-</operator> <literal type="number">1</literal></expr></argument>, <argument><expr><name>rightx</name> <operator>-</operator> <literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        }</block></else></if>
+
+        <if>if<condition>(<expr><name>newy</name> <operator>==</operator> <name>curry</name> <operator>&amp;&amp;</operator> <operator>!</operator><name>first</name></expr>)</condition><then> <block type="pseudo"><break>break;</break></block></then></if>
+        <expr_stmt><expr><name>first</name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+
+        <expr_stmt><expr><name>visited</name> <operator>+=</operator> <name>newy</name> <operator>-</operator> <name>curry</name></expr>;</expr_stmt>
+
+        <expr_stmt><expr><name>rightx</name> <operator>=</operator> <name>newy</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name>curry</name> <operator>=</operator> <name>newy</name></expr>;</expr_stmt>
+
+        <expr_stmt><expr><name>it</name> <operator>=</operator> <name><name>atcol</name><index>[<expr><name>curry</name></expr>]</index></name><operator>.</operator><call><name>upper_bound</name><argument_list>(<argument><expr><name>currx</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <if>if<condition>(<expr><name>it</name> <operator>==</operator> <name><name>atcol</name><index>[<expr><name>curry</name></expr>]</index></name><operator>.</operator><call><name>end</name><argument_list>()</argument_list></call></expr>)</condition><then> <block>{
+            <expr_stmt><expr><name>newx</name> <operator>=</operator> <name>downx</name> <operator>-</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+        }</block></then> <else>else <block>{
+            <expr_stmt><expr><name>newx</name> <operator>=</operator> <call><name>min</name><argument_list>(<argument><expr><operator>*</operator><name>it</name> <operator>-</operator> <literal type="number">1</literal></expr></argument>, <argument><expr><name>downx</name> <operator>-</operator> <literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        }</block></else></if>
+
+        <if>if<condition>(<expr><name>newx</name> <operator>==</operator> <name>currx</name></expr>)</condition><then> <block type="pseudo"><break>break;</break></block></then></if>
+
+        <expr_stmt><expr><name>visited</name> <operator>+=</operator> <name>newx</name> <operator>-</operator> <name>currx</name></expr>;</expr_stmt>
+
+        <expr_stmt><expr><name>downx</name> <operator>=</operator> <name>newx</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name>currx</name> <operator>=</operator> <name>newx</name></expr>;</expr_stmt>
+
+        <expr_stmt><expr><name>it</name> <operator>=</operator> <name><name>atrow</name><index>[<expr><name>currx</name></expr>]</index></name><operator>.</operator><call><name>lower_bound</name><argument_list>(<argument><expr><name>curry</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <if>if<condition>(<expr><name>it</name> <operator>!=</operator> <name><name>atrow</name><index>[<expr><name>currx</name></expr>]</index></name><operator>.</operator><call><name>begin</name><argument_list>()</argument_list></call></expr>)</condition><then> <block>{ 
+            <expr_stmt><expr><name>newy</name> <operator>=</operator> <call><name>max</name><argument_list>(<argument><expr><operator>*</operator><operator>(</operator><operator>--</operator><name>it</name><operator>)</operator> <operator>+</operator> <literal type="number">1</literal></expr></argument>, <argument><expr><name>leftx</name> <operator>+</operator> <literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        }</block></then> <else>else <block>{
+            <expr_stmt><expr><name>newy</name> <operator>=</operator> <name>leftx</name> <operator>+</operator> <literal type="number">1</literal></expr>;</expr_stmt> 
+        }</block></else></if>
+        
+        <if>if<condition>(<expr><name>newy</name> <operator>==</operator> <name>curry</name></expr>)</condition><then> <block type="pseudo"><break>break;</break></block></then></if>
+
+        <expr_stmt><expr><name>visited</name> <operator>+=</operator> <name>curry</name> <operator>-</operator> <name>newy</name></expr>;</expr_stmt>
+
+        <expr_stmt><expr><name>leftx</name> <operator>=</operator> <name>newy</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name>curry</name> <operator>=</operator> <name>newy</name></expr>;</expr_stmt>
+
+        <expr_stmt><expr><name>it</name> <operator>=</operator> <name><name>atcol</name><index>[<expr><name>curry</name></expr>]</index></name><operator>.</operator><call><name>lower_bound</name><argument_list>(<argument><expr><name>currx</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <if>if<condition>(<expr><name>it</name> <operator>!=</operator> <name><name>atcol</name><index>[<expr><name>curry</name></expr>]</index></name><operator>.</operator><call><name>begin</name><argument_list>()</argument_list></call></expr>)</condition><then> <block>{
+            <expr_stmt><expr><name>newx</name> <operator>=</operator> <call><name>max</name><argument_list>(<argument><expr><operator>*</operator><operator>(</operator><operator>--</operator><name>it</name><operator>)</operator> <operator>+</operator> <literal type="number">1</literal></expr></argument>, <argument><expr><name>topx</name> <operator>+</operator> <literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        }</block></then> <else>else <block>{
+            <expr_stmt><expr><name>newx</name> <operator>=</operator> <name>topx</name> <operator>+</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+        }</block></else></if>
+
+        <if>if<condition>(<expr><name>newx</name> <operator>==</operator> <name>currx</name></expr>)</condition><then> <block type="pseudo"><break>break;</break></block></then></if>
+
+        <expr_stmt><expr><name>visited</name> <operator>+=</operator> <name>currx</name> <operator>-</operator> <name>newx</name></expr>;</expr_stmt>
+
+        <expr_stmt><expr><name>topx</name> <operator>=</operator> <name>newx</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name>currx</name> <operator>=</operator> <name>newx</name></expr>;</expr_stmt>
+
+    }</block></while>
+
+    <if>if<condition>(<expr><name>visited</name> <operator>==</operator> <name>n</name> <operator>*</operator> <name>m</name> <operator>-</operator> <name>k</name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"YES"</literal> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt></block></then>
+    <else>else <block type="pseudo"><expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"NO"</literal> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt></block></else></if>
+}</block></function>
+</unit>

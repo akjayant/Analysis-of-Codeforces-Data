@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1236/all/29089493_62811475.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;stdio.h&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;set&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<decl_stmt><decl><type><name><name>set</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name><name>Raw</name><index>[<expr><literal type="number">100000</literal></expr>]</index></name></decl>,<decl><type ref="prev"/><name><name>Column</name><index>[<expr><literal type="number">100000</literal></expr>]</index></name></decl>;</decl_stmt>
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list><block>{
+    <decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>,<decl><type ref="prev"/><name>m</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>k</name></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%i%i%lli"</literal></expr></argument>,<argument><expr><operator>&amp;</operator><name>n</name></expr></argument>,<argument><expr><operator>&amp;</operator><name>m</name></expr></argument>,<argument><expr><operator>&amp;</operator><name>k</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <for>for<control>(<init><decl><type><name>long</name> <name>long</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>k</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control><block>{
+        <decl_stmt><decl><type><name>int</name></type> <name>x</name></decl>,<decl><type ref="prev"/><name>y</name></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%i%i"</literal></expr></argument>,<argument><expr><operator>&amp;</operator><name>x</name></expr></argument>,<argument><expr><operator>&amp;</operator><name>y</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name>x</name><operator>--</operator></expr><operator>,</operator><expr><name>y</name><operator>--</operator></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>Raw</name><index>[<expr><name>x</name></expr>]</index></name><operator>.</operator><call><name>insert</name><argument_list>(<argument><expr><name>y</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>Column</name><index>[<expr><name>y</name></expr>]</index></name><operator>.</operator><call><name>insert</name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    }</block></for>
+
+    <comment type="block">/*for(int i=0;i&lt;n;i++){
+        for(int j=0;j&lt;m;j++){
+            auto it1=Raw[i].lower_bound(j);
+            if(it1==lowe)
+            it1--;
+            auto it2=Raw[i].upper_bound(j);
+            printf("(%i,%i) ",*it1,*it2);
+        }
+        printf("\n");
+    }*/</comment>
+
+    <decl_stmt><decl><type><name>int</name></type> <name>x</name><init>=<expr><literal type="number">0</literal></expr></init></decl>,<decl><type ref="prev"/><name>y</name><init>=<expr><literal type="number">0</literal></expr></init></decl>,<decl><type ref="prev"/><name>l_bound</name><init>=<expr><literal type="number">0</literal></expr></init></decl>,<decl><type ref="prev"/><name>r_bound</name><init>=<expr><name>m</name><operator>-</operator><literal type="number">1</literal></expr></init></decl>,<decl><type ref="prev"/><name>u_bound</name><init>=<expr><literal type="number">0</literal></expr></init></decl>,<decl><type ref="prev"/><name>d_bound</name><init>=<expr><name>n</name><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>char</name></type> <name>direction</name><init>=<expr><literal type="char">'r'</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>bool</name></type> <name>turned</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <while>while<condition>(<expr><literal type="number">1</literal></expr>)</condition><block>{
+        <comment type="line">//printf("%i %i\n",x,y);</comment>
+        <comment type="line" format="doxygen">///right</comment>
+        <if>if<condition>(<expr><name>direction</name><operator>==</operator><literal type="char">'r'</literal></expr>)</condition><then><block>{
+            <decl_stmt><decl><type><name>auto</name></type> <name>y1</name><init>=<expr><name><name>Raw</name><index>[<expr><name>x</name></expr>]</index></name><operator>.</operator><call><name>upper_bound</name><argument_list>(<argument><expr><name>y</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <if>if<condition>(<expr><name>y1</name><operator>==</operator><name><name>Raw</name><index>[<expr><name>x</name></expr>]</index></name><operator>.</operator><call><name>end</name><argument_list>()</argument_list></call> <operator>||</operator> <operator>(</operator><operator>*</operator><name>y1</name><operator>)</operator><operator>&gt;</operator><name>r_bound</name></expr>)</condition><then><block>{
+                <if>if<condition>(<expr><name>y</name><operator>==</operator><name>r_bound</name></expr>)</condition><then> <block>{
+                    <if>if<condition>(<expr><name>turned</name><operator>==</operator><literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><break>break;</break></block></then></if>
+                    <expr_stmt><expr><name>turned</name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+                }</block></then>
+                <else>else <block>{
+                    <if>if<condition>(<expr><name>turned</name><operator>==</operator><literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>k</name><operator>--</operator></expr>;</expr_stmt></block></then></if>
+                    <expr_stmt><expr><name>turned</name><operator>=</operator><literal type="number">0</literal></expr>;</expr_stmt>
+                }</block></else></if>
+                <expr_stmt><expr><name>k</name><operator>+=</operator><literal type="number">1ll</literal><operator>*</operator><operator>(</operator><name>r_bound</name><operator>-</operator><name>y</name><operator>+</operator><literal type="number">1</literal><operator>)</operator></expr>;</expr_stmt>
+                <expr_stmt><expr><name>y</name><operator>=</operator><name>r_bound</name></expr>;</expr_stmt>
+                <expr_stmt><expr><name>direction</name><operator>=</operator><literal type="char">'d'</literal></expr>;</expr_stmt>
+                <expr_stmt><expr><name>u_bound</name><operator>=</operator><name>x</name><operator>+</operator><literal type="number">1</literal></expr>;</expr_stmt>
+                <expr_stmt><expr><name>turned</name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+                <continue>continue;</continue>
+            }</block></then></if>
+
+            <if>if<condition>(<expr><name>y</name><operator>==</operator><operator>(</operator><operator>*</operator><name>y1</name><operator>)</operator><operator>-</operator><literal type="number">1</literal></expr>)</condition><then> <block>{
+                <if>if<condition>(<expr><name>turned</name><operator>==</operator><literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><break>break;</break></block></then></if>
+                <expr_stmt><expr><name>turned</name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+            }</block></then>
+            <else>else <block>{
+                <if>if<condition>(<expr><name>turned</name><operator>==</operator><literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>k</name><operator>--</operator></expr>;</expr_stmt></block></then></if>
+                <expr_stmt><expr><name>turned</name><operator>=</operator><literal type="number">0</literal></expr>;</expr_stmt>
+            }</block></else></if>
+            <expr_stmt><expr><name>k</name><operator>+=</operator><literal type="number">1ll</literal><operator>*</operator><operator>(</operator><operator>(</operator><operator>*</operator><name>y1</name><operator>)</operator><operator>-</operator><name>y</name><operator>)</operator></expr>;</expr_stmt>
+            <expr_stmt><expr><name>y</name><operator>=</operator><operator>(</operator><operator>*</operator><name>y1</name><operator>)</operator><operator>-</operator><literal type="number">1</literal></expr>;</expr_stmt>
+            <expr_stmt><expr><name>direction</name><operator>=</operator><literal type="char">'d'</literal></expr>;</expr_stmt>
+            <expr_stmt><expr><name>u_bound</name><operator>=</operator><name>x</name><operator>+</operator><literal type="number">1</literal></expr>;</expr_stmt>
+            <expr_stmt><expr><name>turned</name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+            <continue>continue;</continue>
+        }</block></then></if>
+
+        <comment type="line" format="doxygen">///down</comment>
+        <if>if<condition>(<expr><name>direction</name><operator>==</operator><literal type="char">'d'</literal></expr>)</condition><then><block>{
+            <decl_stmt><decl><type><name>auto</name></type> <name>x1</name><init>=<expr><name><name>Column</name><index>[<expr><name>y</name></expr>]</index></name><operator>.</operator><call><name>upper_bound</name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <if>if<condition>(<expr><name>x1</name><operator>==</operator><name><name>Column</name><index>[<expr><name>y</name></expr>]</index></name><operator>.</operator><call><name>end</name><argument_list>()</argument_list></call> <operator>||</operator> <operator>(</operator><operator>*</operator><name>x1</name><operator>)</operator><operator>&gt;</operator><name>d_bound</name></expr>)</condition><then><block>{
+                <if>if<condition>(<expr><name>x</name><operator>==</operator><name>d_bound</name></expr>)</condition><then> <block>{
+                    <if>if<condition>(<expr><name>turned</name><operator>==</operator><literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><break>break;</break></block></then></if>
+                    <expr_stmt><expr><name>turned</name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+                }</block></then>
+                <else>else <block>{
+                    <if>if<condition>(<expr><name>turned</name><operator>==</operator><literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>k</name><operator>--</operator></expr>;</expr_stmt></block></then></if>
+                    <expr_stmt><expr><name>turned</name><operator>=</operator><literal type="number">0</literal></expr>;</expr_stmt>
+                }</block></else></if>
+                <expr_stmt><expr><name>k</name><operator>+=</operator><literal type="number">1ll</literal><operator>*</operator><operator>(</operator><name>d_bound</name><operator>-</operator><name>x</name><operator>+</operator><literal type="number">1</literal><operator>)</operator></expr>;</expr_stmt>
+                <expr_stmt><expr><name>x</name><operator>=</operator><name>d_bound</name></expr>;</expr_stmt>
+                <expr_stmt><expr><name>direction</name><operator>=</operator><literal type="char">'l'</literal></expr>;</expr_stmt>
+                <expr_stmt><expr><name>r_bound</name><operator>=</operator><name>y</name><operator>-</operator><literal type="number">1</literal></expr>;</expr_stmt>
+                <expr_stmt><expr><name>turned</name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+                <continue>continue;</continue>
+            }</block></then></if>
+
+            <if>if<condition>(<expr><name>x</name><operator>==</operator><operator>(</operator><operator>*</operator><name>x1</name><operator>)</operator><operator>-</operator><literal type="number">1</literal></expr>)</condition><then> <block>{
+                <if>if<condition>(<expr><name>turned</name><operator>==</operator><literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><break>break;</break></block></then></if>
+                <expr_stmt><expr><name>turned</name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+            }</block></then>
+            <else>else <block>{
+                <if>if<condition>(<expr><name>turned</name><operator>==</operator><literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>k</name><operator>--</operator></expr>;</expr_stmt></block></then></if>
+                <expr_stmt><expr><name>turned</name><operator>=</operator><literal type="number">0</literal></expr>;</expr_stmt>
+            }</block></else></if>
+            <expr_stmt><expr><name>k</name><operator>+=</operator><literal type="number">1ll</literal><operator>*</operator><operator>(</operator><operator>(</operator><operator>*</operator><name>x1</name><operator>)</operator><operator>-</operator><name>x</name><operator>)</operator></expr>;</expr_stmt>
+            <expr_stmt><expr><name>x</name><operator>=</operator><operator>(</operator><operator>*</operator><name>x1</name><operator>)</operator><operator>-</operator><literal type="number">1</literal></expr>;</expr_stmt>
+            <expr_stmt><expr><name>direction</name><operator>=</operator><literal type="char">'l'</literal></expr>;</expr_stmt>
+            <expr_stmt><expr><name>r_bound</name><operator>=</operator><name>y</name><operator>-</operator><literal type="number">1</literal></expr>;</expr_stmt>
+            <expr_stmt><expr><name>turned</name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+            <continue>continue;</continue>
+        }</block></then></if>
+
+        <comment type="line" format="doxygen">///left</comment>
+        <if>if<condition>(<expr><name>direction</name><operator>==</operator><literal type="char">'l'</literal></expr>)</condition><then><block>{
+            <decl_stmt><decl><type><name>auto</name></type> <name>y1</name><init>=<expr><name><name>Raw</name><index>[<expr><name>x</name></expr>]</index></name><operator>.</operator><call><name>lower_bound</name><argument_list>(<argument><expr><name>y</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <decl_stmt><decl><type><name>bool</name></type> <name>outOfBounds</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+            <if>if<condition>(<expr><name>y1</name><operator>==</operator><name><name>Raw</name><index>[<expr><name>x</name></expr>]</index></name><operator>.</operator><call><name>begin</name><argument_list>()</argument_list></call></expr>)</condition><then>
+                <block type="pseudo"><expr_stmt><expr><name>outOfBounds</name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt></block></then>
+            <else>else <block type="pseudo"><expr_stmt><expr><name>y1</name><operator>--</operator></expr>;</expr_stmt></block></else></if>
+            <if>if<condition>(<expr><name>outOfBounds</name> <operator>||</operator> <operator>(</operator><operator>*</operator><name>y1</name><operator>)</operator><operator>&lt;</operator><name>l_bound</name></expr>)</condition><then><block>{
+                <if>if<condition>(<expr><name>y</name><operator>==</operator><name>l_bound</name></expr>)</condition><then> <block>{
+                    <if>if<condition>(<expr><name>turned</name><operator>==</operator><literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><break>break;</break></block></then></if>
+                    <expr_stmt><expr><name>turned</name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+                }</block></then>
+                <else>else <block>{
+                    <if>if<condition>(<expr><name>turned</name><operator>==</operator><literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>k</name><operator>--</operator></expr>;</expr_stmt></block></then></if>
+                    <expr_stmt><expr><name>turned</name><operator>=</operator><literal type="number">0</literal></expr>;</expr_stmt>
+                }</block></else></if>
+                <expr_stmt><expr><name>k</name><operator>+=</operator><literal type="number">1ll</literal><operator>*</operator><operator>(</operator><name>y</name><operator>-</operator><name>l_bound</name><operator>+</operator><literal type="number">1</literal><operator>)</operator></expr>;</expr_stmt>
+                <expr_stmt><expr><name>y</name><operator>=</operator><name>l_bound</name></expr>;</expr_stmt>
+                <expr_stmt><expr><name>direction</name><operator>=</operator><literal type="char">'u'</literal></expr>;</expr_stmt>
+                <expr_stmt><expr><name>d_bound</name><operator>=</operator><name>x</name><operator>-</operator><literal type="number">1</literal></expr>;</expr_stmt>
+                <expr_stmt><expr><name>turned</name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+                <continue>continue;</continue>
+            }</block></then></if>
+
+            <if>if<condition>(<expr><name>y</name><operator>==</operator><operator>(</operator><operator>*</operator><name>y1</name><operator>)</operator><operator>+</operator><literal type="number">1</literal></expr>)</condition><then> <block>{
+                <if>if<condition>(<expr><name>turned</name><operator>==</operator><literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><break>break;</break></block></then></if>
+                <expr_stmt><expr><name>turned</name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+            }</block></then>
+            <else>else <block>{
+                <if>if<condition>(<expr><name>turned</name><operator>==</operator><literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>k</name><operator>--</operator></expr>;</expr_stmt></block></then></if>
+                <expr_stmt><expr><name>turned</name><operator>=</operator><literal type="number">0</literal></expr>;</expr_stmt>
+            }</block></else></if>
+            <expr_stmt><expr><name>k</name><operator>+=</operator><literal type="number">1ll</literal><operator>*</operator><operator>(</operator><name>y</name><operator>-</operator><operator>(</operator><operator>*</operator><name>y1</name><operator>)</operator><operator>)</operator></expr>;</expr_stmt>
+            <expr_stmt><expr><name>y</name><operator>=</operator><operator>(</operator><operator>*</operator><name>y1</name><operator>)</operator><operator>+</operator><literal type="number">1</literal></expr>;</expr_stmt>
+            <expr_stmt><expr><name>direction</name><operator>=</operator><literal type="char">'u'</literal></expr>;</expr_stmt>
+            <expr_stmt><expr><name>d_bound</name><operator>=</operator><name>x</name><operator>-</operator><literal type="number">1</literal></expr>;</expr_stmt>
+            <expr_stmt><expr><name>turned</name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+            <continue>continue;</continue>
+        }</block></then></if>
+
+        <comment type="line" format="doxygen">///up</comment>
+        <if>if<condition>(<expr><name>direction</name><operator>==</operator><literal type="char">'u'</literal></expr>)</condition><then><block>{
+            <decl_stmt><decl><type><name>auto</name></type> <name>x1</name><init>=<expr><name><name>Column</name><index>[<expr><name>y</name></expr>]</index></name><operator>.</operator><call><name>lower_bound</name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <decl_stmt><decl><type><name>bool</name></type> <name>outOfBounds</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+            <if>if<condition>(<expr><name>x1</name><operator>==</operator><name><name>Column</name><index>[<expr><name>y</name></expr>]</index></name><operator>.</operator><call><name>begin</name><argument_list>()</argument_list></call></expr>)</condition><then>
+                <block type="pseudo"><expr_stmt><expr><name>outOfBounds</name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt></block></then>
+            <else>else <block type="pseudo"><expr_stmt><expr><name>x1</name><operator>--</operator></expr>;</expr_stmt></block></else></if>
+            <if>if<condition>(<expr><name>outOfBounds</name> <operator>||</operator> <operator>(</operator><operator>*</operator><name>x1</name><operator>)</operator><operator>&lt;</operator><name>u_bound</name></expr>)</condition><then><block>{
+                <if>if<condition>(<expr><name>x</name><operator>==</operator><name>u_bound</name></expr>)</condition><then> <block>{
+                    <if>if<condition>(<expr><name>turned</name><operator>==</operator><literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><break>break;</break></block></then></if>
+                    <expr_stmt><expr><name>turned</name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+                }</block></then>
+                <else>else <block>{
+                    <if>if<condition>(<expr><name>turned</name><operator>==</operator><literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>k</name><operator>--</operator></expr>;</expr_stmt></block></then></if>
+                    <expr_stmt><expr><name>turned</name><operator>=</operator><literal type="number">0</literal></expr>;</expr_stmt>
+                }</block></else></if>
+                <expr_stmt><expr><name>k</name><operator>+=</operator><literal type="number">1ll</literal><operator>*</operator><operator>(</operator><name>x</name><operator>-</operator><name>u_bound</name><operator>+</operator><literal type="number">1</literal><operator>)</operator></expr>;</expr_stmt>
+                <expr_stmt><expr><name>x</name><operator>=</operator><name>u_bound</name></expr>;</expr_stmt>
+                <expr_stmt><expr><name>direction</name><operator>=</operator><literal type="char">'r'</literal></expr>;</expr_stmt>
+                <expr_stmt><expr><name>l_bound</name><operator>=</operator><name>y</name><operator>+</operator><literal type="number">1</literal></expr>;</expr_stmt>
+                <expr_stmt><expr><name>turned</name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+                <continue>continue;</continue>
+            }</block></then></if>
+
+            <if>if<condition>(<expr><name>x</name><operator>==</operator><operator>(</operator><operator>*</operator><name>x1</name><operator>)</operator><operator>+</operator><literal type="number">1</literal></expr>)</condition><then> <block>{
+                <if>if<condition>(<expr><name>turned</name><operator>==</operator><literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><break>break;</break></block></then></if>
+                <expr_stmt><expr><name>turned</name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+            }</block></then>
+            <else>else <block>{
+                <if>if<condition>(<expr><name>turned</name><operator>==</operator><literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>k</name><operator>--</operator></expr>;</expr_stmt></block></then></if>
+                <expr_stmt><expr><name>turned</name><operator>=</operator><literal type="number">0</literal></expr>;</expr_stmt>
+            }</block></else></if>
+            <expr_stmt><expr><name>k</name><operator>+=</operator><literal type="number">1ll</literal><operator>*</operator><operator>(</operator><name>x</name><operator>-</operator><operator>(</operator><operator>*</operator><name>x1</name><operator>)</operator><operator>)</operator></expr>;</expr_stmt>
+            <expr_stmt><expr><name>x</name><operator>=</operator><operator>(</operator><operator>*</operator><name>x1</name><operator>)</operator><operator>+</operator><literal type="number">1</literal></expr>;</expr_stmt>
+            <expr_stmt><expr><name>direction</name><operator>=</operator><literal type="char">'r'</literal></expr>;</expr_stmt>
+            <expr_stmt><expr><name>l_bound</name><operator>=</operator><name>y</name><operator>+</operator><literal type="number">1</literal></expr>;</expr_stmt>
+            <expr_stmt><expr><name>turned</name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+            <continue>continue;</continue>
+        }</block></then></if>
+    }</block></while>
+    <if>if<condition>(<expr><name>k</name><operator>==</operator><name>n</name><operator>*</operator><literal type="number">1ll</literal><operator>*</operator><name>m</name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"Yes"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then>
+    <else>else <block type="pseudo"><expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"No"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></else></if>
+}</block></function>
+</unit>

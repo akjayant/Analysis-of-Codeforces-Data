@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29618591_64020107.cpp"><cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<typedef>typedef <type><name>long</name> <name>long</name></type> <name>ll</name>;</typedef>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>K</name></cpp:macro> <cpp:value>31</cpp:value></cpp:define>
+
+<decl_stmt><decl><type><name>int</name></type> <name>a</name></decl>, <decl><type ref="prev"/><name>b</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>ll</name></type> <name><name>dp</name><index>[<expr><name>K</name></expr>]</index><index>[<expr><literal type="number">2</literal></expr>]</index><index>[<expr><literal type="number">2</literal></expr>]</index><index>[<expr><literal type="number">2</literal></expr>]</index><index>[<expr><literal type="number">2</literal></expr>]</index></name></decl>;</decl_stmt>
+
+<function><type><name>bool</name></type> <name>getBit</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>x</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>pos</name></decl></parameter>)</parameter_list> <block>{ <return>return <expr><name>x</name><operator>&amp;</operator><operator>(</operator><literal type="number">1</literal><operator>&lt;&lt;</operator><name>pos</name><operator>)</operator></expr>;</return> }</block></function>
+
+<function><type><name>ll</name></type> <name>cnt</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>pos</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>sa1</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>sb1</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>sa2</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>sb2</name></decl></parameter>)</parameter_list>
+<block>{
+    <if>if<condition>(<expr><name>pos</name> <operator>==</operator> <operator>-</operator><literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><return>return <expr><literal type="number">1</literal></expr>;</return></block></then></if>
+
+    <decl_stmt><decl><type><name>ll</name> <modifier>&amp;</modifier></type><name>res</name> <init>= <expr><name><name>dp</name><index>[<expr><name>pos</name></expr>]</index><index>[<expr><name>sa1</name></expr>]</index><index>[<expr><name>sb1</name></expr>]</index><index>[<expr><name>sa2</name></expr>]</index><index>[<expr><name>sb2</name></expr>]</index></name></expr></init></decl>;</decl_stmt>
+    <if>if<condition>(<expr><name>res</name> <operator>!=</operator> <operator>-</operator><literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><return>return <expr><name>res</name></expr>;</return></block></then></if>
+
+    <expr_stmt><expr><name>res</name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+
+    <decl_stmt><decl><type><name>int</name></type> <name>nsa1</name></decl>, <decl><type ref="prev"/><name>nsb1</name></decl>, <decl><type ref="prev"/><name>nsa2</name></decl>, <decl><type ref="prev"/><name>nsb2</name></decl>;</decl_stmt>
+
+    <if>if<condition>(<expr><name>sa1</name> <operator>==</operator> <literal type="number">0</literal> <operator>&amp;&amp;</operator> <call><name>getBit</name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><name>pos</name></expr></argument>)</argument_list></call></expr>)</condition><then> <block type="pseudo"><goto>goto <name>zeroone</name>;</goto></block></then></if>
+    <if>if<condition>(<expr><name>sa2</name> <operator>==</operator> <literal type="number">0</literal> <operator>&amp;&amp;</operator> <call><name>getBit</name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><name>pos</name></expr></argument>)</argument_list></call></expr>)</condition><then> <block type="pseudo"><goto>goto <name>zeroone</name>;</goto></block></then></if>
+
+    <expr_stmt><expr><name>nsa1</name> <operator>=</operator> <name>sa1</name></expr><operator>,</operator> <expr><name>nsa2</name> <operator>=</operator> <name>sa2</name></expr>;</expr_stmt>
+    <if>if<condition>(<expr><call><name>getBit</name><argument_list>(<argument><expr><name>b</name></expr></argument>, <argument><expr><name>pos</name></expr></argument>)</argument_list></call></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>nsb1</name> <operator>=</operator> <name>nsb2</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt></block></then>
+    <else>else <block type="pseudo"><expr_stmt><expr><name>nsb1</name> <operator>=</operator> <name>sb1</name></expr><operator>,</operator> <expr><name>nsb2</name> <operator>=</operator> <name>sb2</name></expr>;</expr_stmt></block></else></if>
+
+    <expr_stmt><expr><name>res</name> <operator>+=</operator> <call><name>cnt</name><argument_list>(<argument><expr><name>pos</name><operator>-</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>nsa1</name></expr></argument>, <argument><expr><name>nsb1</name></expr></argument>, <argument><expr><name>nsa2</name></expr></argument>, <argument><expr><name>nsb2</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <label><name>zeroone</name>:</label>
+
+    <if>if<condition>(<expr><name>sa1</name> <operator>==</operator> <literal type="number">0</literal> <operator>&amp;&amp;</operator> <call><name>getBit</name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><name>pos</name></expr></argument>)</argument_list></call></expr>)</condition><then> <block type="pseudo"><goto>goto <name>onezero</name>;</goto></block></then></if>
+    <if>if<condition>(<expr><name>sb2</name> <operator>==</operator> <literal type="number">0</literal> <operator>&amp;&amp;</operator> <operator>!</operator><call><name>getBit</name><argument_list>(<argument><expr><name>b</name></expr></argument>, <argument><expr><name>pos</name></expr></argument>)</argument_list></call></expr>)</condition><then> <block type="pseudo"><goto>goto <name>onezero</name>;</goto></block></then></if>
+
+    <expr_stmt><expr><name>nsa1</name> <operator>=</operator> <name>sa1</name></expr>;</expr_stmt>
+    <if>if<condition>(<expr><call><name>getBit</name><argument_list>(<argument><expr><name>b</name></expr></argument>, <argument><expr><name>pos</name></expr></argument>)</argument_list></call></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>nsb1</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt></block></then>
+    <else>else <block type="pseudo"><expr_stmt><expr><name>nsb1</name> <operator>=</operator> <name>sb1</name></expr>;</expr_stmt></block></else></if>
+
+    <expr_stmt><expr><name>nsb2</name> <operator>=</operator> <name>sb2</name></expr>;</expr_stmt>
+    <if>if<condition>(<expr><operator>!</operator><call><name>getBit</name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><name>pos</name></expr></argument>)</argument_list></call></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>nsa2</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt></block></then>
+    <else>else <block type="pseudo"><expr_stmt><expr><name>nsa2</name> <operator>=</operator> <name>sa2</name></expr>;</expr_stmt></block></else></if>
+
+    <expr_stmt><expr><name>res</name> <operator>+=</operator> <call><name>cnt</name><argument_list>(<argument><expr><name>pos</name><operator>-</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>nsa1</name></expr></argument>, <argument><expr><name>nsb1</name></expr></argument>, <argument><expr><name>nsa2</name></expr></argument>, <argument><expr><name>nsb2</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <label><name>onezero</name>:</label>
+
+    <if>if<condition>(<expr><name>sa2</name> <operator>==</operator> <literal type="number">0</literal> <operator>&amp;&amp;</operator> <call><name>getBit</name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><name>pos</name></expr></argument>)</argument_list></call></expr>)</condition><then> <block type="pseudo"><return>return <expr><name>res</name></expr>;</return></block></then></if>
+    <if>if<condition>(<expr><name>sb1</name> <operator>==</operator> <literal type="number">0</literal> <operator>&amp;&amp;</operator> <operator>!</operator><call><name>getBit</name><argument_list>(<argument><expr><name>b</name></expr></argument>, <argument><expr><name>pos</name></expr></argument>)</argument_list></call></expr>)</condition><then> <block type="pseudo"><return>return <expr><name>res</name></expr>;</return></block></then></if>
+
+    <expr_stmt><expr><name>nsa2</name> <operator>=</operator> <name>sa2</name></expr>;</expr_stmt>
+    <if>if<condition>(<expr><call><name>getBit</name><argument_list>(<argument><expr><name>b</name></expr></argument>, <argument><expr><name>pos</name></expr></argument>)</argument_list></call></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>nsb2</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt></block></then>
+    <else>else <block type="pseudo"><expr_stmt><expr><name>nsb2</name> <operator>=</operator> <name>sb2</name></expr>;</expr_stmt></block></else></if>
+
+    <expr_stmt><expr><name>nsb1</name> <operator>=</operator> <name>sb1</name></expr>;</expr_stmt>
+    <if>if<condition>(<expr><operator>!</operator><call><name>getBit</name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><name>pos</name></expr></argument>)</argument_list></call></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>nsa1</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt></block></then>
+    <else>else <block type="pseudo"><expr_stmt><expr><name>nsa1</name> <operator>=</operator> <name>sa1</name></expr>;</expr_stmt></block></else></if>
+
+    <expr_stmt><expr><name>res</name> <operator>+=</operator> <call><name>cnt</name><argument_list>(<argument><expr><name>pos</name><operator>-</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>nsa1</name></expr></argument>, <argument><expr><name>nsb1</name></expr></argument>, <argument><expr><name>nsa2</name></expr></argument>, <argument><expr><name>nsb2</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <return>return <expr><name>res</name></expr>;</return>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+    <decl_stmt><decl><type><name>int</name></type> <name>t</name></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%d"</literal></expr></argument>, <argument><expr><operator>&amp;</operator><name>t</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <while>while<condition>(<expr><name>t</name><operator>--</operator></expr>)</condition>
+    <block>{
+        <expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%d %d"</literal></expr></argument>, <argument><expr><operator>&amp;</operator><name>a</name></expr></argument>, <argument><expr><operator>&amp;</operator><name>b</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <expr_stmt><expr><call><name>memset</name><argument_list>(<argument><expr><name>dp</name></expr></argument>, <argument><expr><operator>-</operator><literal type="number">1</literal></expr></argument>, <argument><expr><sizeof>sizeof<argument_list>(<argument><expr><name>dp</name></expr></argument>)</argument_list></sizeof></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"%I64d\n"</literal></expr></argument>, <argument><expr><call><name>cnt</name><argument_list>(<argument><expr><name>K</name><operator>-</operator><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    }</block></while>
+
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

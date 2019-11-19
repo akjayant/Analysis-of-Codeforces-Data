@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29563714_64031466.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>MAX_BIT</name> <init>= <expr><literal type="number">30</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name>nTest</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name>l</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name>r</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>long</name> <name>long</name></type> <name><name>memo</name><index>[<expr><name>MAX_BIT</name> <operator>+</operator> <literal type="number">9</literal></expr>]</index><index>[<expr><literal type="number">2</literal></expr>]</index><index>[<expr><literal type="number">2</literal></expr>]</index><index>[<expr><literal type="number">2</literal></expr>]</index><index>[<expr><literal type="number">2</literal></expr>]</index></name></decl>;</decl_stmt>
+
+<function><type><name>int</name></type> <name>getBit</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>state</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>pos</name></decl></parameter>)</parameter_list> <block>{
+	<return>return <expr><name>state</name> <operator>&gt;&gt;</operator> <name>pos</name> <operator>&amp;</operator> <literal type="number">1</literal></expr>;</return>
+}</block></function>
+
+<function><type><name>long</name> <name>long</name></type> <name>dp</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>pos</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>l1</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>r1</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>l2</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>r2</name></decl></parameter>)</parameter_list> <block>{
+	<if>if<condition>(<expr><name>pos</name> <operator>&lt;</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+		<return>return <expr><literal type="number">1</literal></expr>;</return>
+	}</block></then></if>
+	<decl_stmt><decl><type><name>long</name> <name>long</name><modifier>&amp;</modifier></type> <name>res</name> <init>= <expr><name><name>memo</name><index>[<expr><name>pos</name></expr>]</index><index>[<expr><name>l1</name></expr>]</index><index>[<expr><name>r1</name></expr>]</index><index>[<expr><name>l2</name></expr>]</index><index>[<expr><name>r2</name></expr>]</index></name></expr></init></decl>;</decl_stmt>
+	<if>if<condition>(<expr><name>res</name> <operator>!=</operator> <operator>-</operator><literal type="number">1</literal></expr>)</condition><then> <block>{
+		<return>return <expr><name>res</name></expr>;</return>
+	}</block></then></if>
+	<expr_stmt><expr><name>res</name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+	<for>for<control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;=</operator> <literal type="number">1</literal></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{
+		<for>for<control>(<init><decl><type><name>int</name></type> <name>j</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>j</name> <operator>&lt;=</operator> <literal type="number">1</literal></expr>;</condition> <incr><expr><name>j</name><operator>++</operator></expr></incr>)</control> <block>{
+			<if>if<condition>(<expr><name>i</name> <operator>==</operator> <literal type="number">1</literal> <operator>&amp;&amp;</operator> <name>j</name> <operator>==</operator> <literal type="number">1</literal></expr>)</condition><then> <block>{
+				<continue>continue;</continue>
+			}</block></then></if>
+			<if>if<condition>(<expr><name>l1</name> <operator>==</operator> <literal type="number">0</literal> <operator>&amp;&amp;</operator> <name>i</name> <operator>&lt;</operator> <call><name>getBit</name><argument_list>(<argument><expr><name>l</name></expr></argument>, <argument><expr><name>pos</name></expr></argument>)</argument_list></call></expr>)</condition><then> <block>{
+				<continue>continue;</continue>
+			}</block></then></if>
+			<if>if<condition>(<expr><name>r1</name> <operator>==</operator> <literal type="number">0</literal> <operator>&amp;&amp;</operator> <name>i</name> <operator>&gt;</operator> <call><name>getBit</name><argument_list>(<argument><expr><name>r</name></expr></argument>, <argument><expr><name>pos</name></expr></argument>)</argument_list></call></expr>)</condition><then> <block>{
+				<continue>continue;</continue>
+			}</block></then></if>
+			<if>if<condition>(<expr><name>l2</name> <operator>==</operator> <literal type="number">0</literal> <operator>&amp;&amp;</operator> <name>j</name> <operator>&lt;</operator> <call><name>getBit</name><argument_list>(<argument><expr><name>l</name></expr></argument>, <argument><expr><name>pos</name></expr></argument>)</argument_list></call></expr>)</condition><then> <block>{
+				<continue>continue;</continue>
+			}</block></then></if>
+			<if>if<condition>(<expr><name>r2</name> <operator>==</operator> <literal type="number">0</literal> <operator>&amp;&amp;</operator> <name>j</name> <operator>&gt;</operator> <call><name>getBit</name><argument_list>(<argument><expr><name>r</name></expr></argument>, <argument><expr><name>pos</name></expr></argument>)</argument_list></call></expr>)</condition><then> <block>{
+				<continue>continue;</continue>
+			}</block></then></if>
+			<decl_stmt><decl><type><name>int</name></type> <name>nxtL1</name> <init>= <expr><name>l1</name></expr></init></decl>;</decl_stmt>
+			<decl_stmt><decl><type><name>int</name></type> <name>nxtR1</name> <init>= <expr><name>r1</name></expr></init></decl>;</decl_stmt>
+			<decl_stmt><decl><type><name>int</name></type> <name>nxtL2</name> <init>= <expr><name>l2</name></expr></init></decl>;</decl_stmt>
+			<decl_stmt><decl><type><name>int</name></type> <name>nxtR2</name> <init>= <expr><name>r2</name></expr></init></decl>;</decl_stmt>
+			<if>if<condition>(<expr><name>i</name> <operator>&gt;</operator> <call><name>getBit</name><argument_list>(<argument><expr><name>l</name></expr></argument>, <argument><expr><name>pos</name></expr></argument>)</argument_list></call></expr>)</condition><then> <block>{
+				<expr_stmt><expr><name>nxtL1</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+			}</block></then></if>
+			<if>if<condition>(<expr><name>i</name> <operator>&lt;</operator> <call><name>getBit</name><argument_list>(<argument><expr><name>r</name></expr></argument>, <argument><expr><name>pos</name></expr></argument>)</argument_list></call></expr>)</condition><then> <block>{
+				<expr_stmt><expr><name>nxtR1</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+			}</block></then></if>
+			<if>if<condition>(<expr><name>j</name> <operator>&gt;</operator> <call><name>getBit</name><argument_list>(<argument><expr><name>l</name></expr></argument>, <argument><expr><name>pos</name></expr></argument>)</argument_list></call></expr>)</condition><then> <block>{
+				<expr_stmt><expr><name>nxtL2</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+			}</block></then></if>
+			<if>if<condition>(<expr><name>j</name> <operator>&lt;</operator> <call><name>getBit</name><argument_list>(<argument><expr><name>r</name></expr></argument>, <argument><expr><name>pos</name></expr></argument>)</argument_list></call></expr>)</condition><then> <block>{
+				<expr_stmt><expr><name>nxtR2</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+			}</block></then></if>
+			<expr_stmt><expr><name>res</name> <operator>+=</operator> <call><name>dp</name><argument_list>(<argument><expr><name>pos</name> <operator>-</operator> <literal type="number">1</literal></expr></argument>, <argument><expr><name>nxtL1</name></expr></argument>, <argument><expr><name>nxtR1</name></expr></argument>, <argument><expr><name>nxtL2</name></expr></argument>, <argument><expr><name>nxtR2</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		}</block></for>
+	}</block></for>
+	<return>return <expr><name>res</name></expr>;</return>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+	<expr_stmt><expr><call><name><name>ios_base</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<expr_stmt><expr><call><name><name>cin</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><name>NULL</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>nTest</name></expr>;</expr_stmt>
+	<for>for<control>(<init><decl><type><name>int</name></type> <name>iTest</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</init> <condition><expr><name>iTest</name> <operator>&lt;=</operator> <name>nTest</name></expr>;</condition> <incr><expr><name>iTest</name><operator>++</operator></expr></incr>)</control> <block>{
+		<expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>l</name> <operator>&gt;&gt;</operator> <name>r</name></expr>;</expr_stmt>
+		<expr_stmt><expr><call><name>fill</name><argument_list>(<argument><expr><name><name>memo</name><index>[<expr><literal type="number">0</literal></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>, <argument><expr><name><name>memo</name><index>[<expr><name>MAX_BIT</name> <operator>+</operator> <literal type="number">1</literal></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>, <argument><expr><operator>-</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <call><name>dp</name><argument_list>(<argument><expr><name>MAX_BIT</name></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call> <operator>&lt;&lt;</operator> <literal type="string">"\n"</literal></expr>;</expr_stmt>
+	}</block></for>
+	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>

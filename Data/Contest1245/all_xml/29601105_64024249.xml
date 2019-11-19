@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29601105_64024249.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdlib&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdio&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>N</name> <init>= <expr><literal type="number">10</literal></expr></init></decl>;</decl_stmt>
+
+<struct>struct <name>coord</name> <block>{<public type="default">
+    <decl_stmt><decl><type><name>int</name></type> <name>r</name></decl>, <decl><type ref="prev"/><name>c</name></decl>;</decl_stmt>
+</public>}</block>;</struct>
+
+<decl_stmt><decl><type><name>int</name></type> <name><name>board</name><index>[<expr><name>N</name> <operator>+</operator> <literal type="number">10</literal></expr>]</index><index>[<expr><name>N</name> <operator>+</operator> <literal type="number">10</literal></expr>]</index></name></decl>;</decl_stmt> <comment type="line">// flip board vertically compared to examples</comment>
+
+<decl_stmt><decl><type><name>coord</name></type> <name>END</name> <init>= <expr><block>{<expr><literal type="number">9</literal></expr>, <expr><literal type="number">0</literal></expr>}</block></expr></init></decl>;</decl_stmt>
+
+<function><type><name>coord</name></type> <name>next</name><parameter_list>(<parameter><decl><type><name>coord</name></type> <name>cur</name></decl></parameter>)</parameter_list> <block>{
+    <if>if <condition>(<expr><name><name>cur</name><operator>.</operator><name>r</name></name> <operator>%</operator> <literal type="number">2</literal> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+        <if>if <condition>(<expr><name><name>cur</name><operator>.</operator><name>c</name></name> <operator>&lt;</operator> <name>N</name> <operator>-</operator> <literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><return>return <expr><block>{<expr><name><name>cur</name><operator>.</operator><name>r</name></name></expr>, <expr><name><name>cur</name><operator>.</operator><name>c</name></name> <operator>+</operator> <literal type="number">1</literal></expr>}</block></expr>;</return></block></then>
+        <else>else <block type="pseudo"><return>return <expr><block>{<expr><name><name>cur</name><operator>.</operator><name>r</name></name> <operator>+</operator> <literal type="number">1</literal></expr>, <expr><name><name>cur</name><operator>.</operator><name>c</name></name></expr>}</block></expr>;</return></block></else></if>
+    }</block></then> <else>else <block>{
+        <if>if <condition>(<expr><name><name>cur</name><operator>.</operator><name>c</name></name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><return>return <expr><block>{<expr><name><name>cur</name><operator>.</operator><name>r</name></name></expr>, <expr><name><name>cur</name><operator>.</operator><name>c</name></name> <operator>-</operator> <literal type="number">1</literal></expr>}</block></expr>;</return></block></then>
+        <else>else <block type="pseudo"><return>return <expr><block>{<expr><name><name>cur</name><operator>.</operator><name>r</name></name> <operator>+</operator> <literal type="number">1</literal></expr>, <expr><name><name>cur</name><operator>.</operator><name>c</name></name></expr>}</block></expr>;</return></block></else></if>
+    }</block></else></if>
+}</block></function>
+
+<function><type><name>coord</name></type> <name>prev</name><parameter_list>(<parameter><decl><type><name>coord</name></type> <name>cur</name></decl></parameter>)</parameter_list> <block>{
+    <if>if <condition>(<expr><name><name>cur</name><operator>.</operator><name>r</name></name> <operator>%</operator> <literal type="number">2</literal> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+        <if>if <condition>(<expr><name><name>cur</name><operator>.</operator><name>c</name></name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><return>return <expr><block>{<expr><name><name>cur</name><operator>.</operator><name>r</name></name></expr>, <expr><name><name>cur</name><operator>.</operator><name>c</name></name> <operator>-</operator> <literal type="number">1</literal></expr>}</block></expr>;</return></block></then>
+        <else>else <block type="pseudo"><return>return <expr><block>{<expr><name><name>cur</name><operator>.</operator><name>r</name></name> <operator>-</operator> <literal type="number">1</literal></expr>, <expr><name><name>cur</name><operator>.</operator><name>c</name></name></expr>}</block></expr>;</return></block></else></if>
+    }</block></then> <else>else <block>{
+        <if>if <condition>(<expr><name><name>cur</name><operator>.</operator><name>c</name></name> <operator>&lt;</operator> <name>N</name> <operator>-</operator> <literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><return>return <expr><block>{<expr><name><name>cur</name><operator>.</operator><name>r</name></name></expr>, <expr><name><name>cur</name><operator>.</operator><name>c</name></name> <operator>+</operator> <literal type="number">1</literal></expr>}</block></expr>;</return></block></then>
+        <else>else <block type="pseudo"><return>return <expr><block>{<expr><name><name>cur</name><operator>.</operator><name>r</name></name> <operator>-</operator> <literal type="number">1</literal></expr>, <expr><name><name>cur</name><operator>.</operator><name>c</name></name></expr>}</block></expr>;</return></block></else></if>
+    }</block></else></if>
+}</block></function>
+
+<decl_stmt><decl><type><name>long</name> <name>double</name></type> <name><name>dp</name><index>[<expr><name>N</name> <operator>+</operator> <literal type="number">10</literal></expr>]</index><index>[<expr><name>N</name> <operator>+</operator> <literal type="number">10</literal></expr>]</index></name></decl>;</decl_stmt>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>N</name></expr>;</condition> <incr><expr><operator>++</operator><name>i</name></expr></incr>)</control> <block>{
+        <for>for <control>(<init><decl><type><name>int</name></type> <name>j</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>j</name> <operator>&lt;</operator> <name>N</name></expr>;</condition> <incr><expr><operator>++</operator><name>j</name></expr></incr>)</control> <block>{
+            <expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%d"</literal></expr></argument>, <argument><expr><operator>&amp;</operator><name><name>board</name><index>[<expr><name>N</name> <operator>-</operator> <name>i</name> <operator>-</operator> <literal type="number">1</literal></expr>]</index><index>[<expr><name>j</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        }</block></for>
+    }</block></for>
+
+    <expr_stmt><expr><name><name>dp</name><index>[<expr><name>N</name> <operator>-</operator> <literal type="number">1</literal></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>=</operator> <literal type="number">0.0</literal></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>coord</name></type> <name>cur</name> <init>= <expr><call><name>prev</name><argument_list>(<argument><expr><name>END</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <while>while <condition>(<expr><literal type="boolean">true</literal></expr>)</condition> <block>{
+        <if>if <condition>(<expr><name><name>cur</name><operator>.</operator><name>r</name></name> <operator>==</operator> <name>N</name> <operator>-</operator> <literal type="number">1</literal></expr>)</condition><then> <block>{
+            <decl_stmt><decl><type><name>coord</name></type> <name>nex</name> <init>= <expr><call><name>next</name><argument_list>(<argument><expr><name>cur</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <decl_stmt><decl><type><name>long</name> <name>double</name></type> <name>sum_normal</name> <init>= <expr><literal type="number">0.0</literal></expr></init></decl>;</decl_stmt>
+            <decl_stmt><decl><type><name>long</name> <name>double</name></type> <name>prob_fail</name> <init>= <expr><literal type="number">0.0</literal></expr></init></decl>;</decl_stmt>
+            <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <literal type="number">6</literal></expr>;</condition> <incr><expr><operator>++</operator><name>i</name></expr></incr>)</control> <block>{
+                <if>if <condition>(<expr><name><name>nex</name><operator>.</operator><name>r</name></name> <operator>&gt;=</operator> <name>N</name></expr>)</condition><then> <block>{
+                    <expr_stmt><expr><name>prob_fail</name> <operator>+=</operator> <literal type="number">1.0</literal> <operator>/</operator> <literal type="number">6.0</literal></expr>;</expr_stmt>
+                }</block></then> <else>else <block>{
+                    <expr_stmt><expr><name>sum_normal</name> <operator>+=</operator> <name><name>dp</name><index>[<expr><name><name>nex</name><operator>.</operator><name>r</name></name></expr>]</index><index>[<expr><name><name>nex</name><operator>.</operator><name>c</name></name></expr>]</index></name> <operator>/</operator> <literal type="number">6.0</literal></expr>;</expr_stmt>
+                }</block></else></if>
+                <expr_stmt><expr><name>nex</name> <operator>=</operator> <call><name>next</name><argument_list>(<argument><expr><name>nex</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            }</block></for>
+
+            <expr_stmt><expr><name><name>dp</name><index>[<expr><name><name>cur</name><operator>.</operator><name>r</name></name></expr>]</index><index>[<expr><name><name>cur</name><operator>.</operator><name>c</name></name></expr>]</index></name> <operator>=</operator> <operator>(</operator><literal type="number">1</literal> <operator>+</operator> <name>sum_normal</name><operator>)</operator> <operator>/</operator> <operator>(</operator><literal type="number">1.0</literal> <operator>-</operator> <name>prob_fail</name><operator>)</operator></expr>;</expr_stmt>
+        }</block></then> <else>else <block>{
+            <decl_stmt><decl><type><name>coord</name></type> <name>nex</name> <init>= <expr><call><name>next</name><argument_list>(<argument><expr><name>cur</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <decl_stmt><decl><type><name>double</name></type> <name>sum</name> <init>= <expr><literal type="number">0.0</literal></expr></init></decl>;</decl_stmt>
+            <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <literal type="number">6</literal></expr>;</condition> <incr><expr><operator>++</operator><name>i</name></expr></incr>)</control> <block>{
+                <decl_stmt><decl><type><name>double</name></type> <name>choice1</name> <init>= <expr><name><name>dp</name><index>[<expr><name><name>nex</name><operator>.</operator><name>r</name></name></expr>]</index><index>[<expr><name><name>nex</name><operator>.</operator><name>c</name></name></expr>]</index></name></expr></init></decl>;</decl_stmt>
+                <decl_stmt><decl><type><name>double</name></type> <name>choice2</name> <init>= <expr><name><name>dp</name><index>[<expr><name><name>nex</name><operator>.</operator><name>r</name></name> <operator>+</operator> <name><name>board</name><index>[<expr><name><name>nex</name><operator>.</operator><name>r</name></name></expr>]</index><index>[<expr><name><name>nex</name><operator>.</operator><name>c</name></name></expr>]</index></name></expr>]</index><index>[<expr><name><name>nex</name><operator>.</operator><name>c</name></name></expr>]</index></name></expr></init></decl>;</decl_stmt>
+                <expr_stmt><expr><name>sum</name> <operator>+=</operator> <call><name>min</name><argument_list>(<argument><expr><name>choice1</name></expr></argument>, <argument><expr><name>choice2</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><name>nex</name> <operator>=</operator> <call><name>next</name><argument_list>(<argument><expr><name>nex</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            }</block></for>
+
+            <expr_stmt><expr><name><name>dp</name><index>[<expr><name><name>cur</name><operator>.</operator><name>r</name></name></expr>]</index><index>[<expr><name><name>cur</name><operator>.</operator><name>c</name></name></expr>]</index></name> <operator>=</operator> <literal type="number">1.0</literal> <operator>+</operator> <name>sum</name> <operator>/</operator> <literal type="number">6.0</literal></expr>;</expr_stmt>
+        }</block></else></if>
+
+        <comment type="line">//printf("%d %d: %0.9Lf\n", cur.r, cur.c, dp[cur.r][cur.c]);</comment>
+
+        <if>if <condition>(<expr><name><name>cur</name><operator>.</operator><name>r</name></name> <operator>==</operator> <literal type="number">0</literal> <operator>&amp;&amp;</operator> <name><name>cur</name><operator>.</operator><name>c</name></name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+            <break>break;</break>
+        }</block></then> <else>else <block>{
+            <expr_stmt><expr><name>cur</name> <operator>=</operator> <call><name>prev</name><argument_list>(<argument><expr><name>cur</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        }</block></else></if>
+    }</block></while>
+
+    <expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"%0.12Lf\n"</literal></expr></argument>, <argument><expr><name><name>dp</name><index>[<expr><literal type="number">0</literal></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

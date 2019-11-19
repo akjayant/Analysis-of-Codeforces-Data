@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29612308_64033737.cpp"><cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<decl_stmt><decl><type><name>long</name> <name>long</name></type> <name><name>f</name><index>[<expr><literal type="number">33</literal></expr>]</index><index>[<expr><literal type="number">3</literal></expr>]</index><index>[<expr><literal type="number">3</literal></expr>]</index><index>[<expr><literal type="number">3</literal></expr>]</index><index>[<expr><literal type="number">3</literal></expr>]</index></name></decl>;</decl_stmt>
+
+<function><type><name>long</name> <name>long</name></type> <name>dfs</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>u</name></decl></parameter>,<parameter><decl><type><name>int</name></type> <name>l</name></decl></parameter>,<parameter><decl><type><name>int</name></type> <name>r</name></decl></parameter>,<parameter><decl><type><name>int</name></type> <name>fa</name></decl></parameter>,<parameter><decl><type><name>int</name></type> <name>fb</name></decl></parameter>,<parameter><decl><type><name>int</name></type> <name>ffa</name></decl></parameter>,<parameter><decl><type><name>int</name></type> <name>ffb</name></decl></parameter>)</parameter_list><block>{
+	<if>if<condition>(<expr><name>u</name><operator>&lt;</operator><literal type="number">0</literal></expr>)</condition><then><block>{
+		<return>return <expr><literal type="number">1</literal></expr>;</return>
+	}</block></then></if>
+	<if>if<condition>(<expr><operator>~</operator><name><name>f</name><index>[<expr><name>u</name></expr>]</index><index>[<expr><name>fa</name></expr>]</index><index>[<expr><name>fb</name></expr>]</index><index>[<expr><name>ffa</name></expr>]</index><index>[<expr><name>ffb</name></expr>]</index></name></expr>)</condition><then><block>{
+		<return>return <expr><name><name>f</name><index>[<expr><name>u</name></expr>]</index><index>[<expr><name>fa</name></expr>]</index><index>[<expr><name>fb</name></expr>]</index><index>[<expr><name>ffa</name></expr>]</index><index>[<expr><name>ffb</name></expr>]</index></name></expr>;</return>
+	}</block></then></if>
+	<decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>rep</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt><decl_stmt><decl><type><name>int</name></type> <name>ra</name></decl>,<decl><type ref="prev"/><name>rb</name></decl>;</decl_stmt>
+	<if>if<condition>(<expr><name>ffa</name></expr>)</condition><then><block>{
+		<expr_stmt><expr><name>ra</name><operator>=</operator><operator>(</operator><name>l</name><operator>&gt;&gt;</operator><name>u</name><operator>)</operator><operator>&amp;</operator><literal type="number">1</literal></expr>;</expr_stmt>
+	}</block></then>
+	<else>else<block>{
+		<expr_stmt><expr><name>ra</name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+	}</block></else></if>
+	<if>if<condition>(<expr><name>ffb</name></expr>)</condition><then><block>{
+		<expr_stmt><expr><name>rb</name><operator>=</operator><operator>(</operator><name>r</name><operator>&gt;&gt;</operator><name>u</name><operator>)</operator><operator>&amp;</operator><literal type="number">1</literal></expr>;</expr_stmt>
+	}</block></then>
+	<else>else<block>{
+		<expr_stmt><expr><name>rb</name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+	}</block></else></if>
+	<for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;=</operator><name>ra</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control><block>{
+		<for>for<control>(<init><decl><type><name>int</name></type> <name>j</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>j</name><operator>&lt;=</operator><name>rb</name></expr>;</condition><incr><expr><name>j</name><operator>++</operator></expr></incr>)</control><block>{
+			<if>if<condition>(<expr><name>i</name><operator>+</operator><name>j</name><operator>&lt;</operator><literal type="number">2</literal></expr>)</condition><then><block>{
+				<expr_stmt><expr><name>rep</name><operator>+=</operator><call><name>dfs</name><argument_list>(<argument><expr><name>u</name><operator>-</operator><literal type="number">1</literal></expr></argument>,<argument><expr><name>l</name></expr></argument>,<argument><expr><name>r</name></expr></argument>,<argument><expr><name>fa</name></expr></argument>,<argument><expr><name>fb</name></expr></argument>,<argument><expr><name>ffa</name><operator>&amp;</operator><operator>(</operator><name>i</name><operator>==</operator><name>ra</name><operator>)</operator></expr></argument>,<argument><expr><name>ffb</name><operator>&amp;</operator><operator>(</operator><name>j</name><operator>==</operator><name>rb</name><operator>)</operator></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+			}</block></then></if>
+		}</block></for>
+	}</block></for>
+	<return>return <expr><name><name>f</name><index>[<expr><name>u</name></expr>]</index><index>[<expr><name>fa</name></expr>]</index><index>[<expr><name>fb</name></expr>]</index><index>[<expr><name>ffa</name></expr>]</index><index>[<expr><name>ffb</name></expr>]</index></name><operator>=</operator><name>rep</name></expr>;</return>
+}</block></function>
+
+<function><type><name>long</name> <name>long</name></type> <name>solve</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>l</name></decl></parameter>,<parameter><decl><type><name>int</name></type> <name>r</name></decl></parameter>)</parameter_list><block>{
+	<expr_stmt><expr><call><name>memset</name><argument_list>(<argument><expr><name>f</name></expr></argument>,<argument><expr><operator>-</operator><literal type="number">1</literal></expr></argument>,<argument><expr><sizeof>sizeof <name>f</name></sizeof></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<return>return <expr><call><name>dfs</name><argument_list>(<argument><expr><literal type="number">31</literal></expr></argument>,<argument><expr><name>l</name></expr></argument>,<argument><expr><name>r</name></expr></argument>,<argument><expr><literal type="number">0</literal></expr></argument>,<argument><expr><literal type="number">0</literal></expr></argument>,<argument><expr><literal type="number">1</literal></expr></argument>,<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</return>
+}</block></function>
+
+<decl_stmt><decl><type><name>int</name></type> <name>t</name></decl>,<decl><type ref="prev"/><name>l</name></decl>,<decl><type ref="prev"/><name>r</name></decl>;</decl_stmt>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list><block>{
+	<expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%d"</literal></expr></argument>,<argument><expr><operator>&amp;</operator><name>t</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<while>while<condition>(<expr><name>t</name><operator>--</operator></expr>)</condition><block>{
+		<expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%d%d"</literal></expr></argument>,<argument><expr><operator>&amp;</operator><name>l</name></expr></argument>,<argument><expr><operator>&amp;</operator><name>r</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<if>if<condition>(<expr><operator>!</operator><name>l</name></expr>)</condition><then><block>{
+			<expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"%lld\n"</literal></expr></argument>,<argument><expr><call><name>solve</name><argument_list>(<argument><expr><name>r</name></expr></argument>,<argument><expr><name>r</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		}</block></then>
+		<else>else<block>{
+			<expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"%lld\n"</literal></expr></argument>,<argument><expr><call><name>solve</name><argument_list>(<argument><expr><name>r</name></expr></argument>,<argument><expr><name>r</name></expr></argument>)</argument_list></call><operator>-</operator><operator>(</operator><call><name>solve</name><argument_list>(<argument><expr><name>l</name><operator>-</operator><literal type="number">1</literal></expr></argument>,<argument><expr><name>r</name></expr></argument>)</argument_list></call><operator>&lt;&lt;</operator><literal type="number">1</literal><operator>)</operator><operator>+</operator><call><name>solve</name><argument_list>(<argument><expr><name>l</name><operator>-</operator><literal type="number">1</literal></expr></argument>,<argument><expr><name>l</name><operator>-</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		}</block></else></if>
+	}</block></while>
+	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1243/all/29783198_64410858.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;math.h&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<function><type><name>bool</name></type> <name>is_prime</name><parameter_list>(<parameter><decl><type><name>long</name> <name>long</name></type> <name>x</name></decl></parameter>)</parameter_list><block>{
+    <if>if<condition>(<expr><name>x</name> <operator>==</operator> <literal type="number">2</literal> <operator>||</operator> <name>x</name> <operator>==</operator> <literal type="number">3</literal> <operator>||</operator> <name>x</name> <operator>==</operator> <literal type="number">5</literal></expr>)</condition><then>
+        <block type="pseudo"><return>return <expr><literal type="boolean">true</literal></expr>;</return></block></then></if>
+
+    <for>for<control>(<init><decl><type><name>long</name> <name>long</name></type> <name>a</name> <init>= <expr><literal type="number">2</literal></expr></init></decl>;</init> <condition><expr><name>a</name> <operator>&lt;=</operator> <call><name>sqrtl</name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call><operator>+</operator><literal type="number">1</literal></expr>;</condition> <incr><expr><name>a</name><operator>++</operator></expr></incr>)</control>
+        <block type="pseudo"><if>if<condition>(<expr><name>x</name> <operator>%</operator> <name>a</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then>
+            <block type="pseudo"><return>return <expr><literal type="boolean">false</literal></expr>;</return></block></then></if></block></for>
+    <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+}</block></function>
+
+<decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>long</name> <name>long</name></expr></argument>&gt;</argument_list></name></type> <name>primes</name></decl>;</decl_stmt>
+
+<function><type><name>void</name></type> <name>generate_primes</name><parameter_list>()</parameter_list><block>{
+    <for>for<control>(<init><decl><type><name>long</name> <name>long</name></type> <name>x</name> <init>= <expr><literal type="number">2</literal></expr></init></decl>;</init> <condition><expr><name>x</name> <operator>&lt;=</operator> <literal type="number">1000000</literal></expr>;</condition> <incr><expr><name>x</name><operator>++</operator></expr></incr>)</control>
+        <block type="pseudo"><if>if<condition>(<expr><call><name>is_prime</name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call></expr>)</condition><then>
+            <block type="pseudo"><expr_stmt><expr><call><name><name>primes</name><operator>.</operator><name>push_back</name></name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then></if></block></for>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+    <expr_stmt><expr><call><name>generate_primes</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+    <decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>x</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>x</name></expr>;</expr_stmt>
+
+    <if>if<condition>(<expr><call><name>is_prime</name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call></expr>)</condition><then><block>{
+        <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>x</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+        <return>return <expr><literal type="number">0</literal></expr>;</return>
+    }</block></then></if>
+
+    <for>for<control>(<init><decl><type><name>long</name> <name>long</name></type> <name>d</name> <range>: <expr><name>primes</name></expr></range></decl></init>)</control><block>{
+        <decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>cp</name> <init>= <expr><name>x</name></expr></init></decl>;</decl_stmt>
+        <while>while<condition>(<expr><name>cp</name> <operator>&gt;</operator> <literal type="number">1</literal> <operator>&amp;&amp;</operator> <operator>(</operator><name>cp</name> <operator>%</operator> <name>d</name> <operator>==</operator> <literal type="number">0</literal><operator>)</operator></expr>)</condition>
+            <block type="pseudo"><expr_stmt><expr><name>cp</name> <operator>/=</operator> <name>d</name></expr>;</expr_stmt></block></while>
+
+        <if>if<condition>(<expr><name>cp</name> <operator>==</operator> <literal type="number">1</literal></expr>)</condition><then><block>{
+            <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>d</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+            <return>return <expr><literal type="number">0</literal></expr>;</return>
+        }</block></then></if>
+    }</block></for>
+
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="number">1</literal> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

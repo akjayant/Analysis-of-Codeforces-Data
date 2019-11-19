@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1243/all/29783369_64409293.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdio&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;set&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>N</name> <init>= <expr><literal type="number">100</literal><literal type="char">'</literal></expr></init></decl></decl_stmt>009;
+
+vector&lt;int&gt; g[N];
+int q[N];
+
+int main() {
+  int n, m;
+  scanf("%d%d", &amp;n, &amp;m);
+  for (int i = 0; i &lt; n; ++i) {
+    g[i].clear();
+  }
+  for (int i = 0; i &lt; m; ++i) {
+    int x, y;
+    scanf("%d%d", &amp;x, &amp;y);
+    --x;
+    --y;
+    g[x].push_back(y);
+    g[y].push_back(x);
+  }
+  set&lt;int&gt; s;
+  for (int i = 0; i &lt; n; ++i) {
+    s.insert(i);
+  }
+  int ans = n - 1;
+  for (int from = 0; from &lt; n; ++from) {
+    if (s.count(from) == 0) {
+      continue;
+    }
+    s.erase(from);
+    q[0] = from;
+    int qt = 1;
+    for (int qh = 0; qh &lt; qt; ++qh) {
+      int x = q[qh];
+      vector&lt;int&gt; w;
+      for (int y : g[x]) {
+        if (s.count(y) != 0) {
+          w.push_back(y);
+          s.erase(y);
+        }
+      }
+      while (!s.empty()) {
+        q[qt++] = *s.begin();
+        s.erase(s.begin());
+      }
+      for (int e : w) {
+        s.insert(e);
+      }
+    }
+    ans -= qt - 1;
+  }
+  printf("%d\n", ans);
+}
+</unit>

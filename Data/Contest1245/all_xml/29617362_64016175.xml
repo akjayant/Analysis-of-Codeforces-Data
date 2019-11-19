@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29617362_64016175.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<function><type><name>string</name></type> <name>tostr</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>x</name></decl></parameter>)</parameter_list> <block>{
+    <decl_stmt><decl><type><name>string</name></type> <name>s</name></decl>;</decl_stmt>
+    <while>while<condition>(<expr><name>x</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{
+        <expr_stmt><expr><name>s</name> <operator>+=</operator> <call><name>char</name><argument_list>(<argument><expr><operator>(</operator><name>x</name> <operator>%</operator> <literal type="number">10</literal><operator>)</operator> <operator>+</operator> <literal type="char">'0'</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name>x</name> <operator>/=</operator> <literal type="number">10</literal></expr>;</expr_stmt>
+    }</block></while>
+    <expr_stmt><expr><call><name>reverse</name><argument_list>(<argument><expr><call><name><name>s</name><operator>.</operator><name>begin</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>s</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <return>return <expr><name>s</name></expr>;</return>
+}</block></function>
+<decl_stmt><decl><type><name>int</name></type> <name>a</name></decl>, <decl><type ref="prev"/><name>b</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>long</name> <name>long</name></type> <name><name>memo</name><index>[<expr><literal type="number">33</literal></expr>]</index><index>[<expr><literal type="number">2</literal></expr>]</index><index>[<expr><literal type="number">2</literal></expr>]</index><index>[<expr><literal type="number">2</literal></expr>]</index><index>[<expr><literal type="number">2</literal></expr>]</index></name></decl>;</decl_stmt>
+<function><type><name>int</name></type> <name>F</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>x</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>w</name></decl></parameter>)</parameter_list> <block>{
+    <return>return <expr><operator>(</operator><name>x</name> <operator>&gt;&gt;</operator> <name>w</name><operator>)</operator> <operator>&amp;</operator> <literal type="number">1</literal></expr>;</return>
+}</block></function>
+<function><type><name>long</name> <name>long</name></type> <name>dp</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>bit</name></decl></parameter>, <parameter><decl><type><name>bool</name></type> <name>sm1</name></decl></parameter>, <parameter><decl><type><name>bool</name></type> <name>sm2</name></decl></parameter>, <parameter><decl><type><name>bool</name></type> <name>g1</name></decl></parameter>, <parameter><decl><type><name>bool</name></type> <name>g2</name></decl></parameter>)</parameter_list> <block>{
+
+    <if>if<condition>(<expr><name>bit</name> <operator>==</operator> <operator>-</operator><literal type="number">1</literal></expr>)</condition><then> <block>{
+        <if>if<condition>(<expr><name>sm1</name> <operator>&amp;&amp;</operator> <name>sm2</name> <operator>&amp;&amp;</operator> <name>g1</name> <operator>&amp;&amp;</operator> <name>g2</name></expr>)</condition><then><block type="pseudo"><return>return <expr><literal type="number">1</literal></expr>;</return></block></then>
+        <else>else <block type="pseudo"><return>return <expr><literal type="number">0</literal></expr>;</return></block></else></if>
+    }</block></then></if>
+    <if>if<condition>(<expr><name><name>memo</name><index>[<expr><name>bit</name></expr>]</index><index>[<expr><name>sm1</name></expr>]</index><index>[<expr><name>sm2</name></expr>]</index><index>[<expr><name>g1</name></expr>]</index><index>[<expr><name>g2</name></expr>]</index></name> <operator>!=</operator> <operator>-</operator><literal type="number">1</literal></expr>)</condition><then><block type="pseudo"><return>return <expr><name><name>memo</name><index>[<expr><name>bit</name></expr>]</index><index>[<expr><name>sm1</name></expr>]</index><index>[<expr><name>sm2</name></expr>]</index><index>[<expr><name>g1</name></expr>]</index><index>[<expr><name>g2</name></expr>]</index></name></expr>;</return></block></then></if>
+    <decl_stmt><decl><type><name>int</name></type> <name>i1</name> <init>= <expr><ternary><condition><expr><name>sm1</name></expr> ?</condition><then> <expr><literal type="number">1</literal></expr> </then><else>: <expr><call><name>F</name><argument_list>(<argument><expr><name>b</name></expr></argument>, <argument><expr><name>bit</name></expr></argument>)</argument_list></call></expr></else></ternary></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>i2</name> <init>= <expr><ternary><condition><expr><name>sm2</name></expr> ?</condition><then> <expr><literal type="number">1</literal></expr> </then><else>: <expr><call><name>F</name><argument_list>(<argument><expr><name>b</name></expr></argument>, <argument><expr><name>bit</name></expr></argument>)</argument_list></call></expr></else></ternary></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>bb</name> <init>= <expr><call><name>F</name><argument_list>(<argument><expr><name>b</name></expr></argument>, <argument><expr><name>bit</name></expr></argument>)</argument_list></call></expr></init></decl>, <decl><type ref="prev"/><name>aa</name> <init>= <expr><call><name>F</name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><name>bit</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>rez</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;=</operator> <name>i1</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{
+        <for>for<control>(<init><decl><type><name>int</name></type> <name>j</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>j</name> <operator>&lt;=</operator> <name>i2</name></expr>;</condition> <incr><expr><name>j</name><operator>++</operator></expr></incr>)</control> <block>{
+            <if>if<condition>(<expr><name>i</name> <operator>==</operator> <literal type="number">1</literal> <operator>&amp;&amp;</operator> <name>j</name> <operator>==</operator> <literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><continue>continue;</continue></block></then></if>
+            <if>if<condition>(<expr><name>i</name> <operator>&lt;</operator> <name>aa</name> <operator>&amp;&amp;</operator> <operator>!</operator><name>g1</name></expr>)</condition><then> <block type="pseudo"><continue>continue;</continue></block></then></if>
+            <if>if<condition>(<expr><name>j</name> <operator>&lt;</operator> <name>aa</name> <operator>&amp;&amp;</operator> <operator>!</operator><name>g2</name></expr>)</condition><then> <block type="pseudo"><continue>continue;</continue></block></then></if>
+            <expr_stmt><expr><name>rez</name> <operator>+=</operator> <call><name>dp</name><argument_list>(<argument><expr><name>bit</name> <operator>-</operator> <literal type="number">1</literal></expr></argument>, <argument><expr><name>sm1</name> <operator>||</operator> <operator>(</operator><name>i</name> <operator>&lt;</operator> <name>bb</name><operator>)</operator></expr></argument>, <argument><expr><name>sm2</name> <operator>||</operator> <operator>(</operator><name>j</name> <operator>&lt;</operator> <name>bb</name><operator>)</operator></expr></argument>, <argument><expr><name>g1</name> <operator>||</operator> <operator>(</operator><name>i</name> <operator>&gt;</operator> <name>aa</name><operator>)</operator></expr></argument>, <argument><expr><name>g2</name> <operator>||</operator> <operator>(</operator><name>j</name> <operator>&gt;</operator> <name>aa</name><operator>)</operator></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        }</block></for>
+    }</block></for>
+    <return>return <expr><name><name>memo</name><index>[<expr><name>bit</name></expr>]</index><index>[<expr><name>sm1</name></expr>]</index><index>[<expr><name>sm2</name></expr>]</index><index>[<expr><name>g1</name></expr>]</index><index>[<expr><name>g2</name></expr>]</index></name> <operator>=</operator> <name>rez</name></expr>;</return>
+}</block></function>
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+<cpp:ifndef>#<cpp:directive>ifndef</cpp:directive> <name>ONLINE_JUDGE</name></cpp:ifndef>
+    <expr_stmt><expr><call><name>freopen</name><argument_list>(<argument><expr><literal type="string">"data.in"</literal></expr></argument>, <argument><expr><literal type="string">"r"</literal></expr></argument>, <argument><expr><name>stdin</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<cpp:endif>#<cpp:directive>endif</cpp:directive></cpp:endif>
+    <expr_stmt><expr><call><name><name>ios</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>t</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>t</name></expr>;</expr_stmt>
+    <while>while<condition>(<expr><name>t</name><operator>--</operator></expr>)</condition> <block>{
+        <expr_stmt><expr><call><name>memset</name><argument_list>(<argument><expr><name>memo</name></expr></argument>, <argument><expr><operator>-</operator><literal type="number">1</literal></expr></argument>, <argument><expr><sizeof>sizeof <name>memo</name></sizeof></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>a</name> <operator>&gt;&gt;</operator> <name>b</name></expr>;</expr_stmt>
+        <decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>s</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+        <if>if<condition>(<expr><name>a</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+            <expr_stmt><expr><name>s</name> <operator>=</operator> <literal type="number">2</literal> <operator>*</operator> <operator>(</operator><name>b</name> <operator>-</operator> <name>a</name> <operator>+</operator> <literal type="number">1</literal><operator>)</operator> <operator>-</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+            <expr_stmt><expr><name>a</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+        }</block></then></if>
+
+        <expr_stmt><expr><name>a</name><operator>--</operator></expr><operator>,</operator> <expr><name>b</name><operator>++</operator></expr>;</expr_stmt>
+        <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>s</name> <operator>+</operator> <call><name>dp</name><argument_list>(<argument><expr><literal type="number">30</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call> <operator>&lt;&lt;</operator> <literal type="char">'\n'</literal></expr>;</expr_stmt>
+    }</block></while>
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

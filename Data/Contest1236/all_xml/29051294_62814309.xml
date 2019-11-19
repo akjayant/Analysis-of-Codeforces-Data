@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1236/all/29051294_62814309.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<comment type="block">/*    #include &lt;ext/pb_ds/assoc_container.hpp&gt;
+#include &lt;ext/pb_ds/tree_policy.hpp&gt;
+using namespace __gnu_pbds;       */</comment>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ll</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ull</name></cpp:macro> <cpp:value>unsigned long long</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>f</name><parameter_list>(<parameter><type><name>a</name></type></parameter>, <parameter><type><name>b</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for (ll i = a; i &lt; b; i++)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>mod</name></cpp:macro> <cpp:value>1000000007</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>mp</name></cpp:macro> <cpp:value>make_pair</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pb</name></cpp:macro> <cpp:value>push_back</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pl</name></cpp:macro> <cpp:value>pair&lt;ll, ll&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>vll</name></cpp:macro> <cpp:value>vector&lt;ll&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pll</name></cpp:macro> <cpp:value>vector&lt;pair&lt;ll, ll&gt;&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ld</name></cpp:macro> <cpp:value>long double</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>fr</name><parameter_list>(<parameter><type><name>a</name></type></parameter>, <parameter><type><name>b</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for (ll j = a; j &gt;= b; j--)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>fi</name><parameter_list>(<parameter><type><name>a</name></type></parameter>, <parameter><type><name>b</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for (ll j = a; j &lt; b; j++)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>fii</name><parameter_list>(<parameter><type><name>a</name></type></parameter>, <parameter><type><name>b</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for (ll k = a; k &lt; b; k++)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>print</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>cerr &lt;&lt; #x &lt;&lt; " is " &lt;&lt; x &lt;&lt; endl;</cpp:value></cpp:define>
+<comment type="line">//      typedef tree&lt;ll ,null_type,less&lt;ll&gt;,rb_tree_tag,tree_order_statistics_node_update&gt; ordered_set;</comment>
+
+<decl_stmt><decl><type><name>ll</name></type> <name>n</name></decl>, <decl><type ref="prev"/><name>moves</name></decl>, <decl><type ref="prev"/><name>m</name></decl>, <decl><type ref="prev"/><name>k</name></decl>, <decl><type ref="prev"/><name>up</name></decl>, <decl><type ref="prev"/><name>down</name></decl>, <decl><type ref="prev"/><name>leftt</name></decl>, <decl><type ref="prev"/><name>rightt</name></decl>, <decl><type ref="prev"/><name>dir</name></decl>, <decl><type ref="prev"/><name>tot</name></decl>;</decl_stmt> <comment type="line">// 1 rightt  2 leftt  3 up  4 down</comment>
+<decl_stmt><decl><type><name><name>set</name><argument_list type="generic">&lt;<argument><expr><name>ll</name></expr></argument>&gt;</argument_list></name></type> <name><name>row</name><index>[<expr><literal type="number">100050</literal></expr>]</index></name></decl>, <decl><type ref="prev"/><name><name>col</name><index>[<expr><literal type="number">100050</literal></expr>]</index></name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>bool</name></type> <name>ok</name></decl>;</decl_stmt>
+
+<function><type><name>void</name></type> <name>movesrightt</name><parameter_list>()</parameter_list>
+<block>{
+    <if>if <condition>(<expr><name><name>row</name><index>[<expr><name>up</name></expr>]</index></name><operator>.</operator><call><name>find</name><argument_list>(<argument><expr><name>leftt</name></expr></argument>)</argument_list></call> <operator>!=</operator> <name><name>row</name><index>[<expr><name>up</name></expr>]</index></name><operator>.</operator><call><name>end</name><argument_list>()</argument_list></call></expr>)</condition><then>
+    <block>{
+        <expr_stmt><expr><name>ok</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+        <return>return;</return>
+    }</block></then></if>
+    <if>if <condition>(<expr><name><name>row</name><index>[<expr><name>up</name></expr>]</index></name><operator>.</operator><call><name>empty</name><argument_list>()</argument_list></call></expr>)</condition><then>
+    <block>{
+        <expr_stmt><expr><name>moves</name> <operator>+=</operator> <name>rightt</name> <operator>-</operator> <name>leftt</name> <operator>+</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name>up</name><operator>++</operator></expr>;</expr_stmt>
+        <expr_stmt><expr><name>dir</name> <operator>=</operator> <literal type="number">4</literal></expr>;</expr_stmt>
+        <return>return;</return>
+    }</block></then></if>
+    <decl_stmt><decl><type><name>ll</name></type> <name>k</name> <init>= <expr><operator>*</operator><name><name>row</name><index>[<expr><name>up</name></expr>]</index></name><operator>.</operator><call><name>begin</name><argument_list>()</argument_list></call></expr></init></decl>, <decl><type ref="prev"/><name>c</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <macro><name>f</name><argument_list>(<argument>k</argument>, <argument>rightt + <literal type="number">1</literal></argument>)</argument_list></macro>
+    <block>{
+        <while>while <condition>(<expr><operator>!</operator><name><name>col</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>empty</name><argument_list>()</argument_list></call></expr>)</condition>
+        <block>{
+            <expr_stmt><expr><name>c</name><operator>++</operator></expr>;</expr_stmt>
+            <decl_stmt><decl><type><name>ll</name></type> <name>x</name> <init>= <expr><operator>*</operator><name><name>col</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>begin</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <expr_stmt><expr><name><name>row</name><index>[<expr><name>x</name></expr>]</index></name><operator>.</operator><call><name>erase</name><argument_list>(<argument><expr><name><name>row</name><index>[<expr><name>x</name></expr>]</index></name><operator>.</operator><call><name>find</name><argument_list>(<argument><expr><name>i</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><name><name>col</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>erase</name><argument_list>(<argument><expr><name><name>col</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>begin</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        }</block></while>
+    }</block>
+    <if>if <condition>(<expr><name>c</name> <operator>!=</operator> <operator>(</operator><name>rightt</name> <operator>-</operator> <name>k</name> <operator>+</operator> <literal type="number">1</literal><operator>)</operator> <operator>*</operator> <operator>(</operator><name>down</name> <operator>-</operator> <name>up</name> <operator>+</operator> <literal type="number">1</literal><operator>)</operator></expr>)</condition><then>
+    <block>{
+        <expr_stmt><expr><name>ok</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+        <return>return;</return>
+    }</block></then></if>
+    <expr_stmt><expr><name>moves</name> <operator>+=</operator> <name>k</name> <operator>-</operator> <name>leftt</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name>up</name><operator>++</operator></expr>;</expr_stmt>
+    <expr_stmt><expr><name>rightt</name> <operator>=</operator> <name>k</name> <operator>-</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+    <expr_stmt><expr><name>tot</name> <operator>+=</operator> <name>c</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name>dir</name> <operator>=</operator> <literal type="number">4</literal></expr>;</expr_stmt>
+}</block></function>
+
+<function><type><name>void</name></type> <name>movesleftt</name><parameter_list>()</parameter_list>
+<block>{
+    <if>if <condition>(<expr><name><name>row</name><index>[<expr><name>down</name></expr>]</index></name><operator>.</operator><call><name>find</name><argument_list>(<argument><expr><name>rightt</name></expr></argument>)</argument_list></call> <operator>!=</operator> <name><name>row</name><index>[<expr><name>down</name></expr>]</index></name><operator>.</operator><call><name>end</name><argument_list>()</argument_list></call></expr>)</condition><then>
+    <block>{
+        <expr_stmt><expr><name>ok</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+        <return>return;</return>
+    }</block></then></if>
+    <if>if <condition>(<expr><name><name>row</name><index>[<expr><name>down</name></expr>]</index></name><operator>.</operator><call><name>empty</name><argument_list>()</argument_list></call></expr>)</condition><then>
+    <block>{
+        <expr_stmt><expr><name>moves</name> <operator>+=</operator> <name>rightt</name> <operator>-</operator> <name>leftt</name> <operator>+</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name>down</name><operator>--</operator></expr>;</expr_stmt>
+        <expr_stmt><expr><name>dir</name> <operator>=</operator> <literal type="number">3</literal></expr>;</expr_stmt>
+        <return>return;</return>
+    }</block></then></if>
+    <decl_stmt><decl><type><name>ll</name></type> <name>k</name> <init>= <expr><operator>*</operator><name><name>row</name><index>[<expr><name>down</name></expr>]</index></name><operator>.</operator><call><name>rbegin</name><argument_list>()</argument_list></call></expr></init></decl>, <decl><type ref="prev"/><name>c</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <macro><name>f</name><argument_list>(<argument>leftt</argument>, <argument>k + <literal type="number">1</literal></argument>)</argument_list></macro>
+    <block>{
+        <while>while <condition>(<expr><operator>!</operator><name><name>col</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>empty</name><argument_list>()</argument_list></call></expr>)</condition>
+        <block>{
+            <expr_stmt><expr><name>c</name><operator>++</operator></expr>;</expr_stmt>
+            <decl_stmt><decl><type><name>ll</name></type> <name>x</name> <init>= <expr><operator>*</operator><name><name>col</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>begin</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <expr_stmt><expr><name><name>row</name><index>[<expr><name>x</name></expr>]</index></name><operator>.</operator><call><name>erase</name><argument_list>(<argument><expr><name><name>row</name><index>[<expr><name>x</name></expr>]</index></name><operator>.</operator><call><name>find</name><argument_list>(<argument><expr><name>i</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><name><name>col</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>erase</name><argument_list>(<argument><expr><name><name>col</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>begin</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        }</block></while>
+    }</block>
+    <if>if <condition>(<expr><name>c</name> <operator>!=</operator> <operator>(</operator><name>k</name> <operator>-</operator> <name>leftt</name> <operator>+</operator> <literal type="number">1</literal><operator>)</operator> <operator>*</operator> <operator>(</operator><name>down</name> <operator>-</operator> <name>up</name> <operator>+</operator> <literal type="number">1</literal><operator>)</operator></expr>)</condition><then>
+    <block>{
+        <expr_stmt><expr><name>ok</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+        <return>return;</return>
+    }</block></then></if>
+    <expr_stmt><expr><name>moves</name> <operator>+=</operator> <name>rightt</name> <operator>-</operator> <name>k</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name>down</name><operator>--</operator></expr>;</expr_stmt>
+    <expr_stmt><expr><name>leftt</name> <operator>=</operator> <name>k</name> <operator>+</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+    <expr_stmt><expr><name>tot</name> <operator>+=</operator> <name>c</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name>dir</name> <operator>=</operator> <literal type="number">3</literal></expr>;</expr_stmt>
+}</block></function>
+
+<function><type><name>void</name></type> <name>movesUp</name><parameter_list>()</parameter_list>
+<block>{
+    <if>if <condition>(<expr><name><name>col</name><index>[<expr><name>leftt</name></expr>]</index></name><operator>.</operator><call><name>find</name><argument_list>(<argument><expr><name>down</name></expr></argument>)</argument_list></call> <operator>!=</operator> <name><name>col</name><index>[<expr><name>leftt</name></expr>]</index></name><operator>.</operator><call><name>end</name><argument_list>()</argument_list></call></expr>)</condition><then>
+    <block>{
+        <expr_stmt><expr><name>ok</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+        <return>return;</return>
+    }</block></then></if>
+    <if>if <condition>(<expr><name><name>col</name><index>[<expr><name>leftt</name></expr>]</index></name><operator>.</operator><call><name>empty</name><argument_list>()</argument_list></call></expr>)</condition><then>
+    <block>{
+        <expr_stmt><expr><name>moves</name> <operator>+=</operator> <name>down</name> <operator>-</operator> <name>up</name> <operator>+</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name>leftt</name><operator>++</operator></expr>;</expr_stmt>
+        <expr_stmt><expr><name>dir</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+        <return>return;</return>
+    }</block></then></if>
+    <decl_stmt><decl><type><name>ll</name></type> <name>k</name> <init>= <expr><operator>*</operator><name><name>col</name><index>[<expr><name>leftt</name></expr>]</index></name><operator>.</operator><call><name>rbegin</name><argument_list>()</argument_list></call></expr></init></decl>, <decl><type ref="prev"/><name>c</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <macro><name>f</name><argument_list>(<argument>up</argument>, <argument>k + <literal type="number">1</literal></argument>)</argument_list></macro>
+    <block>{
+        <while>while <condition>(<expr><operator>!</operator><name><name>row</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>empty</name><argument_list>()</argument_list></call></expr>)</condition>
+        <block>{
+            <expr_stmt><expr><name>c</name><operator>++</operator></expr>;</expr_stmt>
+            <decl_stmt><decl><type><name>ll</name></type> <name>x</name> <init>= <expr><operator>*</operator><name><name>row</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>begin</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <expr_stmt><expr><name><name>col</name><index>[<expr><name>x</name></expr>]</index></name><operator>.</operator><call><name>erase</name><argument_list>(<argument><expr><name><name>col</name><index>[<expr><name>x</name></expr>]</index></name><operator>.</operator><call><name>find</name><argument_list>(<argument><expr><name>i</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><name><name>row</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>erase</name><argument_list>(<argument><expr><name><name>row</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>begin</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        }</block></while>
+    }</block>
+    <if>if <condition>(<expr><name>c</name> <operator>!=</operator> <operator>(</operator><name>k</name> <operator>-</operator> <name>up</name> <operator>+</operator> <literal type="number">1</literal><operator>)</operator> <operator>*</operator> <operator>(</operator><name>rightt</name> <operator>-</operator> <name>leftt</name> <operator>+</operator> <literal type="number">1</literal><operator>)</operator></expr>)</condition><then>
+    <block>{
+        <expr_stmt><expr><name>ok</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+        <return>return;</return>
+    }</block></then></if>
+    <expr_stmt><expr><name>moves</name> <operator>+=</operator> <name>down</name> <operator>-</operator> <name>k</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name>leftt</name><operator>++</operator></expr>;</expr_stmt>
+    <expr_stmt><expr><name>up</name> <operator>=</operator> <name>k</name> <operator>+</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+    <expr_stmt><expr><name>tot</name> <operator>+=</operator> <name>c</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name>dir</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+}</block></function>
+
+<function><type><name>void</name></type> <name>movesDown</name><parameter_list>()</parameter_list>
+<block>{
+    <if>if <condition>(<expr><name><name>col</name><index>[<expr><name>rightt</name></expr>]</index></name><operator>.</operator><call><name>find</name><argument_list>(<argument><expr><name>up</name></expr></argument>)</argument_list></call> <operator>!=</operator> <name><name>col</name><index>[<expr><name>rightt</name></expr>]</index></name><operator>.</operator><call><name>end</name><argument_list>()</argument_list></call></expr>)</condition><then>
+    <block>{
+        <expr_stmt><expr><name>ok</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+        <return>return;</return>
+    }</block></then></if>
+    <if>if <condition>(<expr><name><name>col</name><index>[<expr><name>rightt</name></expr>]</index></name><operator>.</operator><call><name>empty</name><argument_list>()</argument_list></call></expr>)</condition><then>
+    <block>{
+        <expr_stmt><expr><name>moves</name> <operator>+=</operator> <name>down</name> <operator>-</operator> <name>up</name> <operator>+</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name>rightt</name><operator>--</operator></expr>;</expr_stmt>
+        <expr_stmt><expr><name>dir</name> <operator>=</operator> <literal type="number">2</literal></expr>;</expr_stmt>
+        <return>return;</return>
+    }</block></then></if>
+    <decl_stmt><decl><type><name>ll</name></type> <name>k</name> <init>= <expr><operator>*</operator><name><name>col</name><index>[<expr><name>rightt</name></expr>]</index></name><operator>.</operator><call><name>begin</name><argument_list>()</argument_list></call></expr></init></decl>, <decl><type ref="prev"/><name>c</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <macro><name>f</name><argument_list>(<argument>k</argument>, <argument>down + <literal type="number">1</literal></argument>)</argument_list></macro>
+    <block>{
+        <while>while <condition>(<expr><operator>!</operator><name><name>row</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>empty</name><argument_list>()</argument_list></call></expr>)</condition>
+        <block>{
+            <expr_stmt><expr><name>c</name><operator>++</operator></expr>;</expr_stmt>
+            <decl_stmt><decl><type><name>ll</name></type> <name>x</name> <init>= <expr><operator>*</operator><name><name>row</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>begin</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <expr_stmt><expr><name><name>col</name><index>[<expr><name>x</name></expr>]</index></name><operator>.</operator><call><name>erase</name><argument_list>(<argument><expr><name><name>col</name><index>[<expr><name>x</name></expr>]</index></name><operator>.</operator><call><name>find</name><argument_list>(<argument><expr><name>i</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><name><name>row</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>erase</name><argument_list>(<argument><expr><name><name>row</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>begin</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        }</block></while>
+    }</block>
+    <if>if <condition>(<expr><name>c</name> <operator>!=</operator> <operator>(</operator><name>down</name> <operator>-</operator> <name>k</name> <operator>+</operator> <literal type="number">1</literal><operator>)</operator> <operator>*</operator> <operator>(</operator><name>rightt</name> <operator>-</operator> <name>leftt</name> <operator>+</operator> <literal type="number">1</literal><operator>)</operator></expr>)</condition><then>
+    <block>{
+        <expr_stmt><expr><name>ok</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+        <return>return;</return>
+    }</block></then></if>
+    <expr_stmt><expr><name>moves</name> <operator>+=</operator> <name>k</name> <operator>-</operator> <name>up</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name>rightt</name><operator>--</operator></expr>;</expr_stmt>
+    <expr_stmt><expr><name>down</name> <operator>=</operator> <name>k</name> <operator>-</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+    <expr_stmt><expr><name>tot</name> <operator>+=</operator> <name>c</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name>dir</name> <operator>=</operator> <literal type="number">2</literal></expr>;</expr_stmt>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+<cpp:ifndef>#<cpp:directive>ifndef</cpp:directive> <name>ONLINE_JUDGE</name></cpp:ifndef>
+    <expr_stmt><expr><call><name>freopen</name><argument_list>(<argument><expr><literal type="string">"input.txt"</literal></expr></argument>, <argument><expr><literal type="string">"rt"</literal></expr></argument>, <argument><expr><name>stdin</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>freopen</name><argument_list>(<argument><expr><literal type="string">"output.txt"</literal></expr></argument>, <argument><expr><literal type="string">"wt"</literal></expr></argument>, <argument><expr><name>stdout</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<cpp:endif>#<cpp:directive>endif</cpp:directive></cpp:endif>
+    <expr_stmt><expr><call><name><name>ios_base</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>cin</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><name>NULL</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <decl_stmt><decl><type><name>ll</name></type> <name>x</name></decl>, <decl><type ref="prev"/><name>y</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>ok</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+    <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name> <operator>&gt;&gt;</operator> <name>m</name> <operator>&gt;&gt;</operator> <name>k</name></expr>;</expr_stmt>
+    <if>if <condition>(<expr><name>k</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then>
+    <block>{
+        <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"Yes"</literal></expr>;</expr_stmt>
+        <return>return <expr><literal type="number">0</literal></expr>;</return>
+    }</block></then></if>
+    <expr_stmt><expr><name>dir</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+    <expr_stmt><expr><name>leftt</name> <operator>=</operator> <literal type="number">1</literal></expr><operator>,</operator> <expr><name>rightt</name> <operator>=</operator> <name>m</name></expr><operator>,</operator> <expr><name>up</name> <operator>=</operator> <literal type="number">1</literal></expr><operator>,</operator> <expr><name>down</name> <operator>=</operator> <name>n</name></expr>;</expr_stmt>
+    <macro><name>f</name><argument_list>(<argument><literal type="number">0</literal></argument>, <argument>k</argument>)</argument_list></macro> <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>x</name> <operator>&gt;&gt;</operator> <name>y</name></expr><operator>,</operator> <expr><name><name>row</name><index>[<expr><name>x</name></expr>]</index></name><operator>.</operator><call><name>insert</name><argument_list>(<argument><expr><name>y</name></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><name><name>col</name><index>[<expr><name>y</name></expr>]</index></name><operator>.</operator><call><name>insert</name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <while>while <condition>(<expr><name>ok</name> <operator>&amp;&amp;</operator> <name>moves</name> <operator>!=</operator> <operator>(</operator><name>n</name> <operator>*</operator> <name>m</name><operator>)</operator> <operator>-</operator> <name>k</name></expr>)</condition>
+    <block>{
+        <comment type="line">// cout &lt;&lt; dir &lt;&lt; " " &lt;&lt; leftt &lt;&lt; " " &lt;&lt; rightt &lt;&lt; " " &lt;&lt; up &lt;&lt; " " &lt;&lt; down &lt;&lt; " " &lt;&lt; moves &lt;&lt; " " &lt;&lt;tot&lt;&lt;" "</comment>
+        <comment type="line">//      &lt;&lt; "\n";</comment>
+        <if>if <condition>(<expr><name>dir</name> <operator>==</operator> <literal type="number">1</literal></expr>)</condition><then>
+            <block type="pseudo"><expr_stmt><expr><call><name>movesrightt</name><argument_list>()</argument_list></call></expr>;</expr_stmt></block></then>
+        <elseif>else <if>if <condition>(<expr><name>dir</name> <operator>==</operator> <literal type="number">2</literal></expr>)</condition><then>
+            <block type="pseudo"><expr_stmt><expr><call><name>movesleftt</name><argument_list>()</argument_list></call></expr>;</expr_stmt></block></then></if></elseif>
+        <elseif>else <if>if <condition>(<expr><name>dir</name> <operator>==</operator> <literal type="number">3</literal></expr>)</condition><then>
+            <block type="pseudo"><expr_stmt><expr><call><name>movesUp</name><argument_list>()</argument_list></call></expr>;</expr_stmt></block></then></if></elseif>
+        <else>else
+            <block type="pseudo"><expr_stmt><expr><call><name>movesDown</name><argument_list>()</argument_list></call></expr>;</expr_stmt></block></else></if>
+        <comment type="line">// cout &lt;&lt; dir &lt;&lt; " " &lt;&lt; leftt &lt;&lt; " " &lt;&lt; rightt &lt;&lt; " " &lt;&lt; up &lt;&lt; " " &lt;&lt; down &lt;&lt; " " &lt;&lt; moves &lt;&lt; " "&lt;&lt;tot&lt;&lt;" "</comment>
+        <comment type="line">//      &lt;&lt; "\n\n";</comment>
+    }</block></while>
+    <if>if <condition>(<expr><name>moves</name> <operator>==</operator> <operator>(</operator><name>n</name> <operator>*</operator> <name>m</name><operator>)</operator> <operator>-</operator> <name>k</name></expr>)</condition><then>
+        <block type="pseudo"><expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"Yes"</literal></expr>;</expr_stmt></block></then>
+    <else>else
+        <block type="pseudo"><expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"No"</literal></expr>;</expr_stmt></block></else></if>
+
+<cpp:ifndef>#<cpp:directive>ifndef</cpp:directive> <name>ONLINE_JUDGE</name></cpp:ifndef>
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"\nTime Elapsed : "</literal> <operator>&lt;&lt;</operator> <literal type="number">1.0</literal> <operator>*</operator> <call><name>clock</name><argument_list>()</argument_list></call> <operator>/</operator> <name>CLOCKS_PER_SEC</name> <operator>&lt;&lt;</operator> <literal type="string">" s\n"</literal></expr>;</expr_stmt>
+<cpp:endif>#<cpp:directive>endif</cpp:directive></cpp:endif>
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1243/all/29778847_64413943.cpp"><cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;string&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;iomanip&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;cmath&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>int</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>endl</name></cpp:macro> <cpp:value>"\n"</cpp:value></cpp:define>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>long</name> <name>long</name></type> <name>INF</name> <init>= <expr><operator>(</operator><name>long</name> <name>long</name><operator>)</operator><literal type="number">1e18</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><specifier>const</specifier> <name>long</name> <name>long</name></type> <name>MOD</name> <init>= <expr><literal type="number">1</literal><literal type="char">'000'</literal><literal type="number">000</literal><literal type="char">'</literal></expr></init></decl></decl_stmt>007; 
+
+string yn(bool f){return f?"Yes":"No";}
+string YN(bool f){return f?"YES":"NO";}
+
+class union_find
+{
+	int  _setnum;
+	vector&lt;int&gt; par, nume;
+public:
+	union_find(){
+	}
+	
+	union_find(int x){
+		par.resize(x);
+		nume.resize(x);
+		init();
+	}
+	
+	~union_find(){
+		//
+		
+	}
+	
+	void clear(){
+		_setnum = 0;
+		par.clear();
+		nume.clear();
+	}
+	
+	void init(){
+		_setnum = par.size();
+		for(int i = 0; i &lt; par.size(); i++){
+			par[i] = i;
+			nume[i] = 1;
+		}
+	}
+	
+	void resize(int x){
+		
+		par.resize(x);
+		nume.resize(x);
+		init();
+	}
+
+	int find(int x){
+		return par[x] == x ? x : par[x] = find(par[x]);
+	}
+
+	void unite(int x, int y){
+		x = find(x);
+		y = find(y);
+	
+		if(x == y)return;
+		
+		_setnum--;
+		
+		if(nume[x] &gt; nume[y]) std::swap(x,y);
+		
+		par[x] = y;
+		nume[y] += nume[x];
+	}
+	
+	bool same(int x, int y){
+		return find(x) == find(y);
+	}
+	
+	int numel(int x){
+		return nume[find(x)];
+	}
+	
+	int size(){
+		return par.size();
+	}
+	
+	int setnum(){
+		return _setnum;
+	}
+};
+
+
+signed main(){
+	// cin.tie(nullptr);
+	// ios::sync_with_stdio(false);
+	// cout&lt;&lt;fixed&lt;&lt;setprecision(10);
+		
+		union_find uf;
+		vector&lt;vector&lt;int&gt;&gt; G;
+		vector&lt;int&gt; ad, ad2;
+		int N, M;
+		
+		cin&gt;&gt;N&gt;&gt;M;
+		
+		uf.resize(N);
+		ad.resize(N,1);
+		ad2.resize(N,1);
+		G.resize(N);
+		
+		for(int i = 0; i &lt; M; i++){
+			int a, b;
+			cin&gt;&gt;a&gt;&gt;b;
+			a--, b--;
+			G[a].push_back(b);
+			G[b].push_back(a);
+			
+		}
+		
+		for(int i = 0; i &lt; N; i++){
+			sort(G[i].begin(), G[i].end());
+			
+			for(int j = 0; j &lt; N;){
+				int con = lower_bound(G[i].begin(), G[i].end(), ad[j] + j) - lower_bound(G[i].begin(), G[i].end(), j);
+				if(con &lt; ad[j]){
+					uf.unite(i, j);
+					if(j &amp;&amp; uf.same(j-1,j)){
+						ad[j - ad2[j-1]] += ad[j];
+						ad2[j + ad[j] - 1] += ad2[j-1];
+					}
+				}
+				j += ad[j];
+			}
+		}
+		
+		cout&lt;&lt;uf.setnum()-1&lt;&lt;endl;
+	
+	return 0;
+}</unit>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1243/all/29777742_64401282.cpp"><comment type="line">//#include &lt;bits/stdc++.h&gt;</comment>
+<comment type="line">//</comment>
+<comment type="line">//using namespace std;</comment>
+<comment type="line">//#define taskname "cf1243"</comment>
+<comment type="line">//typedef pair &lt; int, int &gt; ii;</comment>
+<comment type="line">//</comment>
+<comment type="line">//int T, n;</comment>
+<comment type="line">//string s, t;</comment>
+<comment type="line">//bool visited[55];</comment>
+<comment type="line">//vector &lt; int &gt; pos;</comment>
+<comment type="line">//</comment>
+<comment type="line">//int main()</comment>
+<comment type="line">//{</comment>
+<comment type="line">//    #ifdef duyenn</comment>
+<comment type="line">//        freopen (taskname".inp", "r", stdin);</comment>
+<comment type="line">//        freopen (taskname".out", "w", stdout);</comment>
+<comment type="line">//    #endif // duyenn</comment>
+<comment type="line">//    ios_base::sync_with_stdio(false);</comment>
+<comment type="line">//    cin.tie(); cout.tie();</comment>
+<comment type="line">//    for (cin &gt;&gt; T; T--;)</comment>
+<comment type="line">//    {</comment>
+<comment type="line">//        cin &gt;&gt; n &gt;&gt; s &gt;&gt; t;</comment>
+<comment type="line">//        if (s == t)</comment>
+<comment type="line">//        {</comment>
+<comment type="line">//            cout &lt;&lt; "YES\n";</comment>
+<comment type="line">//            continue;</comment>
+<comment type="line">//        }</comment>
+<comment type="line">//        pos.clear();</comment>
+<comment type="line">//        for (int i = 0; i &lt; n; i++)</comment>
+<comment type="line">//            if (s[i] != t[i])</comment>
+<comment type="line">//                pos.push_back(i);</comment>
+<comment type="line">//        if (pos.size() == 1)</comment>
+<comment type="line">//        {</comment>
+<comment type="line">//            cout &lt;&lt; "NO\n";</comment>
+<comment type="line">//            continue;</comment>
+<comment type="line">//        }</comment>
+<comment type="line">//        memset(visited, 0, sizeof(visited));</comment>
+<comment type="line">//        vector &lt; ii &gt; res;</comment>
+<comment type="line">//        bool ok = true;</comment>
+<comment type="line">//        while (2)</comment>
+<comment type="line">//        {</comment>
+<comment type="line">//            if (pos.size() == 1)</comment>
+<comment type="line">//            {</comment>
+<comment type="line">//                ok = false;</comment>
+<comment type="line">//                break;</comment>
+<comment type="line">//            }</comment>
+<comment type="line">//            bool ok2 = false;</comment>
+<comment type="line">//            for (int i = 0; i &lt; pos.size(); i++)</comment>
+<comment type="line">//            {</comment>
+<comment type="line">//                int u = pos[i];</comment>
+<comment type="line">//                if (visited[u] == false)</comment>
+<comment type="line">//                {</comment>
+<comment type="line">//                    for (int j = i + 1; j &lt; pos.size(); j++)</comment>
+<comment type="line">//                    {</comment>
+<comment type="line">//                        int v = pos[j];</comment>
+<comment type="line">//                        if (visited[j] == false)</comment>
+<comment type="line">//                        {</comment>
+<comment type="line">//                            if ((s[u] == s[v] &amp;&amp; t[u] == t[v]))</comment>
+<comment type="line">//                            {</comment>
+<comment type="line">//                                ok2 = visited[u] = visited[v] = true;</comment>
+<comment type="line">//                                res.push_back(ii(u, v));</comment>
+<comment type="line">//                                goto line;</comment>
+<comment type="line">//                            }</comment>
+<comment type="line">//                        }</comment>
+<comment type="line">//                    }</comment>
+<comment type="line">//                }</comment>
+<comment type="line">//            }</comment>
+<comment type="line">//            line:;</comment>
+<comment type="line">//            if (!ok2)</comment>
+<comment type="line">//            {</comment>
+<comment type="line">//                ok = false;</comment>
+<comment type="line">//                break;</comment>
+<comment type="line">//            }</comment>
+<comment type="line">//        }</comment>
+<comment type="line">//        if (!ok)</comment>
+<comment type="line">//            cout &lt;&lt; "NO\n";</comment>
+<comment type="line">//        else</comment>
+<comment type="line">//        {</comment>
+<comment type="line">//            cout &lt;&lt; res.size() &lt;&lt; '\n';</comment>
+<comment type="line">//            for (auto x: res)</comment>
+<comment type="line">//                cout &lt;&lt; x.first &lt;&lt; " " &lt;&lt; x.second &lt;&lt; '\n';</comment>
+<comment type="line">//        }</comment>
+<comment type="line">//    }</comment>
+<comment type="line">//}</comment>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<using>using <name>ll</name> <init>= <type><name>int64_t</name></type></init>;</using>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>taskname</name></cpp:macro> <cpp:value>"cf1243"</cpp:value></cpp:define>
+
+<decl_stmt><decl><type><name>ll</name></type> <name>n</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name><name>vector</name> <argument_list type="generic">&lt; <argument><expr><name>ll</name></expr></argument> &gt;</argument_list></name></type> <name>gcd</name></decl>;</decl_stmt>
+
+<function><type><name>bool</name></type> <name>isPrime</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>x</name></decl></parameter>)</parameter_list>
+<block>{
+    <if>if <condition>(<expr><name>x</name> <operator>&lt;</operator> <literal type="number">2</literal></expr>)</condition><then>
+        <block type="pseudo"><return>return <expr><literal type="boolean">false</literal></expr>;</return></block></then></if>
+    <for>for <control>(<init><decl><type><name>ll</name></type> <name>i</name> <init>= <expr><literal type="number">2</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>*</operator> <name>i</name> <operator>&lt;=</operator> <name>x</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+        <block type="pseudo"><if>if <condition>(<expr><name>n</name> <operator>%</operator> <name>i</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then>
+            <block type="pseudo"><return>return <expr><literal type="boolean">false</literal></expr>;</return></block></then></if></block></for>
+    <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+    <cpp:ifdef>#<cpp:directive>ifdef</cpp:directive> <name>duyenn</name></cpp:ifdef>
+        <expr_stmt><expr><call><name>freopen</name> <argument_list>(<argument><expr><name>taskname</name><literal type="string">".inp"</literal></expr></argument>, <argument><expr><literal type="string">"r"</literal></expr></argument>, <argument><expr><name>stdin</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name>freopen</name> <argument_list>(<argument><expr><name>taskname</name><literal type="string">".out"</literal></expr></argument>, <argument><expr><literal type="string">"w"</literal></expr></argument>, <argument><expr><name>stdout</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <cpp:endif>#<cpp:directive>endif</cpp:directive></cpp:endif> <comment type="line">// duyenn</comment>
+    <expr_stmt><expr><call><name><name>ios_base</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>cin</name><operator>.</operator><name>tie</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt> <expr_stmt><expr><call><name><name>cout</name><operator>.</operator><name>tie</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name></expr>;</expr_stmt>
+    <if>if <condition>(<expr><call><name>isPrime</name><argument_list>(<argument><expr><name>n</name></expr></argument>)</argument_list></call></expr>)</condition><then>
+        <block type="pseudo"><return>return <expr><name>cout</name> <operator>&lt;&lt;</operator> <name>n</name></expr><operator>,</operator> <expr><literal type="number">0</literal></expr>;</return></block></then></if>
+    <decl_stmt><decl><type><name>ll</name></type> <name>N</name> <init>= <expr><name>n</name></expr></init></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>ll</name></type> <name>i</name> <init>= <expr><literal type="number">2</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>*</operator> <name>i</name> <operator>&lt;=</operator> <name>n</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+        <block type="pseudo"><if>if <condition>(<expr><name>N</name> <operator>%</operator> <name>i</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then>
+        <block>{
+            <expr_stmt><expr><call><name><name>gcd</name><operator>.</operator><name>push_back</name></name><argument_list>(<argument><expr><name>i</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <while>while <condition>(<expr><name>N</name> <operator>%</operator> <name>i</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition>
+                <block type="pseudo"><expr_stmt><expr><name>N</name> <operator>/=</operator> <name>i</name></expr>;</expr_stmt></block></while>
+        }</block></then></if></block></for>
+    <if>if <condition>(<expr><name>N</name> <operator>!=</operator> <literal type="number">1</literal></expr>)</condition><then>
+        <block type="pseudo"><expr_stmt><expr><call><name><name>gcd</name><operator>.</operator><name>push_back</name></name><argument_list>(<argument><expr><name>N</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then></if>
+    <if>if <condition>(<expr><call><name><name>gcd</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>==</operator> <literal type="number">1</literal></expr>)</condition><then>
+        <block type="pseudo"><return>return <expr><name>cout</name> <operator>&lt;&lt;</operator> <name><name>gcd</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr><operator>,</operator> <expr><literal type="number">0</literal></expr>;</return></block></then></if>
+    <expr_stmt><expr><call><name>sort</name> <argument_list>(<argument><expr><call><name><name>gcd</name><operator>.</operator><name>begin</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>gcd</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <if>if <condition>(<expr><name><name>gcd</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>==</operator> <literal type="number">2</literal> <operator>&amp;&amp;</operator> <name><name>gcd</name><index>[<expr><literal type="number">1</literal></expr>]</index></name> <operator>==</operator> <literal type="number">3</literal></expr>)</condition><then>
+        <block type="pseudo"><return>return <expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="number">1</literal></expr><operator>,</operator> <expr><literal type="number">0</literal></expr>;</return></block></then></if>
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+}</block></function>
+
+</unit>

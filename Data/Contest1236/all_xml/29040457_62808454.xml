@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1236/all/29040457_62808454.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<typedef>typedef <type><name>long</name> <name>long</name></type> <name>ll</name>;</typedef>
+<typedef>typedef <type><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>, <argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>pii</name>;</typedef>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>x</name></cpp:macro> <cpp:value>first</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>y</name></cpp:macro> <cpp:value>second</cpp:value></cpp:define>
+<comment type="line">// #define size(a) (int)a.size()</comment>
+
+<comment type="line">// const int N = int(1e5) + 10;</comment>
+
+<decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>, <decl><type ref="prev"/><name>m</name></decl>, <decl><type ref="prev"/><name>k</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name><name>map</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>, <argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>row</name></decl>, <decl><type ref="prev"/><name>col</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name>xu</name></decl>, <decl><type ref="prev"/><name>xd</name></decl>, <decl><type ref="prev"/><name>yl</name></decl>, <decl><type ref="prev"/><name>yr</name></decl>;</decl_stmt>
+
+<function><type><name>void</name></type> <name>possible</name><parameter_list>()</parameter_list> <block>{
+	<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"Yes"</literal> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+	<expr_stmt><expr><call><name>exit</name><argument_list>(<argument><expr><name>EXIT_SUCCESS</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+}</block></function>
+<function><type><name>void</name></type> <name>impossible</name><parameter_list>()</parameter_list> <block>{
+	<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"No"</literal> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+	<expr_stmt><expr><call><name>exit</name><argument_list>(<argument><expr><name>EXIT_SUCCESS</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+}</block></function>
+
+<function><type><name>void</name></type> <name>clearRight</name><parameter_list>()</parameter_list> <block>{
+	<while>while <condition>(<expr><call><name><name>col</name><operator>.</operator><name>find</name></name><argument_list>(<argument><expr><name>yr</name></expr></argument>)</argument_list></call> <operator>!=</operator> <call><name><name>col</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call> <operator>&amp;&amp;</operator> <name><name>col</name><index>[<expr><name>yr</name></expr>]</index></name> <operator>==</operator> <name>xd</name> <operator>-</operator> <name>xu</name> <operator>+</operator> <literal type="number">1</literal></expr>)</condition> <block>{
+		<for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><name>xu</name></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;=</operator> <name>xd</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{
+			<expr_stmt><expr><name><name>row</name><index>[<expr><name>i</name></expr>]</index></name><operator>--</operator></expr>;</expr_stmt>
+			<if>if <condition>(<expr><name><name>row</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><call><name><name>row</name><operator>.</operator><name>erase</name></name><argument_list>(<argument><expr><name>i</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then></if>
+		}</block></for>
+		<expr_stmt><expr><call><name><name>col</name><operator>.</operator><name>erase</name></name><argument_list>(<argument><expr><name>yr</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<expr_stmt><expr><name>yr</name><operator>--</operator></expr>;</expr_stmt>
+	}</block></while>
+}</block></function>
+<function><type><name>void</name></type> <name>clearLeft</name><parameter_list>()</parameter_list> <block>{
+	<while>while <condition>(<expr><call><name><name>col</name><operator>.</operator><name>find</name></name><argument_list>(<argument><expr><name>yl</name></expr></argument>)</argument_list></call> <operator>!=</operator> <call><name><name>col</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call> <operator>&amp;&amp;</operator> <name><name>col</name><index>[<expr><name>yl</name></expr>]</index></name> <operator>==</operator> <name>xd</name> <operator>-</operator> <name>xu</name> <operator>+</operator> <literal type="number">1</literal></expr>)</condition> <block>{
+		<for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><name>xu</name></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;=</operator> <name>xd</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{
+			<expr_stmt><expr><name><name>row</name><index>[<expr><name>i</name></expr>]</index></name><operator>--</operator></expr>;</expr_stmt>
+			<if>if <condition>(<expr><name><name>row</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><call><name><name>row</name><operator>.</operator><name>erase</name></name><argument_list>(<argument><expr><name>i</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then></if>
+		}</block></for>
+		<expr_stmt><expr><call><name><name>col</name><operator>.</operator><name>erase</name></name><argument_list>(<argument><expr><name>yl</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<expr_stmt><expr><name>yl</name><operator>++</operator></expr>;</expr_stmt>
+	}</block></while>
+}</block></function>
+<function><type><name>void</name></type> <name>clearUp</name><parameter_list>()</parameter_list> <block>{
+	<while>while <condition>(<expr><call><name><name>row</name><operator>.</operator><name>find</name></name><argument_list>(<argument><expr><name>xu</name></expr></argument>)</argument_list></call> <operator>!=</operator> <call><name><name>row</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call> <operator>&amp;&amp;</operator> <name><name>row</name><index>[<expr><name>xu</name></expr>]</index></name> <operator>==</operator> <name>yr</name> <operator>-</operator> <name>yl</name> <operator>+</operator> <literal type="number">1</literal></expr>)</condition> <block>{
+		<for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><name>yl</name></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;=</operator> <name>yr</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{
+			<expr_stmt><expr><name><name>col</name><index>[<expr><name>i</name></expr>]</index></name><operator>--</operator></expr>;</expr_stmt>
+			<if>if <condition>(<expr><name><name>col</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><call><name><name>col</name><operator>.</operator><name>erase</name></name><argument_list>(<argument><expr><name>i</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then></if>
+		}</block></for>
+		<expr_stmt><expr><call><name><name>row</name><operator>.</operator><name>erase</name></name><argument_list>(<argument><expr><name>xu</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<expr_stmt><expr><name>xu</name><operator>++</operator></expr>;</expr_stmt>
+	}</block></while>
+}</block></function>
+<function><type><name>void</name></type> <name>clearDown</name><parameter_list>()</parameter_list> <block>{
+	<while>while <condition>(<expr><call><name><name>row</name><operator>.</operator><name>find</name></name><argument_list>(<argument><expr><name>xd</name></expr></argument>)</argument_list></call> <operator>!=</operator> <call><name><name>row</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call> <operator>&amp;&amp;</operator> <name><name>row</name><index>[<expr><name>xd</name></expr>]</index></name> <operator>==</operator> <name>yr</name> <operator>-</operator> <name>yl</name> <operator>+</operator> <literal type="number">1</literal></expr>)</condition> <block>{
+		<for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><name>yl</name></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;=</operator> <name>yr</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{
+			<expr_stmt><expr><name><name>col</name><index>[<expr><name>i</name></expr>]</index></name><operator>--</operator></expr>;</expr_stmt>
+			<if>if <condition>(<expr><name><name>col</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><call><name><name>col</name><operator>.</operator><name>erase</name></name><argument_list>(<argument><expr><name>i</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then></if>
+		}</block></for>
+		<expr_stmt><expr><call><name><name>row</name><operator>.</operator><name>erase</name></name><argument_list>(<argument><expr><name>xd</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<expr_stmt><expr><name>xd</name><operator>--</operator></expr>;</expr_stmt>
+	}</block></while>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+	<cpp:ifdef>#<cpp:directive>ifdef</cpp:directive> <name>LOCAL</name></cpp:ifdef>
+	<expr_stmt><expr><call><name>freopen</name><argument_list>(<argument><expr><literal type="string">"in"</literal></expr></argument>, <argument><expr><literal type="string">"r"</literal></expr></argument>, <argument><expr><name>stdin</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<expr_stmt><expr><call><name>freopen</name><argument_list>(<argument><expr><literal type="string">"out"</literal></expr></argument>, <argument><expr><literal type="string">"w"</literal></expr></argument>, <argument><expr><name>stdout</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<cpp:endif>#<cpp:directive>endif</cpp:directive></cpp:endif>
+
+	<expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name> <operator>&gt;&gt;</operator> <name>m</name></expr>;</expr_stmt>
+
+	<expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>k</name></expr>;</expr_stmt>
+	<while>while <condition>(<expr><name>k</name><operator>--</operator></expr>)</condition> <block>{
+		<decl_stmt><decl><type><name>int</name></type> <name>x</name></decl>, <decl><type ref="prev"/><name>y</name></decl>;</decl_stmt>
+		<expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%d %d"</literal></expr></argument>, <argument><expr><operator>&amp;</operator><name>x</name></expr></argument>, <argument><expr><operator>&amp;</operator><name>y</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<expr_stmt><expr><name><name>row</name><index>[<expr><name>x</name></expr>]</index></name><operator>++</operator></expr>;</expr_stmt>
+		<expr_stmt><expr><name><name>col</name><index>[<expr><name>y</name></expr>]</index></name><operator>++</operator></expr>;</expr_stmt>
+	}</block></while>
+
+	<if>if <condition>(<expr><name>k</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><call><name>possible</name><argument_list>()</argument_list></call></expr>;</expr_stmt></block></then></if>
+
+	<expr_stmt><expr><name>xu</name> <operator>=</operator> <literal type="number">1</literal></expr><operator>,</operator> <expr><name>xd</name> <operator>=</operator> <name>n</name></expr><operator>,</operator> <expr><name>yl</name> <operator>=</operator> <literal type="number">1</literal></expr><operator>,</operator> <expr><name>yr</name> <operator>=</operator> <name>m</name></expr>;</expr_stmt>
+
+	<while>while <condition>(<expr><literal type="boolean">true</literal></expr>)</condition> <block>{
+		<while>while <condition>(
+			<expr><name>xu</name> <operator>&lt;=</operator> <name>xd</name> <operator>&amp;&amp;</operator>
+			<name>yl</name> <operator>&lt;=</operator> <name>yr</name> <operator>&amp;&amp;</operator>
+			<call><name><name>row</name><operator>.</operator><name>find</name></name><argument_list>(<argument><expr><name>xu</name></expr></argument>)</argument_list></call> <operator>==</operator> <call><name><name>row</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call> <operator>&amp;&amp;</operator>
+			<call><name><name>row</name><operator>.</operator><name>find</name></name><argument_list>(<argument><expr><name>xd</name></expr></argument>)</argument_list></call> <operator>==</operator> <call><name><name>row</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call> <operator>&amp;&amp;</operator>
+			<call><name><name>col</name><operator>.</operator><name>find</name></name><argument_list>(<argument><expr><name>yr</name></expr></argument>)</argument_list></call> <operator>==</operator> <call><name><name>col</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call> <operator>&amp;&amp;</operator>
+			<call><name><name>col</name><operator>.</operator><name>find</name></name><argument_list>(<argument><expr><name>yl</name></expr></argument>)</argument_list></call> <operator>==</operator> <call><name><name>col</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call></expr>
+			)</condition>
+			<block type="pseudo"><expr_stmt><expr><name>xu</name><operator>++</operator></expr><operator>,</operator> <expr><name>xd</name><operator>--</operator></expr><operator>,</operator> <expr><name>yl</name><operator>++</operator></expr><operator>,</operator> <expr><name>yr</name><operator>--</operator></expr>;</expr_stmt></block></while>
+
+		<if>if <condition>(<expr><name>xu</name> <operator>&gt;</operator> <name>xd</name> <operator>||</operator> <name>yl</name> <operator>&gt;</operator> <name>yr</name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><call><name>possible</name><argument_list>()</argument_list></call></expr>;</expr_stmt></block></then></if>
+
+		<comment type="line">// going right</comment>
+		<expr_stmt><expr><call><name>clearRight</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+		<if>if <condition>(<expr><call><name><name>row</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><call><name>possible</name><argument_list>()</argument_list></call></expr>;</expr_stmt></block></then></if>
+		<if>if <condition>(<expr><call><name><name>row</name><operator>.</operator><name>find</name></name><argument_list>(<argument><expr><name>xu</name></expr></argument>)</argument_list></call> <operator>!=</operator> <call><name><name>row</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><call><name>impossible</name><argument_list>()</argument_list></call></expr>;</expr_stmt></block></then></if>
+		<expr_stmt><expr><name>xu</name><operator>++</operator></expr>;</expr_stmt>
+		<if>if <condition>(<expr><name>xu</name> <operator>&gt;</operator> <name>xd</name> <operator>||</operator> <name>yl</name> <operator>&gt;</operator> <name>yr</name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><call><name>possible</name><argument_list>()</argument_list></call></expr>;</expr_stmt></block></then></if>
+
+		<comment type="line">// going down</comment>
+		<expr_stmt><expr><call><name>clearDown</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+		<if>if <condition>(<expr><call><name><name>row</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><call><name>possible</name><argument_list>()</argument_list></call></expr>;</expr_stmt></block></then></if>
+		<if>if <condition>(<expr><call><name><name>col</name><operator>.</operator><name>find</name></name><argument_list>(<argument><expr><name>yr</name></expr></argument>)</argument_list></call> <operator>!=</operator> <call><name><name>col</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><call><name>impossible</name><argument_list>()</argument_list></call></expr>;</expr_stmt></block></then></if>
+		<expr_stmt><expr><name>yr</name><operator>--</operator></expr>;</expr_stmt>
+		<if>if <condition>(<expr><name>xu</name> <operator>&gt;</operator> <name>xd</name> <operator>||</operator> <name>yl</name> <operator>&gt;</operator> <name>yr</name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><call><name>possible</name><argument_list>()</argument_list></call></expr>;</expr_stmt></block></then></if>
+
+		<comment type="line">// going left</comment>
+		<expr_stmt><expr><call><name>clearLeft</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+		<if>if <condition>(<expr><call><name><name>row</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><call><name>possible</name><argument_list>()</argument_list></call></expr>;</expr_stmt></block></then></if>
+		<if>if <condition>(<expr><call><name><name>row</name><operator>.</operator><name>find</name></name><argument_list>(<argument><expr><name>xd</name></expr></argument>)</argument_list></call> <operator>!=</operator> <call><name><name>row</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><call><name>impossible</name><argument_list>()</argument_list></call></expr>;</expr_stmt></block></then></if>
+		<expr_stmt><expr><name>xd</name><operator>--</operator></expr>;</expr_stmt>
+		<if>if <condition>(<expr><name>xu</name> <operator>&gt;</operator> <name>xd</name> <operator>||</operator> <name>yl</name> <operator>&gt;</operator> <name>yr</name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><call><name>possible</name><argument_list>()</argument_list></call></expr>;</expr_stmt></block></then></if>
+
+		<comment type="line">// going up</comment>
+		<expr_stmt><expr><call><name>clearUp</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+		<if>if <condition>(<expr><call><name><name>row</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><call><name>possible</name><argument_list>()</argument_list></call></expr>;</expr_stmt></block></then></if>
+		<if>if <condition>(<expr><call><name><name>col</name><operator>.</operator><name>find</name></name><argument_list>(<argument><expr><name>yl</name></expr></argument>)</argument_list></call> <operator>!=</operator> <call><name><name>col</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><call><name>impossible</name><argument_list>()</argument_list></call></expr>;</expr_stmt></block></then></if>
+		<expr_stmt><expr><name>yl</name><operator>++</operator></expr>;</expr_stmt>
+		<if>if <condition>(<expr><name>xu</name> <operator>&gt;</operator> <name>xd</name> <operator>||</operator> <name>yl</name> <operator>&gt;</operator> <name>yr</name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><call><name>possible</name><argument_list>()</argument_list></call></expr>;</expr_stmt></block></then></if>
+	}</block></while>
+
+	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>

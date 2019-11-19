@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1243/all/29740449_64404595.cpp"><comment type="block">/*input
+99999999999
+*/</comment>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>fastio</name></cpp:macro> <cpp:value>ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>endl</name></cpp:macro> <cpp:value>"\n"</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ll</name></cpp:macro> <cpp:value>long long int</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>vi</name></cpp:macro> <cpp:value>vector&lt;int&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>vll</name></cpp:macro> <cpp:value>vector&lt;ll&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>vvi</name></cpp:macro> <cpp:value>vector &lt; vi &gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pii</name></cpp:macro> <cpp:value>pair&lt;int,int&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pll</name></cpp:macro> <cpp:value>pair&lt;long long, long long&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>mod</name></cpp:macro> <cpp:value>1000000007</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>inf</name></cpp:macro> <cpp:value>1000000000000000001</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>all</name><parameter_list>(<parameter><type><name>c</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>c.begin(),c.end()</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>mp</name><parameter_list>(<parameter><type><name>x</name></type></parameter>,<parameter><type><name>y</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>make_pair(x,y)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>mem</name><parameter_list>(<parameter><type><name>a</name></type></parameter>,<parameter><type><name>val</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>memset(a,val,sizeof(a))</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>eb</name></cpp:macro> <cpp:value>emplace_back</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>f</name></cpp:macro> <cpp:value>first</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>s</name></cpp:macro> <cpp:value>second</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>watch</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>cout &lt;&lt; (#x) &lt;&lt; " is " &lt;&lt; (x) &lt;&lt; endl</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>N</name></cpp:macro> <cpp:value>100002</cpp:value></cpp:define>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<decl_stmt><decl><type><name>ll</name></type> <name>fac</name></decl>;</decl_stmt>
+
+<function><type><name>bool</name></type> <name>is_prime</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>n</name></decl></parameter>)</parameter_list> <block>{
+    <comment type="line">// Assumes that n is a positive natural number</comment>
+    <comment type="line">// We know 1 is not a prime number</comment>
+    <if>if <condition>(<expr><name>n</name> <operator>==</operator> <literal type="number">1</literal></expr>)</condition><then> <block>{
+        <return>return <expr><literal type="boolean">false</literal></expr>;</return>
+    }</block></then></if>
+
+    <decl_stmt><decl><type><name>ll</name></type> <name>i</name> <init>= <expr><literal type="number">2</literal></expr></init></decl>;</decl_stmt>
+    <comment type="line">// This will loop from 2 to int(sqrt(x))</comment>
+    <while>while <condition>(<expr><name>i</name><operator>*</operator><name>i</name> <operator>&lt;=</operator> <name>n</name></expr>)</condition> <block>{
+        <comment type="line">// Check if i divides x without leaving a remainder</comment>
+        <if>if <condition>(<expr><name>n</name> <operator>%</operator> <name>i</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+        	<expr_stmt><expr><name>fac</name><operator>=</operator><name>i</name></expr>;</expr_stmt>
+            <comment type="line">// This means that n has a factor in between 2 and sqrt(n)</comment>
+            <comment type="line">// So it is not a prime number</comment>
+            <return>return <expr><literal type="boolean">false</literal></expr>;</return>
+        }</block></then></if>
+        <expr_stmt><expr><name>i</name><operator>++</operator></expr>;</expr_stmt>
+    }</block></while>
+    <comment type="line">// If we did not find any factor in the above loop,</comment>
+    <comment type="line">// then n is a prime number</comment>
+    <return>return <expr><literal type="boolean">true</literal></expr>;</return>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+	<decl_stmt><decl><type><name>fastio</name>
+	<name>ll</name></type> <name>T</name><init>=<expr><literal type="number">1</literal></expr></init></decl>,<decl><type ref="prev"/><name>n</name></decl>,<decl><type ref="prev"/><name>m</name></decl>;</decl_stmt><decl_stmt><decl><type><name>string</name></type> <name>str</name></decl>;</decl_stmt>
+	<comment type="line">// cin&gt;&gt;T;</comment>
+	<comment type="line">// cin.ignore(); put after cin, just b4 a getline(cin, s) to avoid getline() directly getting \n</comment>
+	<while>while<condition>(<expr><name>T</name><operator>--</operator></expr>)</condition>
+	<block>{
+		<decl_stmt><decl><type><name>ll</name></type> <name>p</name><init>=<expr><literal type="number">0</literal></expr></init></decl>,<decl><type ref="prev"/><name>q</name><init>=<expr><literal type="number">0</literal></expr></init></decl>,<decl><type ref="prev"/><name>tmp</name><init>=<expr><literal type="number">0</literal></expr></init></decl>,<decl><type ref="prev"/><name>sum</name><init>=<expr><literal type="number">0</literal></expr></init></decl>,<decl><type ref="prev"/><name>count</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt> <comment type="line">//tmp variable</comment>
+		<decl_stmt><decl><type><name>int</name></type> <name>flag</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+		
+		<expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>n</name></expr>;</expr_stmt>
+		<expr_stmt><expr><name>tmp</name> <operator>=</operator><name>n</name></expr>;</expr_stmt>
+		<if>if<condition>(<expr><name>n</name><operator>==</operator><literal type="number">1</literal></expr>)</condition><then>
+		<block>{
+			<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="number">1</literal> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+			<return>return <expr><literal type="number">0</literal></expr>;</return>
+		}</block></then></if>
+		<while>while<condition>(<expr><name>n</name><operator>%</operator><literal type="number">2</literal><operator>==</operator><literal type="number">0</literal></expr>)</condition>
+		<block>{
+			<expr_stmt><expr><name>n</name><operator>/=</operator><literal type="number">2</literal></expr>;</expr_stmt>
+			<expr_stmt><expr><name>flag</name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+		}</block></while>
+		<if>if<condition>(<expr><name>n</name><operator>==</operator><literal type="number">1</literal></expr>)</condition><then>
+		<block>{
+			<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="number">2</literal> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+			<return>return <expr><literal type="number">0</literal></expr>;</return>
+		}</block></then>
+		<elseif>else <if>if<condition>(<expr><name>flag</name><operator>==</operator><literal type="number">1</literal></expr>)</condition><then>
+		<block>{
+			<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="number">1</literal> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+			<return>return <expr><literal type="number">0</literal></expr>;</return>
+		}</block></then></if></elseif></if>
+		<if>if<condition>(<expr><call><name>is_prime</name><argument_list>(<argument><expr><name>n</name></expr></argument>)</argument_list></call><operator>==</operator><literal type="boolean">true</literal></expr>)</condition><then>
+		<block>{
+			<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>n</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+			<return>return <expr><literal type="number">0</literal></expr>;</return>
+		}</block></then></if>
+		
+		<if>if<condition>(<expr><call><name>is_prime</name><argument_list>(<argument><expr><name>fac</name></expr></argument>)</argument_list></call><operator>==</operator><literal type="boolean">true</literal></expr>)</condition><then>
+		<block>{
+			<while>while<condition>(<expr><name>n</name><operator>%</operator><name>fac</name><operator>==</operator><literal type="number">0</literal></expr>)</condition>
+			<block>{
+				<expr_stmt><expr><name>n</name><operator>/=</operator><name>fac</name></expr>;</expr_stmt>
+			}</block></while>
+			<if>if<condition>(<expr><name>n</name><operator>==</operator><literal type="number">1</literal></expr>)</condition><then>
+			<block>{
+				<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>fac</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+				<return>return <expr><literal type="number">0</literal></expr>;</return>
+			}</block></then></if>
+		}</block></then></if>
+		<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="number">1</literal> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+		
+	}</block></while>
+	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>

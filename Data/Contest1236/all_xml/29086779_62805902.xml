@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1236/all/29086779_62805902.cpp"><comment type="line">// Standard libraries</comment>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;stdio.h&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;set&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;map&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;utility&gt;</cpp:file></cpp:include>
+
+<comment type="line">// Min, Max, Abs</comment>
+<function><type><name>int</name></type> <name>min2</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>a</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>b</name></decl></parameter>)</parameter_list><block>{ <return>return <expr><ternary><condition><expr><name>a</name><operator>&lt;</operator><name>b</name></expr> ?</condition><then> <expr><name>a</name></expr></then><else>:<expr><name>b</name></expr></else></ternary></expr>;</return>}</block></function>
+<function><type><name>int</name></type> <name>max2</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>a</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>b</name></decl></parameter>)</parameter_list><block>{ <return>return <expr><ternary><condition><expr><name>a</name><operator>&gt;</operator><name>b</name></expr> ?</condition><then> <expr><name>a</name></expr></then><else>:<expr><name>b</name></expr></else></ternary></expr>;</return>}</block></function>
+<function><type><name>int</name></type> <name>abs</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>x</name></decl></parameter>)</parameter_list><block>{ <return>return <expr><ternary><condition><expr><name>x</name><operator>&gt;=</operator><literal type="number">0</literal></expr> ?</condition><then> <expr><name>x</name></expr></then><else>:<expr><operator>-</operator><name>x</name></expr></else></ternary></expr>;</return>}</block></function>
+
+<comment type="line">// End</comment>
+<function><type><name>void</name></type> <name>possible</name><parameter_list>()</parameter_list><block>{ <expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"Yes\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt> <expr_stmt><expr><call><name>exit</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>}</block></function>
+<function><type><name>void</name></type> <name>impossible</name><parameter_list>()</parameter_list><block>{ <expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"No\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt> <expr_stmt><expr><call><name>exit</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>}</block></function>
+
+<comment type="line">// Obstacles</comment>
+<decl_stmt><decl><type><name><name>std</name><operator>::</operator><name><name>map</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>, <argument><expr><name><name>std</name><operator>::</operator><name><name>set</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></name></expr></argument>&gt;</argument_list></name></name></type> <name>obstacles_by_x</name></decl>, <decl><type ref="prev"/><name>obstacles_by_y</name></decl>;</decl_stmt>
+
+<comment type="block">/*
+// Is all empty?
+bool is_all_empty(int xstart, int ystart, int xend, int yend){
+    if(xstart &gt; xend || ystart &gt; yend) return true;
+
+    if(xend-xstart &lt; yend-ystart){ // Look by x
+        for(int x = xstart; x &lt;= xend; x++){
+            auto ptr = obstacles_by_x[x].lower_bound(ystart);
+            if(ptr != obstacles_by_x[x].end() &amp;&amp; *ptr &lt;= yend) return false;
+        }
+    }
+    else{ // Look by y
+        for(int y = ystart; y &lt;= yend; y++){
+            auto ptr = obstacles_by_y[y].lower_bound(xstart);
+            if(ptr != obstacles_by_y[y].end() &amp;&amp; *ptr &lt;= xend) return false;
+        }
+    }
+    return true;
+}
+*/</comment>
+
+<comment type="line">// Find closest impossible place. Assume (x, y) is possible.</comment>
+<function><type><name><name>std</name><operator>::</operator><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>, <argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></name></type> <name>get_obstacle</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>x</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>y</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>direction</name></decl></parameter>)</parameter_list><block>{
+    <if>if<condition>(<expr><name>direction</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then><block>{ <comment type="line">// (x, y) -&gt; (x, y+1)</comment>
+        <return>return <expr><block>{<expr><name>x</name></expr>, <expr><operator>*</operator><name><name>obstacles_by_x</name><index>[<expr><name>x</name></expr>]</index></name><operator>.</operator><macro><name>lower_bound</name><argument_list>(<argument>y</argument>)</argument_list></macro></expr>}</block></expr>;</return>
+    }</block></then>
+    <elseif>else <if>if<condition>(<expr><name>direction</name> <operator>==</operator> <literal type="number">1</literal></expr>)</condition><then><block>{ <comment type="line">// (x, y) -&gt; (x+1, y)</comment>
+        <return>return <expr><block>{<expr><operator>*</operator><name><name>obstacles_by_y</name><index>[<expr><name>y</name></expr>]</index></name><operator>.</operator><call><name>lower_bound</name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call></expr>, <expr><name>y</name></expr>}</block></expr>;</return>
+    }</block></then></if></elseif>
+    <elseif>else <if>if<condition>(<expr><name>direction</name> <operator>==</operator> <literal type="number">2</literal></expr>)</condition><then><block>{ <comment type="line">// (x, y) -&gt; (x, y-1)</comment>
+        <decl_stmt><decl><type><name>auto</name></type> <name>ptr</name> <init>= <expr><name><name>obstacles_by_x</name><index>[<expr><name>x</name></expr>]</index></name><operator>.</operator><call><name>lower_bound</name><argument_list>(<argument><expr><name>y</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><name>ptr</name><operator>--</operator></expr>;</expr_stmt>
+        <return>return <expr><block>{<expr><name>x</name></expr>, <expr><operator>*</operator><name>ptr</name></expr>}</block></expr>;</return>
+    }</block></then></if></elseif>
+    <else>else<block>{ <comment type="line">// (x, y) -&gt; (x-1, y)</comment>
+        <decl_stmt><decl><type><name>auto</name></type> <name>ptr</name> <init>= <expr><name><name>obstacles_by_y</name><index>[<expr><name>y</name></expr>]</index></name><operator>.</operator><call><name>lower_bound</name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><name>ptr</name><operator>--</operator></expr>;</expr_stmt>
+        <return>return <expr><block>{<expr><operator>*</operator><name>ptr</name></expr>, <expr><name>y</name></expr>}</block></expr>;</return>
+    }</block></else></if>
+}</block></function>
+
+<comment type="line">// Main</comment>
+<function><type><name>int</name></type> <name>main</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>argc</name></decl></parameter>, <parameter><decl><type><name>char</name> <modifier>*</modifier><modifier>*</modifier></type><name>argv</name></decl></parameter>)</parameter_list><block>{
+<cpp:ifdef>#<cpp:directive>ifdef</cpp:directive> <name>__McDic__</name></cpp:ifdef> <comment type="line">// Local testing I/O</comment>
+    <expr_stmt><expr><call><name>freopen</name><argument_list>(<argument><expr><literal type="string">"VScode/IO/input.txt"</literal></expr></argument>, <argument><expr><literal type="string">"r"</literal></expr></argument>, <argument><expr><name>stdin</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>freopen</name><argument_list>(<argument><expr><literal type="string">"VScode/IO/output.txt"</literal></expr></argument>, <argument><expr><literal type="string">"w"</literal></expr></argument>, <argument><expr><name>stdout</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+<cpp:endif>#<cpp:directive>endif</cpp:directive></cpp:endif>
+
+    <comment type="line">// Get input</comment>
+    <decl_stmt><decl><type><name>int</name></type> <name>xlimit</name></decl>, <decl><type ref="prev"/><name>ylimit</name></decl>, <decl><type ref="prev"/><name>n_ob</name></decl>;</decl_stmt> <expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%d %d %d"</literal></expr></argument>, <argument><expr><operator>&amp;</operator><name>xlimit</name></expr></argument>, <argument><expr><operator>&amp;</operator><name>ylimit</name></expr></argument>, <argument><expr><operator>&amp;</operator><name>n_ob</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name><operator>&lt;</operator><name>n_ob</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control><block>{
+        <decl_stmt><decl><type><name>int</name></type> <name>x</name></decl>, <decl><type ref="prev"/><name>y</name></decl>;</decl_stmt> <expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%d %d"</literal></expr></argument>, <argument><expr><operator>&amp;</operator><name>x</name></expr></argument>, <argument><expr><operator>&amp;</operator><name>y</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>obstacles_by_x</name><index>[<expr><name>x</name></expr>]</index></name><operator>.</operator><call><name>insert</name><argument_list>(<argument><expr><name>y</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>obstacles_by_y</name><index>[<expr><name>y</name></expr>]</index></name><operator>.</operator><call><name>insert</name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    }</block></for>
+
+    <comment type="line">// End obstacles</comment>
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>x</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</init> <condition><expr><name>x</name><operator>&lt;=</operator><name>xlimit</name></expr>;</condition> <incr><expr><name>x</name><operator>++</operator></expr></incr>)</control><block>{
+        <expr_stmt><expr><name><name>obstacles_by_x</name><index>[<expr><name>x</name></expr>]</index></name><operator>.</operator><call><name>insert</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>obstacles_by_x</name><index>[<expr><name>x</name></expr>]</index></name><operator>.</operator><call><name>insert</name><argument_list>(<argument><expr><name>ylimit</name><operator>+</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    }</block></for>
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>y</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</init> <condition><expr><name>y</name><operator>&lt;=</operator><name>ylimit</name></expr>;</condition> <incr><expr><name>y</name><operator>++</operator></expr></incr>)</control><block>{
+        <expr_stmt><expr><name><name>obstacles_by_y</name><index>[<expr><name>y</name></expr>]</index></name><operator>.</operator><call><name>insert</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>obstacles_by_y</name><index>[<expr><name>y</name></expr>]</index></name><operator>.</operator><call><name>insert</name><argument_list>(<argument><expr><name>xlimit</name><operator>+</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    }</block></for>
+
+    <decl_stmt><decl><type><name>int</name></type> <name>x</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>, <decl><type ref="prev"/><name>y</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>, <decl><type ref="prev"/><name>current_direction</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>long</name> <name>long</name> <name>int</name></type> <name>moved</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>bool</name></type> <name>previous_stopped</name> <init>= <expr><literal type="boolean">false</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>xmin</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>, <decl><type ref="prev"/><name>xmax</name> <init>= <expr><name>xlimit</name></expr></init></decl>, <decl><type ref="prev"/><name>ymin</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>, <decl><type ref="prev"/><name>ymax</name> <init>= <expr><name>ylimit</name></expr></init></decl>;</decl_stmt>
+    <while>while<condition>(<expr><literal type="boolean">true</literal></expr>)</condition><block>{
+        
+        <decl_stmt><decl><type><name>int</name></type> <name>new_x</name></decl>, <decl><type ref="prev"/><name>new_y</name></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name><name>std</name><operator>::</operator><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>, <argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></name></type> <name>blockedposition</name> <init>= <expr><call><name>get_obstacle</name><argument_list>(<argument><expr><name>x</name></expr></argument>, <argument><expr><name>y</name></expr></argument>, <argument><expr><name>current_direction</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <if>if<condition>(<expr><name>current_direction</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then><block>{ <comment type="line">// (x, y) -&gt; (x, y+1)</comment>
+            <expr_stmt><expr><name>new_x</name> <operator>=</operator> <name>x</name></expr><operator>,</operator> <expr><name>new_y</name> <operator>=</operator> <call><name>min2</name><argument_list>(<argument><expr><name>ymax</name></expr></argument>, <argument><expr><name><name>blockedposition</name><operator>.</operator><name>second</name></name> <operator>-</operator> <literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><name>ymax</name> <operator>=</operator> <call><name>min2</name><argument_list>(<argument><expr><name>ymax</name></expr></argument>, <argument><expr><name>new_y</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><name>xmin</name><operator>++</operator></expr>;</expr_stmt>
+        }</block></then>
+        <elseif>else <if>if<condition>(<expr><name>current_direction</name> <operator>==</operator> <literal type="number">1</literal></expr>)</condition><then><block>{ <comment type="line">// (x, y) -&gt; (x+1, y)</comment>
+            <expr_stmt><expr><name>new_x</name> <operator>=</operator> <call><name>min2</name><argument_list>(<argument><expr><name>xmax</name></expr></argument>, <argument><expr><name><name>blockedposition</name><operator>.</operator><name>first</name></name> <operator>-</operator> <literal type="number">1</literal></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><name>new_y</name> <operator>=</operator> <name>y</name></expr>;</expr_stmt>
+            <expr_stmt><expr><name>xmax</name> <operator>=</operator> <call><name>min2</name><argument_list>(<argument><expr><name>xmax</name></expr></argument>, <argument><expr><name>new_x</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><name>ymax</name><operator>--</operator></expr>;</expr_stmt>
+        }</block></then></if></elseif>
+        <elseif>else <if>if<condition>(<expr><name>current_direction</name> <operator>==</operator> <literal type="number">2</literal></expr>)</condition><then><block>{ <comment type="line">// (x, y) -&gt; (x, y-1)</comment>
+            <expr_stmt><expr><name>new_x</name> <operator>=</operator> <name>x</name></expr><operator>,</operator> <expr><name>new_y</name> <operator>=</operator> <call><name>max2</name><argument_list>(<argument><expr><name>ymin</name></expr></argument>, <argument><expr><name><name>blockedposition</name><operator>.</operator><name>second</name></name> <operator>+</operator> <literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><name>ymin</name> <operator>=</operator> <call><name>max2</name><argument_list>(<argument><expr><name>ymin</name></expr></argument>, <argument><expr><name>new_y</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><name>xmax</name><operator>--</operator></expr>;</expr_stmt>
+        }</block></then></if></elseif>
+        <else>else<block>{ <comment type="line">// (x, y) -&gt; (x-1, y)</comment>
+            <expr_stmt><expr><name>new_x</name> <operator>=</operator> <call><name>max2</name><argument_list>(<argument><expr><name>xmin</name></expr></argument>, <argument><expr><name><name>blockedposition</name><operator>.</operator><name>first</name></name> <operator>+</operator> <literal type="number">1</literal></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><name>new_y</name> <operator>=</operator> <name>y</name></expr>;</expr_stmt>
+            <expr_stmt><expr><name>xmin</name> <operator>=</operator> <call><name>max2</name><argument_list>(<argument><expr><name>xmin</name></expr></argument>, <argument><expr><name>new_x</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><name>ymin</name><operator>++</operator></expr>;</expr_stmt>
+        }</block></else></if>
+
+        <comment type="line">//printf("direction %d: (%d, %d) -&gt; (%d, %d)\n", current_direction, x, y, new_x, new_y);</comment>
+        <comment type="line">//printf("  - blocked position (%d, %d)\n", blockedposition.first, blockedposition.second);</comment>
+        <comment type="line">//printf("  - now x range [%d, %d], y range [%d, %d].\n", xmin, xmax, ymin, ymax);</comment>
+        <expr_stmt><expr><name>moved</name> <operator>+=</operator> <call><name>abs</name><argument_list>(<argument><expr><name>x</name> <operator>-</operator> <name>new_x</name></expr></argument>)</argument_list></call> <operator>+</operator> <call><name>abs</name><argument_list>(<argument><expr><name>y</name> <operator>-</operator> <name>new_y</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <if>if<condition>(<expr><name>x</name> <operator>==</operator> <name>new_x</name> <operator>&amp;&amp;</operator> <name>y</name> <operator>==</operator> <name>new_y</name></expr>)</condition><then><block>{
+            <if>if<condition>(<expr><operator>!</operator><name>previous_stopped</name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>previous_stopped</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt></block></then>
+            <else>else <block type="pseudo"><break>break;</break></block></else></if>
+        }</block></then></if>
+        <expr_stmt><expr><name>x</name> <operator>=</operator> <name>new_x</name></expr><operator>,</operator> <expr><name>y</name> <operator>=</operator> <name>new_y</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name>current_direction</name><operator>++</operator></expr>;</expr_stmt> <expr_stmt><expr><name>current_direction</name> <operator>%=</operator> <literal type="number">4</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name>previous_stopped</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+    }</block></while>
+
+    <comment type="line">//printf("moved = %lld\n", moved);</comment>
+
+    <if>if<condition>(<expr><name>moved</name> <operator>+</operator> <name>n_ob</name> <operator>==</operator> <operator>(</operator><name>long</name> <name>long</name> <name>int</name><operator>)</operator><name>xlimit</name> <operator>*</operator> <operator>(</operator><name>long</name> <name>long</name> <name>int</name><operator>)</operator><name>ylimit</name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><call><name>possible</name><argument_list>()</argument_list></call></expr>;</expr_stmt></block></then>
+    <else>else <block type="pseudo"><expr_stmt><expr><call><name>impossible</name><argument_list>()</argument_list></call></expr>;</expr_stmt></block></else></if>
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>

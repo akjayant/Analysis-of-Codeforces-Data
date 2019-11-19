@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1243/all/29784371_64388157.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<comment type="line">//region debugging</comment>
+
+<cpp:ifdef>#<cpp:directive>ifdef</cpp:directive> <name>LOCAL</name></cpp:ifdef>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>"debugging.h"</cpp:file></cpp:include>
+<cpp:else>#<cpp:directive>else</cpp:directive></cpp:else>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>to_string</name><parameter_list>(<parameter><type><modifier>...</modifier></type></parameter>)</parameter_list></cpp:macro> <cpp:value>0</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>debug_out</name><parameter_list>(<parameter><type><modifier>...</modifier></type></parameter>)</parameter_list></cpp:macro> <cpp:value>0</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>debug</name><parameter_list>(<parameter><type><modifier>...</modifier></type></parameter>)</parameter_list></cpp:macro> <cpp:value>0</cpp:value></cpp:define>
+<cpp:endif>#<cpp:directive>endif</cpp:directive></cpp:endif>
+
+<comment type="line">//endregion debugging</comment>
+
+<comment type="line">//region typedef abbreviations</comment>
+
+<using>using <name>pii</name> <init>= <type><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>, <argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type></init>;</using>
+<using>using <name>vi</name> <init>= <type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type></init>;</using>
+<using>using <name>vpii</name> <init>= <type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>, <argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></expr></argument>&gt;</argument_list></name></type></init>;</using>
+<using>using <name>vvi</name> <init>= <type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></expr></argument>&gt;</argument_list></name></type></init>;</using>
+<using>using <name>vvpii</name> <init>= <type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>, <argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></expr></argument>&gt;</argument_list></name></expr></argument>&gt;</argument_list></name></type></init>;</using>
+<using>using <name>ull</name> <init>= <type><name>unsigned</name> <name>long</name> <name>long</name></type></init>;</using>
+<using>using <name>ll</name> <init>= <type><name>long</name> <name>long</name></type></init>;</using>
+<using>using <name>pll</name> <init>= <type><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>long</name> <name>long</name></expr></argument>, <argument><expr><name>long</name> <name>long</name></expr></argument>&gt;</argument_list></name></type></init>;</using>
+<using>using <name>vl</name> <init>= <type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>long</name> <name>long</name></expr></argument>&gt;</argument_list></name></type></init>;</using>
+<using>using <name>vpll</name> <init>= <type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>long</name> <name>long</name></expr></argument>, <argument><expr><name>long</name> <name>long</name></expr></argument>&gt;</argument_list></name></expr></argument>&gt;</argument_list></name></type></init>;</using>
+<using>using <name>vvl</name> <init>= <type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>long</name> <name>long</name></expr></argument>&gt;</argument_list></name></expr></argument>&gt;</argument_list></name></type></init>;</using>
+<using>using <name>vvpll</name> <init>= <type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>long</name> <name>long</name></expr></argument>, <argument><expr><name>long</name> <name>long</name></expr></argument>&gt;</argument_list></name></expr></argument>&gt;</argument_list></name></expr></argument>&gt;</argument_list></name></type></init>;</using>
+
+<comment type="line">//endregion typedef abbreviations</comment>
+
+<comment type="line">// region rep, trav, all, sz</comment>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>REP</name><parameter_list>(<parameter><type><name>i</name></type></parameter>, <parameter><type><name>a</name></type></parameter>, <parameter><type><name>b</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(remove_reference&lt;decltype((b))&gt;::type i = (a); i &lt; (b); ++i)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>TRAV</name><parameter_list>(<parameter><type><name>a</name></type></parameter>, <parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(auto&amp; a : (x))</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ALL</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>begin(x), end(x)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>rep</name><parameter_list>(<parameter><type><name>i</name></type></parameter>, <parameter><type><name>a</name></type></parameter>, <parameter><type><name>b</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(remove_reference&lt;decltype((b))&gt;::type i = (a); i &lt; (b); ++i)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>trav</name><parameter_list>(<parameter><type><name>a</name></type></parameter>, <parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(auto&amp; a : (x))</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>all</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>begin(x), end(x)</cpp:value></cpp:define>
+
+
+<function><template>template<parameter_list>&lt;<parameter><type><name>typename</name></type> <name>T</name></parameter>&gt;</parameter_list></template>
+<type><name>int</name></type> <name>sz</name><parameter_list>(<parameter><decl><type><name>T</name></type> <name>x</name></decl></parameter>)</parameter_list> <block>{
+    <return>return <expr><operator>(</operator><name>int</name><operator>)</operator> <call><name><name>x</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr>;</return>
+}</block></function>
+
+<comment type="line">// endregion rep, trav, all, sz</comment>
+
+<decl_stmt><decl><specifier>constexpr</specifier> <type><name>ll</name></type> <name>MOD</name> <init>= <expr><literal type="number">1</literal><literal type="char">'000'</literal><literal type="number">000</literal><literal type="char">'</literal></expr></init></decl></decl_stmt>000ll + 7;
+
+/**
+ * Author: chilli, SJTU
+ * Date: 2019-04-24
+ * License: CC0
+ * Source: https://github.com/FTRobbin/Dreadnought-Standard-Code-Library
+ * Description: Pollard-rho randomized factorization algorithm. Returns prime
+ * factors of a number, in arbitrary order (e.g. 2299 -&gt; \{11, 19, 11\}).
+ * Time: $O(n^{1/4})$ gcd calls, less for numbers with small factors.
+ */
+
+
+typedef unsigned long long ull;
+typedef long double ld;
+ull mod_mul(ull a, ull b, ull M) {
+    ll ret = a * b - M * ull(ld(a) * ld(b) / ld(M));
+    return ret + M * (ret &lt; 0) - M * (ret &gt;= (ll)M);
+}
+ull mod_pow(ull b, ull e, ull mod) {
+    ull ans = 1;
+    for (; e; b = mod_mul(b, b, mod), e /= 2)
+        if (e &amp; 1) ans = mod_mul(ans, b, mod);
+    return ans;
+}
+
+ull pollard(ull n) {
+    auto f = [n](ull x) { return (mod_mul(x, x, n) + 1) % n; };
+    if (!(n &amp; 1)) return 2;
+    for (ull i = 2;; i++) {
+        ull x = i, y = f(x), p;
+        while ((p = __gcd(n + y - x, n)) == 1)
+            x = f(x), y = f(f(y));
+        if (p != n) return p;
+    }
+}
+
+bool isPrime(ull n) {
+    if (n &lt; 2 || n % 6 % 4 != 1) return n - 2 &lt; 2;
+    ull A[] = {2, 325, 9375, 28178, 450775, 9780504, 1795265022},
+            s = __builtin_ctzll(n-1), d = n &gt;&gt; s;
+    trav(a, A) {   // ^ count trailing zeroes
+        ull p = mod_pow(a, d, n), i = s;
+        while (p != 1 &amp;&amp; p != n - 1 &amp;&amp; a % n &amp;&amp; i--)
+            p = mod_mul(p, p, n);
+        if (p != n-1 &amp;&amp; i != s) return 0;
+    }
+    return 1;
+}
+
+vector&lt;ull&gt; factor(ull n) {
+    if (n == 1) return {};
+    if (isPrime(n)) return {n};
+    ull x = pollard(n);
+    auto l = factor(x), r = factor(n / x);
+    l.insert(l.end(), all(r));
+    return l;
+}
+
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cin.exceptions(cin.failbit);
+
+
+#ifdef LOCAL
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+    freopen("error.txt", "w", stderr);
+#endif
+    ull n;
+    cin &gt;&gt; n;
+    if (n==1) {
+        cout &lt;&lt; 1 &lt;&lt; endl;
+        return 0;
+    }
+    vector&lt;ull&gt; factors;
+    factors = factor(n);
+    debug(factors);
+    ull g = factors[0];
+    for (ull factor: factors) {
+        g = gcd(g, factor);
+    }
+    debug(g);
+    cout &lt;&lt; g &lt;&lt; endl;
+
+    return 0;
+}
+</unit>

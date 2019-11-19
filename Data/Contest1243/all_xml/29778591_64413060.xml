@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1243/all/29778591_64413060.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;ext/pb_ds/tree_policy.hpp&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;ext/pb_ds/assoc_container.hpp&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<using>using <namespace>namespace <name>__gnu_pbds</name>;</namespace></using>
+
+<typedef>typedef <type><name>long</name> <name>long</name></type>   <name>ll</name>;</typedef>
+<typedef>typedef <type><name>long</name> <name>double</name></type> <name>ld</name>;</typedef>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>all</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro>  <cpp:value>(x).begin(), (x).end()</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>sz</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro>   <cpp:value>(x).size()</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pb</name></cpp:macro>      <cpp:value>push_back</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>mp</name></cpp:macro>      <cpp:value>make_pair</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>fr</name></cpp:macro>      <cpp:value>first</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>sc</name></cpp:macro>      <cpp:value>second</cpp:value></cpp:define>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>N</name> <init>= <expr><literal type="number">100</literal> <operator>*</operator> <literal type="number">1000</literal> <operator>+</operator> <literal type="number">5</literal></expr></init></decl>;</decl_stmt>
+
+<decl_stmt><decl><type><name>int</name></type> <name>k</name></decl>, <decl><type ref="prev"/><name><name>n</name><index>[<expr><literal type="number">20</literal></expr>]</index></name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>ll</name></expr></argument>&gt;</argument_list></name></expr></argument>&gt;</argument_list></name></type> <name>elems</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>ll</name></type> <name>oversum</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>, <decl><type ref="prev"/><name><name>colsum</name><index>[<expr><literal type="number">20</literal></expr>]</index></name></decl>, <decl><type ref="prev"/><name>each</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name><name>unordered_map</name><argument_list type="generic">&lt;<argument><expr><name>ll</name></expr></argument>, <argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>cols</name></decl>;</decl_stmt>
+
+<function><type><name>void</name></type> <name>input</name><parameter_list>()</parameter_list> <block>{
+    <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>k</name></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>elems</name><operator>.</operator><name>resize</name></name><argument_list>(<argument><expr><name>k</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>k</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{
+        <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name><name>n</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>elems</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>resize</name><argument_list>(<argument><expr><name><name>n</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <for>for<control>(<init><decl><type><name>int</name></type> <name>j</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>j</name> <operator>&lt;</operator> <name><name>n</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</condition> <incr><expr><name>j</name><operator>++</operator></expr></incr>)</control> <block>{
+            <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name><name>elems</name><index>[<expr><name>i</name></expr>]</index><index>[<expr><name>j</name></expr>]</index></name></expr>;</expr_stmt>
+            <expr_stmt><expr><name><name>cols</name><index>[<expr><name><name>elems</name><index>[<expr><name>i</name></expr>]</index><index>[<expr><name>j</name></expr>]</index></name></expr>]</index></name> <operator>=</operator> <name>i</name></expr>;</expr_stmt>
+            <expr_stmt><expr><name><name>colsum</name><index>[<expr><name>i</name></expr>]</index></name> <operator>+=</operator> <name><name>elems</name><index>[<expr><name>i</name></expr>]</index><index>[<expr><name>j</name></expr>]</index></name></expr>;</expr_stmt>
+            <expr_stmt><expr><name>oversum</name> <operator>+=</operator> <name><name>elems</name><index>[<expr><name>i</name></expr>]</index><index>[<expr><name>j</name></expr>]</index></name></expr>;</expr_stmt>
+        }</block></for>
+    }</block></for>
+}</block></function>
+
+<decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>, <argument><expr><name>ll</name></expr></argument>&gt;</argument_list></name></expr></argument>&gt;</argument_list></name></expr></argument>&gt;</argument_list></name></type> <name>cycles</name></decl>;</decl_stmt>
+
+<function><type><name>void</name></type> <name>simulate</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>ni</name></decl></parameter>, <parameter><decl><type><name>ll</name></type> <name>elem</name></decl></parameter>)</parameter_list> <block>{
+    <decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>ll</name></expr></argument>&gt;</argument_list></name></type> <name>tmpsums</name><argument_list>(<argument><expr><name>colsum</name></expr></argument>, <argument><expr><name>colsum</name> <operator>+</operator> <name>k</name></expr></argument>)</argument_list></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>, <argument><expr><name>ll</name></expr></argument>&gt;</argument_list></name></expr></argument>&gt;</argument_list></name></type> <name>res</name> <argument_list>{}</argument_list></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>res</name><operator>.</operator><name>emplace_back</name></name><argument_list>(<argument><expr><name>ni</name></expr></argument>, <argument><expr><name>elem</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <while>while<condition>(<expr><name><name>tmpsums</name><index>[<expr><name>ni</name></expr>]</index></name> <operator>!=</operator> <name>each</name></expr>)</condition> <block>{
+        <decl_stmt><decl><type><name>ll</name></type> <name>needed</name> <init>= <expr><name>each</name> <operator>-</operator> <operator>(</operator><name><name>tmpsums</name><index>[<expr><name>ni</name></expr>]</index></name> <operator>-</operator> <name>elem</name><operator>)</operator></expr></init></decl>;</decl_stmt>
+        <if>if <condition>(<expr><call><name><name>cols</name><operator>.</operator><name>find</name></name><argument_list>(<argument><expr><name>needed</name></expr></argument>)</argument_list></call> <operator>==</operator> <call><name><name>cols</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call></expr>)</condition><then> <block type="pseudo"><return>return;</return></block></then></if>
+        <decl_stmt><decl><type><name>int</name></type> <name>newni</name> <init>= <expr><name><name>cols</name><index>[<expr><name>needed</name></expr>]</index></name></expr></init></decl>;</decl_stmt>
+        <if>if <condition>(<expr><name><name>tmpsums</name><index>[<expr><name>newni</name></expr>]</index></name> <operator>==</operator> <name>each</name> <operator>||</operator> <name>newni</name> <operator>==</operator> <name>ni</name></expr>)</condition><then> <block type="pseudo"><return>return;</return></block></then></if>
+        <expr_stmt><expr><name><name>tmpsums</name><index>[<expr><name>ni</name></expr>]</index></name> <operator>=</operator> <name>each</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>tmpsums</name><index>[<expr><name>newni</name></expr>]</index></name> <operator>+=</operator> <name>elem</name> <operator>-</operator> <name>needed</name></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>res</name><operator>.</operator><name>emplace_back</name></name><argument_list>(<argument><expr><name>newni</name></expr></argument>, <argument><expr><name>needed</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name>ni</name> <operator>=</operator> <name>newni</name></expr>;</expr_stmt>
+    }</block></while>
+    <comment type="line">// cout &lt;&lt; sz(res) &lt;&lt; endl;</comment>
+    <decl_stmt><decl><type><name>int</name></type> <name>mask</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <for>for<control>(<init><expr><name>auto</name><operator>&amp;</operator> <name>elem</name> <operator>:</operator> <name>res</name></expr></init>)</control> <block>{
+        <expr_stmt><expr><name>mask</name> <operator>|=</operator> <operator>(</operator><literal type="number">1</literal> <operator>&lt;&lt;</operator> <name><name>elem</name><operator>.</operator><name>first</name></name><operator>)</operator></expr>;</expr_stmt>
+    }</block></for>
+    <if>if <condition>(<expr><name><name>cycles</name><index>[<expr><name>mask</name></expr>]</index></name><operator>.</operator><call><name>empty</name><argument_list>()</argument_list></call></expr>)</condition><then> <block>{
+        <expr_stmt><expr><name><name>cycles</name><index>[<expr><name>mask</name></expr>]</index></name> <operator>=</operator> <name>res</name></expr>;</expr_stmt>
+    }</block></then></if>
+}</block></function>
+
+<decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>all_masks</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>bool</name></expr></argument>&gt;</argument_list></name></type> <name>gen</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>last_mask</name></decl>;</decl_stmt>
+
+<function><type><name>void</name></type> <name>solve</name><parameter_list>()</parameter_list> <block>{
+    <if>if <condition>(<expr><call><name>abs</name><argument_list>(<argument><expr><name>oversum</name></expr></argument>)</argument_list></call> <operator>%</operator> <name>k</name> <operator>!=</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+        <expr_stmt><expr><call><name>puts</name><argument_list>(<argument><expr><literal type="string">"No"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <return>return;</return>
+    }</block></then></if>
+    <expr_stmt><expr><name>each</name> <operator>=</operator> <name>oversum</name> <operator>/</operator> <name>k</name></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>cycles</name><operator>.</operator><name>resize</name></name><argument_list>(<argument><expr><operator>(</operator><literal type="number">1</literal> <operator>&lt;&lt;</operator> <name>k</name><operator>)</operator></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>k</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{
+        <for>for<control>(<init><decl><type><name>int</name></type> <name>j</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>j</name> <operator>&lt;</operator> <name><name>n</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</condition> <incr><expr><name>j</name><operator>++</operator></expr></incr>)</control> <block>{
+            <expr_stmt><expr><call><name>simulate</name><argument_list>(<argument><expr><name>i</name></expr></argument>, <argument><expr><name><name>elems</name><index>[<expr><name>i</name></expr>]</index><index>[<expr><name>j</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        }</block></for>
+    }</block></for>
+    <expr_stmt><expr><call><name><name>gen</name><operator>.</operator><name>resize</name></name><argument_list>(<argument><expr><operator>(</operator><literal type="number">1</literal> <operator>&lt;&lt;</operator> <name>k</name><operator>)</operator></expr></argument>, <argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>gen</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>last_mask</name><operator>.</operator><name>resize</name></name><argument_list>(<argument><expr><operator>(</operator><literal type="number">1</literal> <operator>&lt;&lt;</operator> <name>k</name><operator>)</operator></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>mask</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>mask</name> <operator>&lt;</operator> <operator>(</operator><literal type="number">1</literal> <operator>&lt;&lt;</operator> <name>k</name><operator>)</operator></expr>;</condition> <incr><expr><name>mask</name><operator>++</operator></expr></incr>)</control> <block>{
+        <if>if <condition>(<expr><operator>!</operator><name><name>cycles</name><index>[<expr><name>mask</name></expr>]</index></name><operator>.</operator><call><name>empty</name><argument_list>()</argument_list></call></expr>)</condition><then> <block>{
+            <expr_stmt><expr><call><name><name>all_masks</name><operator>.</operator><name>pb</name></name><argument_list>(<argument><expr><name>mask</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <comment type="line">// cout &lt;&lt; "For mask " &lt;&lt; mask &lt;&lt; "\n";</comment>
+            <comment type="line">// for(auto&amp; elem : cycles[mask]) { cout &lt;&lt; elem.fr &lt;&lt; " " &lt;&lt; elem.sc &lt;&lt; "\n"; }</comment>
+        }</block></then></if>
+    }</block></for>
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <operator>(</operator><literal type="number">1</literal> <operator>&lt;&lt;</operator> <name>k</name><operator>)</operator></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{
+        <for>for<control>(<init><decl><type><name>int</name></type> <name>mask</name> <range>: <expr><name>all_masks</name></expr></range></decl></init>)</control> <block>{
+            <if>if <condition>(<expr><operator>(</operator><name>i</name> <operator>&amp;</operator> <name>mask</name><operator>)</operator> <operator>==</operator> <name>mask</name> <operator>&amp;&amp;</operator> <name><name>gen</name><index>[<expr><name>i</name> <operator>^</operator> <name>mask</name></expr>]</index></name></expr>)</condition><then> <block>{
+                <expr_stmt><expr><name><name>gen</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+                <expr_stmt><expr><name><name>last_mask</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <name>mask</name></expr>;</expr_stmt>
+                <break>break;</break>
+            }</block></then></if>
+        }</block></for>
+    }</block></for>
+    <if>if <condition>(<expr><name><name>gen</name><index>[<expr><operator>(</operator><literal type="number">1</literal> <operator>&lt;&lt;</operator> <name>k</name><operator>)</operator> <operator>-</operator> <literal type="number">1</literal></expr>]</index></name></expr>)</condition><then> <block>{
+        <expr_stmt><expr><call><name>puts</name><argument_list>(<argument><expr><literal type="string">"Yes"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <decl_stmt><decl><type><name>int</name></type> <name>msk</name> <init>= <expr><operator>(</operator><literal type="number">1</literal> <operator>&lt;&lt;</operator> <name>k</name><operator>)</operator> <operator>-</operator> <literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>ll</name></expr></argument>, <argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></expr></argument>&gt;</argument_list></name></type> <name>moves</name><argument_list>(<argument><expr><name>k</name></expr></argument>)</argument_list></decl>;</decl_stmt>
+        <while>while<condition>(<expr><name>msk</name> <operator>!=</operator> <literal type="number">0</literal></expr>)</condition> <block>{
+            <comment type="line">// cout &lt;&lt; last_mask[msk] &lt;&lt; " ";</comment>
+            <decl_stmt><decl><type><name>int</name></type> <name>tmp_msk</name> <init>= <expr><name><name>last_mask</name><index>[<expr><name>msk</name></expr>]</index></name></expr></init></decl>;</decl_stmt>
+            <decl_stmt><decl><type><name>int</name></type> <name>ssz</name> <init>= <expr><call><name>sz</name><argument_list>(<argument><expr><name><name>cycles</name><index>[<expr><name>tmp_msk</name></expr>]</index></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>ssz</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{
+                <expr_stmt><expr><name><name>moves</name><index>[<expr><name><name>cycles</name><index>[<expr><name>tmp_msk</name></expr>]</index><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><name>fr</name></expr>]</index></name> <operator>=</operator> <call><name>mp</name><argument_list>(<argument><expr><name><name>cycles</name><index>[<expr><name>tmp_msk</name></expr>]</index><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><name>sc</name></expr></argument>, <argument><expr><name><name>cycles</name><index>[<expr><name>tmp_msk</name></expr>]</index><index>[<expr><operator>(</operator><name>i</name> <operator>-</operator> <literal type="number">1</literal> <operator>+</operator> <name>ssz</name><operator>)</operator> <operator>%</operator> <name>ssz</name></expr>]</index></name><operator>.</operator><name>fr</name> <operator>+</operator> <literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <comment type="line">// cout &lt;&lt; cycles[tmp_msk][i].sc &lt;&lt; " " &lt;&lt; cycles[tmp_msk][(i - 1 + ssz) % ssz].fr + 1 &lt;&lt; endl;</comment>
+            }</block></for>
+            <expr_stmt><expr><name>msk</name> <operator>^=</operator> <name><name>last_mask</name><index>[<expr><name>msk</name></expr>]</index></name></expr>;</expr_stmt>
+        }</block></while>
+        <for>for<control>(<init><expr><name>auto</name><operator>&amp;</operator> <name>elem</name> <operator>:</operator> <name>moves</name></expr></init>)</control> <block>{
+            <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name><name>elem</name><operator>.</operator><name>fr</name></name> <operator>&lt;&lt;</operator> <literal type="string">" "</literal> <operator>&lt;&lt;</operator> <name><name>elem</name><operator>.</operator><name>sc</name></name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+        }</block></for>
+    }</block></then>
+    <else>else <block>{
+        <expr_stmt><expr><call><name>puts</name><argument_list>(<argument><expr><literal type="string">"No"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    }</block></else></if>
+
+
+
+
+
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+    <decl_stmt><decl><type><name>int</name></type> <name>testcases</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <comment type="line">// scanf("%d", &amp;testcases);</comment>
+    <while>while<condition>(<expr><name>testcases</name><operator>--</operator></expr>)</condition> <block>{
+        <expr_stmt><expr><call><name>input</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name>solve</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    }</block></while>
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>

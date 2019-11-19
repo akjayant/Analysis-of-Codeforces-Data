@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1236/all/29081165_62807360.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>modulo</name></cpp:macro> <cpp:value>1000000007</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>mod</name><parameter_list>(<parameter><type><name>mod_x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>((((long long)mod_x+modulo))%modulo)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>Inf</name></cpp:macro> <cpp:value>10000000000000000</cpp:value></cpp:define>
+
+
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list><block>{
+	
+	<decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>n</name></decl>,<decl><type ref="prev"/><name>m</name></decl>,<decl><type ref="prev"/><name>k</name></decl>;</decl_stmt>
+	<expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>n</name><operator>&gt;&gt;</operator><name>m</name><operator>&gt;&gt;</operator><name>k</name></expr>;</expr_stmt>
+	
+	<decl_stmt><decl><type><name><name>map</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>,<argument><expr><name><name>set</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></expr></argument>&gt;</argument_list></name></type> <name>mpx</name></decl>,<decl><type ref="prev"/><name>mpy</name></decl>;</decl_stmt>
+	
+	<for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>k</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control><block>{
+		<decl_stmt><decl><type><name>int</name></type> <name>x</name></decl>,<decl><type ref="prev"/><name>y</name></decl>;</decl_stmt>
+		<expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>x</name><operator>&gt;&gt;</operator><name>y</name></expr>;</expr_stmt>
+		
+		<expr_stmt><expr><name><name>mpx</name><index>[<expr><name>x</name></expr>]</index></name><operator>.</operator><call><name>insert</name><argument_list>(<argument><expr><name>y</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<expr_stmt><expr><name><name>mpy</name><index>[<expr><name>y</name></expr>]</index></name><operator>.</operator><call><name>insert</name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	}</block></for>
+	
+	<decl_stmt><decl><type><name>int</name></type> <name>x</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+	<decl_stmt><decl><type><name>int</name></type> <name>y</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+	<decl_stmt><decl><type><name>int</name></type> <name>l</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>,<decl><type ref="prev"/><name>r</name><init>=<expr><name>m</name><operator>+</operator><literal type="number">1</literal></expr></init></decl>,<decl><type ref="prev"/><name>u</name><init>=<expr><literal type="number">1</literal></expr></init></decl>,<decl><type ref="prev"/><name>d</name><init>=<expr><name>n</name><operator>+</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+	<decl_stmt><decl><type><name>int</name></type> <name>dir</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+	<decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>sum</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+	
+	<for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;</operator><literal type="number">300000</literal></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control><block>{
+		<if>if<condition>(<expr><name>dir</name><operator>==</operator><literal type="number">0</literal></expr>)</condition><then><block>{
+			<if>if<condition>(<expr><call><name><name>mpx</name><operator>.</operator><name>count</name></name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call></expr>)</condition><then><block>{
+				<decl_stmt><decl><type><name>auto</name></type> <name>it</name> <init>= <expr><name><name>mpx</name><index>[<expr><name>x</name></expr>]</index></name><operator>.</operator><call><name>lower_bound</name><argument_list>(<argument><expr><name>y</name><operator>+</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+				<if>if<condition>(<expr><name>it</name><operator>==</operator><name><name>mpx</name><index>[<expr><name>x</name></expr>]</index></name><operator>.</operator><call><name>end</name><argument_list>()</argument_list></call></expr>)</condition><then><block type="pseudo"><goto>goto <name>L1</name>;</goto></block></then></if>
+				<decl_stmt><decl><type><name>int</name></type> <name>a</name> <init>= <expr><operator>*</operator><name>it</name></expr></init></decl>;</decl_stmt>
+				<expr_stmt><expr><name>a</name><operator>--</operator></expr>;</expr_stmt>
+				<if>if<condition>(<expr><name>a</name><operator>&gt;=</operator><name>r</name></expr>)</condition><then><block type="pseudo"><goto>goto <name>L1</name>;</goto></block></then></if>
+				<if>if<condition>(<expr><name>a</name><operator>==</operator><name>y</name></expr>)</condition><then><block type="pseudo"><break>break;</break></block></then></if>
+				<expr_stmt><expr><name>sum</name><operator>+=</operator><name>a</name><operator>-</operator><name>y</name></expr>;</expr_stmt>
+				<expr_stmt><expr><name>y</name><operator>=</operator><name>a</name></expr>;</expr_stmt>
+				
+			}</block></then>
+			<else>else<block>{
+				<label><name>L1</name>:</label>
+				<expr_stmt><expr><name>r</name><operator>--</operator></expr>;</expr_stmt>
+				<if>if<condition>(<expr><name>r</name><operator>==</operator><name>y</name></expr>)</condition><then><block type="pseudo"><break>break;</break></block></then></if>
+				<expr_stmt><expr><name>sum</name><operator>+=</operator><name>r</name><operator>-</operator><name>y</name></expr>;</expr_stmt>
+				<expr_stmt><expr><name>y</name><operator>=</operator><name>r</name></expr>;</expr_stmt>
+			}</block></else></if>
+			<expr_stmt><expr><name>r</name><operator>=</operator><name>y</name></expr>;</expr_stmt>
+			<expr_stmt><expr><name>dir</name><operator>++</operator></expr>;</expr_stmt>
+		}</block></then>
+		<elseif>else <if>if<condition>(<expr><name>dir</name><operator>==</operator><literal type="number">1</literal></expr>)</condition><then><block>{
+			<if>if<condition>(<expr><call><name><name>mpy</name><operator>.</operator><name>count</name></name><argument_list>(<argument><expr><name>y</name></expr></argument>)</argument_list></call></expr>)</condition><then><block>{
+				<decl_stmt><decl><type><name>auto</name></type> <name>it</name> <init>= <expr><name><name>mpy</name><index>[<expr><name>y</name></expr>]</index></name><operator>.</operator><call><name>lower_bound</name><argument_list>(<argument><expr><name>x</name><operator>+</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+				<if>if<condition>(<expr><name>it</name><operator>==</operator><name><name>mpy</name><index>[<expr><name>y</name></expr>]</index></name><operator>.</operator><call><name>end</name><argument_list>()</argument_list></call></expr>)</condition><then><block type="pseudo"><goto>goto <name>L2</name>;</goto></block></then></if>
+				<decl_stmt><decl><type><name>int</name></type> <name>a</name> <init>= <expr><operator>*</operator><name>it</name></expr></init></decl>;</decl_stmt>
+				<expr_stmt><expr><name>a</name><operator>--</operator></expr>;</expr_stmt>
+				<if>if<condition>(<expr><name>a</name><operator>&gt;=</operator><name>d</name></expr>)</condition><then><block type="pseudo"><goto>goto <name>L2</name>;</goto></block></then></if>
+				<if>if<condition>(<expr><name>a</name><operator>==</operator><name>x</name></expr>)</condition><then><block type="pseudo"><break>break;</break></block></then></if>
+				<expr_stmt><expr><name>sum</name><operator>+=</operator><name>a</name><operator>-</operator><name>x</name></expr>;</expr_stmt>
+				<expr_stmt><expr><name>x</name><operator>=</operator><name>a</name></expr>;</expr_stmt>
+			}</block></then>
+			<else>else<block>{
+				<label><name>L2</name>:</label>
+				<expr_stmt><expr><name>d</name><operator>--</operator></expr>;</expr_stmt>
+				<if>if<condition>(<expr><name>d</name><operator>==</operator><name>x</name></expr>)</condition><then><block type="pseudo"><break>break;</break></block></then></if>
+				<expr_stmt><expr><name>sum</name><operator>+=</operator><name>d</name><operator>-</operator><name>x</name></expr>;</expr_stmt>
+				<expr_stmt><expr><name>x</name><operator>=</operator><name>d</name></expr>;</expr_stmt>
+			}</block></else></if>
+			<expr_stmt><expr><name>d</name><operator>=</operator><name>x</name></expr>;</expr_stmt>
+			<expr_stmt><expr><name>dir</name><operator>++</operator></expr>;</expr_stmt>
+		}</block></then></if></elseif>
+		<elseif>else <if>if<condition>(<expr><name>dir</name><operator>==</operator><literal type="number">2</literal></expr>)</condition><then><block>{
+			<if>if<condition>(<expr><call><name><name>mpx</name><operator>.</operator><name>count</name></name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call></expr>)</condition><then><block>{
+				<decl_stmt><decl><type><name>auto</name></type> <name>it</name> <init>= <expr><name><name>mpx</name><index>[<expr><name>x</name></expr>]</index></name><operator>.</operator><call><name>lower_bound</name><argument_list>(<argument><expr><name>y</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+				<if>if<condition>(<expr><name>it</name><operator>==</operator><name><name>mpx</name><index>[<expr><name>x</name></expr>]</index></name><operator>.</operator><call><name>begin</name><argument_list>()</argument_list></call></expr>)</condition><then><block type="pseudo"><goto>goto <name>L3</name>;</goto></block></then></if>
+				<expr_stmt><expr><name>it</name><operator>--</operator></expr>;</expr_stmt>
+				<decl_stmt><decl><type><name>int</name></type> <name>a</name> <init>= <expr><operator>*</operator><name>it</name></expr></init></decl>;</decl_stmt>
+				<expr_stmt><expr><name>a</name><operator>++</operator></expr>;</expr_stmt>
+				<if>if<condition>(<expr><name>a</name><operator>&lt;=</operator><name>l</name></expr>)</condition><then><block type="pseudo"><goto>goto <name>L3</name>;</goto></block></then></if>
+				<if>if<condition>(<expr><name>a</name><operator>==</operator><name>y</name></expr>)</condition><then><block type="pseudo"><break>break;</break></block></then></if>
+				<expr_stmt><expr><name>sum</name><operator>+=</operator><name>y</name><operator>-</operator><name>a</name></expr>;</expr_stmt>
+				<expr_stmt><expr><name>y</name><operator>=</operator><name>a</name></expr>;</expr_stmt>
+				
+			}</block></then>
+			<else>else<block>{
+				<label><name>L3</name>:</label>
+				<expr_stmt><expr><name>l</name><operator>++</operator></expr>;</expr_stmt>
+				<if>if<condition>(<expr><name>l</name><operator>==</operator><name>y</name></expr>)</condition><then><block type="pseudo"><break>break;</break></block></then></if>
+				<expr_stmt><expr><name>sum</name><operator>+=</operator><name>y</name><operator>-</operator><name>l</name></expr>;</expr_stmt>
+				<expr_stmt><expr><name>y</name><operator>=</operator><name>l</name></expr>;</expr_stmt>
+			}</block></else></if>
+			<expr_stmt><expr><name>l</name><operator>=</operator><name>y</name></expr>;</expr_stmt>
+			<expr_stmt><expr><name>dir</name><operator>++</operator></expr>;</expr_stmt>
+		}</block></then></if></elseif>
+		<else>else<block>{
+			<if>if<condition>(<expr><call><name><name>mpy</name><operator>.</operator><name>count</name></name><argument_list>(<argument><expr><name>y</name></expr></argument>)</argument_list></call></expr>)</condition><then><block>{
+				<decl_stmt><decl><type><name>auto</name></type> <name>it</name> <init>= <expr><name><name>mpy</name><index>[<expr><name>y</name></expr>]</index></name><operator>.</operator><call><name>lower_bound</name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+				<if>if<condition>(<expr><name>it</name><operator>==</operator><name><name>mpy</name><index>[<expr><name>y</name></expr>]</index></name><operator>.</operator><call><name>begin</name><argument_list>()</argument_list></call></expr>)</condition><then><block type="pseudo"><goto>goto <name>L4</name>;</goto></block></then></if>
+				<expr_stmt><expr><name>it</name><operator>--</operator></expr>;</expr_stmt>
+				<decl_stmt><decl><type><name>int</name></type> <name>a</name> <init>= <expr><operator>*</operator><name>it</name></expr></init></decl>;</decl_stmt>
+				<expr_stmt><expr><name>a</name><operator>++</operator></expr>;</expr_stmt>
+				<if>if<condition>(<expr><name>a</name><operator>&lt;=</operator><name>u</name></expr>)</condition><then><block type="pseudo"><goto>goto <name>L4</name>;</goto></block></then></if>
+				<if>if<condition>(<expr><name>a</name><operator>==</operator><name>x</name></expr>)</condition><then><block type="pseudo"><break>break;</break></block></then></if>
+				<expr_stmt><expr><name>sum</name><operator>+=</operator><name>x</name><operator>-</operator><name>a</name></expr>;</expr_stmt>
+				<expr_stmt><expr><name>x</name><operator>=</operator><name>a</name></expr>;</expr_stmt>
+			}</block></then>
+			<else>else<block>{
+				<label><name>L4</name>:</label>
+				<expr_stmt><expr><name>u</name><operator>++</operator></expr>;</expr_stmt>
+				<if>if<condition>(<expr><name>u</name><operator>==</operator><name>x</name></expr>)</condition><then><block type="pseudo"><break>break;</break></block></then></if>
+				<expr_stmt><expr><name>sum</name><operator>+=</operator><name>x</name><operator>-</operator><name>u</name></expr>;</expr_stmt>
+				<expr_stmt><expr><name>x</name><operator>=</operator><name>u</name></expr>;</expr_stmt>
+			}</block></else></if>
+			<expr_stmt><expr><name>u</name><operator>=</operator><name>x</name></expr>;</expr_stmt>
+			<expr_stmt><expr><name>dir</name><operator>=</operator><literal type="number">0</literal></expr>;</expr_stmt>
+		}</block></else></if>
+		<comment type="line">//cout&lt;&lt;x&lt;&lt;','&lt;&lt;y&lt;&lt;endl;</comment>
+	}</block></for>
+	
+	
+	<if>if<condition>(<expr><name>n</name><operator>*</operator><name>m</name><operator>==</operator><name>sum</name><operator>+</operator><name>k</name></expr>)</condition><then><block>{
+		<expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><literal type="string">"Yes"</literal><operator>&lt;&lt;</operator><name>endl</name></expr>;</expr_stmt>
+		<return>return <expr><literal type="number">0</literal></expr>;</return>
+	}</block></then></if>
+	
+	<expr_stmt><expr><name>x</name><operator>=</operator><literal type="number">1</literal></expr><operator>,</operator><expr><name>y</name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+	<expr_stmt><expr><name>sum</name><operator>=</operator><literal type="number">1</literal></expr>;</expr_stmt>
+	<expr_stmt><expr><name>d</name><operator>=</operator><name>n</name><operator>+</operator><literal type="number">1</literal></expr>;</expr_stmt>
+	<if>if<condition>(<expr><call><name><name>mpy</name><operator>.</operator><name>count</name></name><argument_list>(<argument><expr><name>y</name></expr></argument>)</argument_list></call></expr>)</condition><then><block>{
+		<decl_stmt><decl><type><name>auto</name></type> <name>it</name> <init>= <expr><name><name>mpy</name><index>[<expr><name>y</name></expr>]</index></name><operator>.</operator><call><name>lower_bound</name><argument_list>(<argument><expr><name>x</name><operator>+</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+		<if>if<condition>(<expr><name>it</name><operator>==</operator><name><name>mpy</name><index>[<expr><name>y</name></expr>]</index></name><operator>.</operator><call><name>end</name><argument_list>()</argument_list></call></expr>)</condition><then><block type="pseudo"><goto>goto <name>L5</name>;</goto></block></then></if>
+		<decl_stmt><decl><type><name>int</name></type> <name>a</name> <init>= <expr><operator>*</operator><name>it</name></expr></init></decl>;</decl_stmt>
+		<expr_stmt><expr><name>a</name><operator>--</operator></expr>;</expr_stmt>
+		<expr_stmt><expr><name>sum</name><operator>+=</operator><name>a</name><operator>-</operator><name>x</name></expr>;</expr_stmt>
+		<expr_stmt><expr><name>x</name><operator>=</operator><name>a</name></expr>;</expr_stmt>
+	}</block></then>
+	<else>else<block>{
+		<label><name>L5</name>:</label>
+		<expr_stmt><expr><name>d</name><operator>--</operator></expr>;</expr_stmt>
+		<expr_stmt><expr><name>sum</name><operator>+=</operator><name>d</name><operator>-</operator><name>x</name></expr>;</expr_stmt>
+		<expr_stmt><expr><name>x</name><operator>=</operator><name>d</name></expr>;</expr_stmt>
+	}</block></else></if>
+	
+	<if>if<condition>(<expr><name>n</name><operator>*</operator><name>m</name><operator>==</operator><name>sum</name><operator>+</operator><name>k</name></expr>)</condition><then><block>{
+		<expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><literal type="string">"Yes"</literal><operator>&lt;&lt;</operator><name>endl</name></expr>;</expr_stmt>
+		<return>return <expr><literal type="number">0</literal></expr>;</return>
+	}</block></then></if>
+	
+	<expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><literal type="string">"No"</literal><operator>&lt;&lt;</operator><name>endl</name></expr>;</expr_stmt>
+
+	
+	
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+
+</unit>

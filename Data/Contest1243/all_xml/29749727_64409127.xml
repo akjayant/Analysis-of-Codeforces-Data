@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1243/all/29749727_64409127.cpp"><comment type="line">// include stdc++.h slows down compilation much.</comment>
+<comment type="line">//#include&lt;bits/stdc++.h&gt;</comment>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;deque&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;assert.h&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdio&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;set&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;map&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;string&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cmath&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstring&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>USE_IOSTREAM</name></cpp:macro> \
+<cpp:value>{\
+	ios::sync_with_stdio(false);\
+	cin.tie(0);\
+	cout.tie(0);\
+}</cpp:value></cpp:define>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pii</name></cpp:macro> <cpp:value>pair&lt;int, int&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>mp</name></cpp:macro> <cpp:value>make_pair</cpp:value></cpp:define>
+
+<typedef>typedef <type><name>long</name> <name>long</name></type> <name>ll</name>;</typedef>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>FAIL_RETURN</name></cpp:macro> \
+<cpp:value>do\
+{\
+    printf("-1\n");\
+    return 0;\
+} while(0);</cpp:value></cpp:define>
+
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+	<comment type="line">// USE_IOSTREAM;</comment>
+	<cpp:ifndef>#<cpp:directive>ifndef</cpp:directive> <name>ONLINE_JUDGE</name></cpp:ifndef>
+	<comment type="line">//freopen("1.txt", "r", stdin);</comment>
+	<cpp:endif>#<cpp:directive>endif</cpp:directive></cpp:endif>
+	
+    <decl_stmt><decl><type><name>ll</name></type> <name>a</name></decl>, <decl><type ref="prev"/><name>org</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>a</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name>org</name> <operator>=</operator> <name>a</name></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>cnt</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>ll</name></type> <name>factor</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>ll</name></type> <name>i</name> <init>= <expr><literal type="number">2</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>*</operator> <name>i</name> <operator>&lt;=</operator> <name>a</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+    <block>{
+        <if>if <condition>(<expr><name>a</name> <operator>%</operator> <name>i</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then>
+        <block>{
+            <expr_stmt><expr><name>cnt</name><operator>++</operator></expr>;</expr_stmt>
+            <expr_stmt><expr><name>factor</name> <operator>=</operator> <name>i</name></expr>;</expr_stmt>
+            <while>while <condition>(<expr><name>a</name> <operator>%</operator> <name>i</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition>
+            <block>{
+                <expr_stmt><expr><name>a</name> <operator>/=</operator> <name>i</name></expr>;</expr_stmt>
+            }</block></while>
+        }</block></then></if>
+    }</block></for>
+
+    <if>if <condition>(<expr><name>a</name> <operator>!=</operator> <literal type="number">1</literal> <operator>&amp;&amp;</operator> <name>a</name> <operator>&lt;</operator> <name>org</name></expr>)</condition><then>
+    <block>{
+        <expr_stmt><expr><name>cnt</name><operator>++</operator></expr>;</expr_stmt>
+    }</block></then></if>
+
+    <decl_stmt><decl><type><name>ll</name></type> <name>ans</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <if>if <condition>(<expr><name>cnt</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then>
+    <block>{
+        <expr_stmt><expr><name>ans</name> <operator>=</operator> <name>org</name></expr>;</expr_stmt>
+    }</block></then>
+    <elseif>else <if>if <condition>(<expr><name>cnt</name> <operator>==</operator> <literal type="number">1</literal></expr>)</condition><then>
+    <block>{
+        <expr_stmt><expr><name>ans</name> <operator>=</operator> <name>factor</name></expr>;</expr_stmt>
+    }</block></then></if></elseif>
+    <else>else
+    <block>{
+        <expr_stmt><expr><name>ans</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+    }</block></else></if>
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>ans</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+	
+	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

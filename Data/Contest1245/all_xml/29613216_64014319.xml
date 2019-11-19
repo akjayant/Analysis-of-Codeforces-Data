@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29613216_64014319.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<namespace>namespace <name>TYC</name>
+<block>{
+	<typedef>typedef <type><name>long</name> <name>long</name></type> <name>ll</name>;</typedef>
+	
+	<decl_stmt><decl><type><name>ll</name></type> <name><name>f</name><index>[<expr><literal type="number">50</literal></expr>]</index><index>[<expr><literal type="number">2</literal></expr>]</index><index>[<expr><literal type="number">2</literal></expr>]</index></name></decl>, <decl><type ref="prev"/><name>A</name></decl>, <decl><type ref="prev"/><name>B</name></decl>;</decl_stmt>
+
+	<function><type><name>ll</name></type> <name>dfs</name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name>int</name></type> <name>len</name></decl></parameter>, <parameter><decl><type><specifier>const</specifier> <name>int</name></type> <name>ca</name></decl></parameter>, <parameter><decl><type><specifier>const</specifier> <name>int</name></type> <name>cb</name></decl></parameter>)</parameter_list>
+	<block>{
+		<if>if <condition>(<expr><name>len</name> <operator>==</operator> <operator>-</operator><literal type="number">1</literal></expr>)</condition><then>
+			<block type="pseudo"><return>return <expr><literal type="number">1</literal></expr>;</return></block></then></if>
+		<decl_stmt><decl><type><name>ll</name> <modifier>&amp;</modifier></type><name>ans</name> <init>= <expr><name><name>f</name><index>[<expr><name>len</name></expr>]</index><index>[<expr><name>ca</name></expr>]</index><index>[<expr><name>cb</name></expr>]</index></name></expr></init></decl>;</decl_stmt>
+		<if>if <condition>(<expr><name>ans</name> <operator>!=</operator> <operator>-</operator><literal type="number">1</literal></expr>)</condition><then>
+			<block type="pseudo"><return>return <expr><name>ans</name></expr>;</return></block></then></if>
+		<expr_stmt><expr><name>ans</name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+		<decl_stmt><decl><type><name>int</name></type> <name>a</name> <init>= <expr><operator>(</operator><name>A</name> <operator>&gt;&gt;</operator> <name>len</name><operator>)</operator> <operator>&amp;</operator> <literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+		<decl_stmt><decl><type><name>int</name></type> <name>b</name> <init>= <expr><operator>(</operator><name>B</name> <operator>&gt;&gt;</operator> <name>len</name><operator>)</operator> <operator>&amp;</operator> <literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+		<if>if <condition>(<expr><operator>!</operator><name>ca</name> <operator>||</operator> <name>a</name></expr>)</condition><then>
+			<block type="pseudo"><expr_stmt><expr><name>ans</name> <operator>+=</operator> <call><name>dfs</name><argument_list>(<argument><expr><name>len</name> <operator>-</operator> <literal type="number">1</literal></expr></argument>, <argument><expr><name>ca</name> <operator>&amp;</operator> <operator>(</operator><name>a</name> <operator>==</operator> <literal type="number">1</literal><operator>)</operator></expr></argument>, <argument><expr><name>cb</name> <operator>&amp;</operator> <operator>(</operator><name>b</name> <operator>==</operator> <literal type="number">0</literal><operator>)</operator></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then></if>
+		<if>if <condition>(<expr><operator>!</operator><name>cb</name> <operator>||</operator> <name>b</name></expr>)</condition><then>
+			<block type="pseudo"><expr_stmt><expr><name>ans</name> <operator>+=</operator> <call><name>dfs</name><argument_list>(<argument><expr><name>len</name> <operator>-</operator> <literal type="number">1</literal></expr></argument>, <argument><expr><name>ca</name> <operator>&amp;</operator> <operator>(</operator><name>a</name> <operator>==</operator> <literal type="number">0</literal><operator>)</operator></expr></argument>, <argument><expr><name>cb</name> <operator>&amp;</operator> <operator>(</operator><name>b</name> <operator>==</operator> <literal type="number">1</literal><operator>)</operator></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then></if>
+		<expr_stmt><expr><name>ans</name> <operator>+=</operator> <call><name>dfs</name><argument_list>(<argument><expr><name>len</name> <operator>-</operator> <literal type="number">1</literal></expr></argument>, <argument><expr><name>ca</name> <operator>&amp;</operator> <operator>(</operator><name>a</name> <operator>==</operator> <literal type="number">0</literal><operator>)</operator></expr></argument>, <argument><expr><name>cb</name> <operator>&amp;</operator> <operator>(</operator><name>b</name> <operator>==</operator> <literal type="number">0</literal><operator>)</operator></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<return>return <expr><name>ans</name></expr>;</return>
+	}</block></function>
+
+	<function><type><name>ll</name></type> <name>solve</name><parameter_list>(<parameter><decl><type><specifier>const</specifier> <name>ll</name></type> <name>a</name></decl></parameter>, <parameter><decl><type><specifier>const</specifier> <name>ll</name></type> <name>b</name></decl></parameter>)</parameter_list>
+	<block>{
+		<if>if <condition>(<expr><name>a</name> <operator>&lt;</operator> <literal type="number">0</literal> <operator>||</operator> <name>b</name> <operator>&lt;</operator> <literal type="number">0</literal></expr>)</condition><then>
+			<block type="pseudo"><return>return <expr><literal type="number">0</literal></expr>;</return></block></then></if>
+		<expr_stmt><expr><name>A</name> <operator>=</operator> <name>a</name></expr><operator>,</operator> <expr><name>B</name> <operator>=</operator> <name>b</name></expr>;</expr_stmt>
+		<expr_stmt><expr><call><name>memset</name><argument_list>(<argument><expr><name>f</name></expr></argument>, <argument><expr><operator>-</operator><literal type="number">1</literal></expr></argument>, <argument><expr><sizeof>sizeof<argument_list>(<argument><expr><name>f</name></expr></argument>)</argument_list></sizeof></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<return>return <expr><call><name>dfs</name><argument_list>(<argument><expr><literal type="number">31</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</return>
+	}</block></function>
+	
+	<function><type><name>void</name></type> <name>work</name><parameter_list>()</parameter_list>
+	<block>{
+		<decl_stmt><decl><type><name>int</name></type> <name>T</name></decl>;</decl_stmt>
+		<decl_stmt><decl><type><name>ll</name></type> <name>L</name></decl>, <decl><type ref="prev"/><name>R</name></decl>;</decl_stmt>
+		<expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%d"</literal></expr></argument>, <argument><expr><operator>&amp;</operator><name>T</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<while>while <condition>(<expr><name>T</name><operator>--</operator></expr>)</condition>
+		<block>{
+			<expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%lld%lld"</literal></expr></argument>, <argument><expr><operator>&amp;</operator><name>L</name></expr></argument>, <argument><expr><operator>&amp;</operator><name>R</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+			<expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"%lld\n"</literal></expr></argument>, <argument><expr><call><name>solve</name><argument_list>(<argument><expr><name>R</name></expr></argument>, <argument><expr><name>R</name></expr></argument>)</argument_list></call> <operator>-</operator> <call><name>solve</name><argument_list>(<argument><expr><name>L</name> <operator>-</operator> <literal type="number">1</literal></expr></argument>, <argument><expr><name>R</name></expr></argument>)</argument_list></call> <operator>*</operator> <literal type="number">2</literal> <operator>+</operator> <call><name>solve</name><argument_list>(<argument><expr><name>L</name> <operator>-</operator> <literal type="number">1</literal></expr></argument>, <argument><expr><name>L</name> <operator>-</operator> <literal type="number">1</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		}</block></while>
+	}</block></function>
+}</block></namespace>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+	<expr_stmt><expr><call><name><name>TYC</name><operator>::</operator><name>work</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>
