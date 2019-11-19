@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1248/all/29151653_62997710.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>fi</name></cpp:macro> <cpp:value>first</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>se</name></cpp:macro> <cpp:value>second</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>sz</name><parameter_list>(<parameter><type><name>a</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>(int)(a).size()</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>all</name><parameter_list>(<parameter><type><name>a</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>(a).begin(), (a).end()</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>reset</name><parameter_list>(<parameter><type><name>a</name></type></parameter>, <parameter><type><name>v</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>memset((a), v, sizeof(a))</cpp:value></cpp:define>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<typedef>typedef <type><name>long</name> <name>long</name></type> <name>ll</name>;</typedef>
+<typedef>typedef <type><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>, <argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>ii</name>;</typedef>
+<typedef>typedef <type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>vi</name>;</typedef>
+<typedef>typedef <type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>ll</name></expr></argument>&gt;</argument_list></name></type> <name>vll</name>;</typedef>
+<typedef>typedef <type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>ii</name></expr></argument>&gt;</argument_list></name></type> <name>vii</name>;</typedef>
+<typedef>typedef <type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>vi</name></expr></argument>&gt;</argument_list></name></type> <name>matrix</name>;</typedef>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>MOD</name> <init>= <expr><operator>(</operator><name>int</name><operator>)</operator><literal type="number">1e9</literal> <operator>+</operator> <literal type="number">7</literal></expr></init></decl>;</decl_stmt>
+
+<decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>, <decl><type ref="prev"/><name>m</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>matrix</name></type> <name>base</name></decl>, <decl><type ref="prev"/><name>identity</name></decl>;</decl_stmt>
+
+<function><type><name>matrix</name></type> <name>matMul</name><parameter_list>(<parameter><decl><type><name>matrix</name></type> <name>A</name></decl></parameter>, <parameter><decl><type><name>matrix</name></type> <name>B</name></decl></parameter>)</parameter_list> <block>{
+	<decl_stmt><decl><type><name>matrix</name></type> <name>ret</name> <init>= <expr><call><name>matrix</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>, <argument><expr><call><name>vi</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+	<for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <literal type="number">2</literal></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block type="pseudo"><expr_stmt><expr><name><name>ret</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <call><name>vi</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></for>
+
+	<for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <literal type="number">2</literal></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{
+		<for>for <control>(<init><decl><type><name>int</name></type> <name>j</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>j</name> <operator>&lt;</operator> <literal type="number">2</literal></expr>;</condition> <incr><expr><name>j</name> <operator>++</operator></expr></incr>)</control> <block>{
+			<for>for <control>(<init><decl><type><name>int</name></type> <name>k</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>k</name> <operator>&lt;</operator> <literal type="number">2</literal></expr>;</condition> <incr><expr><name>k</name><operator>++</operator></expr></incr>)</control> <block>{
+				<expr_stmt><expr><name><name>ret</name><index>[<expr><name>i</name></expr>]</index><index>[<expr><name>j</name></expr>]</index></name> <operator>+=</operator> <operator>(</operator><literal type="number">1ll</literal> <operator>*</operator> <name><name>A</name><index>[<expr><name>i</name></expr>]</index><index>[<expr><name>k</name></expr>]</index></name> <operator>*</operator> <name><name>B</name><index>[<expr><name>k</name></expr>]</index><index>[<expr><name>j</name></expr>]</index></name><operator>)</operator> <operator>%</operator> <name>MOD</name></expr>;</expr_stmt>
+				<expr_stmt><expr><name><name>ret</name><index>[<expr><name>i</name></expr>]</index><index>[<expr><name>j</name></expr>]</index></name> <operator>%=</operator> <name>MOD</name></expr>;</expr_stmt>
+			}</block></for>
+		}</block></for>
+	}</block></for>
+	<return>return <expr><name>ret</name></expr>;</return>
+}</block></function>
+
+<function><type><name>matrix</name></type> <name>matExp</name><parameter_list>(<parameter><decl><type><name>matrix</name></type> <name>base</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>p</name></decl></parameter>)</parameter_list> <block>{
+	<decl_stmt><decl><type><name>matrix</name></type> <name>ret</name> <init>= <expr><name>identity</name></expr></init></decl>;</decl_stmt>
+	<while>while <condition>(<expr><name>p</name></expr>)</condition> <block>{
+		<if>if <condition>(<expr><name>p</name> <operator>&amp;</operator> <literal type="number">1</literal></expr>)</condition><then> <block>{
+			<expr_stmt><expr><name>ret</name> <operator>=</operator> <call><name>matMul</name><argument_list>(<argument><expr><name>ret</name></expr></argument>, <argument><expr><name>base</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		}</block></then></if>
+		<expr_stmt><expr><name>base</name> <operator>=</operator> <call><name>matMul</name><argument_list>(<argument><expr><name>base</name></expr></argument>, <argument><expr><name>base</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<expr_stmt><expr><name>p</name> <operator>&gt;&gt;=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+	}</block></while>
+	<return>return <expr><name>ret</name></expr>;</return>
+}</block></function>
+
+<function><type><name>int</name></type> <name>getNthFibonacci</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>n</name></decl></parameter>)</parameter_list> <block>{
+	<if>if <condition>(<expr><name>n</name> <operator>==</operator> <literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><return>return <expr><literal type="number">1</literal></expr>;</return></block></then></if>
+	<if>if <condition>(<expr><name>n</name> <operator>==</operator> <literal type="number">2</literal></expr>)</condition><then> <block type="pseudo"><return>return <expr><literal type="number">2</literal></expr>;</return></block></then></if>
+
+	<decl_stmt><decl><type><name>matrix</name></type> <name>res</name> <init>= <expr><call><name>matExp</name><argument_list>(<argument><expr><name>base</name></expr></argument>, <argument><expr><name>n</name><operator>-</operator><literal type="number">2</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+	<comment type="line">// for (int i = 0; i &lt; 2; i++) {</comment>
+	<comment type="line">// 	for (int j = 0; j &lt; 2; j++) {</comment>
+	<comment type="line">// 		printf("%d ", res[i][j]);</comment>
+	<comment type="line">// 	}</comment>
+	<comment type="line">// 	printf("\n");</comment>
+	<comment type="line">// }</comment>
+	<return>return <expr><operator>(</operator><literal type="number">1ll</literal><operator>*</operator><name><name>res</name><index>[<expr><literal type="number">1</literal></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>+</operator> <literal type="number">1ll</literal><operator>*</operator><literal type="number">2</literal><operator>*</operator><name><name>res</name><index>[<expr><literal type="number">1</literal></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name><operator>)</operator> <operator>%</operator> <name>MOD</name></expr>;</return>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+	<expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name> <operator>&gt;&gt;</operator> <name>m</name></expr>;</expr_stmt>
+	<expr_stmt><expr><name>base</name> <operator>=</operator> <call><name>matrix</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>, <argument><expr><call><name>vi</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<expr_stmt><expr><name>identity</name> <operator>=</operator> <call><name>matrix</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>, <argument><expr><call><name>vi</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <literal type="number">2</literal></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{
+		<expr_stmt><expr><name><name>base</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <call><name>vi</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<expr_stmt><expr><name><name>identity</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <call><name>vi</name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	}</block></for>
+	<expr_stmt><expr><name><name>base</name><index>[<expr><literal type="number">0</literal></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+	<expr_stmt><expr><name><name>identity</name><index>[<expr><literal type="number">0</literal></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>=</operator> <name><name>identity</name><index>[<expr><literal type="number">1</literal></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+
+	<decl_stmt><decl><type><name>int</name></type> <name>fibN</name> <init>= <expr><call><name>getNthFibonacci</name><argument_list>(<argument><expr><name>n</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+	<decl_stmt><decl><type><name>int</name></type> <name>fibM</name> <init>= <expr><call><name>getNthFibonacci</name><argument_list>(<argument><expr><name>m</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+	<decl_stmt><decl><type><name>int</name></type> <name>diff</name> <init>= <expr><name>fibN</name><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+	<if>if <condition>(<expr><name>diff</name> <operator>&lt;</operator> <literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>diff</name> <operator>+=</operator> <name>MOD</name></expr>;</expr_stmt></block></then></if>
+
+	<decl_stmt><decl><type><name>int</name></type> <name>ans</name> <init>= <expr><operator>(</operator><literal type="number">1ll</literal><operator>*</operator><literal type="number">2</literal><operator>*</operator><operator>(</operator><name>fibM</name> <operator>+</operator> <name>diff</name><operator>)</operator><operator>)</operator> <operator>%</operator> <name>MOD</name></expr></init></decl>;</decl_stmt>
+	<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>ans</name> <operator>&lt;&lt;</operator> <literal type="string">"\n"</literal></expr>;</expr_stmt>
+	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>

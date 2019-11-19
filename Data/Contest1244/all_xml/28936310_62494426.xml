@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1244/all/28936310_62494426.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>int</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<decl_stmt><decl><type><name>int</name></type> <name><name>A</name><index>[<expr><literal type="number">100000</literal></expr>]</index></name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name><name>map</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>, <argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>B</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name><name>diff</name><index>[<expr><literal type="number">99999</literal></expr>]</index></name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name><name>L</name><index>[<expr><literal type="number">100000</literal></expr>]</index></name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name><name>R</name><index>[<expr><literal type="number">100000</literal></expr>]</index></name></decl>;</decl_stmt>
+<function><type><name>int32_t</name></type> <name>main</name><parameter_list>()</parameter_list><block>{
+	<decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>, <decl><type ref="prev"/><name>k</name></decl>;</decl_stmt>
+	<expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name> <operator>&gt;&gt;</operator> <name>k</name></expr>;</expr_stmt>
+	<for>for<control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>n</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control><block>{
+		<expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name><name>A</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt>
+		<expr_stmt><expr><name><name>B</name><index>[<expr><name><name>A</name><index>[<expr><name>i</name></expr>]</index></name></expr>]</index></name><operator>++</operator></expr>;</expr_stmt>
+	}</block></for>
+	<expr_stmt><expr><call><name>sort</name><argument_list>(<argument><expr><name>A</name></expr></argument>, <argument><expr><name>A</name><operator>+</operator><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<for>for<control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>n</name> <operator>-</operator> <literal type="number">1</literal></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control><block>{
+		<expr_stmt><expr><name><name>diff</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <name><name>A</name><index>[<expr><name>i</name><operator>+</operator><literal type="number">1</literal></expr>]</index></name> <operator>-</operator> <name><name>A</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt>
+	}</block></for>
+	<decl_stmt><decl><type><name>int</name></type> <name>L</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+	<decl_stmt><decl><type><name>int</name></type> <name>R</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+	<decl_stmt><decl><type><name>int</name></type> <name>ans</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+	<while>while<condition>(<expr><name>k</name> <operator>&amp;&amp;</operator> <name><name>A</name><index>[<expr><name>L</name></expr>]</index></name> <operator>!=</operator> <name><name>A</name><index>[<expr><name>n</name> <operator>-</operator> <name>R</name> <operator>-</operator> <literal type="number">1</literal></expr>]</index></name></expr>)</condition><block>{
+		<decl_stmt><decl><type><name>int</name></type> <name>L_per_move</name> <init>= <expr><name>L</name> <operator>+</operator> <name><name>B</name><index>[<expr><name><name>A</name><index>[<expr><name>L</name></expr>]</index></name></expr>]</index></name></expr></init></decl>;</decl_stmt>
+		<decl_stmt><decl><type><name>int</name></type> <name>R_per_move</name> <init>= <expr><name>R</name> <operator>+</operator> <name><name>B</name><index>[<expr><name><name>A</name><index>[<expr><name>n</name> <operator>-</operator> <literal type="number">1</literal> <operator>-</operator> <name>R</name></expr>]</index></name></expr>]</index></name></expr></init></decl>;</decl_stmt>
+		<if>if<condition>(<expr><name>L_per_move</name> <operator>&lt;</operator> <name>R_per_move</name></expr>)</condition><then><block>{
+			<if>if<condition>(<expr><name>k</name> <operator>&gt;=</operator> <name>L_per_move</name> <operator>*</operator> <name><name>diff</name><index>[<expr><name>L</name> <operator>+</operator> <name><name>B</name><index>[<expr><name><name>A</name><index>[<expr><name>L</name></expr>]</index></name></expr>]</index></name> <operator>-</operator> <literal type="number">1</literal></expr>]</index></name></expr>)</condition><then><block>{
+				<expr_stmt><expr><name>ans</name> <operator>+=</operator> <name><name>diff</name><index>[<expr><name>L</name> <operator>+</operator> <name><name>B</name><index>[<expr><name><name>A</name><index>[<expr><name>L</name></expr>]</index></name></expr>]</index></name> <operator>-</operator> <literal type="number">1</literal></expr>]</index></name></expr>;</expr_stmt>
+				<expr_stmt><expr><name>k</name> <operator>-=</operator> <name>L_per_move</name> <operator>*</operator> <name><name>diff</name><index>[<expr><name>L</name> <operator>+</operator> <name><name>B</name><index>[<expr><name><name>A</name><index>[<expr><name>L</name></expr>]</index></name></expr>]</index></name> <operator>-</operator> <literal type="number">1</literal></expr>]</index></name></expr>;</expr_stmt>
+			}</block></then><else>else<block>{
+				<expr_stmt><expr><name>ans</name> <operator>+=</operator> <name>k</name> <operator>/</operator> <name>L_per_move</name></expr>;</expr_stmt>
+				<break>break;</break>
+			}</block></else></if>
+			<expr_stmt><expr><name>L</name> <operator>+=</operator> <name><name>B</name><index>[<expr><name><name>A</name><index>[<expr><name>L</name></expr>]</index></name></expr>]</index></name></expr>;</expr_stmt>
+		}</block></then><else>else<block>{
+			<if>if<condition>(<expr><name>k</name> <operator>&gt;=</operator> <name>R_per_move</name> <operator>*</operator> <name><name>diff</name><index>[<expr><name>n</name> <operator>-</operator> <literal type="number">1</literal> <operator>-</operator> <name>R</name> <operator>-</operator> <name><name>B</name><index>[<expr><name><name>A</name><index>[<expr><name>n</name> <operator>-</operator> <literal type="number">1</literal> <operator>-</operator> <name>R</name></expr>]</index></name></expr>]</index></name></expr>]</index></name></expr>)</condition><then><block>{
+				<expr_stmt><expr><name>ans</name> <operator>+=</operator> <name><name>diff</name><index>[<expr><name>n</name> <operator>-</operator> <literal type="number">1</literal> <operator>-</operator> <name>R</name> <operator>-</operator> <name><name>B</name><index>[<expr><name><name>A</name><index>[<expr><name>n</name> <operator>-</operator> <literal type="number">1</literal> <operator>-</operator> <name>R</name></expr>]</index></name></expr>]</index></name></expr>]</index></name></expr>;</expr_stmt>
+				<expr_stmt><expr><name>k</name> <operator>-=</operator> <name>R_per_move</name> <operator>*</operator> <name><name>diff</name><index>[<expr><name>n</name> <operator>-</operator> <literal type="number">1</literal> <operator>-</operator> <name>R</name> <operator>-</operator> <name><name>B</name><index>[<expr><name><name>A</name><index>[<expr><name>n</name> <operator>-</operator> <literal type="number">1</literal> <operator>-</operator> <name>R</name></expr>]</index></name></expr>]</index></name></expr>]</index></name></expr>;</expr_stmt>
+			}</block></then><else>else<block>{
+				<expr_stmt><expr><name>ans</name> <operator>+=</operator> <name>k</name> <operator>/</operator> <name>R_per_move</name></expr>;</expr_stmt>
+				<break>break;</break>
+			}</block></else></if>
+			<expr_stmt><expr><name>R</name> <operator>+=</operator> <name><name>B</name><index>[<expr><name><name>A</name><index>[<expr><name>n</name> <operator>-</operator> <literal type="number">1</literal> <operator>-</operator> <name>R</name></expr>]</index></name></expr>]</index></name></expr>;</expr_stmt>
+		}</block></else></if>
+	}</block></while>
+	<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name><name>A</name><index>[<expr><name>n</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name> <operator>-</operator> <name><name>A</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>-</operator> <name>ans</name></expr>;</expr_stmt>
+}</block></function></unit>

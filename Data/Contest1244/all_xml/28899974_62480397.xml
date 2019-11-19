@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1244/all/28899974_62480397.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<using>using <name>i64</name> <init>= <type><name>long</name> <name>long</name></type></init>;</using>
+<decl_stmt><decl><specifier>constexpr</specifier> <type><name>i64</name></type> <name>INF</name> <init>= <expr><literal type="number">1</literal><literal type="char">'000'</literal><literal type="number">000</literal><literal type="char">'000'</literal><literal type="number">000</literal><literal type="char">'</literal></expr></init></decl></decl_stmt>000;
+
+int main() {
+    std::ios::sync_with_stdio(false); 
+    cin.tie(nullptr);
+
+    int n;
+    cin &gt;&gt; n;
+    vector&lt;vector&lt;int&gt;&gt; c(3, vector&lt;int&gt;(n));
+    for (int j = 0; j &lt; 3; ++j) {
+        for (int i = 0; i &lt; n; ++i) {
+            cin &gt;&gt; c[j][i];
+        }
+    }
+    vector&lt;vector&lt;int&gt;&gt; g(n);
+    for (int i = 0; i &lt; n - 1; ++i) {
+        int u, v;
+        cin &gt;&gt; u &gt;&gt; v;
+        g[u - 1].push_back(v - 1);
+        g[v - 1].push_back(u - 1);
+    }
+    for (int u = 0; u &lt; n; ++u) {
+        if (g[u].size() &gt; 2U) {
+            cout &lt;&lt; -1 &lt;&lt; "\n";
+            return 0;
+        }
+    }
+    int u1 = -1;
+    for (int u = 0; u &lt; n; ++u) {
+        if (g[u].size() == 1U) {
+            u1 = u;
+            break;
+        }
+    }
+    int u2 = g[u1][0];
+    i64 mn = INF;
+    vector&lt;int&gt; res_col;
+    for (int i1 = 0; i1 &lt; 3; ++i1) {
+        for (int i2 = 0; i2 &lt; 3; ++i2) {
+            if (i1 == i2) continue;
+            int uc = u2, ul = u1;
+            vector&lt;int&gt; col(n, 0);
+            col[uc] = i2;
+            col[ul] = i1;
+            while (g[uc].size() == 2U) {
+                int un = g[uc][0];
+                if (un == ul) un = g[uc][1];
+                int cn = 0;
+                if (col[uc] == cn || col[ul] == cn) ++cn;
+                if (col[uc] == cn || col[ul] == cn) ++cn;
+                col[un] = cn;
+                ul = uc;
+                uc = un;
+            }
+            i64 cost = 0;
+            for (int u = 0; u &lt; n; ++u) {
+                cost += c[col[u]][u];
+            }
+            if (cost &lt; mn) {
+                res_col = col;
+                mn = cost;
+            }
+        }
+    }
+    cout &lt;&lt; mn &lt;&lt; "\n";
+    for (int i = 0; i &lt; n; ++i) {
+        cout &lt;&lt; res_col[i] + 1 &lt;&lt; " ";
+    }
+    cout &lt;&lt; "\n";
+
+    /*vector&lt;vector&lt;vector&lt;i64&gt;&gt;&gt; dp(n, vector&lt;vector&lt;i64&gt;&gt;(3,
+                                            vector&lt;i64&gt;(3, INF)));
+    vector&lt;int&gt; vis(n, 0);
+    dfs(0, g, vis, c, dp);
+    i64 res = INF;
+    for (int i1 = 0; i1 &lt; 3; ++i1) {
+        res = min(res, *min_element(begin(dp[0][i1]), end(dp[0][i1])));
+    }
+    cout &lt;&lt; res &lt;&lt; "\n";*/
+
+    return 0;
+}</unit>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1244/all/28910354_62488833.cpp"><cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+
+<decl_stmt><decl><specifier>constexpr</specifier> <type><name>auto</name></type> <name>MAXN</name> <init>= <expr><operator>(</operator><name>int</name><operator>)</operator><literal type="number">1e5</literal><operator>+</operator><literal type="number">50</literal></expr></init></decl>;</decl_stmt>
+
+<decl_stmt><decl><type><name>long</name> <name>long</name></type> <name><name>val</name><index>[<expr><name>MAXN</name></expr>]</index></name></decl>;</decl_stmt>
+
+<function><type><name>signed</name></type> <name>main</name><parameter_list>(<parameter><decl><type><name>void</name></type></decl></parameter>)</parameter_list>
+<block>{
+    <decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>totNums</name></decl>;</decl_stmt> <decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>totOptns</name></decl>;</decl_stmt>
+    
+    <expr_stmt><expr><name><name>std</name><operator>::</operator><name>cin</name></name><operator>&gt;&gt;</operator><name>totNums</name><operator>&gt;&gt;</operator><name>totOptns</name></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>std</name><operator>::</operator><name>for_each</name></name><argument_list>(<argument><expr><name>val</name></expr></argument>,<argument><expr><name>val</name><operator>+</operator><name>totNums</name></expr></argument>,<argument><expr><lambda><capture>[]</capture><parameter_list>(<parameter><decl/></parameter></parameter_list>auto<ref_qualifier>&amp;</ref_qualifier> <name>it</name></lambda></expr></argument>)</argument_list></call><block>{ <expr><name><name>std</name><operator>::</operator><name>cin</name></name><operator>&gt;&gt;</operator><name>it</name></expr>; }</block></expr></expr_stmt>)</block>;</function>
+    <expr_stmt><expr><call><name><name>std</name><operator>::</operator><name>sort</name></name><argument_list>(<argument><expr><name>val</name></expr></argument>,<argument><expr><name>val</name><operator>+</operator><name>totNums</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>cntlft</name><init>=<expr><literal type="number">1</literal></expr></init></decl>,<decl><type ref="prev"/><name>cntrgt</name><init>=<expr><literal type="number">1</literal></expr></init></decl>,<decl><type ref="prev"/><name>gap</name></decl>;</decl_stmt>
+    <while>while<condition>(<expr><name>cntlft</name><operator>+</operator><name>cntrgt</name> <operator>&lt;=</operator> <name>totNums</name></expr>)</condition><block>{
+	<if>if<condition>(<expr><name>cntlft</name> <operator>&lt;</operator> <name>cntrgt</name></expr>)</condition><then><block>{
+	    <expr_stmt><expr><name>gap</name> <operator>=</operator> <name><name>val</name><index>[<expr><name>cntlft</name></expr>]</index></name> <operator>-</operator> <name><name>val</name><index>[<expr><name>cntlft</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name></expr>;</expr_stmt>
+	    <if>if<condition>(<expr><name>totOptns</name><operator>/</operator><name>cntlft</name> <operator>&lt;</operator> <name>gap</name></expr>)</condition><then><block>{
+		<expr_stmt><expr><name><name>val</name><index>[<expr><name>cntlft</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name> <operator>+=</operator> <name>totOptns</name><operator>/</operator><name>cntlft</name></expr>;</expr_stmt>
+		<break>break;</break>
+	    }</block></then></if>
+	    <expr_stmt><expr><name>totOptns</name> <operator>-=</operator> <name>gap</name><operator>*</operator><name>cntlft</name><operator>++</operator></expr>;</expr_stmt>
+	}</block></then> <else>else <block>{
+	    <expr_stmt><expr><name>gap</name> <operator>=</operator> <name><name>val</name><index>[<expr><name>totNums</name><operator>-</operator><name>cntrgt</name></expr>]</index></name> <operator>-</operator> <name><name>val</name><index>[<expr><name>totNums</name><operator>-</operator><name>cntrgt</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name></expr>;</expr_stmt>
+	    <if>if<condition>(<expr><name>totOptns</name><operator>/</operator><name>cntrgt</name> <operator>&lt;</operator> <name>gap</name></expr>)</condition><then><block>{
+		<expr_stmt><expr><name><name>val</name><index>[<expr><name>totNums</name><operator>-</operator><name>cntrgt</name></expr>]</index></name> <operator>-=</operator> <name>totOptns</name><operator>/</operator><name>cntrgt</name></expr>;</expr_stmt>
+		<break>break;</break>
+	    }</block></then></if>
+	    <expr_stmt><expr><name>totOptns</name> <operator>-=</operator> <name>gap</name><operator>*</operator><name>cntrgt</name><operator>++</operator></expr>;</expr_stmt>
+	}</block></else></if>
+    }</block></while>
+
+    <expr_stmt><expr><name><name>std</name><operator>::</operator><name>cout</name></name><operator>&lt;&lt;</operator><name><name>val</name><index>[<expr><name>totNums</name><operator>-</operator><name>cntrgt</name></expr>]</index></name><operator>-</operator><name><name>val</name><index>[<expr><name>cntlft</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name><operator>&lt;&lt;</operator><name><name>std</name><operator>::</operator><name>endl</name></name></expr>;</expr_stmt>
+    
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}
+</unit>

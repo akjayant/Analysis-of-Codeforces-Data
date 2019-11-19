@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1244/all/28935009_62493084.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<typedef>typedef <type><name>long</name> <name>long</name></type> <name>LL</name>;</typedef>
+
+<decl_stmt><decl><type><name>int</name></type> <name>a</name></decl>, <decl><type ref="prev"/><name>b</name></decl>, <decl><type ref="prev"/><name>n</name></decl>, <decl><type ref="prev"/><name>p</name></decl>, <decl><type ref="prev"/><name>d</name></decl>, <decl><type ref="prev"/><name>w</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name><name>indegree</name><index>[<expr><literal type="number">100005</literal></expr>]</index></name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>LL</name></type> <name><name>color</name><index>[<expr><literal type="number">3</literal></expr>]</index><index>[<expr><literal type="number">100005</literal></expr>]</index></name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name><name>rec</name><index>[<expr><literal type="number">100005</literal></expr>]</index></name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name><name>route</name><index>[<expr><literal type="number">100005</literal></expr>]</index><index>[<expr><literal type="number">3</literal></expr>]</index></name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name><name>visit</name><index>[<expr><literal type="number">100005</literal></expr>]</index></name></decl>;</decl_stmt>
+
+
+<function><type><name>LL</name></type> <name>PaintPoint</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>now</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>pre</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>pre_pre</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>pre_pos</name></decl></parameter>)</parameter_list><block>{
+    <decl_stmt><decl><type><name>int</name></type> <name>c</name> <init>= <expr><literal type="number">3</literal> <operator>-</operator> <name>pre</name> <operator>-</operator> <name>pre_pre</name></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>LL</name></type> <name>ret</name> <init>= <expr><name><name>color</name><index>[<expr><name>c</name></expr>]</index><index>[<expr><name>now</name></expr>]</index></name></expr></init></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <literal type="number">2</literal></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control><block>{
+        <if>if <condition>(<expr><name><name>route</name><index>[<expr><name>now</name></expr>]</index><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <operator>-</operator><literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><break>break;</break></block></then></if>
+        <if>if <condition>(<expr><name><name>route</name><index>[<expr><name>now</name></expr>]</index><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <name>pre_pos</name></expr>)</condition><then> <block type="pseudo"><continue>continue;</continue></block></then></if>
+        <expr_stmt><expr><name>ret</name> <operator>+=</operator> <call><name>PaintPoint</name><argument_list>(<argument><expr><name><name>route</name><index>[<expr><name>now</name></expr>]</index><index>[<expr><name>i</name></expr>]</index></name></expr></argument>, <argument><expr><name>c</name></expr></argument>, <argument><expr><name>pre</name></expr></argument>, <argument><expr><name>now</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    }</block></for>
+    <comment type="line">// cout&lt;&lt;now&lt;&lt;' '&lt;&lt;ret&lt;&lt;endl;</comment>
+
+    <return>return <expr><name>ret</name></expr>;</return>
+}</block></function>
+
+<function><type><name>void</name></type> <name>GetAns</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>now</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>pre</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>pre_pre</name></decl></parameter>)</parameter_list><block>{
+    <decl_stmt><decl><type><name>int</name></type> <name>c</name> <init>= <expr><literal type="number">3</literal> <operator>-</operator> <name>pre</name> <operator>-</operator> <name>pre_pre</name></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><name><name>rec</name><index>[<expr><name>now</name></expr>]</index></name> <operator>=</operator> <name>c</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>visit</name><index>[<expr><name>now</name></expr>]</index></name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;</operator><literal type="number">2</literal></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control><block>{
+        <if>if <condition>(<expr><name><name>route</name><index>[<expr><name>now</name></expr>]</index><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <operator>-</operator><literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><break>break;</break></block></then></if>
+        <if>if <condition>(<expr><name><name>visit</name><index>[<expr><name><name>route</name><index>[<expr><name>now</name></expr>]</index><index>[<expr><name>i</name></expr>]</index></name></expr>]</index></name></expr>)</condition><then> <block type="pseudo"><continue>continue;</continue></block></then></if>
+        <expr_stmt><expr><call><name>GetAns</name><argument_list>(<argument><expr><name><name>route</name><index>[<expr><name>now</name></expr>]</index><index>[<expr><name>i</name></expr>]</index></name></expr></argument>, <argument><expr><name>c</name></expr></argument>, <argument><expr><name>pre</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    }</block></for>
+}</block></function>
+
+<function><type><name>LL</name></type> <name>min</name><parameter_list>(<parameter><decl><type><name>LL</name></type> <name>a</name></decl></parameter>, <parameter><decl><type><name>LL</name></type> <name>b</name></decl></parameter>)</parameter_list><block>{
+    <if>if <condition>(<expr><name>a</name><operator>&gt;</operator><name>b</name></expr>)</condition><then>
+        <block type="pseudo"><return>return <expr><name>b</name></expr>;</return></block></then></if>
+    <return>return <expr><name>a</name></expr>;</return>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+    <expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%d"</literal></expr></argument>,<argument><expr><operator>&amp;</operator><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>memset</name><argument_list>(<argument><expr><name>route</name></expr></argument>, <argument><expr><operator>-</operator><literal type="number">1</literal></expr></argument>, <argument><expr><sizeof>sizeof<argument_list>(<argument><expr><name>route</name></expr></argument>)</argument_list></sizeof></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name><operator>&lt;</operator><literal type="number">3</literal></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control><block>{
+        <for>for <control>(<init><decl><type><name>int</name></type> <name>j</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>j</name><operator>&lt;</operator><name>n</name></expr>;</condition> <incr><expr><name>j</name><operator>++</operator></expr></incr>)</control><block>{
+            <expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%I64d"</literal></expr></argument>,<argument><expr><operator>&amp;</operator><name><name>color</name><index>[<expr><name>i</name></expr>]</index><index>[<expr><name>j</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        }</block></for>
+    }</block></for>
+    <decl_stmt><decl><type><name>int</name></type> <name>flag</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>stpos</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</init> <condition><expr><name>i</name><operator>&lt;</operator><name>n</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control><block>{
+        <expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%d%d"</literal></expr></argument>,<argument><expr><operator>&amp;</operator><name>a</name></expr></argument>, <argument><expr><operator>&amp;</operator><name>b</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name>a</name><operator>--</operator></expr>;</expr_stmt>
+        <expr_stmt><expr><name>b</name><operator>--</operator></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>route</name><index>[<expr><name>a</name></expr>]</index><index>[<expr><name><name>indegree</name><index>[<expr><name>a</name></expr>]</index></name></expr>]</index></name> <operator>=</operator> <name>b</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>route</name><index>[<expr><name>b</name></expr>]</index><index>[<expr><name><name>indegree</name><index>[<expr><name>b</name></expr>]</index></name></expr>]</index></name> <operator>=</operator> <name>a</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>indegree</name><index>[<expr><name>a</name></expr>]</index></name><operator>++</operator></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>indegree</name><index>[<expr><name>b</name></expr>]</index></name><operator>++</operator></expr>;</expr_stmt>
+        <if>if <condition>(<expr><name><name>indegree</name><index>[<expr><name>a</name></expr>]</index></name><operator>==</operator><literal type="number">3</literal> <operator>||</operator> <name><name>indegree</name><index>[<expr><name>b</name></expr>]</index></name> <operator>==</operator> <literal type="number">3</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>flag</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt></block></then></if>
+        <if>if <condition>(<expr><name><name>indegree</name><index>[<expr><name>a</name></expr>]</index></name> <operator>==</operator> <literal type="number">2</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>stpos</name> <operator>=</operator> <name>a</name></expr>;</expr_stmt></block></then></if>
+        <if>if <condition>(<expr><name><name>indegree</name><index>[<expr><name>b</name></expr>]</index></name> <operator>==</operator> <literal type="number">2</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>stpos</name> <operator>=</operator> <name>b</name></expr>;</expr_stmt></block></then></if>
+    }</block></for>
+    <if>if <condition>(<expr><name>flag</name></expr>)</condition><then><block>{
+        <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><operator>-</operator><literal type="number">1</literal><operator>&lt;&lt;</operator><name>endl</name></expr>;</expr_stmt>
+        <return>return <expr><literal type="number">0</literal></expr>;</return>
+    }</block></then></if>
+    <comment type="line">// cout&lt;&lt;stpos&lt;&lt;endl;</comment>
+    <decl_stmt><decl><type><name>LL</name></type> <name>ans</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name><operator>&lt;</operator><literal type="number">3</literal></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control><block>{
+        <for>for <control>(<init><decl><type><name>int</name></type> <name>j</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>j</name><operator>&lt;</operator><literal type="number">3</literal></expr>;</condition> <incr><expr><name>j</name><operator>++</operator></expr></incr>)</control><block>{
+            <if>if <condition>(<expr><name>i</name> <operator>==</operator> <name>j</name></expr>)</condition><then> <block type="pseudo"><continue>continue;</continue></block></then></if>
+            <decl_stmt><decl><type><name>int</name></type> <name>k</name> <init>= <expr><literal type="number">3</literal><operator>-</operator><name>i</name><operator>-</operator><name>j</name></expr></init></decl>;</decl_stmt>
+            <decl_stmt><decl><type><name>LL</name></type> <name>tmp</name> <init>= <expr><name><name>color</name><index>[<expr><name>i</name></expr>]</index><index>[<expr><name>stpos</name></expr>]</index></name> <operator>+</operator> <call><name>PaintPoint</name><argument_list>(<argument><expr><name><name>route</name><index>[<expr><name>stpos</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>, <argument><expr><name>i</name></expr></argument>, <argument><expr><name>j</name></expr></argument>, <argument><expr><name>stpos</name></expr></argument>)</argument_list></call> <operator>+</operator> <call><name>PaintPoint</name><argument_list>(<argument><expr><name><name>route</name><index>[<expr><name>stpos</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr></argument>, <argument><expr><name>i</name></expr></argument>, <argument><expr><name>k</name></expr></argument>, <argument><expr><name>stpos</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <comment type="line">// cout&lt;&lt;i&lt;&lt;' '&lt;&lt;tmp&lt;&lt;endl&lt;&lt;endl;</comment>
+            <if>if <condition>(<expr><name>ans</name> <operator>==</operator> <operator>-</operator><literal type="number">1</literal></expr>)</condition><then> <block>{
+                <expr_stmt><expr><name>ans</name> <operator>=</operator> <name>tmp</name></expr>;</expr_stmt>
+                <expr_stmt><expr><name><name>rec</name><index>[<expr><name>stpos</name></expr>]</index></name> <operator>=</operator> <name>i</name></expr>;</expr_stmt>
+                <expr_stmt><expr><name><name>rec</name><index>[<expr><name><name>route</name><index>[<expr><name>stpos</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name> <operator>=</operator> <name>k</name></expr>;</expr_stmt>
+                <expr_stmt><expr><name><name>rec</name><index>[<expr><name><name>route</name><index>[<expr><name>stpos</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name> <operator>=</operator> <name>j</name></expr>;</expr_stmt>
+            }</block></then></if>
+            <if>if <condition>(<expr><name>tmp</name> <operator>&lt;</operator> <name>ans</name></expr>)</condition><then><block>{
+                <expr_stmt><expr><name>ans</name> <operator>=</operator> <name>tmp</name></expr>;</expr_stmt>
+                <expr_stmt><expr><name><name>rec</name><index>[<expr><name>stpos</name></expr>]</index></name> <operator>=</operator> <name>i</name></expr>;</expr_stmt>
+                <expr_stmt><expr><name><name>rec</name><index>[<expr><name><name>route</name><index>[<expr><name>stpos</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name> <operator>=</operator> <name>k</name></expr>;</expr_stmt>
+                <expr_stmt><expr><name><name>rec</name><index>[<expr><name><name>route</name><index>[<expr><name>stpos</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name> <operator>=</operator> <name>j</name></expr>;</expr_stmt>
+            }</block></then></if>
+        }</block></for>
+    }</block></for>
+
+    <expr_stmt><expr><name><name>visit</name><index>[<expr><name>stpos</name></expr>]</index></name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>GetAns</name><argument_list>(<argument><expr><name><name>route</name><index>[<expr><name>stpos</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>, <argument><expr><name><name>rec</name><index>[<expr><name>stpos</name></expr>]</index></name></expr></argument>, <argument><expr><name><name>rec</name><index>[<expr><name><name>route</name><index>[<expr><name>stpos</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>GetAns</name><argument_list>(<argument><expr><name><name>route</name><index>[<expr><name>stpos</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr></argument>, <argument><expr><name><name>rec</name><index>[<expr><name>stpos</name></expr>]</index></name></expr></argument>, <argument><expr><name><name>rec</name><index>[<expr><name><name>route</name><index>[<expr><name>stpos</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><name>ans</name><operator>&lt;&lt;</operator><name>endl</name></expr>;</expr_stmt>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name><operator>&lt;</operator><name>n</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control><block>{
+        <expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"%d "</literal></expr></argument>, <argument><expr><name><name>rec</name><index>[<expr><name>i</name></expr>]</index></name><operator>+</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    }</block></for>
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

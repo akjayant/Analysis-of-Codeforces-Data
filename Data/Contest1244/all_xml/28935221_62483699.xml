@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1244/all/28935221_62483699.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;map&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdio&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cctype&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstring&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cassert&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>R</name></cpp:macro> <cpp:value>register</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ll</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>ll</name></type> <name>k</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name><name>map</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>, <argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>times</name></decl>;</decl_stmt>
+
+<function><template>template <parameter_list>&lt;<parameter><type><name>class</name></type> <name>T</name></parameter>&gt;</parameter_list></template> <specifier>inline</specifier> <type><name>void</name></type> <name>read</name><parameter_list>(<parameter><decl><type><name>T</name> <modifier>&amp;</modifier></type><name>x</name></decl></parameter>)</parameter_list> <block>{
+	<expr_stmt><expr><name>x</name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+	<decl_stmt><decl><type><name>char</name></type> <name>ch</name> <init>= <expr><call><name>getchar</name><argument_list>()</argument_list></call></expr></init></decl>, <decl><type ref="prev"/><name>w</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+	<while>while <condition>(<expr><operator>!</operator><call><name>isdigit</name><argument_list>(<argument><expr><name>ch</name></expr></argument>)</argument_list></call></expr>)</condition> <block type="pseudo"><expr_stmt><expr><name>w</name> <operator>=</operator> <operator>(</operator><name>ch</name> <operator>==</operator> <literal type="char">'-'</literal><operator>)</operator></expr><operator>,</operator> <expr><name>ch</name> <operator>=</operator> <call><name>getchar</name><argument_list>()</argument_list></call></expr>;</expr_stmt></block></while>
+	<while>while <condition>(<expr><call><name>isdigit</name><argument_list>(<argument><expr><name>ch</name></expr></argument>)</argument_list></call></expr>)</condition> <block type="pseudo"><expr_stmt><expr><name>x</name> <operator>=</operator> <operator>(</operator><name>x</name> <operator>&lt;&lt;</operator> <literal type="number">1</literal><operator>)</operator> <operator>+</operator> <operator>(</operator><name>x</name> <operator>&lt;&lt;</operator> <literal type="number">3</literal><operator>)</operator> <operator>+</operator> <operator>(</operator><name>ch</name> <operator>^</operator> <literal type="number">48</literal><operator>)</operator></expr><operator>,</operator> <expr><name>ch</name> <operator>=</operator> <call><name>getchar</name><argument_list>()</argument_list></call></expr>;</expr_stmt></block></while>
+	<expr_stmt><expr><name>x</name> <operator>=</operator> <ternary><condition><expr><name>w</name></expr> ?</condition><then> <expr><operator>-</operator><name>x</name></expr> </then><else>: <expr><name>x</name></expr></else></ternary></expr>;</expr_stmt>
+	<return>return;</return>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+	<decl_stmt><decl><type><name>int</name></type> <name>x</name></decl>;</decl_stmt>
+	<expr_stmt><expr><call><name>read</name><argument_list>(<argument><expr><name>n</name></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><call><name>read</name><argument_list>(<argument><expr><name>k</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<for>for <control>(<init><decl><type><name>R</name> <name>int</name></type> <name>i</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;=</operator> <name>n</name></expr>;</condition> <incr><expr><operator>++</operator><name>i</name></expr></incr>)</control>
+		<block type="pseudo"><expr_stmt><expr><call><name>read</name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call></expr><operator>,</operator> <expr><operator>++</operator><name><name>times</name><index>[<expr><name>x</name></expr>]</index></name></expr>;</expr_stmt></block></for>
+	<while>while <condition>(<expr><name>k</name></expr>)</condition> <block>{
+		<decl_stmt><decl><type><name>auto</name></type> <name>i</name> <init>= <expr><call><name><name>times</name><operator>.</operator><name>begin</name></name><argument_list>()</argument_list></call></expr></init></decl>, <decl><type ref="prev"/><name>j</name> <init>= <expr><call><name>prev</name><argument_list>(<argument><expr><call><name><name>times</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+		<if>if <condition>(<expr><name>i</name> <operator>==</operator> <name>j</name></expr>)</condition><then> <block type="pseudo"><break>break;</break></block></then></if>
+		<if>if <condition>(<expr><name><name>i</name><operator>-&gt;</operator><name>second</name></name> <operator>&lt;=</operator> <name><name>j</name><operator>-&gt;</operator><name>second</name></name></expr>)</condition><then> <block>{
+			<decl_stmt><decl><type><name>auto</name></type> <name>u</name> <init>= <expr><call><name>next</name><argument_list>(<argument><expr><name>i</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+			<decl_stmt><decl><type><name>ll</name></type> <name>del</name> <init>= <expr><name><name>u</name><operator>-&gt;</operator><name>first</name></name> <operator>-</operator> <name><name>i</name><operator>-&gt;</operator><name>first</name></name></expr></init></decl>;</decl_stmt>
+			<if>if <condition>(<expr><name>del</name> <operator>*</operator> <name><name>i</name><operator>-&gt;</operator><name>second</name></name> <operator>&lt;=</operator> <name>k</name></expr>)</condition><then>
+				<block type="pseudo"><expr_stmt><expr><name>k</name> <operator>-=</operator> <name>del</name> <operator>*</operator> <name><name>i</name><operator>-&gt;</operator><name>second</name></name></expr><operator>,</operator> <expr><name><name>u</name><operator>-&gt;</operator><name>second</name></name> <operator>+=</operator> <name><name>i</name><operator>-&gt;</operator><name>second</name></name></expr><operator>,</operator> <expr><call><name><name>times</name><operator>.</operator><name>erase</name></name><argument_list>(<argument><expr><name>i</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then>
+			<else>else <block>{
+				<decl_stmt><decl><type><name>ll</name></type> <name>dis</name> <init>= <expr><name>k</name> <operator>/</operator> <name><name>i</name><operator>-&gt;</operator><name>second</name></name></expr></init></decl>;</decl_stmt>
+				<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name><name>j</name><operator>-&gt;</operator><name>first</name></name> <operator>-</operator> <name><name>i</name><operator>-&gt;</operator><name>first</name></name> <operator>-</operator> <name>dis</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+				<return>return <expr><literal type="number">0</literal></expr>;</return>
+			}</block></else></if>
+		}</block></then>
+		<else>else <block>{
+			<decl_stmt><decl><type><name>auto</name></type> <name>u</name> <init>= <expr><call><name>prev</name><argument_list>(<argument><expr><name>j</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+			<decl_stmt><decl><type><name>ll</name></type> <name>del</name> <init>= <expr><name><name>j</name><operator>-&gt;</operator><name>first</name></name> <operator>-</operator> <name><name>u</name><operator>-&gt;</operator><name>first</name></name></expr></init></decl>;</decl_stmt>
+			<if>if <condition>(<expr><name>del</name> <operator>*</operator> <name><name>j</name><operator>-&gt;</operator><name>second</name></name> <operator>&lt;=</operator> <name>k</name></expr>)</condition><then>
+				<block type="pseudo"><expr_stmt><expr><name>k</name> <operator>-=</operator> <name>del</name> <operator>*</operator> <name><name>j</name><operator>-&gt;</operator><name>second</name></name></expr><operator>,</operator> <expr><name><name>u</name><operator>-&gt;</operator><name>second</name></name> <operator>+=</operator> <name><name>j</name><operator>-&gt;</operator><name>second</name></name></expr><operator>,</operator> <expr><call><name><name>times</name><operator>.</operator><name>erase</name></name><argument_list>(<argument><expr><name>j</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then>
+			<else>else <block>{
+				<decl_stmt><decl><type><name>ll</name></type> <name>dis</name> <init>= <expr><name>k</name> <operator>/</operator> <name><name>j</name><operator>-&gt;</operator><name>second</name></name></expr></init></decl>;</decl_stmt>
+				<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name><name>j</name><operator>-&gt;</operator><name>first</name></name> <operator>-</operator> <name><name>i</name><operator>-&gt;</operator><name>first</name></name> <operator>-</operator> <name>dis</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+				<return>return <expr><literal type="number">0</literal></expr>;</return>
+			}</block></else></if>
+		}</block></else></if>
+	}</block></while>
+	<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="number">0</literal> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>

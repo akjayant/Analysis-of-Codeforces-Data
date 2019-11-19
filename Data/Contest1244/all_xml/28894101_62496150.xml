@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1244/all/28894101_62496150.cpp"><cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pb</name></cpp:macro> <cpp:value>push_back</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ll</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ss</name></cpp:macro> <cpp:value>second</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ff</name></cpp:macro> <cpp:value>first</cpp:value></cpp:define>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>ll</name></type> <name>k</name></decl>,<decl><type ref="prev"/><name><name>a</name><index>[<expr><literal type="number">100010</literal></expr>]</index></name></decl>;</decl_stmt>
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list><block>{
+
+    <comment type="line">//freopen("test.txt","r",stdin);</comment>
+
+    <expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%d %lld"</literal></expr></argument>,<argument><expr><operator>&amp;</operator><name>n</name></expr></argument>,<argument><expr><operator>&amp;</operator><name>k</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;=</operator><name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control><block type="pseudo"><expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%lld"</literal></expr></argument>,<argument><expr><operator>&amp;</operator><name><name>a</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></for>
+    <expr_stmt><expr><call><name>sort</name><argument_list>(<argument><expr><name>a</name><operator>+</operator><literal type="number">1</literal></expr></argument>,<argument><expr><name>a</name><operator>+</operator><name>n</name><operator>+</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <decl_stmt><decl><type><name>ll</name></type> <name>minn</name><init>=<expr><name><name>a</name><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>ll</name></type> <name>maxx</name><init>=<expr><name><name>a</name><index>[<expr><name>n</name></expr>]</index></name></expr></init></decl>;</decl_stmt>
+
+    <decl_stmt><decl><type><name>int</name></type> <name>l</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>r</name><init>=<expr><name>n</name></expr></init></decl>;</decl_stmt>
+    <while>while<condition>(<expr><literal type="number">1</literal></expr>)</condition><block>{
+
+       <if>if<condition>(<expr><name>minn</name><operator>==</operator><name>maxx</name></expr>)</condition><then><block type="pseudo"><break>break;</break></block></then></if>
+
+       <while>while<condition>(<expr><name>minn</name><operator>==</operator><name><name>a</name><index>[<expr><name>l</name><operator>+</operator><literal type="number">1</literal></expr>]</index></name></expr>)</condition><block type="pseudo"><expr_stmt><expr><name>l</name><operator>++</operator></expr>;</expr_stmt></block></while>
+       <while>while<condition>(<expr><name>maxx</name><operator>==</operator><name><name>a</name><index>[<expr><name>r</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name></expr>)</condition><block type="pseudo"><expr_stmt><expr><name>r</name><operator>--</operator></expr>;</expr_stmt></block></while>
+
+       <decl_stmt><decl><type><name>ll</name></type> <name>lcost</name><init>=<expr><name>l</name></expr></init></decl>;</decl_stmt>
+       <decl_stmt><decl><type><name>ll</name></type> <name>rcost</name><init>=<expr><name>n</name><operator>-</operator><name>r</name><operator>+</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+
+       <if>if<condition>(<expr><name>lcost</name><operator>&lt;</operator><name>rcost</name></expr>)</condition><then><block>{
+        <decl_stmt><decl><type><name>ll</name></type> <name>hm</name><init>=<expr><call><name>min</name><argument_list>(<argument><expr><name><name>a</name><index>[<expr><name>l</name><operator>+</operator><literal type="number">1</literal></expr>]</index></name><operator>-</operator><name>minn</name></expr></argument>,<argument><expr><name>k</name><operator>/</operator><name>lcost</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <if>if<condition>(<expr><name>hm</name><operator>==</operator><literal type="number">0</literal></expr>)</condition><then><block type="pseudo"><break>break;</break></block></then></if>
+        <expr_stmt><expr><name>k</name><operator>-=</operator><name>hm</name><operator>*</operator><name>lcost</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name>minn</name><operator>+=</operator><name>hm</name></expr>;</expr_stmt>
+       }</block></then>
+       <else>else<block>{
+        <decl_stmt><decl><type><name>ll</name></type> <name>hm</name><init>=<expr><call><name>min</name><argument_list>(<argument><expr><name>maxx</name><operator>-</operator><name><name>a</name><index>[<expr><name>r</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name></expr></argument>,<argument><expr><name>k</name><operator>/</operator><name>rcost</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <if>if<condition>(<expr><name>hm</name><operator>==</operator><literal type="number">0</literal></expr>)</condition><then><block type="pseudo"><break>break;</break></block></then></if>
+        <expr_stmt><expr><name>k</name><operator>-=</operator><name>hm</name><operator>*</operator><name>rcost</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name>maxx</name><operator>-=</operator><name>hm</name></expr>;</expr_stmt>
+       }</block></else></if>
+
+    }</block></while>
+
+    <expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"%lld\n"</literal></expr></argument>,<argument><expr><name>maxx</name><operator>-</operator><name>minn</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+
+</unit>

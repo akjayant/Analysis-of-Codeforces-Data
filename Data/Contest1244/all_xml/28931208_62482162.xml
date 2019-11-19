@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1244/all/28931208_62482162.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;functional&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;set&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;numeric&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;queue&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;unordered_set&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;string&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<function><type><name>void</name></type> <name>solve</name><parameter_list>()</parameter_list> <block>{
+    <decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name></expr>;</expr_stmt>
+    <decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>color_cnt</name> <init>= <expr><literal type="number">3</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name><name>cost</name><index>[<expr><name>color_cnt</name></expr>]</index></name> <init>= <expr><block>{ <expr><call><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name><argument_list>(<argument><expr><name>n</name></expr></argument>)</argument_list></call></expr>, <expr><call><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name><argument_list>(<argument><expr><name>n</name></expr></argument>)</argument_list></call></expr>, <macro><name>vector</name></macro><expr><operator>&lt;</operator><name>int</name><operator>&gt;</operator><operator>(</operator><name>n</name><operator>)</operator></expr> }</block></expr></init></decl>;</decl_stmt>
+    <for>for <control>(<init><expr><name>auto</name> <operator>&amp;</operator><name>i</name> <operator>:</operator> <name>cost</name></expr></init>)</control> <block>{
+        <for>for <control>(<init><expr><name>auto</name> <operator>&amp;</operator><name>val</name> <operator>:</operator> <name>i</name></expr></init>)</control>
+            <block type="pseudo"><expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>val</name></expr>;</expr_stmt></block></for>
+    }</block></for>
+    <decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></expr></argument>&gt;</argument_list></name></type> <name>g</name><argument_list>(<argument><expr><name>n</name></expr></argument>)</argument_list></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>n</name> <operator>-</operator> <literal type="number">1</literal></expr>;</condition> <incr><expr><operator>++</operator><name>i</name></expr></incr>)</control> <block>{
+        <decl_stmt><decl><type><name>int</name></type> <name>a</name></decl>, <decl><type ref="prev"/><name>b</name></decl>;</decl_stmt>
+        <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>a</name> <operator>&gt;&gt;</operator> <name>b</name></expr>;</expr_stmt>
+        <expr_stmt><expr><operator>--</operator><name>a</name></expr>;</expr_stmt>
+        <expr_stmt><expr><operator>--</operator><name>b</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>g</name><index>[<expr><name>a</name></expr>]</index></name><operator>.</operator><call><name>push_back</name><argument_list>(<argument><expr><name>b</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>g</name><index>[<expr><name>b</name></expr>]</index></name><operator>.</operator><call><name>push_back</name><argument_list>(<argument><expr><name>a</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    }</block></for>
+    <decl_stmt><decl><type><name>int</name></type> <name>root</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>n</name></expr>;</condition> <incr><expr><operator>++</operator><name>i</name></expr></incr>)</control> <block>{
+        <if>if <condition>(<expr><name><name>g</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>size</name><argument_list>()</argument_list></call> <operator>&gt;</operator> <literal type="number">2</literal></expr>)</condition><then> <block>{
+            <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"-1\n"</literal></expr>;</expr_stmt>
+            <return>return;</return>
+        }</block></then> <elseif>else <if>if <condition>(<expr><name><name>g</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>size</name><argument_list>()</argument_list></call> <operator>==</operator> <literal type="number">1</literal></expr>)</condition><then> <block>{
+            <expr_stmt><expr><name>root</name> <operator>=</operator> <name>i</name></expr>;</expr_stmt>
+        }</block></then></if></elseif></if>
+    }</block></for>
+    <decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>path</name></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>path</name><operator>.</operator><name>reserve</name></name><argument_list>(<argument><expr><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>function</name><operator>&lt;</operator><call><name>void</name><argument_list>(<argument><expr><name>int</name></expr></argument>, <argument><expr><name>int</name></expr></argument>)</argument_list></call><operator>&gt;</operator> <name>dfs</name> <operator>=</operator> <lambda><capture>[<argument><modifier>&amp;</modifier></argument>]</capture> <parameter_list>(<parameter><decl><type><name>int</name></type> <name>v</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>anc</name></decl></parameter>)</parameter_list> <block>{
+        <expr_stmt><expr><call><name><name>path</name><operator>.</operator><name>push_back</name></name><argument_list>(<argument><expr><name>v</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <for>for <control>(<init><expr><name>auto</name> <operator>&amp;</operator><name>u</name> <operator>:</operator> <name><name>g</name><index>[<expr><name>v</name></expr>]</index></name></expr></init>)</control> <block>{
+            <if>if <condition>(<expr><name>u</name> <operator>==</operator> <name>anc</name></expr>)</condition><then>
+                <block type="pseudo"><continue>continue;</continue></block></then></if>
+            <expr_stmt><expr><call><name>dfs</name><argument_list>(<argument><expr><name>u</name></expr></argument>, <argument><expr><name>v</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        }</block></for>
+    }</block></lambda></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>dfs</name><argument_list>(<argument><expr><name>root</name></expr></argument>, <argument><expr><operator>-</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name><name>perm</name><index>[]</index></name> <init>= <expr><block>{ <expr><literal type="number">0</literal></expr>, <expr><literal type="number">1</literal></expr>, <expr><literal type="number">2</literal></expr> }</block></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int64_t</name></type> <name>ans</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>color</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>flag</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <do>do <block>{
+        <decl_stmt><decl><type><name>int</name></type> <name>cur</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>int64_t</name></type> <name>tmp</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>tmp_color</name><argument_list>(<argument><expr><name>n</name></expr></argument>)</argument_list></decl>;</decl_stmt>
+        <for>for <control>(<init><expr><name>auto</name> <operator>&amp;</operator><name>u</name> <operator>:</operator> <name>path</name></expr></init>)</control> <block>{
+            <expr_stmt><expr><name><name>tmp_color</name><index>[<expr><name>u</name></expr>]</index></name> <operator>=</operator> <name><name>perm</name><index>[<expr><name>cur</name></expr>]</index></name></expr>;</expr_stmt>
+            <expr_stmt><expr><name>tmp</name> <operator>+=</operator> <name><name>cost</name><index>[<expr><name><name>perm</name><index>[<expr><name>cur</name></expr>]</index></name></expr>]</index><index>[<expr><name>u</name></expr>]</index></name></expr>;</expr_stmt>
+            <if>if <condition>(<expr><name>cur</name> <operator>+</operator> <literal type="number">1</literal> <operator>==</operator> <name>color_cnt</name></expr>)</condition><then>
+                <block type="pseudo"><expr_stmt><expr><name>cur</name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt></block></then>
+            <else>else
+                <block type="pseudo"><expr_stmt><expr><operator>++</operator><name>cur</name></expr>;</expr_stmt></block></else></if>
+        }</block></for>
+        <if>if <condition>(<expr><operator>!</operator><name>flag</name> <operator>||</operator> <name>tmp</name> <operator>&lt;</operator> <name>ans</name></expr>)</condition><then> <block>{
+            <expr_stmt><expr><name>flag</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+            <expr_stmt><expr><name>ans</name> <operator>=</operator> <name>tmp</name></expr>;</expr_stmt>
+            <expr_stmt><expr><name>color</name> <operator>=</operator> <call><name>move</name><argument_list>(<argument><expr><name>tmp_color</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        }</block></then></if>
+    }</block> while <condition>(<expr><call><name>next_permutation</name><argument_list>(<argument><expr><name>perm</name></expr></argument>, <argument><expr><name>perm</name> <operator>+</operator> <name>color_cnt</name></expr></argument>)</argument_list></call></expr>)</condition>;</do>
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>ans</name> <operator>&lt;&lt;</operator> <literal type="char">'\n'</literal></expr>;</expr_stmt>
+    <for>for <control>(<init><expr><name>auto</name> <operator>&amp;</operator><name>c</name> <operator>:</operator> <name>color</name></expr></init>)</control>
+        <block type="pseudo"><expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>c</name> <operator>+</operator> <literal type="number">1</literal> <operator>&lt;&lt;</operator> <literal type="char">' '</literal></expr>;</expr_stmt></block></for>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+    <expr_stmt><expr><call><name><name>ios_base</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>t</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <while>while <condition>(<expr><name>t</name><operator>--</operator></expr>)</condition> <block>{
+        <expr_stmt><expr><call><name>solve</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    }</block></while>
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>

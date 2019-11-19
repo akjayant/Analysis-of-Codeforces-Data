@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1244/all/28936241_62494849.cpp"><cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;cstring&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;cmath&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;cstdio&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>maxn</name></cpp:macro> <cpp:value>101000</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>maxm</name></cpp:macro> <cpp:value>201000</cpp:value></cpp:define>
+<typedef>typedef <type><name>long</name> <name>long</name></type> <name>ll</name>;</typedef>
+<decl_stmt><decl><type><name>ll</name></type> <name><name>a</name><index>[<expr><name>maxn</name></expr>]</index></name></decl>,<decl><type ref="prev"/><name>n</name></decl>,<decl><type ref="prev"/><name>k</name></decl>;</decl_stmt>
+<function><type><name>void</name></type> <name>work</name><parameter_list>()</parameter_list><block>{
+    <expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%lld%lld"</literal></expr></argument>,<argument><expr><operator>&amp;</operator><name>n</name></expr></argument>,<argument><expr><operator>&amp;</operator><name>k</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;=</operator><name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+        <block type="pseudo"><expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%lld"</literal></expr></argument>,<argument><expr><name>a</name><operator>+</operator><name>i</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></for>
+    <expr_stmt><expr><call><name>sort</name><argument_list>(<argument><expr><name>a</name><operator>+</operator><literal type="number">1</literal></expr></argument>,<argument><expr><name>a</name><operator>+</operator><name>n</name><operator>+</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>ll</name></type> <name>l</name><init>=<expr><literal type="number">1</literal></expr></init></decl>,<decl><type ref="prev"/><name>lsize</name><init>=<expr><literal type="number">1</literal></expr></init></decl>,<decl><type ref="prev"/><name>r</name><init>=<expr><name>n</name></expr></init></decl>,<decl><type ref="prev"/><name>rsize</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <while>while<condition>(<expr><name>l</name><operator>&lt;</operator><name>r</name></expr>)</condition><block>{
+        <if>if<condition>(<expr><name>lsize</name><operator>&lt;</operator><name>rsize</name></expr>)</condition><then><block>{
+            <decl_stmt><decl><type><name>ll</name></type> <name>t</name><init>=<expr><name><name>a</name><index>[<expr><name>l</name><operator>+</operator><literal type="number">1</literal></expr>]</index></name><operator>-</operator><name><name>a</name><index>[<expr><name>l</name></expr>]</index></name></expr></init></decl>;</decl_stmt>
+            <if>if<condition>(<expr><name>t</name><operator>*</operator><name>lsize</name><operator>&lt;=</operator><name>k</name></expr>)</condition><then><block>{
+                <expr_stmt><expr><name>k</name><operator>-=</operator><literal type="number">1LL</literal><operator>*</operator><name>t</name><operator>*</operator><name>lsize</name></expr>;</expr_stmt>
+                <expr_stmt><expr><name>l</name><operator>++</operator></expr>;</expr_stmt><expr_stmt><expr><name>lsize</name><operator>++</operator></expr>;</expr_stmt>
+            }</block></then><else>else<block>{
+                <decl_stmt><decl><type><name>ll</name></type> <name>v</name><init>=<expr><name>k</name><operator>/</operator><name>lsize</name></expr></init></decl>;</decl_stmt>
+                <decl_stmt><decl><type><name>ll</name></type> <name>ck</name><init>=<expr><name>k</name><operator>%</operator><name>lsize</name></expr></init></decl>;</decl_stmt>
+                <expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"%lld\n"</literal></expr></argument>,<argument><expr><name><name>a</name><index>[<expr><name>r</name></expr>]</index></name><operator>-</operator><operator>(</operator><name><name>a</name><index>[<expr><name>l</name></expr>]</index></name><operator>+</operator><name>v</name><operator>)</operator></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <return>return;</return>
+            }</block></else></if>
+        }</block></then><else>else<block>{
+            <decl_stmt><decl><type><name>ll</name></type> <name>t</name><init>=<expr><name><name>a</name><index>[<expr><name>r</name></expr>]</index></name><operator>-</operator><name><name>a</name><index>[<expr><name>r</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name></expr></init></decl>;</decl_stmt>
+            <if>if<condition>(<expr><name>t</name><operator>*</operator><name>rsize</name><operator>&lt;=</operator><name>k</name></expr>)</condition><then><block>{
+                <expr_stmt><expr><name>k</name><operator>-=</operator><literal type="number">1LL</literal><operator>*</operator><name>t</name><operator>*</operator><name>rsize</name></expr>;</expr_stmt>
+                <expr_stmt><expr><name>r</name><operator>--</operator></expr>;</expr_stmt><expr_stmt><expr><name>rsize</name><operator>++</operator></expr>;</expr_stmt>
+            }</block></then><else>else<block>{
+                <decl_stmt><decl><type><name>ll</name></type> <name>v</name><init>=<expr><name>k</name><operator>/</operator><name>rsize</name></expr></init></decl>;</decl_stmt>
+                <decl_stmt><decl><type><name>ll</name></type> <name>ck</name><init>=<expr><name>k</name><operator>%</operator><name>rsize</name></expr></init></decl>;</decl_stmt>
+                <expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"%lld\n"</literal></expr></argument>,<argument><expr><name><name>a</name><index>[<expr><name>r</name></expr>]</index></name><operator>-</operator><name>v</name><operator>-</operator><name><name>a</name><index>[<expr><name>l</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <return>return;</return>
+            }</block></else></if>
+        }</block></else></if>
+        <comment type="line">//printf("%lld %lld %lld %lld %lld\n",l,lsize,r,rsize,k);</comment>
+    }</block></while>
+    <expr_stmt><expr><call><name>puts</name><argument_list>(<argument><expr><literal type="string">"0"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+}</block></function>
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list><block>{
+    <decl_stmt><decl><type><name>int</name></type> <name>t</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <while>while<condition>(<expr><name>t</name><operator>--</operator></expr>)</condition><block type="pseudo"><expr_stmt><expr><call><name>work</name><argument_list>()</argument_list></call></expr>;</expr_stmt></block></while>
+}</block></function>
+</unit>

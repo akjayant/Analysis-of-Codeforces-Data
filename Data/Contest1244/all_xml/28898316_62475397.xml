@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1244/all/28898316_62475397.cpp"><cpp:pragma>#<cpp:directive>pragma</cpp:directive> <name>GCC</name> <name>optimize</name><name>(</name><cpp:literal>"Ofast"</cpp:literal><name>)</name></cpp:pragma>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>LL</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define> 
+<typedef>typedef <type><name>long</name> <name>long</name></type> <name>ll</name>;</typedef>
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>N</name><init>=<expr><literal type="number">5e5</literal><operator>+</operator><literal type="number">5</literal></expr></init></decl>;</decl_stmt>
+<function><specifier>inline</specifier> <type><name>int</name></type> <name>read</name><parameter_list>()</parameter_list><block>{
+	<decl_stmt><decl><type><name>int</name></type> <name>s</name><init>=<expr><literal type="number">0</literal></expr></init></decl>,<decl><type ref="prev"/><name>f</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt><decl_stmt><decl><type><name>char</name></type> <name>ch</name><init>=<expr><call><name>getchar</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+	<while>while<condition>(<expr><operator>!</operator><call><name>isdigit</name><argument_list>(<argument><expr><name>ch</name></expr></argument>)</argument_list></call></expr>)</condition><block>{<if>if<condition>(<expr><name>ch</name><operator>==</operator><literal type="char">'-'</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>f</name><operator>=</operator><operator>-</operator><literal type="number">1</literal></expr>;</expr_stmt></block></then></if><expr_stmt><expr><name>ch</name><operator>=</operator><call><name>getchar</name><argument_list>()</argument_list></call></expr>;</expr_stmt>}</block></while>
+	<while>while<condition>(<expr><call><name>isdigit</name><argument_list>(<argument><expr><name>ch</name></expr></argument>)</argument_list></call></expr>)</condition> <block type="pseudo"><expr_stmt><expr><name>s</name><operator>=</operator><name>s</name><operator>*</operator><literal type="number">10</literal><operator>+</operator><name>ch</name><operator>-</operator><literal type="char">'0'</literal></expr><operator>,</operator><expr><name>ch</name><operator>=</operator><call><name>getchar</name><argument_list>()</argument_list></call></expr>;</expr_stmt></block></while>
+	<return>return <expr><name>s</name><operator>*</operator><name>f</name></expr>;</return>
+}</block></function>
+<typedef>typedef <type><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>,<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>pii</name>;</typedef>
+<decl_stmt><decl><type><name>ll</name></type> <name>n</name></decl>,<decl><type ref="prev"/><name>p</name></decl>,<decl><type ref="prev"/><name>w</name></decl>,<decl><type ref="prev"/><name>d</name></decl>;</decl_stmt>
+<function><specifier>inline</specifier> <type><name>ll</name></type> <name>gcd</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>x</name></decl></parameter>,<parameter><decl><type><name>ll</name></type> <name>y</name></decl></parameter>)</parameter_list><block>{
+	<return>return <expr><ternary><condition><expr><operator>!</operator><name>y</name></expr>?</condition><then><expr><name>x</name></expr></then><else>:<expr><call><name>gcd</name><argument_list>(<argument><expr><name>y</name></expr></argument>,<argument><expr><name>x</name><operator>%</operator><name>y</name></expr></argument>)</argument_list></call></expr></else></ternary></expr>;</return>
+}</block></function>
+
+<comment type="block">/*LL e_gcd(LL a,LL b,LL &amp;x,LL &amp;y)
+{
+    if(b==0){
+        x=1;
+        y=0;
+        return a;
+    }
+    LL ans=e_gcd(b,a%b,x,y);
+    LL tmp=x;
+    x=y;
+    y=tmp-a/b*y;
+    return ans;
+}
+void cal(LL a,LL b,LL c)
+{
+    LL x,y;
+    LL gcd=e_gcd(a,b,x,y);
+    if(c%gcd!=0) {
+    	puts("-1");
+    	return;	
+    }
+    x*=c/gcd;b/=gcd;
+    if(b&lt;0) b=-b;
+    LL ans=x%b;
+    if(ans&lt;0) ans+=b;
+   	LL t=(p-ans*d)/w;
+   	if(t&lt;0||t*w+ans*d!=p||t+ans&gt;n) puts("-1");
+   	else cout&lt;&lt;t&lt;&lt;' '&lt;&lt;ans&lt;&lt;' '&lt;&lt;n-ans-t;
+}*/</comment>
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list><block>{
+	<expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>n</name><operator>&gt;&gt;</operator><name>p</name><operator>&gt;&gt;</operator><name>w</name><operator>&gt;&gt;</operator><name>d</name></expr>;</expr_stmt>
+	<decl_stmt><decl><type><name>ll</name></type> <name>x</name><init>=<expr><name>p</name><operator>/</operator><name>w</name></expr></init></decl>,<decl><type ref="prev"/><name>y</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+	<for>for<control>(<init>;</init><condition><expr><name>x</name><operator>&gt;=</operator><operator>(</operator><name>p</name><operator>/</operator><name>w</name><operator>)</operator><operator>-</operator><name>d</name><operator>-</operator><literal type="number">100000</literal><operator>&amp;&amp;</operator><name>x</name><operator>&gt;=</operator><literal type="number">0</literal></expr>;</condition><incr><expr><name>x</name><operator>--</operator></expr></incr>)</control><block>{
+		<if>if<condition>(<expr><operator>(</operator><name>p</name><operator>-</operator><name>w</name><operator>*</operator><name>x</name><operator>)</operator><operator>%</operator><name>d</name><operator>==</operator><literal type="number">0</literal></expr>)</condition><then> <block>{
+			<expr_stmt><expr><name>y</name><operator>=</operator><operator>(</operator><name>p</name><operator>-</operator><name>w</name><operator>*</operator><name>x</name><operator>)</operator><operator>/</operator><name>d</name></expr>;</expr_stmt>
+			<if>if<condition>(<expr><name>x</name><operator>+</operator><name>y</name><operator>&gt;</operator><name>n</name></expr>)</condition><then> <block>{<expr_stmt><expr><call><name>puts</name><argument_list>(<argument><expr><literal type="string">"-1"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt><return>return <expr><literal type="number">0</literal></expr>;</return>}</block></then></if>
+			<expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><name>x</name><operator>&lt;&lt;</operator><literal type="char">' '</literal><operator>&lt;&lt;</operator><name>y</name><operator>&lt;&lt;</operator><literal type="char">' '</literal><operator>&lt;&lt;</operator><name>n</name><operator>-</operator><name>x</name><operator>-</operator><name>y</name></expr>;</expr_stmt>
+			<return>return <expr><literal type="number">0</literal></expr>;</return>
+		}</block></then></if>
+	}</block></for>
+	<expr_stmt><expr><call><name>puts</name><argument_list>(<argument><expr><literal type="string">"-1"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function> </unit>

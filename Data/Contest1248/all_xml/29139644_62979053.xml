@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1248/all/29139644_62979053.cpp"><comment type="line">//</comment>
+<comment type="line">// Devshoo / Indigo203</comment>
+<comment type="line">// The problem is about counting the number of some combinatoric objects. Thus, dynamic programming is always the answer.</comment>
+
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdio&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;string&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstring&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdlib&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cmath&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;ctime&gt;</cpp:file></cpp:include>
+
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;set&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;stack&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;queue&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cctype&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;functional&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;map&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<typedef>typedef <type><name>long</name> <name>long</name></type> <name>ll</name>;</typedef>
+<typedef>typedef <type><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>ll</name></expr></argument>, <argument><expr><name>ll</name></expr></argument>&gt;</argument_list></name></type> <name>pii</name>;</typedef>
+
+<cpp:ifndef>#<cpp:directive>ifndef</cpp:directive> <name>MACRO_UNUSE</name></cpp:ifndef>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>F</name></cpp:macro> <cpp:value>"%lld"</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>rd</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>scanf(F, &amp;(x))</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>rd2</name><parameter_list>(<parameter><type><name>x</name></type></parameter>, <parameter><type><name>y</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>scanf(F F, &amp;x, &amp;y)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>rd3</name><parameter_list>(<parameter><type><name>x</name></type></parameter>, <parameter><type><name>y</name></type></parameter>, <parameter><type><name>z</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>scanf(F F F, &amp;x, &amp;y, &amp;z)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>rds</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>scanf("%s", x)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pt</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>printf(F "\n", x)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>df</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>ll x; rd(x)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>df2</name><parameter_list>(<parameter><type><name>x</name></type></parameter>, <parameter><type><name>y</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>ll x,y; rd2(x, y)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>df3</name><parameter_list>(<parameter><type><name>x</name></type></parameter>, <parameter><type><name>y</name></type></parameter>, <parameter><type><name>z</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>ll x,y,z; rd3(x, y, z)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>INF</name></cpp:macro> <cpp:value>0x3f3f3f3f3f3f3f3fll</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>fori</name><parameter_list>(<parameter><type><name>i</name></type></parameter>, <parameter><type><name>n</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(ll i = 1; i &lt;= n; i++)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>forn</name><parameter_list>(<parameter><type><name>i</name></type></parameter>, <parameter><type><name>n</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(ll i = 0; i &lt; n; i++)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>rdn</name><parameter_list>(<parameter><type><name>s</name></type></parameter>, <parameter><type><name>n</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>forn(__i, (n)) rd((s)[__i]);</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ptn</name><parameter_list>(<parameter><type><name>s</name></type></parameter>, <parameter><type><name>n</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>forn(__i, (n)) printf(F "%c", (s)[__i], __i + 1 == (n) ? 10 : 32);</cpp:value></cpp:define>
+<cpp:endif>#<cpp:directive>endif</cpp:directive></cpp:endif>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>ll</name></type> <name>mod</name> <init>= <expr><literal type="number">1e9</literal> <operator>+</operator> <literal type="number">7</literal></expr></init></decl>;</decl_stmt>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>N</name></cpp:macro> <cpp:value>(ll(1e5) + 7)</cpp:value></cpp:define>
+
+<decl_stmt><decl><type><name>ll</name></type> <name><name>a</name><index>[<expr><literal type="number">2</literal></expr>]</index></name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>ll</name></type> <name><name>b</name><index>[<expr><literal type="number">2</literal></expr>]</index></name></decl>;</decl_stmt>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+	<expr_stmt><expr><call><name>df</name><argument_list>(<argument><expr><name>t</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	
+	<while>while<condition>(<expr><name>t</name><operator>--</operator></expr>)</condition> <block>{
+		<expr_stmt><expr><call><name>df</name><argument_list>(<argument><expr><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<expr_stmt><expr><name><name>a</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>=</operator> <name><name>a</name><index>[<expr><literal type="number">1</literal></expr>]</index></name> <operator>=</operator> <name><name>b</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>=</operator> <name><name>b</name><index>[<expr><literal type="number">1</literal></expr>]</index></name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+		<macro><name>forn</name><argument_list>(<argument>i</argument>, <argument>n</argument>)</argument_list></macro> <block>{
+			<expr_stmt><expr><call><name>df</name><argument_list>(<argument><expr><name>ai</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+			<expr_stmt><expr><name><name>a</name><index>[<expr><name>ai</name><operator>%</operator><literal type="number">2</literal></expr>]</index></name><operator>++</operator></expr>;</expr_stmt>
+		}</block>
+		<expr_stmt><expr><call><name>df</name><argument_list>(<argument><expr><name>m</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<macro><name>forn</name><argument_list>(<argument>i</argument>, <argument>m</argument>)</argument_list></macro> <block>{
+			<expr_stmt><expr><call><name>df</name><argument_list>(<argument><expr><name>bi</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+			<expr_stmt><expr><name><name>b</name><index>[<expr><name>bi</name><operator>%</operator><literal type="number">2</literal></expr>]</index></name><operator>++</operator></expr>;</expr_stmt>
+		}</block>
+		<expr_stmt><expr><call><name>pt</name><argument_list>(<argument><expr><name><name>a</name><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>*</operator><name><name>b</name><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>+</operator> <name><name>a</name><index>[<expr><literal type="number">1</literal></expr>]</index></name> <operator>*</operator> <name><name>b</name><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	}</block></while>
+	
+	
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+
+</unit>

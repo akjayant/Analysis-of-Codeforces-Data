@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1248/all/29180642_62995695.cpp"><cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;memory.h&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;unordered_map&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;queue&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;ctime&gt;</cpp:file></cpp:include>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>iris</name></cpp:macro> <cpp:value>1000000007</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>int</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<decl_stmt><decl><type><name>int</name></type> <name><name>dp</name><index>[<expr><literal type="number">100010</literal></expr>]</index><index>[<expr><literal type="number">2</literal></expr>]</index></name></decl>;</decl_stmt>
+
+<function><type><name>signed</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+	<expr_stmt><expr><call><name><name>ios</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<expr_stmt><expr><call><name><name>cin</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	
+	<decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>,<decl><type ref="prev"/><name>i</name></decl>,<decl><type ref="prev"/><name>m</name></decl>;</decl_stmt>
+	<expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>n</name><operator>&gt;&gt;</operator><name>m</name></expr>;</expr_stmt>
+	<expr_stmt><expr><name><name>dp</name><index>[<expr><literal type="number">1</literal></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>=</operator><literal type="number">0</literal></expr>;</expr_stmt>
+	<expr_stmt><expr><name><name>dp</name><index>[<expr><literal type="number">1</literal></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name><operator>=</operator><literal type="number">2</literal></expr>;</expr_stmt>
+	<for>for<control>(<init><expr><name>i</name><operator>=</operator><literal type="number">2</literal></expr>;</init><condition><expr><name>i</name><operator>&lt;=</operator><call><name>max</name><argument_list>(<argument><expr><name>n</name></expr></argument>,<argument><expr><name>m</name></expr></argument>)</argument_list></call></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+	<block>{
+		<expr_stmt><expr><name><name>dp</name><index>[<expr><name>i</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>=</operator><name><name>dp</name><index>[<expr><name>i</name><operator>-</operator><literal type="number">1</literal></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>;</expr_stmt>
+		<expr_stmt><expr><name><name>dp</name><index>[<expr><name>i</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name><operator>=</operator><operator>(</operator><name><name>dp</name><index>[<expr><name>i</name><operator>-</operator><literal type="number">1</literal></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>+</operator><name><name>dp</name><index>[<expr><name>i</name><operator>-</operator><literal type="number">1</literal></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name><operator>)</operator><operator>%</operator><name>iris</name></expr>;</expr_stmt>
+<comment type="line">//		cout&lt;&lt;dp[i][0]&lt;&lt;' '&lt;&lt;dp[i][1]&lt;&lt;'\n';</comment>
+	}</block></for>
+	
+<comment type="line">//	dp[1][1]=(dp[n][0]+dp[n][1])%iris;</comment>
+<comment type="line">//	dp[1][0]=0;</comment>
+<comment type="line">//	cout&lt;&lt;dp[1][1]&lt;&lt;'\n';</comment>
+<comment type="line">//	int ouo=dp[1][1]-2;</comment>
+<comment type="block">/*	for(i=2;i&lt;=m;i++)
+	{
+		dp[i][0]=dp[i-1][1];
+		dp[i][1]=(dp[i-1][0]+dp[i-1][1])%iris;
+//		cout&lt;&lt;dp[i][0]&lt;&lt;' '&lt;&lt;dp[i][1]&lt;&lt;'\n';
+	}*/</comment>
+	
+	<decl_stmt><decl><type><name>int</name></type> <name>qwq</name><init>=<expr><operator>(</operator><name><name>dp</name><index>[<expr><name>m</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>+</operator><name><name>dp</name><index>[<expr><name>m</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name><operator>)</operator><operator>%</operator><name>iris</name></expr></init></decl>;</decl_stmt>
+	<decl_stmt><decl><type><name>int</name></type> <name>ouo</name><init>=<expr><operator>(</operator><name><name>dp</name><index>[<expr><name>n</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>+</operator><name><name>dp</name><index>[<expr><name>n</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name><operator>-</operator><literal type="number">2</literal><operator>+</operator><name>iris</name><operator>)</operator><operator>%</operator><name>iris</name></expr></init></decl>;</decl_stmt>
+<comment type="line">//	cout&lt;&lt;ouo*2&lt;&lt;'\n';</comment>
+	<expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><operator>(</operator><name>qwq</name><operator>+</operator><name>ouo</name><operator>)</operator><operator>%</operator><name>iris</name><operator>&lt;&lt;</operator><literal type="char">'\n'</literal></expr>;</expr_stmt>
+	
+	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

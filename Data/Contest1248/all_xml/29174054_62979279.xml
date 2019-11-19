@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1248/all/29174054_62979279.cpp"><cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>forn</name><parameter_list>(<parameter><type><name>i</name></type></parameter>,<parameter><type><name>n</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(int i=0;i&lt;(int)(n); i++)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>forsn</name><parameter_list>(<parameter><type><name>i</name></type></parameter>,<parameter><type><name>s</name></type></parameter>,<parameter><type><name>n</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(int i=(s);i&lt;(int)(n); i++)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>debug</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>cout &lt;&lt; #x &lt;&lt; " = "  &lt;&lt; x &lt;&lt; endl</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pb</name></cpp:macro> <cpp:value>push_back</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>mp</name></cpp:macro> <cpp:value>make_pair</cpp:value></cpp:define>
+<typedef>typedef <type><name>long</name> <name>long</name></type> <name>tint</name>;</typedef>
+<function><type><name>int</name></type> <name>toNumber</name> <parameter_list>(<parameter><decl><type><name>string</name></type> <name>s</name></decl></parameter>)</parameter_list>
+<block>{
+	<decl_stmt><decl><type><name>int</name></type> <name>Number</name></decl>;</decl_stmt>
+	<if>if <condition>( <expr><operator>!</operator> <operator>(</operator><call><name>istringstream</name><argument_list>(<argument><expr><name>s</name></expr></argument>)</argument_list></call> <operator>&gt;&gt;</operator> <name>Number</name><operator>)</operator></expr> )</condition><then> <block type="pseudo"><expr_stmt><expr><name>Number</name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt></block></then></if> <comment type="line">// el string vacio lo manda al cero</comment>
+	<return>return <expr><name>Number</name></expr>;</return>
+}</block></function>
+<function><type><name>string</name></type> <name>toString</name> <parameter_list>(<parameter><decl><type><name>int</name></type> <name>number</name></decl></parameter>)</parameter_list>
+<block>{
+    <decl_stmt><decl><type><name>ostringstream</name></type> <name>ostr</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>ostr</name> <operator>&lt;&lt;</operator> <name>number</name></expr>;</expr_stmt>
+    <return>return  <expr><call><name><name>ostr</name><operator>.</operator><name>str</name></name><argument_list>()</argument_list></call></expr>;</return>
+}</block></function>
+
+<function><type><name>tint</name></type> <name>ele</name><parameter_list>(<parameter><decl><type><name>tint</name></type> <name>a</name></decl></parameter>, <parameter><decl><type><name>tint</name></type> <name>b</name></decl></parameter>)</parameter_list><block>{
+	<if>if<condition>(<expr><name>b</name><operator>==</operator><literal type="number">0</literal></expr>)</condition><then><block type="pseudo"><return>return <expr><literal type="number">1</literal></expr>;</return></block></then></if>
+	<if>if<condition>(<expr><name>b</name><operator>%</operator><literal type="number">2</literal><operator>==</operator><literal type="number">0</literal></expr>)</condition><then><block>{
+		<return>return <expr><call><name>ele</name><argument_list>(<argument><expr><operator>(</operator><name>a</name><operator>*</operator><name>a</name><operator>)</operator></expr></argument>, <argument><expr><name>b</name><operator>/</operator><literal type="number">2</literal></expr></argument>)</argument_list></call></expr>;</return>
+	}</block></then><else>else<block>{
+		<return>return <expr><name>a</name><operator>*</operator><call><name>ele</name><argument_list>(<argument><expr><operator>(</operator><name>a</name><operator>*</operator><name>a</name><operator>)</operator></expr></argument>, <argument><expr><name>b</name><operator>/</operator><literal type="number">2</literal></expr></argument>)</argument_list></call></expr>;</return>
+	}</block></else></if>
+}</block></function>
+
+<function><type><name>tint</name></type> <name>mcd</name><parameter_list>(<parameter><decl><type><name>tint</name></type> <name>a</name></decl></parameter>, <parameter><decl><type><name>tint</name></type> <name>b</name></decl></parameter>)</parameter_list><block>{
+	<if>if<condition>(<expr><name>a</name><operator>==</operator><literal type="number">0</literal></expr>)</condition><then><block type="pseudo"><return>return <expr><name>b</name></expr>;</return></block></then></if>
+	<return>return <expr><call><name>mcd</name><argument_list>(<argument><expr><name>b</name><operator>%</operator><name>a</name></expr></argument>, <argument><expr><name>a</name></expr></argument>)</argument_list></call></expr>;</return>
+}</block></function>
+
+<function><type><name>tint</name></type> <name>mcm</name><parameter_list>(<parameter><decl><type><name>tint</name></type> <name>a</name></decl></parameter>, <parameter><decl><type><name>tint</name></type> <name>b</name></decl></parameter>)</parameter_list><block>{
+	<decl_stmt><decl><type><name>tint</name></type> <name>g</name><init>=<expr><call><name>mcd</name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><name>b</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+	<return>return <expr><name>a</name><operator>*</operator><name>b</name><operator>/</operator><name>g</name></expr>;</return>
+}</block></function>
+
+<function><type><name>double</name></type> <name>d_abs</name><parameter_list>(<parameter><decl><type><name>long</name></type> <name>a</name></decl></parameter>, <parameter><decl><type><name>long</name></type> <name>b</name></decl></parameter>)</parameter_list><block>{
+	<if>if<condition>(<expr><name>a</name><operator>&gt;</operator><name>b</name></expr>)</condition><then><block>{
+		<return>return <expr><name>a</name><operator>-</operator><name>b</name></expr>;</return>
+	}</block></then></if>
+	<return>return <expr><name>b</name><operator>-</operator><name>a</name></expr>;</return>
+}</block></function>
+
+<function><type><name>bool</name></type> <name>isPal</name><parameter_list>(<parameter><decl><type><name>string</name></type> <name>x</name></decl></parameter>)</parameter_list><block>{
+	<macro><name>forn</name><argument_list>(<argument>i</argument>, <argument>x.size()</argument>)</argument_list></macro><block>{
+		<if>if<condition>(<expr><name><name>x</name><index>[<expr><name>i</name></expr>]</index></name><operator>!=</operator><name><name>x</name><index>[<expr><call><name><name>x</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call><operator>-</operator><name>i</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name></expr>)</condition><then><block type="pseudo"><return>return <expr><literal type="boolean">false</literal></expr>;</return></block></then></if>
+	}</block>
+	<return>return <expr><literal type="boolean">true</literal></expr>;</return>
+}</block></function>
+
+<function><type><name>tint</name></type> <name>getAns</name><parameter_list>(<parameter><decl><type><name>tint</name></type> <name>n</name></decl></parameter>)</parameter_list><block>{
+	<decl_stmt><decl><type><name>tint</name></type> <name>tot</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+	<macro><name>forn</name><argument_list>(<argument>i</argument>, <argument>n+<literal type="number">1</literal></argument>)</argument_list></macro><block>{
+		<expr_stmt><expr><name>tot</name><operator>+=</operator><name>i</name><operator>*</operator><name>i</name></expr>;</expr_stmt>
+	}</block>
+	<return>return <expr><name>tot</name></expr>;</return>
+}</block></function>
+
+
+<function><type><name>void</name></type> <name>solve</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>caso</name></decl></parameter>)</parameter_list><block>{
+	<decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>, <decl><type ref="prev"/><name>m</name></decl>;</decl_stmt>
+	<expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%d"</literal></expr></argument>, <argument><expr><operator>&amp;</operator><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<decl_stmt><decl><type><name>int</name></type> <name>pares</name><init>=<expr><literal type="number">0</literal></expr></init></decl>, <decl><type ref="prev"/><name>impares</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+	<macro><name>forn</name><argument_list>(<argument>i</argument>,<argument>n</argument>)</argument_list></macro><block>{
+		<decl_stmt><decl><type><name>int</name></type> <name>q</name></decl>;</decl_stmt>
+		<expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%d"</literal></expr></argument>, <argument><expr><operator>&amp;</operator><name>q</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<if>if<condition>(<expr><name>q</name><operator>%</operator><literal type="number">2</literal><operator>==</operator><literal type="number">0</literal></expr>)</condition><then><block>{
+			<expr_stmt><expr><name>pares</name><operator>++</operator></expr>;</expr_stmt>
+		}</block></then><else>else<block>{
+			<expr_stmt><expr><name>impares</name><operator>++</operator></expr>;</expr_stmt>
+		}</block></else></if>
+	}</block>
+	<comment type="line">//cout&lt;&lt;"AAA "&lt;&lt;pares&lt;&lt;", "&lt;&lt;impares&lt;&lt;endl;</comment>
+	<expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%d"</literal></expr></argument>, <argument><expr><operator>&amp;</operator><name>m</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<decl_stmt><decl><type><name>tint</name></type> <name>total</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+	<macro><name>forn</name><argument_list>(<argument>j</argument>, <argument>m</argument>)</argument_list></macro><block>{
+		<decl_stmt><decl><type><name>int</name></type> <name>q</name></decl>;</decl_stmt>
+		<expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%d"</literal></expr></argument>, <argument><expr><operator>&amp;</operator><name>q</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<if>if<condition>(<expr><name>q</name><operator>%</operator><literal type="number">2</literal><operator>==</operator><literal type="number">0</literal></expr>)</condition><then><block>{
+			<expr_stmt><expr><name>total</name><operator>+=</operator><name>pares</name></expr>;</expr_stmt>
+		}</block></then><else>else<block>{
+			<expr_stmt><expr><name>total</name><operator>+=</operator><name>impares</name></expr>;</expr_stmt>
+		}</block></else></if>
+	}</block>
+	<expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><name>total</name><operator>&lt;&lt;</operator><literal type="string">"\n"</literal></expr>;</expr_stmt>
+}</block></function>
+
+
+
+<function><type><name>int</name></type> <name>main</name> <parameter_list>()</parameter_list><block>{
+	<decl_stmt><decl><type><name>int</name></type> <name>T</name></decl>;</decl_stmt>
+	<expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%d"</literal></expr></argument>, <argument><expr><operator>&amp;</operator><name>T</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<macro><name>forn</name><argument_list>(<argument>caso</argument>, <argument>T</argument>)</argument_list></macro><block>{
+		<expr_stmt><expr><call><name>solve</name><argument_list>(<argument><expr><name>caso</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	}</block>
+}</block></function>
+</unit>

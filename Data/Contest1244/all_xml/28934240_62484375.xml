@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1244/all/28934240_62484375.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>rep</name><parameter_list>(<parameter><type><name>i</name></type></parameter>, <parameter><type><name>a</name></type></parameter>, <parameter><type><name>b</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(int i = a; i &lt; (b); ++i)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>trav</name><parameter_list>(<parameter><type><name>a</name></type></parameter>, <parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(auto&amp; a : x)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>all</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>begin(x), end(x)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>sz</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>(int)(x).size()</cpp:value></cpp:define>
+<typedef>typedef <type><name>long</name> <name>long</name></type> <name>ll</name>;</typedef>
+<typedef>typedef <type><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>, <argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>pii</name>;</typedef>
+<typedef>typedef <type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>vi</name>;</typedef>
+
+<decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>vi</name></expr></argument>&gt;</argument_list></name></type> <name>neighbors</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>ll</name></expr></argument>&gt;</argument_list></name></expr></argument>&gt;</argument_list></name></type> <name>c</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>colors</name></decl>;</decl_stmt>
+
+<function><type><name>void</name></type> <name>colorGraph</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>parent</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>startNode</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>a</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>b</name></decl></parameter>)</parameter_list> <block>{
+	<expr_stmt><expr><name><name>colors</name><index>[<expr><name>startNode</name></expr>]</index></name> <operator>=</operator> <literal type="number">6</literal> <operator>-</operator> <name>a</name> <operator>-</operator> <name>b</name></expr>;</expr_stmt>
+	<macro><name>trav</name><argument_list>(<argument>next</argument>, <argument>neighbors[startNode]</argument>)</argument_list></macro> <block>{
+		<if>if <condition>(<expr><name>next</name> <operator>!=</operator> <name>parent</name></expr>)</condition><then> <block>{
+			<expr_stmt><expr><call><name>colorGraph</name><argument_list>(<argument><expr><name>startNode</name></expr></argument>, <argument><expr><name>next</name></expr></argument>, <argument><expr><name>b</name></expr></argument>, <argument><expr><name><name>colors</name><index>[<expr><name>startNode</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		}</block></then></if>
+	}</block>
+}</block></function>
+
+<function><type><name>ll</name></type> <name>getCost</name><parameter_list>()</parameter_list> <block>{
+	<decl_stmt><decl><type><name>ll</name></type> <name>retvalue</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+	<macro><name>rep</name><argument_list>(<argument>i</argument>, <argument><literal type="number">0</literal></argument>, <argument>n</argument>)</argument_list></macro> <block>{
+		<expr_stmt><expr><name>retvalue</name> <operator>+=</operator> <name><name>c</name><index>[<expr><name>i</name></expr>]</index><index>[<expr><name><name>colors</name><index>[<expr><name>i</name></expr>]</index></name><operator>-</operator><literal type="number">1</literal></expr>]</index></name></expr>;</expr_stmt>
+	}</block>
+	<return>return <expr><name>retvalue</name></expr>;</return>
+}</block></function>
+
+<function><type><name>ll</name></type> <name>getTotCost</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>startNode</name></decl></parameter>)</parameter_list> <block>{
+	<expr_stmt><expr><call><name><name>colors</name><operator>.</operator><name>resize</name></name><argument_list>(<argument><expr><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<decl_stmt><decl><type><name>ll</name></type> <name>temp</name></decl>;</decl_stmt>
+	<decl_stmt><decl><type><name>int</name></type> <name>bestA</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+	<decl_stmt><decl><type><name>int</name></type> <name>bestB</name> <init>= <expr><literal type="number">2</literal></expr></init></decl>;</decl_stmt>
+
+	<expr_stmt><expr><call><name>colorGraph</name><argument_list>(<argument><expr><operator>-</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>startNode</name></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<decl_stmt><decl><type><name>ll</name></type> <name>retvalue</name> <init>= <expr><call><name>getCost</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+	<expr_stmt><expr><call><name>colorGraph</name><argument_list>(<argument><expr><operator>-</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>startNode</name></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">3</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<expr_stmt><expr><name>temp</name> <operator>=</operator> <call><name>getCost</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+	<if>if <condition>(<expr><name>temp</name> <operator>&lt;</operator> <name>retvalue</name></expr>)</condition><then> <block>{
+		<expr_stmt><expr><name>retvalue</name> <operator>=</operator> <name>temp</name></expr>;</expr_stmt>
+		<expr_stmt><expr><name>bestA</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+		<expr_stmt><expr><name>bestB</name> <operator>=</operator> <literal type="number">3</literal></expr>;</expr_stmt>
+	}</block></then></if>
+
+	<expr_stmt><expr><call><name>colorGraph</name><argument_list>(<argument><expr><operator>-</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>startNode</name></expr></argument>, <argument><expr><literal type="number">2</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<expr_stmt><expr><name>temp</name> <operator>=</operator> <call><name>getCost</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+	<if>if <condition>(<expr><name>temp</name> <operator>&lt;</operator> <name>retvalue</name></expr>)</condition><then> <block>{
+		<expr_stmt><expr><name>retvalue</name> <operator>=</operator> <name>temp</name></expr>;</expr_stmt>
+		<expr_stmt><expr><name>bestA</name> <operator>=</operator> <literal type="number">2</literal></expr>;</expr_stmt>
+		<expr_stmt><expr><name>bestB</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+	}</block></then></if>
+
+	<expr_stmt><expr><call><name>colorGraph</name><argument_list>(<argument><expr><operator>-</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>startNode</name></expr></argument>, <argument><expr><literal type="number">2</literal></expr></argument>, <argument><expr><literal type="number">3</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<expr_stmt><expr><name>temp</name> <operator>=</operator> <call><name>getCost</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+	<if>if <condition>(<expr><name>temp</name> <operator>&lt;</operator> <name>retvalue</name></expr>)</condition><then> <block>{
+		<expr_stmt><expr><name>retvalue</name> <operator>=</operator> <name>temp</name></expr>;</expr_stmt>
+		<expr_stmt><expr><name>bestA</name> <operator>=</operator> <literal type="number">2</literal></expr>;</expr_stmt>
+		<expr_stmt><expr><name>bestB</name> <operator>=</operator> <literal type="number">3</literal></expr>;</expr_stmt>
+	}</block></then></if>
+
+	<expr_stmt><expr><call><name>colorGraph</name><argument_list>(<argument><expr><operator>-</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>startNode</name></expr></argument>, <argument><expr><literal type="number">3</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<expr_stmt><expr><name>temp</name> <operator>=</operator> <call><name>getCost</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+	<if>if <condition>(<expr><name>temp</name> <operator>&lt;</operator> <name>retvalue</name></expr>)</condition><then> <block>{
+		<expr_stmt><expr><name>retvalue</name> <operator>=</operator> <name>temp</name></expr>;</expr_stmt>
+		<expr_stmt><expr><name>bestA</name> <operator>=</operator> <literal type="number">3</literal></expr>;</expr_stmt>
+		<expr_stmt><expr><name>bestB</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+	}</block></then></if>
+
+	<expr_stmt><expr><call><name>colorGraph</name><argument_list>(<argument><expr><operator>-</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>startNode</name></expr></argument>, <argument><expr><literal type="number">3</literal></expr></argument>, <argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<expr_stmt><expr><name>temp</name> <operator>=</operator> <call><name>getCost</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+	<if>if <condition>(<expr><name>temp</name> <operator>&lt;</operator> <name>retvalue</name></expr>)</condition><then> <block>{
+		<expr_stmt><expr><name>retvalue</name> <operator>=</operator> <name>temp</name></expr>;</expr_stmt>
+		<expr_stmt><expr><name>bestA</name> <operator>=</operator> <literal type="number">3</literal></expr>;</expr_stmt>
+		<expr_stmt><expr><name>bestB</name> <operator>=</operator> <literal type="number">2</literal></expr>;</expr_stmt>
+	}</block></then></if>
+
+	<expr_stmt><expr><call><name>colorGraph</name><argument_list>(<argument><expr><operator>-</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>startNode</name></expr></argument>, <argument><expr><name>bestA</name></expr></argument>, <argument><expr><name>bestB</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+	<return>return <expr><name>retvalue</name></expr>;</return>
+}</block></function>
+
+
+<function><type><name>int</name></type> <name>getALeaf</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>parent</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>startNode</name></decl></parameter>)</parameter_list> <block>{
+	<if>if <condition>(<expr><name><name>neighbors</name><index>[<expr><name>startNode</name></expr>]</index></name><operator>.</operator><call><name>size</name><argument_list>()</argument_list></call> <operator>==</operator> <literal type="number">1</literal></expr>)</condition><then> <block>{
+		<return>return <expr><name>startNode</name></expr>;</return>
+	}</block></then></if>
+	<macro><name>trav</name><argument_list>(<argument>next</argument>, <argument>neighbors[startNode]</argument>)</argument_list></macro> <block>{
+		<if>if <condition>(<expr><name>next</name> <operator>!=</operator> <name>parent</name></expr>)</condition><then> <block>{
+			<return>return <expr><call><name>getALeaf</name><argument_list>(<argument><expr><name>startNode</name></expr></argument>, <argument><expr><name>next</name></expr></argument>)</argument_list></call></expr>;</return>
+		}</block></then></if>
+	}</block>
+	<comment type="line">// can't happen</comment>
+	<return>return <expr><operator>-</operator><literal type="number">1</literal></expr>;</return>
+}</block></function>
+
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+	<expr_stmt><expr><call><name><name>cin</name><operator>.</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt> <expr_stmt><expr><call><name><name>cin</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<expr_stmt><expr><call><name><name>cin</name><operator>.</operator><name>exceptions</name></name><argument_list>(<argument><expr><name><name>cin</name><operator>.</operator><name>failbit</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+	<expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name></expr>;</expr_stmt>
+	<expr_stmt><expr><call><name><name>neighbors</name><operator>.</operator><name>resize</name></name><argument_list>(<argument><expr><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<expr_stmt><expr><call><name><name>c</name><operator>.</operator><name>resize</name></name><argument_list>(<argument><expr><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<macro><name>rep</name><argument_list>(<argument>j</argument>, <argument><literal type="number">0</literal></argument>, <argument><literal type="number">3</literal></argument>)</argument_list></macro> <block>{
+		<macro><name>rep</name><argument_list>(<argument>i</argument>, <argument><literal type="number">0</literal></argument>, <argument>n</argument>)</argument_list></macro> <block>{
+			<decl_stmt><decl><type><name>ll</name></type> <name>temp</name></decl>;</decl_stmt>
+			<expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>temp</name></expr>;</expr_stmt>
+			<expr_stmt><expr><name><name>c</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>push_back</name><argument_list>(<argument><expr><name>temp</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		}</block>
+	}</block>
+	<macro><name>rep</name><argument_list>(<argument>i</argument>, <argument><literal type="number">0</literal></argument>, <argument>n-<literal type="number">1</literal></argument>)</argument_list></macro> <block>{
+		<decl_stmt><decl><type><name>int</name></type> <name>u</name></decl>, <decl><type ref="prev"/><name>v</name></decl>;</decl_stmt>
+		<expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>u</name> <operator>&gt;&gt;</operator> <name>v</name></expr>;</expr_stmt>
+		<expr_stmt><expr><name><name>neighbors</name><index>[<expr><name>u</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name><operator>.</operator><call><name>push_back</name><argument_list>(<argument><expr><name>v</name><operator>-</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<expr_stmt><expr><name><name>neighbors</name><index>[<expr><name>v</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name><operator>.</operator><call><name>push_back</name><argument_list>(<argument><expr><name>u</name><operator>-</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	}</block>
+
+	<macro><name>rep</name><argument_list>(<argument>i</argument>, <argument><literal type="number">0</literal></argument>, <argument>n</argument>)</argument_list></macro> <block>{
+		<if>if <condition>(<expr><name><name>neighbors</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>size</name><argument_list>()</argument_list></call> <operator>&gt;</operator> <literal type="number">2</literal></expr>)</condition><then> <block>{
+			<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <operator>-</operator><literal type="number">1</literal> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+			<return>return <expr><literal type="number">0</literal></expr>;</return>
+		}</block></then></if>
+	}</block>
+
+	<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <call><name>getTotCost</name><argument_list>(<argument><expr><call><name>getALeaf</name><argument_list>(<argument><expr><operator>-</operator><literal type="number">1</literal></expr></argument>,<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+	<macro><name>rep</name><argument_list>(<argument>i</argument>, <argument><literal type="number">0</literal></argument>, <argument>n</argument>)</argument_list></macro> <block>{
+		<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name><name>colors</name><index>[<expr><name>i</name></expr>]</index></name> <operator>&lt;&lt;</operator> <literal type="string">" "</literal></expr>;</expr_stmt>
+	}</block>
+	<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+}</block></function>
+</unit>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1248/all/29136056_62995868.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>input</name></cpp:macro>   <cpp:value>std::cin</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>output</name></cpp:macro>  <cpp:value>std::cout</cpp:value></cpp:define>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>MAXN</name></cpp:macro>    <cpp:value>100005</cpp:value></cpp:define>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>llg</name></cpp:macro>     <cpp:value>long long</cpp:value></cpp:define>
+
+<struct>struct <name>event</name> <block>{<public type="default">
+    <decl_stmt><decl><type><name>llg</name></type> <name>time</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>type</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>idx</name></decl>;</decl_stmt>
+
+    <function type="operator"><type><name>bool</name></type> <name>operator <name>&lt;</name></name> <parameter_list>(<parameter><decl><type><specifier>const</specifier> <name>event</name><modifier>&amp;</modifier></type> <name>other</name></decl></parameter>)</parameter_list> <specifier>const</specifier> <block>{
+        <if>if <condition>(<expr><name>time</name> <operator>==</operator> <name><name>other</name><operator>.</operator><name>time</name></name></expr>)</condition><then>
+            <block type="pseudo"><if>if <condition>(<expr><name>type</name> <operator>==</operator> <name><name>other</name><operator>.</operator><name>type</name></name></expr>)</condition><then>
+                <block type="pseudo"><return>return <expr><name>idx</name> <operator>&gt;</operator> <name><name>other</name><operator>.</operator><name>idx</name></name></expr>;</return></block></then>
+            <else>else <block type="pseudo"><return>return <expr><name>type</name> <operator>&gt;</operator> <name><name>other</name><operator>.</operator><name>type</name></name></expr>;</return></block></else></if></block></then></if>
+        <return>return <expr><name>time</name> <operator>&gt;</operator> <name><name>other</name><operator>.</operator><name>time</name></name></expr>;</return>
+    }</block></function>
+</public>}</block>;</struct>
+
+<decl_stmt><decl><type><name>int</name></type> <name>N</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>llg</name></type> <name>P</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>llg</name></type> <name><name>ans</name><index>[<expr><name>MAXN</name></expr>]</index></name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name><name>std</name><operator>::</operator><name><name>priority_queue</name> <argument_list type="generic">&lt;<argument><expr><name>event</name></expr></argument>&gt;</argument_list></name></name></type> <name>queue</name></decl>;</decl_stmt>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>zeros</name><parameter_list>(<parameter><type><name>i</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>(i&amp;(-i))</cpp:value></cpp:define>
+
+<decl_stmt><decl><type><name>int</name></type> <name><name>AIB</name><index>[<expr><name>MAXN</name></expr>]</index></name></decl>;</decl_stmt>
+<function><type><name>void</name></type> <name>update</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>pos</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>val</name></decl></parameter>)</parameter_list> <block>{
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><name>pos</name></expr></init></decl>;</init> <condition><expr><name>i</name><operator>&lt;=</operator><name>N</name></expr>;</condition> <incr><expr><name>i</name> <operator>+=</operator> <call><name>zeros</name><argument_list>(<argument><expr><name>i</name></expr></argument>)</argument_list></call></expr></incr>)</control>
+        <block type="pseudo"><expr_stmt><expr><name><name>AIB</name><index>[<expr><name>i</name></expr>]</index></name> <operator>+=</operator> <name>val</name></expr>;</expr_stmt></block></for>
+}</block></function>
+<function><type><name>int</name></type> <name>query</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>pos</name></decl></parameter>)</parameter_list> <block>{
+    <decl_stmt><decl><type><name>int</name></type> <name>sum</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><name>pos</name></expr></init></decl>;</init> <condition><expr><name>i</name><operator>&gt;</operator> <literal type="number">0</literal></expr>;</condition> <incr><expr><name>i</name> <operator>-=</operator> <call><name>zeros</name><argument_list>(<argument><expr><name>i</name></expr></argument>)</argument_list></call></expr></incr>)</control>
+        <block type="pseudo"><expr_stmt><expr><name>sum</name> <operator>+=</operator> <name><name>AIB</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt></block></for>
+    <return>return <expr><name>sum</name></expr>;</return>
+}</block></function>
+
+<decl_stmt><decl><type><name><name>std</name><operator>::</operator><name><name>set</name> <argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></name></type> <name>waiting</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>llg</name></type> <name>timeQueueIsFree</name></decl>;</decl_stmt>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+    <expr_stmt><expr><call><name><name>std</name><operator>::</operator><name>ios_base</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><name>input</name> <operator>&gt;&gt;</operator> <name>N</name> <operator>&gt;&gt;</operator> <name>P</name></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>llg</name></type> <name>x</name></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</init> <condition><expr><name>i</name><operator>&lt;=</operator><name>N</name></expr>;</condition> <incr><expr><operator>++</operator><name>i</name></expr></incr>)</control>
+        <block type="pseudo"><expr_stmt><expr><name>input</name> <operator>&gt;&gt;</operator> <name>x</name></expr><operator>,</operator> <expr><call><name><name>queue</name><operator>.</operator><name>push</name></name><argument_list>(<argument><expr><block>{<expr><name>x</name></expr>, <expr><literal type="number">2</literal></expr>, <expr><name>i</name></expr>}</block></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></for>
+
+    <while>while <condition>(<expr><operator>!</operator><call><name><name>queue</name><operator>.</operator><name>empty</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{
+        <decl_stmt><decl><type><name>auto</name></type> <name>top</name> <init>= <expr><call><name><name>queue</name><operator>.</operator><name>top</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+        <comment type="line">//std::cout &lt;&lt; top.type &lt;&lt; ' ' &lt;&lt; top.time &lt;&lt; ' ' &lt;&lt; top.idx &lt;&lt; '\n';</comment>
+        <comment type="line">//std::cout &lt;&lt; query(top.idx) &lt;&lt; '\n';</comment>
+        <expr_stmt><expr><call><name><name>queue</name><operator>.</operator><name>pop</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        <if>if <condition>(<expr><name><name>top</name><operator>.</operator><name>type</name></name> <operator>==</operator> <literal type="number">2</literal></expr>)</condition><then> <block>{
+            <if>if <condition>(<expr><call><name>query</name><argument_list>(<argument><expr><name><name>top</name><operator>.</operator><name>idx</name></name></expr></argument>)</argument_list></call> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+                <expr_stmt><expr><call><name>update</name><argument_list>(<argument><expr><name><name>top</name><operator>.</operator><name>idx</name></name></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><name>timeQueueIsFree</name> <operator>=</operator> <call><name><name>std</name><operator>::</operator><name>max</name></name><argument_list>(<argument><expr><name>timeQueueIsFree</name> <operator>+</operator> <name>P</name></expr></argument>, <argument><expr><name><name>top</name><operator>.</operator><name>time</name></name> <operator>+</operator> <name>P</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><call><name><name>queue</name><operator>.</operator><name>push</name></name><argument_list>(<argument><expr><block>{<expr><name>timeQueueIsFree</name></expr>, <expr><literal type="number">1</literal></expr>, <expr><name><name>top</name><operator>.</operator><name>idx</name></name></expr>}</block></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            }</block></then>
+            <else>else <block>{
+                <expr_stmt><expr><call><name><name>waiting</name><operator>.</operator><name>insert</name></name><argument_list>(<argument><expr><name><name>top</name><operator>.</operator><name>idx</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            }</block></else></if>
+        }</block></then>
+        <else>else <block>{
+            <expr_stmt><expr><name><name>ans</name><index>[<expr><name><name>top</name><operator>.</operator><name>idx</name></name></expr>]</index></name> <operator>=</operator> <name><name>top</name><operator>.</operator><name>time</name></name></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name>update</name><argument_list>(<argument><expr><name><name>top</name><operator>.</operator><name>idx</name></name></expr></argument>, <argument><expr><operator>-</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <decl_stmt><decl><type><name>auto</name></type> <name>it</name> <init>= <expr><call><name><name>waiting</name><operator>.</operator><name>begin</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <while>while <condition>(<expr><name>it</name> <operator>!=</operator> <call><name><name>waiting</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{
+                <if>if <condition>(<expr><call><name>query</name><argument_list>(<argument><expr><operator>*</operator><name>it</name></expr></argument>)</argument_list></call> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+                    <comment type="line">//std::cout &lt;&lt; "s-a bagat " &lt;&lt; *it &lt;&lt; '\n';</comment>
+                    <expr_stmt><expr><call><name><name>queue</name><operator>.</operator><name>push</name></name><argument_list>(<argument><expr><block>{<expr><name><name>top</name><operator>.</operator><name>time</name></name></expr>, <expr><literal type="number">2</literal></expr>, <expr><operator>*</operator><name>it</name></expr>}</block></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                    <expr_stmt><expr><name>it</name> <operator>=</operator> <call><name><name>waiting</name><operator>.</operator><name>erase</name></name><argument_list>(<argument><expr><name>it</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                    <break>break;</break>
+                }</block></then>   <else>else <block type="pseudo"><break>break;</break></block></else></if>
+            }</block></while>
+        }</block></else></if>
+    }</block></while>
+
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</init> <condition><expr><name>i</name><operator>&lt;=</operator><name>N</name></expr>;</condition> <incr><expr><operator>++</operator><name>i</name></expr></incr>)</control>
+        <block type="pseudo"><expr_stmt><expr><name>output</name> <operator>&lt;&lt;</operator> <name><name>ans</name><index>[<expr><name>i</name></expr>]</index></name> <operator>&lt;&lt;</operator> <literal type="char">' '</literal></expr>;</expr_stmt></block></for>
+
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

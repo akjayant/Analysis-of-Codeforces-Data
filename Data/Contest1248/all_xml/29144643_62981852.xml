@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1248/all/29144643_62981852.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>lli</name></cpp:macro> <cpp:value>long long int</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>vi</name></cpp:macro> <cpp:value>vector &lt;lli&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pll</name></cpp:macro> <cpp:value>pair&lt;lli, lli&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>x</name></cpp:macro> <cpp:value>first</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>y</name></cpp:macro> <cpp:value>second</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>mp</name></cpp:macro> <cpp:value>make_pair</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>f</name><parameter_list>(<parameter><type><name>i</name></type></parameter>,<parameter><type><name>a</name></type></parameter>, <parameter><type><name>n</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for (lli i = a; i &lt; n; i++)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>M</name></cpp:macro> <cpp:value>1000000007</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>inf</name></cpp:macro> <cpp:value>9999999291299</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pb</name></cpp:macro> <cpp:value>push_back</cpp:value></cpp:define>
+
+
+<comment type="line">// bool operator &lt; (pll a, pll b)</comment>
+<comment type="line">// {</comment>
+<comment type="line">//     if (a.first != b.first)</comment>
+<comment type="line">//         return (a.first &lt; b.first);</comment>
+<comment type="line">//     else </comment>
+<comment type="line">//         return (a.second &lt; b.second);</comment>
+
+<comment type="line">// }</comment>
+
+
+<comment type="line">// vi make_sieve (lli n)</comment>
+<comment type="line">// {</comment>
+<comment type="line">//     vi sieve (n+1, 0);</comment>
+<comment type="line">//     lli rt = sqrt(n);</comment>
+<comment type="line">//     for (int i = 2; i*i &lt;= n; i++)</comment>
+<comment type="line">//         if (i &gt; 1 &amp;&amp; sieve[i] == 0)</comment>
+<comment type="line">//         {</comment>
+<comment type="line">//             lli temp = 2*i;</comment>
+<comment type="line">//             while (temp &lt;= n)</comment>
+<comment type="line">//             {   </comment>
+<comment type="line">//                 sieve [temp]++;</comment>
+<comment type="line">//                 temp += i;</comment>
+<comment type="line">//             }</comment>
+<comment type="line">//         }</comment>
+
+<comment type="line">//     vi primes;</comment>
+<comment type="line">//     for (lli j = 2; j &lt;= n; j++)</comment>
+<comment type="line">//         if (sieve[j] == 0)</comment>
+<comment type="line">//             primes.push_back(j);</comment>
+
+<comment type="line">//     return primes;</comment>
+<comment type="line">//     //return sieve;</comment>
+<comment type="line">// }</comment>
+
+<comment type="line">// lli power(lli x, unsigned lli y, unsigned lli m) </comment>
+<comment type="line">// { </comment>
+<comment type="line">//     if (y == 0) </comment>
+<comment type="line">//         return 1; </comment>
+<comment type="line">//     lli p = power(x, y/2, m) % m; </comment>
+<comment type="line">//     p = (p * p) % m; </comment>
+  
+<comment type="line">//     return (y%2 == 0)? p : (x * p) % m; </comment>
+<comment type="line">// } </comment>
+  
+<comment type="line">// // Function to return gcd of a and b </comment>
+<comment type="line">// lli gcd(lli a, lli b) </comment>
+<comment type="line">// { </comment>
+<comment type="line">//     if (a == 0) </comment>
+<comment type="line">//         return b; </comment>
+<comment type="line">//     return gcd(b%a, a); </comment>
+<comment type="line">// }</comment>
+<comment type="line">// int nCrModp(int n, int r, int p) </comment>
+<comment type="line">// { </comment>
+<comment type="line">//     // The array C is going to store last row of </comment>
+<comment type="line">//     // pascal triangle at the end. And last entry </comment>
+<comment type="line">//     // of last row is nCr </comment>
+<comment type="line">//     int C[r+1]; </comment>
+<comment type="line">//     memset(C, 0, sizeof(C)); </comment>
+  
+<comment type="line">//     C[0] = 1; // Top row of Pascal Triangle </comment>
+  
+<comment type="line">//     // One by constructs remaining rows of Pascal </comment>
+<comment type="line">//     // Triangle from top to bottom </comment>
+<comment type="line">//     for (int i = 1; i &lt;= n; i++) </comment>
+<comment type="line">//     { </comment>
+<comment type="line">//         // Fill entries of current row using previous </comment>
+<comment type="line">//         // row values </comment>
+<comment type="line">//         for (int j = min(i, r); j &gt; 0; j--) </comment>
+  
+<comment type="line">//             // nCj = (n-1)Cj + (n-1)C(j-1); </comment>
+<comment type="line">//             C[j] = (C[j] + C[j-1])%p; </comment>
+<comment type="line">//     } </comment>
+<comment type="line">//     return C[r]; </comment>
+<comment type="line">// } </comment>
+
+<comment type="line">// set &lt;lli&gt; getFactors (lli n) {</comment>
+<comment type="line">//     // get a set of factors of n including 1 and n, O(root(n)) complexity;</comment>
+<comment type="line">//     set &lt;lli&gt; Factors;</comment>
+<comment type="line">//     for (lli i = 1; i * i &lt;= n; i++)</comment>
+<comment type="line">//         if (n%i == 0) {</comment>
+<comment type="line">//             Factors.insert(i);</comment>
+<comment type="line">//             Factors.insert(n / i);</comment>
+<comment type="line">//         }</comment>
+
+<comment type="line">//     return Factors;</comment>
+<comment type="line">// }</comment>
+<comment type="line">// lli CeilIndex(std::vector&lt;lli&gt;&amp; v, lli l, lli r, lli key) </comment>
+<comment type="line">// { </comment>
+<comment type="line">//     while (r - l &gt; 1) { </comment>
+<comment type="line">//         lli m = l + (r - l) / 2; </comment>
+<comment type="line">//         if (v[m] &gt;= key) </comment>
+<comment type="line">//             r = m; </comment>
+<comment type="line">//         else</comment>
+<comment type="line">//             l = m; </comment>
+<comment type="line">//     } </comment>
+  
+<comment type="line">//     return r; </comment>
+<comment type="line">// } </comment>
+  
+<comment type="line">// lli LongestIncreasingSubsequenceLength(std::vector&lt;lli&gt;&amp; v) </comment>
+<comment type="line">// { </comment>
+<comment type="line">//     if (v.size() == 0) </comment>
+<comment type="line">//         return 0; </comment>
+  
+<comment type="line">//     std::vector&lt;lli&gt; tail(v.size(), 0); </comment>
+<comment type="line">//     lli length = 1; // always pollis empty slot in tail </comment>
+  
+<comment type="line">//     tail[0] = v[0]; </comment>
+<comment type="line">//     for (size_t i = 1; i &lt; v.size(); i++) { </comment>
+  
+<comment type="line">//         // new smallest value </comment>
+<comment type="line">//         if (v[i] &lt; tail[0]) </comment>
+<comment type="line">//             tail[0] = v[i]; </comment>
+  
+<comment type="line">//         // v[i] extends largest subsequence </comment>
+<comment type="line">//         else if (v[i] &gt; tail[length - 1]) </comment>
+<comment type="line">//             tail[length++] = v[i]; </comment>
+  
+<comment type="line">//         // v[i] will become end candidate of an existing </comment>
+<comment type="line">//         // subsequence or Throw away larger elements in all </comment>
+<comment type="line">//         // LIS, to make room for upcoming grater elements </comment>
+<comment type="line">//         // than v[i] (and also, v[i] would have already </comment>
+<comment type="line">//         // appeared in one of LIS, identify the location </comment>
+<comment type="line">//         // and replace it) </comment>
+<comment type="line">//         else</comment>
+<comment type="line">//             tail[CeilIndex(tail, -1, length - 1, v[i])] = v[i]; </comment>
+<comment type="line">//     } </comment>
+  
+<comment type="line">//     return length; </comment>
+<comment type="line">// }</comment>
+ <decl_stmt><decl><type><name><name>vector</name> <argument_list type="generic">&lt;<argument><expr><name>vi</name></expr></argument>&gt;</argument_list></name></type> <name>Adj</name></decl>;</decl_stmt>
+
+<comment type="line">// string mdfs (lli node) {</comment>
+<comment type="line">//     string s = "0";</comment>
+<comment type="line">//     s[0] += w[node];</comment>
+
+<comment type="line">//     if (adj[node].size() == 0) {</comment>
+<comment type="line">//         return s; </comment>
+<comment type="line">//     }</comment>
+    
+<comment type="line">//     multiset &lt;string&gt; v;</comment>
+<comment type="line">//     string temp;</comment>
+<comment type="line">//     // if (node != 0)</comment>
+<comment type="line">//     //     adj[node].erase(par[node]);</comment>
+<comment type="line">//     for (auto e: adj[node]) {</comment>
+<comment type="line">//         adj[e].erase(node);</comment>
+<comment type="line">//        // par[e] = node;</comment>
+<comment type="line">//         temp = mdfs (e);</comment>
+<comment type="line">//         v.insert(temp);</comment>
+<comment type="line">//      //   cout &lt;&lt; e &lt;&lt; " " &lt;&lt; temp &lt;&lt; " " &lt;&lt; endl;</comment>
+<comment type="line">//     }</comment>
+
+<comment type="line">//     string t = s;</comment>
+    
+<comment type="line">//     for (auto e : v) {</comment>
+<comment type="line">//         t+=e;</comment>
+<comment type="line">//     }</comment>
+
+<comment type="line">//     //t+=s; </comment>
+
+<comment type="line">//     return t;</comment>
+
+<comment type="line">// }</comment>
+
+
+
+
+
+
+
+<comment type="line">// lli mlog (lli a, lli b) {</comment>
+<comment type="line">//     lli ans = 0;</comment>
+<comment type="line">//     while (a &gt;= b) {</comment>
+<comment type="line">//         ans++;</comment>
+<comment type="line">//         a/=b;</comment>
+<comment type="line">//     }</comment>
+
+<comment type="line">//     return ans;</comment>
+<comment type="line">// }</comment>
+
+<comment type="line">// vi mdInv (100002, 1);</comment>
+
+<function><type><name>void</name></type> <name>solvetest</name><parameter_list>()</parameter_list> <block>{
+    <decl_stmt><decl><type><name>lli</name></type> <name>n</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>vi</name></type> <name>a</name> <argument_list>(<argument><expr><name>n</name></expr></argument>)</argument_list></decl>;</decl_stmt>
+    <macro><name>f</name> <argument_list>(<argument>i</argument>, <argument><literal type="number">0</literal></argument> ,<argument>n</argument>)</argument_list></macro>
+        <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name><name>a</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>sort</name> <argument_list>(<argument><expr><call><name><name>a</name><operator>.</operator><name>begin</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>a</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>lli</name></type> <name>up</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <macro><name>f</name> <argument_list>(<argument>i</argument>, <argument><literal type="number">0</literal></argument>, <argument>n/<literal type="number">2</literal></argument>)</argument_list></macro> <block>{
+        <expr_stmt><expr><name>up</name><operator>+=</operator> <name><name>a</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt>
+    }</block>
+    <decl_stmt><decl><type><name>lli</name></type> <name>right</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <macro><name>f</name> <argument_list>(<argument>i</argument>, <argument>n/<literal type="number">2</literal></argument>, <argument>n</argument>)</argument_list></macro>
+        <expr_stmt><expr><name>right</name> <operator>+=</operator> <name><name>a</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt>
+
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>up</name><operator>*</operator><name>up</name> <operator>+</operator> <name>right</name><operator>*</operator><name>right</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name> <parameter_list>(<parameter><decl><type><name>void</name></type></decl></parameter>)</parameter_list>
+<block>{
+   
+    <expr_stmt><expr><call><name><name>ios_base</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>cin</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><name>NULL</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>lli</name></type> <name>t</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <comment type="line">// cin &gt;&gt; t;</comment>
+    <comment type="line">// f (i, 2, 100002) {</comment>
+    <comment type="line">//     modInv[i] = power(i, M-2, M);</comment>
+    <comment type="line">// }</comment>
+    <while>while <condition>(<expr><name>t</name><operator>--</operator></expr>)</condition> <block>{
+       <expr_stmt><expr><call><name>solvetest</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+    }</block></while>
+
+}</block></function></unit>

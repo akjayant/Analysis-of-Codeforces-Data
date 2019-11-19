@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1244/all/28933067_62496642.cpp"><cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;stack&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;queue&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;string&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;cstring&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;climits&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;cmath&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;map&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;set&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;deque&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>maxn</name> <init>= <expr><literal type="number">1e5</literal> <operator>+</operator> <literal type="number">10</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name><name>arr</name><index>[<expr><name>maxn</name></expr>]</index></name></decl>;</decl_stmt>
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+	<expr_stmt><expr><call><name><name>ios_base</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<decl_stmt><decl><type><name>int</name></type> <name>N</name></decl>;</decl_stmt>
+	<decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>K</name></decl>;</decl_stmt>
+	<expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>N</name> <operator>&gt;&gt;</operator> <name>K</name></expr>;</expr_stmt>
+	<for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;=</operator> <name>N</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+	<block>{
+		<expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name><name>arr</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt>
+	}</block></for>
+	<expr_stmt><expr><call><name>sort</name><argument_list>(<argument><expr><name>arr</name> <operator>+</operator> <literal type="number">1</literal></expr></argument>, <argument><expr><name>arr</name> <operator>+</operator> <name>N</name> <operator>+</operator> <literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<decl_stmt><decl><type><name>int</name></type> <name>p1</name><init>=<expr><literal type="number">1</literal></expr></init></decl>, <decl><type ref="prev"/><name>p2</name><init>=<expr><name>N</name></expr></init></decl>;</decl_stmt>
+	<for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">2</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;=</operator> <name>N</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+	<block>{
+		<if>if <condition>(<expr><name><name>arr</name><index>[<expr><name>i</name></expr>]</index></name> <operator>!=</operator> <name><name>arr</name><index>[<expr><name>i</name> <operator>-</operator> <literal type="number">1</literal></expr>]</index></name></expr>)</condition><then>
+			<block type="pseudo"><break>break;</break></block></then></if>
+		<expr_stmt><expr><name>p1</name><operator>++</operator></expr>;</expr_stmt>
+	}</block></for>
+	<for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><name>N</name> <operator>-</operator> <literal type="number">1</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&gt;=</operator> <literal type="number">1</literal></expr>;</condition> <incr><expr><name>i</name><operator>--</operator></expr></incr>)</control>
+	<block>{
+		<if>if <condition>(<expr><name><name>arr</name><index>[<expr><name>i</name></expr>]</index></name> <operator>!=</operator> <name><name>arr</name><index>[<expr><name>i</name> <operator>+</operator> <literal type="number">1</literal></expr>]</index></name></expr>)</condition><then>
+			<block type="pseudo"><break>break;</break></block></then></if>
+		<expr_stmt><expr><name>p2</name><operator>--</operator></expr>;</expr_stmt>
+	}</block></for>
+	<decl_stmt><decl><type><name>bool</name></type> <name>judge</name> <init>= <expr><literal type="boolean">false</literal></expr></init></decl>;</decl_stmt>
+	<while>while <condition>(<expr><name>K</name> <operator>&amp;&amp;</operator> <name><name>arr</name><index>[<expr><name>p1</name></expr>]</index></name> <operator>!=</operator> <name><name>arr</name><index>[<expr><name>p2</name></expr>]</index></name></expr>)</condition>
+	<block>{
+		<decl_stmt><decl><type><name>int</name></type> <name>len1</name> <init>= <expr><name>p1</name></expr></init></decl>, <decl><type ref="prev"/><name>len2</name> <init>= <expr><name>N</name> <operator>-</operator> <name>p2</name> <operator>+</operator> <literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+		<if>if <condition>(<expr><name>len1</name> <operator>&lt;</operator> <name>len2</name></expr>)</condition><then>
+		<block>{
+			<decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>delta</name> <init>= <expr><name><name>arr</name><index>[<expr><name>p1</name> <operator>+</operator> <literal type="number">1</literal></expr>]</index></name> <operator>-</operator> <name><name>arr</name><index>[<expr><name>p1</name></expr>]</index></name></expr></init></decl>;</decl_stmt>
+			<if>if <condition>(<expr><name>K</name> <operator>/</operator> <name>len1</name> <operator>&lt;</operator> <name>delta</name></expr>)</condition><then>
+			<block>{
+				<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name><name>arr</name><index>[<expr><name>p2</name></expr>]</index></name> <operator>-</operator> <name><name>arr</name><index>[<expr><name>p1</name></expr>]</index></name> <operator>-</operator> <name>K</name> <operator>/</operator> <name>len1</name></expr>;</expr_stmt>
+				<expr_stmt><expr><name>judge</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+				<break>break;</break>
+			}</block></then></if>
+			<expr_stmt><expr><name>K</name> <operator>-=</operator> <name>delta</name> <operator>*</operator> <name>len1</name></expr>;</expr_stmt>
+			<expr_stmt><expr><name>p1</name><operator>++</operator></expr>;</expr_stmt>
+			<while>while <condition>(<expr><name><name>arr</name><index>[<expr><name>p1</name></expr>]</index></name> <operator>==</operator> <name><name>arr</name><index>[<expr><name>p1</name> <operator>+</operator> <literal type="number">1</literal></expr>]</index></name></expr>)</condition>
+			<block>{
+				<expr_stmt><expr><name>p1</name><operator>++</operator></expr>;</expr_stmt>
+			}</block></while>
+			<continue>continue;</continue>
+		}</block></then></if>
+		<if>if <condition>(<expr><name>len2</name> <operator>&lt;=</operator> <name>len1</name></expr>)</condition><then>
+		<block>{
+			<decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>delta</name> <init>= <expr><name><name>arr</name><index>[<expr><name>p2</name></expr>]</index></name> <operator>-</operator> <name><name>arr</name><index>[<expr><name>p2</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name></expr></init></decl>;</decl_stmt>
+			<if>if <condition>(<expr><name>K</name> <operator>/</operator> <name>len2</name> <operator>&lt;</operator> <name>delta</name></expr>)</condition><then>
+			<block>{
+				<expr_stmt><expr><name>judge</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+				<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name><name>arr</name><index>[<expr><name>p2</name></expr>]</index></name> <operator>-</operator> <name><name>arr</name><index>[<expr><name>p1</name></expr>]</index></name> <operator>-</operator> <name>K</name> <operator>/</operator> <name>len2</name></expr>;</expr_stmt>
+				<break>break;</break>
+			}</block></then></if>
+			<expr_stmt><expr><name>K</name> <operator>-=</operator> <name>delta</name> <operator>*</operator> <name>len2</name></expr>;</expr_stmt>
+			<expr_stmt><expr><name>p2</name><operator>--</operator></expr>;</expr_stmt>
+			<while>while <condition>(<expr><name><name>arr</name><index>[<expr><name>p2</name></expr>]</index></name> <operator>==</operator> <name><name>arr</name><index>[<expr><name>p2</name> <operator>-</operator> <literal type="number">1</literal></expr>]</index></name></expr>)</condition>
+			<block>{
+				<expr_stmt><expr><name>p2</name><operator>--</operator></expr>;</expr_stmt>
+			}</block></while>
+			<continue>continue;</continue>
+		}</block></then></if>
+	}</block></while>
+	<if>if <condition>(<expr><operator>!</operator><name>judge</name></expr>)</condition><then>
+		<block type="pseudo"><expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name><name>arr</name><index>[<expr><name>p2</name></expr>]</index></name> <operator>-</operator> <name><name>arr</name><index>[<expr><name>p1</name></expr>]</index></name></expr>;</expr_stmt></block></then></if>
+}</block></function>
+</unit>

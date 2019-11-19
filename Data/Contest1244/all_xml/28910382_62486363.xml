@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1244/all/28910382_62486363.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<typedef>typedef <type><name>long</name> <name>long</name></type> <name>LL</name>;</typedef>
+<typedef>typedef <type><name>double</name></type> <name>db</name>;</typedef>
+
+<cpp:define># <cpp:directive>define</cpp:directive> <cpp:macro><name>pi</name></cpp:macro> <cpp:value>pair&lt;int, int&gt;</cpp:value></cpp:define>
+<cpp:define># <cpp:directive>define</cpp:directive> <cpp:macro><name>pb</name></cpp:macro> <cpp:value>push_back</cpp:value></cpp:define>
+
+<function><template>template <parameter_list>&lt;<parameter><type><name>typename</name></type> <name>t</name></parameter>&gt;</parameter_list></template> <type><name>void</name></type> <name>Max</name><parameter_list>(<parameter><decl><type><name>t</name> <modifier>&amp;</modifier></type><name>a</name></decl></parameter>, <parameter><decl><type><name>t</name></type> <name>b</name></decl></parameter>)</parameter_list> <block>{ <if>if<condition>(<expr><name>a</name> <operator>&lt;</operator> <name>b</name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>a</name> <operator>=</operator> <name>b</name></expr>;</expr_stmt></block></then></if> }</block></function>
+<function><template>template <parameter_list>&lt;<parameter><type><name>typename</name></type> <name>t</name></parameter>&gt;</parameter_list></template> <type><name>void</name></type> <name>Min</name><parameter_list>(<parameter><decl><type><name>t</name> <modifier>&amp;</modifier></type><name>a</name></decl></parameter>, <parameter><decl><type><name>t</name></type> <name>b</name></decl></parameter>)</parameter_list> <block>{ <if>if<condition>(<expr><name>a</name> <operator>&gt;</operator> <name>b</name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>a</name> <operator>=</operator> <name>b</name></expr>;</expr_stmt></block></then></if> }</block></function>
+<function><template>template <parameter_list>&lt;<parameter><type><name>typename</name></type> <name>t</name></parameter>&gt;</parameter_list></template>
+<specifier>inline</specifier> <type><name>void</name></type> <name>read</name><parameter_list>(<parameter><decl><type><name>t</name> <modifier>&amp;</modifier></type><name>x</name></decl></parameter>)</parameter_list> <block>{
+	<expr_stmt><expr><name>x</name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt> <decl_stmt><decl><type><name>t</name></type> <name>f</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt> <decl_stmt><decl><type><name>char</name></type> <name>c</name> <init>= <expr><call><name>getchar</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+	<for>for<control>(<init>;</init> <condition><expr><operator>!</operator><call><name>isdigit</name><argument_list>(<argument><expr><name>c</name></expr></argument>)</argument_list></call></expr>;</condition> <incr><expr><name>c</name> <operator>=</operator> <call><name>getchar</name><argument_list>()</argument_list></call></expr></incr>)</control>
+		<block type="pseudo"><if>if<condition>(<expr><name>c</name> <operator>==</operator> <literal type="char">'-'</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>f</name> <operator>=</operator> <operator>-</operator><literal type="number">1</literal></expr>;</expr_stmt></block></then></if></block></for>
+	<for>for<control>(<init>;</init>  <condition><expr><call><name>isdigit</name><argument_list>(<argument><expr><name>c</name></expr></argument>)</argument_list></call></expr>;</condition> <incr><expr><name>c</name> <operator>=</operator> <call><name>getchar</name><argument_list>()</argument_list></call></expr></incr>)</control>
+		<block type="pseudo"><expr_stmt><expr><name>x</name> <operator>=</operator> <name>x</name> <operator>*</operator> <literal type="number">10</literal> <operator>+</operator> <name>c</name> <operator>-</operator> <literal type="char">'0'</literal></expr>;</expr_stmt></block></for>
+	<expr_stmt><expr><name>x</name> <operator>*=</operator> <name>f</name></expr>;</expr_stmt>
+}</block></function>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>N</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+
+<decl_stmt><decl><type><name>LL</name></type> <name>n</name></decl>, <decl><type ref="prev"/><name>p</name></decl>, <decl><type ref="prev"/><name>w</name></decl>, <decl><type ref="prev"/><name>d</name></decl>, <decl><type ref="prev"/><name>x</name></decl>, <decl><type ref="prev"/><name>y</name></decl>;</decl_stmt>
+
+<function><type><name>LL</name></type> <name>exgcd</name><parameter_list>(<parameter><decl><type><name>LL</name></type> <name>a</name></decl></parameter>, <parameter><decl><type><name>LL</name></type> <name>b</name></decl></parameter>, <parameter><decl><type><name>LL</name> <modifier>&amp;</modifier></type><name>x</name></decl></parameter>, <parameter><decl><type><name>LL</name> <modifier>&amp;</modifier></type><name>y</name></decl></parameter>)</parameter_list> <block>{
+	<decl_stmt><decl><type><name>LL</name></type> <name>d</name></decl>;</decl_stmt>
+	<if>if<condition>(<expr><operator>!</operator><name>b</name></expr>)</condition><then> <block>{
+		<expr_stmt><expr><name>d</name> <operator>=</operator> <name>a</name></expr>;</expr_stmt>
+		<expr_stmt><expr><name>x</name> <operator>=</operator> <literal type="number">1</literal></expr><operator>,</operator> <expr><name>y</name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+	}</block></then> <else>else <block>{
+		<expr_stmt><expr><name>d</name> <operator>=</operator> <call><name>exgcd</name><argument_list>(<argument><expr><name>b</name></expr></argument>, <argument><expr><name>a</name> <operator>%</operator> <name>b</name></expr></argument>, <argument><expr><name>x</name></expr></argument>, <argument><expr><name>y</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<decl_stmt><decl><type><name>LL</name></type> <name>t</name> <init>= <expr><name>x</name></expr></init></decl>;</decl_stmt>
+		<expr_stmt><expr><name>x</name> <operator>=</operator> <name>y</name></expr>;</expr_stmt>
+		<expr_stmt><expr><name>y</name> <operator>=</operator> <name>t</name> <operator>-</operator> <operator>(</operator><name>a</name> <operator>/</operator> <name>b</name><operator>)</operator> <operator>*</operator> <name>y</name></expr>;</expr_stmt>
+	}</block></else></if>
+	<return>return <expr><name>d</name></expr>;</return>
+}</block></function>
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+	<expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name> <operator>&gt;&gt;</operator> <name>p</name> <operator>&gt;&gt;</operator> <name>w</name> <operator>&gt;&gt;</operator> <name>d</name></expr>;</expr_stmt>
+	<decl_stmt><decl><type><name>LL</name></type> <name>gcd</name> <init>= <expr><call><name>exgcd</name><argument_list>(<argument><expr><name>w</name></expr></argument>, <argument><expr><name>d</name></expr></argument>, <argument><expr><name>x</name></expr></argument>, <argument><expr><name>y</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+	<if>if<condition>(<expr><name>p</name> <operator>%</operator> <name>gcd</name></expr>)</condition><then> <block type="pseudo"><return>return <expr><literal type="number">0</literal> <operator>*</operator> <call><name>printf</name><argument_list>(<argument><expr><literal type="string">"-1\n"</literal></expr></argument>)</argument_list></call></expr>;</return></block></then></if>
+	<decl_stmt><decl><type><name>LL</name></type> <name>A</name> <init>= <expr><name>w</name> <operator>/</operator> <name>gcd</name></expr></init></decl>;</decl_stmt>
+	<decl_stmt><decl><type><name>LL</name></type> <name>B</name> <init>= <expr><name>d</name> <operator>/</operator> <name>gcd</name></expr></init></decl>;</decl_stmt>
+	<expr_stmt><expr><name>x</name> <operator>=</operator> <name>x</name> <operator>%</operator> <name>B</name> <operator>*</operator> <operator>(</operator><operator>(</operator><name>p</name> <operator>/</operator> <name>gcd</name><operator>)</operator> <operator>%</operator> <name>B</name><operator>)</operator></expr>;</expr_stmt>
+	<block>{
+		<expr_stmt><expr><name>x</name> <operator>=</operator> <operator>(</operator><name>x</name> <operator>%</operator> <name>B</name> <operator>+</operator> <name>B</name><operator>)</operator> <operator>%</operator> <name>B</name></expr>;</expr_stmt>
+		<expr_stmt><expr><name>y</name> <operator>=</operator> <operator>(</operator><name>p</name> <operator>-</operator> <name>w</name> <operator>*</operator> <name>x</name><operator>)</operator> <operator>/</operator> <name>d</name></expr>;</expr_stmt>
+		<if>if<condition>(<expr><name>n</name> <operator>&gt;=</operator> <name>x</name> <operator>+</operator> <name>y</name> <operator>&amp;&amp;</operator> <name>x</name> <operator>&gt;=</operator> <literal type="number">0</literal> <operator>&amp;&amp;</operator> <name>y</name> <operator>&gt;=</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+			<expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"%lld %lld %lld\n"</literal></expr></argument>, <argument><expr><name>x</name></expr></argument>, <argument><expr><name>y</name></expr></argument>,  <argument><expr><name>n</name> <operator>-</operator> <name>x</name> <operator>-</operator> <name>y</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+			<return>return <expr><literal type="number">0</literal></expr>;</return>
+		}</block></then></if>
+	}</block>
+	<block>{
+		<expr_stmt><expr><name>y</name> <operator>=</operator> <operator>(</operator><name>y</name> <operator>%</operator> <name>A</name> <operator>+</operator> <name>A</name><operator>)</operator> <operator>%</operator> <name>A</name></expr>;</expr_stmt>
+		<expr_stmt><expr><name>x</name> <operator>=</operator> <operator>(</operator><name>p</name> <operator>-</operator> <name>d</name> <operator>*</operator> <name>y</name><operator>)</operator> <operator>/</operator> <name>w</name></expr>;</expr_stmt>
+		<if>if<condition>(<expr><name>n</name> <operator>&gt;=</operator> <name>x</name> <operator>+</operator> <name>y</name> <operator>&amp;&amp;</operator> <name>x</name> <operator>&gt;=</operator> <literal type="number">0</literal> <operator>&amp;&amp;</operator> <name>y</name> <operator>&gt;=</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+			<expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"%lld %lld %lld\n"</literal></expr></argument>, <argument><expr><name>x</name></expr></argument>, <argument><expr><name>y</name></expr></argument>, <argument><expr><name>n</name> <operator>-</operator> <name>x</name> <operator>-</operator> <name>y</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+			<return>return <expr><literal type="number">0</literal></expr>;</return>
+		}</block></then></if>
+	}</block>
+	<expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"-1\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<comment type="line">// if(y &lt; 0) {</comment>
+	<comment type="line">// 	LL del = abs(y);</comment>
+	<comment type="line">// 	LL bas = ceil(1.0 * del / A);</comment>
+	<comment type="line">// 	y += A * bas;</comment>
+		
+	<comment type="line">// }</comment>
+	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

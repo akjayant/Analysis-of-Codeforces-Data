@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1248/all/29137324_63007439.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>f</name></cpp:macro> <cpp:value>first</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>s</name></cpp:macro> <cpp:value>second</cpp:value></cpp:define>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<typedef>typedef <type><name>long</name> <name>long</name></type> <name>ll</name>;</typedef>
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>N</name> <init>= <expr><literal type="number">2e5</literal><operator>+</operator><literal type="number">5</literal></expr></init></decl>, <decl><type ref="prev"/><name>mod</name> <init>= <expr><literal type="number">1e9</literal><operator>+</operator><literal type="number">7</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>;</decl_stmt>
+<function><type><name>int</name></type> <name>calc</name><parameter_list>(<parameter><decl><type><name>string</name></type> <name>s</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>i</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>j</name></decl></parameter>)</parameter_list>
+<block>{
+	<expr_stmt><expr><call><name>swap</name><argument_list>(<argument><expr><name><name>s</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>, <argument><expr><name><name>s</name><index>[<expr><name>j</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<decl_stmt><decl><type><name>int</name></type> <name>idx</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>, <decl><type ref="prev"/><name>mn</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+	<decl_stmt><decl><type><name>int</name></type> <name>dif</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+	<for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name><operator>&lt;</operator><name>n</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+	<block>{
+		<expr_stmt><expr><name>dif</name> <operator>+=</operator> <operator>(</operator><name><name>s</name><index>[<expr><name>i</name></expr>]</index></name><operator>==</operator><literal type="char">'('</literal><operator>)</operator></expr>;</expr_stmt>
+		<expr_stmt><expr><name>dif</name> <operator>-=</operator> <operator>(</operator><name><name>s</name><index>[<expr><name>i</name></expr>]</index></name><operator>==</operator><literal type="char">')'</literal><operator>)</operator></expr>;</expr_stmt>
+		<if>if<condition>(<expr><name>dif</name> <operator>&lt;</operator> <name>mn</name></expr>)</condition><then>
+		<block>{
+			<expr_stmt><expr><name>mn</name> <operator>=</operator> <name>dif</name></expr>;</expr_stmt>
+			<expr_stmt><expr><name>idx</name> <operator>=</operator> <name>i</name><operator>+</operator><literal type="number">1</literal></expr>;</expr_stmt>
+		}</block></then></if>
+	}</block></for>
+	<expr_stmt><expr><name>dif</name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+	<decl_stmt><decl><type><name>int</name></type> <name>ret</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+	<for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><name>idx</name></expr></init></decl>;</init> <condition><expr><name>i</name><operator>&lt;</operator><name>n</name><operator>+</operator><name>idx</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+	<block>{
+		<decl_stmt><decl><type><name>int</name></type> <name>j</name> <init>= <expr><name>i</name><operator>%</operator><name>n</name></expr></init></decl>;</decl_stmt>
+		<expr_stmt><expr><name>dif</name> <operator>+=</operator> <operator>(</operator><name><name>s</name><index>[<expr><name>j</name></expr>]</index></name><operator>==</operator><literal type="char">'('</literal><operator>)</operator></expr>;</expr_stmt>
+		<expr_stmt><expr><name>dif</name> <operator>-=</operator> <operator>(</operator><name><name>s</name><index>[<expr><name>j</name></expr>]</index></name><operator>==</operator><literal type="char">')'</literal><operator>)</operator></expr>;</expr_stmt>
+		<if>if<condition>(<expr><operator>!</operator><name>dif</name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>ret</name><operator>++</operator></expr>;</expr_stmt></block></then></if>
+	}</block></for>
+	<return>return <expr><name>ret</name></expr>;</return>
+}</block></function>
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+	<decl_stmt><decl><type><name>string</name></type> <name>s</name></decl>;</decl_stmt>
+	<expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name> <operator>&gt;&gt;</operator> <name>s</name></expr>;</expr_stmt>
+	<decl_stmt><decl><type><name>int</name></type> <name>dif</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+	<for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name><operator>&lt;</operator><name>n</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block type="pseudo"><expr_stmt><expr><name>dif</name> <operator>+=</operator> <operator>(</operator><name><name>s</name><index>[<expr><name>i</name></expr>]</index></name><operator>==</operator><literal type="char">'('</literal><operator>)</operator></expr><operator>,</operator> <expr><name>dif</name> <operator>-=</operator> <operator>(</operator><name><name>s</name><index>[<expr><name>i</name></expr>]</index></name><operator>==</operator><literal type="char">')'</literal><operator>)</operator></expr>;</expr_stmt></block></for>
+	<if>if<condition>(<expr><name>dif</name> <operator>!=</operator> <literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><return>return <expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="number">0</literal> <operator>&lt;&lt;</operator> <name>endl</name> <operator>&lt;&lt;</operator> <literal type="string">"1 1"</literal> <operator>&lt;&lt;</operator> <name>endl</name></expr><operator>,</operator> <expr><literal type="number">0</literal></expr>;</return></block></then></if>
+	<decl_stmt><decl><type><name>int</name></type> <name>ans</name> <init>= <expr><call><name>calc</name><argument_list>(<argument><expr><name>s</name></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+	<decl_stmt><decl><type><name>int</name></type> <name>x</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>, <decl><type ref="prev"/><name>y</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+	<for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name><operator>&lt;</operator><name>n</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+	<block>{
+		<for>for<control>(<init><decl><type><name>int</name></type> <name>j</name><init>=<expr><name>i</name><operator>+</operator><literal type="number">1</literal></expr></init></decl>;</init> <condition><expr><name>j</name><operator>&lt;</operator><name>n</name></expr>;</condition> <incr><expr><name>j</name><operator>++</operator></expr></incr>)</control>
+		<block>{
+			<if>if<condition>(<expr><name><name>s</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <name><name>s</name><index>[<expr><name>j</name></expr>]</index></name></expr>)</condition><then> <block type="pseudo"><continue>continue;</continue></block></then></if>
+			<decl_stmt><decl><type><name>int</name></type> <name>tmp</name> <init>= <expr><call><name>calc</name><argument_list>(<argument><expr><name>s</name></expr></argument>, <argument><expr><name>i</name></expr></argument>, <argument><expr><name>j</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+			<if>if<condition>(<expr><name>tmp</name> <operator>&gt;</operator> <name>ans</name></expr>)</condition><then>
+			<block>{
+				<expr_stmt><expr><name>ans</name> <operator>=</operator> <name>tmp</name></expr>;</expr_stmt>
+				<expr_stmt><expr><name>x</name> <operator>=</operator> <name>i</name><operator>+</operator><literal type="number">1</literal></expr>;</expr_stmt>
+				<expr_stmt><expr><name>y</name> <operator>=</operator> <name>j</name><operator>+</operator><literal type="number">1</literal></expr>;</expr_stmt>
+			}</block></then></if>
+		}</block></for>
+	}</block></for>
+	<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>ans</name> <operator>&lt;&lt;</operator> <name>endl</name> <operator>&lt;&lt;</operator> <name>x</name> <operator>&lt;&lt;</operator> <literal type="string">" "</literal> <operator>&lt;&lt;</operator> <name>y</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt><empty_stmt>;</empty_stmt>
+}</block></function></unit>

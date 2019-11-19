@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1244/all/28925569_62482501.cpp"><cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>M</name></cpp:macro> <cpp:value>100005</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>LL</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>,<decl><type ref="prev"/><name><name>A</name><index>[<expr><name>M</name></expr>]</index></name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>LL</name></type> <name>K</name></decl>;</decl_stmt>
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list><block>{
+	<expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>n</name><operator>&gt;&gt;</operator><name>K</name></expr>;</expr_stmt>
+	<for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;=</operator><name>n</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control><block type="pseudo"><expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name><name>A</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt></block></for>
+	<expr_stmt><expr><call><name>sort</name><argument_list>(<argument><expr><name>A</name><operator>+</operator><literal type="number">1</literal></expr></argument>,<argument><expr><name>A</name><operator>+</operator><name>n</name><operator>+</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<decl_stmt><decl><type><name>int</name></type> <name>l</name><init>=<expr><literal type="number">1</literal></expr></init></decl>,<decl><type ref="prev"/><name>r</name><init>=<expr><name>n</name></expr></init></decl>;</decl_stmt>
+	<while>while<condition>(<expr><name>l</name><operator>&lt;</operator><name>r</name></expr>)</condition><block>{
+		<while>while<condition>(<expr><name>l</name><operator>&lt;</operator><name>n</name><operator>&amp;&amp;</operator><name><name>A</name><index>[<expr><name>l</name></expr>]</index></name><operator>==</operator><name><name>A</name><index>[<expr><name>l</name><operator>+</operator><literal type="number">1</literal></expr>]</index></name></expr>)</condition><block type="pseudo"><expr_stmt><expr><name>l</name><operator>++</operator></expr>;</expr_stmt></block></while>
+		<while>while<condition>(<expr><name>r</name><operator>&gt;</operator><literal type="number">1</literal><operator>&amp;&amp;</operator><name><name>A</name><index>[<expr><name>r</name></expr>]</index></name><operator>==</operator><name><name>A</name><index>[<expr><name>r</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name></expr>)</condition><block type="pseudo"><expr_stmt><expr><name>r</name><operator>--</operator></expr>;</expr_stmt></block></while>
+		<if>if<condition>(<expr><name>l</name><operator>&gt;=</operator><name>r</name></expr>)</condition><then><block type="pseudo"><break>break;</break></block></then></if>
+		<decl_stmt><decl><type><name>LL</name></type> <name>c1</name><init>=<expr><name>l</name></expr></init></decl>,<decl><type ref="prev"/><name>c2</name><init>=<expr><name>n</name><operator>-</operator><name>r</name><operator>+</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+		<if>if<condition>(<expr><name>c1</name><operator>&lt;</operator><name>c2</name></expr>)</condition><then><block>{
+			<decl_stmt><decl><type><name>LL</name></type> <name>ned</name><init>=<expr><name>c1</name><operator>*</operator><operator>(</operator><name><name>A</name><index>[<expr><name>l</name><operator>+</operator><literal type="number">1</literal></expr>]</index></name><operator>-</operator><name><name>A</name><index>[<expr><name>l</name></expr>]</index></name><operator>)</operator></expr></init></decl>;</decl_stmt>
+			<if>if<condition>(<expr><name>K</name><operator>&gt;=</operator><name>ned</name></expr>)</condition><then><block type="pseudo"><expr_stmt><expr><name>K</name><operator>-=</operator><name>ned</name></expr><operator>,</operator><expr><name>l</name><operator>++</operator></expr>;</expr_stmt></block></then>
+			<else>else<block>{
+				<expr_stmt><expr><name><name>A</name><index>[<expr><name>l</name></expr>]</index></name><operator>+=</operator><name>K</name><operator>/</operator><name>c1</name></expr>;</expr_stmt><break>break;</break>
+			}</block></else></if>
+		}</block></then><else>else<block>{
+			<decl_stmt><decl><type><name>LL</name></type> <name>ned</name><init>=<expr><name>c2</name><operator>*</operator><operator>(</operator><name><name>A</name><index>[<expr><name>r</name></expr>]</index></name><operator>-</operator><name><name>A</name><index>[<expr><name>r</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name><operator>)</operator></expr></init></decl>;</decl_stmt>
+			<if>if<condition>(<expr><name>K</name><operator>&gt;=</operator><name>ned</name></expr>)</condition><then><block type="pseudo"><expr_stmt><expr><name>K</name><operator>-=</operator><name>ned</name></expr><operator>,</operator><expr><name>r</name><operator>--</operator></expr>;</expr_stmt></block></then>
+			<else>else<block>{
+				<expr_stmt><expr><name><name>A</name><index>[<expr><name>r</name></expr>]</index></name><operator>-=</operator><name>K</name><operator>/</operator><name>c2</name></expr>;</expr_stmt><break>break;</break>
+			}</block></else></if>
+		}</block></else></if>
+	}</block></while>
+	<expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"%d\n"</literal></expr></argument>,<argument><expr><ternary><condition><expr><name>l</name><operator>&lt;</operator><name>r</name></expr>?</condition><then><expr><name><name>A</name><index>[<expr><name>r</name></expr>]</index></name><operator>-</operator><name><name>A</name><index>[<expr><name>l</name></expr>]</index></name></expr></then><else>:<expr><literal type="number">0</literal></expr></else></ternary></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>

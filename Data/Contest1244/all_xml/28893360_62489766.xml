@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1244/all/28893360_62489766.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<comment type="line">//#include &lt;fstream&gt;</comment>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdio&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstring&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;string&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;queue&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;functional&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cmath&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;map&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdint&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;unordered_map&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<comment type="line">//ifstream fin("dq.in");</comment>
+<comment type="line">//ofstream fout("dq.out");</comment>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ll</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ld</name></cpp:macro> <cpp:value>long double</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pb</name></cpp:macro> <cpp:value>push_back</cpp:value></cpp:define>
+<comment type="line">//#define mp make_pair</comment>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>fr</name><parameter_list>(<parameter><type><name>i</name></type></parameter>, <parameter><type><name>n</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(ll i=0;i&lt;(ll)n;i++)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>frx</name><parameter_list>(<parameter><type><name>i</name></type></parameter>, <parameter><type><name>x</name></type></parameter>, <parameter><type><name>n</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(ll i=(ll)x;i&lt;(ll)n;i++)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>frb</name><parameter_list>(<parameter><type><name>i</name></type></parameter>, <parameter><type><name>n</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(ll i=(ll)n-1;i&gt;=0;i--)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>frbx</name><parameter_list>(<parameter><type><name>i</name></type></parameter>, <parameter><type><name>x</name></type></parameter>, <parameter><type><name>n</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(ll i=(ll)n-1;i&gt;=(ll)x;i--)</cpp:value></cpp:define>
+<decl_stmt><decl><type><specifier>const</specifier> <name>int64_t</name></type> <name>mod</name> <init>= <expr><operator>(</operator><name>ll</name><operator>)</operator><literal type="number">1e9</literal> <operator>+</operator> <literal type="number">7</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><specifier>const</specifier> <name>int64_t</name></type> <name>primm</name> <init>= <expr><literal type="number">998244353</literal></expr></init></decl>;</decl_stmt>
+
+<decl_stmt><decl><type><name>ll</name></type> <name>n</name></decl>, <decl><type ref="prev"/><name>k</name></decl>, <decl><type ref="prev"/><name><name>a</name><index>[<expr><literal type="number">200005</literal></expr>]</index></name></decl>, <decl><type ref="prev"/><name>minelem</name></decl>, <decl><type ref="prev"/><name>maxelem</name></decl>;</decl_stmt>
+
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+	<expr_stmt><expr><call><name><name>ios_base</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<expr_stmt><expr><call><name><name>cin</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<expr_stmt><expr><call><name><name>cout</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name> <operator>&gt;&gt;</operator> <name>k</name></expr>;</expr_stmt>
+	<expr_stmt><expr><name><name>a</name><index>[<expr><name>n</name></expr>]</index></name> <operator>=</operator> <literal type="number">100</literal> <operator>*</operator> <name>mod</name></expr>;</expr_stmt>
+	<macro><name>fr</name><argument_list>(<argument>i</argument>, <argument>n</argument>)</argument_list></macro>
+	<block>{
+		<expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name><name>a</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt>
+	}</block>
+	<expr_stmt><expr><call><name>sort</name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><name>a</name> <operator>+</operator> <name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<expr_stmt><expr><name>maxelem</name> <operator>=</operator> <name>n</name> <operator>-</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+	<while>while <condition>(<expr><name><name>a</name><index>[<expr><name>minelem</name> <operator>+</operator> <literal type="number">1</literal></expr>]</index></name> <operator>==</operator> <name><name>a</name><index>[<expr><name>minelem</name></expr>]</index></name></expr>)</condition>
+		<block type="pseudo"><expr_stmt><expr><name>minelem</name><operator>++</operator></expr>;</expr_stmt></block></while>
+	<while>while <condition>(<expr><name><name>a</name><index>[<expr><name>maxelem</name> <operator>-</operator> <literal type="number">1</literal></expr>]</index></name> <operator>==</operator> <name><name>a</name><index>[<expr><name>maxelem</name></expr>]</index></name></expr>)</condition>
+		<block type="pseudo"><expr_stmt><expr><name>maxelem</name><operator>--</operator></expr>;</expr_stmt></block></while>
+	<while>while <condition>(<expr><name>k</name> <operator>&gt;=</operator> <literal type="number">0</literal></expr>)</condition>
+	<block>{
+		<if>if <condition>(<expr><name><name>a</name><index>[<expr><name>minelem</name></expr>]</index></name> <operator>==</operator> <name><name>a</name><index>[<expr><name>maxelem</name></expr>]</index></name></expr>)</condition><then>
+		<block>{
+			<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="number">0</literal> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+			<return>return <expr><literal type="number">0</literal></expr>;</return>
+		}</block></then></if>
+		<if>if <condition>(<expr><name>minelem</name> <operator>&lt;</operator> <name>n</name> <operator>-</operator> <literal type="number">1</literal> <operator>-</operator> <name>maxelem</name></expr>)</condition><then>
+		<block>{
+			<if>if <condition>(<expr><operator>(</operator><name>minelem</name> <operator>+</operator> <literal type="number">1</literal><operator>)</operator><operator>*</operator><operator>(</operator><name><name>a</name><index>[<expr><name>minelem</name> <operator>+</operator> <literal type="number">1</literal></expr>]</index></name> <operator>-</operator> <name><name>a</name><index>[<expr><name>minelem</name></expr>]</index></name><operator>)</operator> <operator>&lt;=</operator> <name>k</name></expr>)</condition><then>
+			<block>{
+				<expr_stmt><expr><name>k</name> <operator>-=</operator> <operator>(</operator><name>minelem</name> <operator>+</operator> <literal type="number">1</literal><operator>)</operator><operator>*</operator><operator>(</operator><name><name>a</name><index>[<expr><name>minelem</name> <operator>+</operator> <literal type="number">1</literal></expr>]</index></name> <operator>-</operator> <name><name>a</name><index>[<expr><name>minelem</name></expr>]</index></name><operator>)</operator></expr>;</expr_stmt>
+				<expr_stmt><expr><name>minelem</name><operator>++</operator></expr>;</expr_stmt>
+
+				<while>while <condition>(<expr><name><name>a</name><index>[<expr><name>minelem</name> <operator>+</operator> <literal type="number">1</literal></expr>]</index></name> <operator>==</operator> <name><name>a</name><index>[<expr><name>minelem</name></expr>]</index></name></expr>)</condition>
+					<block type="pseudo"><expr_stmt><expr><name>minelem</name><operator>++</operator></expr>;</expr_stmt></block></while>
+			}</block></then>
+			<else>else
+			<block>{
+				<decl_stmt><decl><type><name>ll</name></type> <name>t</name> <init>= <expr><name>k</name> <operator>/</operator> <operator>(</operator><name>minelem</name> <operator>+</operator> <literal type="number">1</literal><operator>)</operator></expr></init></decl>;</decl_stmt>
+				<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name><name>a</name><index>[<expr><name>maxelem</name></expr>]</index></name> <operator>-</operator> <name><name>a</name><index>[<expr><name>minelem</name></expr>]</index></name> <operator>-</operator> <name>t</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+				<return>return <expr><literal type="number">0</literal></expr>;</return>
+			}</block></else></if>
+		}</block></then>
+		<else>else
+		<block>{
+			<if>if <condition>(<expr><operator>(</operator><name>n</name><operator>-</operator><name>maxelem</name><operator>)</operator><operator>*</operator><operator>(</operator><name><name>a</name><index>[<expr><name>maxelem</name></expr>]</index></name> <operator>-</operator> <name><name>a</name><index>[<expr><name>maxelem</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name><operator>)</operator> <operator>&lt;=</operator> <name>k</name></expr>)</condition><then>
+			<block>{
+				<expr_stmt><expr><name>k</name> <operator>-=</operator> <operator>(</operator><name>n</name> <operator>-</operator> <name>maxelem</name><operator>)</operator><operator>*</operator><operator>(</operator><name><name>a</name><index>[<expr><name>maxelem</name></expr>]</index></name> <operator>-</operator> <name><name>a</name><index>[<expr><name>maxelem</name> <operator>-</operator> <literal type="number">1</literal></expr>]</index></name><operator>)</operator></expr>;</expr_stmt>
+				<expr_stmt><expr><name>maxelem</name><operator>--</operator></expr>;</expr_stmt>
+
+				<while>while <condition>(<expr><name><name>a</name><index>[<expr><name>maxelem</name> <operator>-</operator> <literal type="number">1</literal></expr>]</index></name> <operator>==</operator> <name><name>a</name><index>[<expr><name>maxelem</name></expr>]</index></name></expr>)</condition>
+					<block type="pseudo"><expr_stmt><expr><name>maxelem</name><operator>--</operator></expr>;</expr_stmt></block></while>
+			}</block></then>
+			<else>else
+			<block>{
+				<decl_stmt><decl><type><name>ll</name></type> <name>t</name> <init>= <expr><name>k</name> <operator>/</operator> <operator>(</operator><name>n</name><operator>-</operator><name>maxelem</name><operator>)</operator></expr></init></decl>;</decl_stmt>
+				<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name><name>a</name><index>[<expr><name>maxelem</name></expr>]</index></name> <operator>-</operator> <name><name>a</name><index>[<expr><name>minelem</name></expr>]</index></name> <operator>-</operator> <name>t</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt> <return>return <expr><literal type="number">0</literal></expr>;</return>
+			}</block></else></if>
+		}</block></else></if>
+	}</block></while>
+
+
+	
+	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+<comment type="line">//mipt-atp-distrib209</comment>
+<comment type="line">//ZhpJAP1KRsZ</comment></unit>

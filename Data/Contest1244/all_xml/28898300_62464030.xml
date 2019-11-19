@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1244/all/28898300_62464030.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<comment type="line">//#pragma GCC optimize("Ofast")</comment>
+<comment type="line">//#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native")</comment>
+<comment type="line">//#pragma GCC optimize("unroll-loops")</comment>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pb</name></cpp:macro> <cpp:value>push_back</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>mp</name></cpp:macro> <cpp:value>make_pair</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>sz</name><parameter_list>(<parameter><type><name>a</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>(ll)(a).size()</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>all</name><parameter_list>(<parameter><type><name>a</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>a.begin(), a.end()</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ff</name></cpp:macro> <cpp:value>first</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ss</name></cpp:macro> <cpp:value>second</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>endl</name></cpp:macro> <cpp:value>"\n"</cpp:value></cpp:define>
+
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;ext/pb_ds/assoc_container.hpp&gt;</cpp:file></cpp:include> <comment type="line">// Common file</comment>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;ext/pb_ds/tree_policy.hpp&gt;</cpp:file></cpp:include> <comment type="line">// Including tree_order_statistics_node_update</comment>
+
+<using>using <namespace>namespace <name>__gnu_pbds</name>;</namespace></using>
+<typedef>typedef <type><name><name>tree</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>,<argument><expr><name>null_type</name></expr></argument>,<argument><expr><name><name>less</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></expr></argument>,<argument><expr><name>rb_tree_tag</name></expr></argument>,<argument><expr><name>tree_order_statistics_node_update</name></expr></argument>&gt;</argument_list></name></type> <name>pbds</name>;</typedef>
+<comment type="line">//K-th smallest</comment>
+<comment type="line">//cout &lt;&lt; k &lt;&lt; "rd smallest: " &lt;&lt; *A.find_by_order(k-1) &lt;&lt; endl;</comment>
+<comment type="line">//NO OF ELEMENTS &lt; X</comment>
+<comment type="line">//cout &lt;&lt; "No of elements less than " &lt;&lt; X &lt;&lt; " are " &lt;&lt; A.order_of_key(X) &lt;&lt; endl;</comment>
+
+<comment type="line">// priority_queue &lt;ll,vector&lt;ll&gt;,greater&lt;ll&gt; &gt; p;</comment>
+
+<typedef>typedef <type><name>long</name> <name>long</name></type> <name>ll</name>;</typedef>
+<typedef>typedef <type><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>ll</name></expr></argument>,<argument><expr><name>ll</name></expr></argument>&gt;</argument_list></name></type> <name>pii</name>;</typedef>
+
+<decl_stmt><decl><type><name>ll</name></type> <name>mod</name><init>=<expr><literal type="number">1000000007</literal></expr></init></decl>;</decl_stmt>
+
+<function><type><name>ll</name></type> <name>power</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>x</name></decl></parameter>, <parameter><decl><type><name>ll</name></type> <name>y</name></decl></parameter>)</parameter_list> 
+<block>{
+	<decl_stmt><decl><type><name>ll</name></type> <name>temp</name></decl>;</decl_stmt>
+	<if>if<condition>( <expr><name>y</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then>
+		<block type="pseudo"><return>return <expr><literal type="number">1</literal></expr>;</return></block></then></if>
+	<expr_stmt><expr><name>temp</name> <operator>=</operator> <call><name>power</name><argument_list>(<argument><expr><name>x</name></expr></argument>, <argument><expr><name>y</name><operator>/</operator><literal type="number">2</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<if>if <condition>(<expr><name>y</name><operator>%</operator><literal type="number">2</literal> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then>
+		<block type="pseudo"><return>return <expr><operator>(</operator><name>temp</name><operator>*</operator><name>temp</name><operator>)</operator><operator>%</operator><name>mod</name></expr>;</return></block></then>
+	<else>else
+		<block type="pseudo"><return>return <expr><operator>(</operator><operator>(</operator><operator>(</operator><name>x</name><operator>*</operator><name>temp</name><operator>)</operator><operator>%</operator><name>mod</name><operator>)</operator><operator>*</operator><name>temp</name><operator>)</operator><operator>%</operator><name>mod</name></expr>;</return></block></else></if> 
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+	<expr_stmt><expr><call><name><name>ios_base</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<expr_stmt><expr><call><name><name>cin</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><name>NULL</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<expr_stmt><expr><call><name><name>cout</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><name>NULL</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<decl_stmt><decl><type><name>ll</name></type> <name>t</name></decl>;</decl_stmt>
+	<expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>t</name></expr>;</expr_stmt>
+	<while>while<condition>(<expr><name>t</name><operator>--</operator></expr>)</condition>
+	<block>{
+		<decl_stmt><decl><type><name>ll</name></type> <name>a</name></decl>,<decl><type ref="prev"/><name>b</name></decl>,<decl><type ref="prev"/><name>c</name></decl>,<decl><type ref="prev"/><name>d</name></decl>,<decl><type ref="prev"/><name>k</name></decl>;</decl_stmt>
+		<expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>a</name><operator>&gt;&gt;</operator><name>b</name><operator>&gt;&gt;</operator><name>c</name><operator>&gt;&gt;</operator><name>d</name><operator>&gt;&gt;</operator><name>k</name></expr>;</expr_stmt>
+		<decl_stmt><decl><type><name>ll</name></type> <name>x1</name> <init>= <expr><call><name>ceil</name><argument_list>(<argument><expr><operator>(</operator><name>double</name><operator>)</operator><name>a</name> <operator>/</operator> <operator>(</operator><name>double</name><operator>)</operator><name>c</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+		<decl_stmt><decl><type><name>ll</name></type> <name>x2</name> <init>= <expr><call><name>ceil</name><argument_list>(<argument><expr><operator>(</operator><name>double</name><operator>)</operator><name>b</name> <operator>/</operator> <operator>(</operator><name>double</name><operator>)</operator><name>d</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+		<if>if<condition>(<expr><name>x1</name><operator>+</operator><name>x2</name> <operator>&gt;</operator> <name>k</name></expr>)</condition><then>
+			<block type="pseudo"><expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><operator>-</operator><literal type="number">1</literal><operator>&lt;&lt;</operator><name>endl</name></expr>;</expr_stmt></block></then>
+		<else>else
+			<block type="pseudo"><expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><name>x1</name><operator>&lt;&lt;</operator><literal type="string">" "</literal><operator>&lt;&lt;</operator><name>x2</name><operator>&lt;&lt;</operator><name>endl</name></expr>;</expr_stmt></block></else></if>
+	}</block></while>
+	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>

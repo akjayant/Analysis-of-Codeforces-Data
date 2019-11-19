@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1244/all/28935618_62476369.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+
+<decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name>firstStairs</name></decl>, <decl><type ref="prev"/><name>lastStairs</name></decl>;</decl_stmt>
+
+<function><type><name>int</name></type> <name>solve</name><parameter_list>()</parameter_list> <block>{
+
+  <if>if <condition>(<expr><name>firstStairs</name> <operator>==</operator> <name>n</name></expr>)</condition><then>
+    <block type="pseudo"><return>return <expr><name>n</name></expr>;</return></block></then></if>
+
+  <return>return <expr><call><name><name>std</name><operator>::</operator><name>max</name></name><argument_list>(<argument><expr><operator>(</operator><name>lastStairs</name><operator>+</operator><literal type="number">1</literal><operator>)</operator><operator>*</operator><literal type="number">2</literal></expr></argument>, <argument><expr><operator>(</operator><name>n</name><operator>-</operator><name>firstStairs</name><operator>)</operator><operator>*</operator><literal type="number">2</literal></expr></argument>)</argument_list></call></expr>;</return>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+  <decl_stmt><decl><type><name>int</name></type> <name>q</name></decl>;</decl_stmt>
+  <expr_stmt><expr><name><name>std</name><operator>::</operator><name>cin</name></name> <operator>&gt;&gt;</operator> <name>q</name></expr>;</expr_stmt>
+  <for>for <control>(<init><decl><type><name>unsigned</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>!=</operator> <name>q</name></expr>;</condition> <incr><expr><operator>++</operator><name>i</name></expr></incr>)</control> <block>{
+    <expr_stmt><expr><name><name>std</name><operator>::</operator><name>cin</name></name> <operator>&gt;&gt;</operator> <name>n</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name>firstStairs</name> <operator>=</operator> <name>n</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name>lastStairs</name> <operator>=</operator> <name>n</name></expr>;</expr_stmt>
+    <for>for <control>(<init><decl><type><name>unsigned</name></type> <name>r</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>r</name> <operator>!=</operator> <name>n</name></expr>;</condition> <incr><expr><operator>++</operator><name>r</name></expr></incr>)</control> <block>{
+      <decl_stmt><decl><type><name>char</name></type> <name>s</name></decl>;</decl_stmt>
+      <expr_stmt><expr><name><name>std</name><operator>::</operator><name>cin</name></name> <operator>&gt;&gt;</operator> <name>s</name></expr>;</expr_stmt>
+      <if>if <condition>(<expr><name>s</name> <operator>==</operator> <literal type="char">'1'</literal></expr>)</condition><then> <block>{
+        <if>if <condition>(<expr><name>firstStairs</name> <operator>==</operator> <name>n</name></expr>)</condition><then>
+          <block type="pseudo"><expr_stmt><expr><name>firstStairs</name> <operator>=</operator> <name>r</name></expr>;</expr_stmt></block></then></if>          
+		<expr_stmt><expr><name>lastStairs</name> <operator>=</operator> <name>r</name></expr>;</expr_stmt>	
+      }</block></then></if>
+    }</block></for>
+    <expr_stmt><expr><name><name>std</name><operator>::</operator><name>cout</name></name> <operator>&lt;&lt;</operator> <call><name>solve</name><argument_list>()</argument_list></call> <operator>&lt;&lt;</operator> <literal type="string">"\n"</literal></expr>;</expr_stmt>
+  }</block></for>
+  <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

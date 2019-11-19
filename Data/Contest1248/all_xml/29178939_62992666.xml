@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1248/all/29178939_62992666.cpp"><cpp:pragma>#<cpp:directive>pragma</cpp:directive> <name>GCC</name> <name>optimize</name><name>(</name><cpp:literal>"Ofast"</cpp:literal><name>)</name></cpp:pragma>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iomanip&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;string&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;array&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;valarray&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdio&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstring&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cmath&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;climits&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;set&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;map&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;random&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iterator&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;numeric&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;functional&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;queue&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;deque&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;stack&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name><name>std</name><operator>::</operator><name>string_literals</name></name>;</namespace></using>
+
+<function><type><name>int64_t</name></type> <name>solve</name><parameter_list>(<parameter><decl><type><name>int64_t</name></type> <name>n</name></decl></parameter>)</parameter_list>
+<block>{
+	<decl_stmt><decl><type><name><name>std</name><operator>::</operator><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name><name>std</name><operator>::</operator><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></name></expr></argument>&gt;</argument_list></name></name></type> <name>dp</name><argument_list>(<argument><expr><name>n</name></expr></argument>, <argument><expr><call><name><name>std</name><operator>::</operator><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></decl>;</decl_stmt>
+	<expr_stmt><expr><name><name>dp</name><index>[<expr><literal type="number">0</literal></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+	<for>for<control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>n</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+	<block>{
+		<expr_stmt><expr><name><name>dp</name><index>[<expr><name>i</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name> <operator>=</operator> <name><name>dp</name><index>[<expr><name>i</name><operator>-</operator><literal type="number">1</literal></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>;</expr_stmt>
+		<expr_stmt><expr><name><name>dp</name><index>[<expr><name>i</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>=</operator> <operator>(</operator><name><name>dp</name><index>[<expr><name>i</name><operator>-</operator><literal type="number">1</literal></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name> <operator>+</operator> <name><name>dp</name><index>[<expr><name>i</name><operator>-</operator><literal type="number">1</literal></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>)</operator> <operator>%</operator> <call><name>int64_t</name><argument_list>(<argument><expr><literal type="number">1e9</literal><operator>+</operator><literal type="number">7</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	}</block></for>
+	<return>return <expr><operator>(</operator><name><name>dp</name><index>[<expr><name>n</name><operator>-</operator><literal type="number">1</literal></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>+</operator> <name><name>dp</name><index>[<expr><name>n</name><operator>-</operator><literal type="number">1</literal></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name><operator>)</operator><operator>%</operator><call><name>int64_t</name><argument_list>(<argument><expr><literal type="number">1e9</literal><operator>+</operator><literal type="number">7</literal></expr></argument>)</argument_list></call></expr>;</return>
+}</block></function>
+<function><type><name>int64_t</name></type> <name>fib</name><parameter_list>(<parameter><decl><type><name>int64_t</name></type> <name>n</name></decl></parameter>)</parameter_list> 
+<block>{ 
+	<decl_stmt><decl><type><name>int64_t</name></type> <name>n1</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>, <decl><type ref="prev"/><name>n2</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>, <decl><type ref="prev"/><name>n3</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>, <decl><type ref="prev"/><name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+	<if>if<condition>(<expr><operator>!</operator><name>n</name></expr>)</condition><then>
+		<block type="pseudo"><return>return <expr><literal type="number">0</literal></expr>;</return></block></then></if>
+	<for>for <control>(<init><expr><name>i</name> <operator>=</operator> <literal type="number">2</literal></expr>;</init> <condition><expr><name>i</name> <operator>&lt;=</operator> <name>n</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+	<block>{
+		<expr_stmt><expr><name>n3</name> <operator>=</operator> <operator>(</operator><name>n1</name> <operator>+</operator> <name>n2</name><operator>)</operator> <operator>%</operator> <call><name>int64_t</name><argument_list>(<argument><expr><literal type="number">1e9</literal><operator>+</operator><literal type="number">7</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<expr_stmt><expr><name>n1</name> <operator>=</operator> <name>n2</name></expr>;</expr_stmt>
+		<expr_stmt><expr><name>n2</name> <operator>=</operator> <name>n3</name></expr>;</expr_stmt>
+	}</block></for>
+	<return>return <expr><name>n2</name></expr>;</return>
+}</block></function>
+<function><type><name>int</name></type> <name>main</name><parameter_list>(<comment type="block">/*int argc, char*argv[]*/</comment>)</parameter_list>
+<block>{
+	<comment type="line" format="doxygen">////calculate number such that no more than 1 DIFFERENT cell</comment>
+	<comment type="line" format="doxygen">////11</comment>
+	<comment type="line" format="doxygen">////10 can't be a subpattern (and so can't many similar ones)</comment>
+	<comment type="line" format="doxygen">////therefor</comment>
+	<comment type="line" format="doxygen">////2 * n + 2 * m - 2 (two configurations end up being counted twice)</comment>
+	<decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>, <decl><type ref="prev"/><name>m</name></decl>;</decl_stmt> <expr_stmt><expr><name><name>std</name><operator>::</operator><name>cin</name></name> <operator>&gt;&gt;</operator> <name>n</name> <operator>&gt;&gt;</operator> <name>m</name></expr>;</expr_stmt>
+	<expr_stmt><expr><name><name>std</name><operator>::</operator><name>cout</name></name> <operator>&lt;&lt;</operator> <operator>(</operator><operator>(</operator><literal type="number">2ll</literal> <operator>*</operator> <operator>(</operator><call><name>solve</name><argument_list>(<argument><expr><name>n</name></expr></argument>)</argument_list></call> <operator>+</operator> <call><name>solve</name><argument_list>(<argument><expr><name>m</name></expr></argument>)</argument_list></call><operator>)</operator> <operator>-</operator> <literal type="number">2ll</literal><operator>)</operator> <operator>%</operator> <call><name>int64_t</name><argument_list>(<argument><expr><literal type="number">1e9</literal><operator>+</operator><literal type="number">7</literal></expr></argument>)</argument_list></call><operator>)</operator> <operator>&lt;&lt;</operator> <literal type="char">'\n'</literal></expr>;</expr_stmt>
+
+}</block></function>
+</unit>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1244/all/28933884_62492948.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;set&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<typedef>typedef <type><name>long</name> <name>long</name></type> <name>ll</name>;</typedef>
+
+<decl_stmt><decl><type><name><name>set</name> <argument_list type="generic">&lt;<argument><expr><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>ll</name></expr></argument>, <argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></expr></argument> &gt;</argument_list></name></type> <name>s</name></decl>;</decl_stmt>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+	<decl_stmt><decl><type><name>ll</name></type> <name>n</name></decl>,<decl><type ref="prev"/><name>k</name></decl>;</decl_stmt>
+	<expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%I64d%I64d"</literal></expr></argument>, <argument><expr><operator>&amp;</operator><name>n</name></expr></argument>, <argument><expr><operator>&amp;</operator><name>k</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<for>for <control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl> ;</init> <condition><expr><name>i</name><operator>&lt;</operator><name>n</name></expr> ;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{
+		<decl_stmt><decl><type><name>ll</name></type> <name>x</name></decl>;</decl_stmt>
+		<expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%I64d"</literal></expr></argument>, <argument><expr><operator>&amp;</operator><name>x</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<decl_stmt><decl><type><name><name><name>set</name><argument_list type="generic">&lt;<argument><expr><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>ll</name></expr></argument>, <argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></expr></argument> &gt;</argument_list></name> <operator>::</operator> <name>iterator</name></name></type> <name>it</name> <init>= <expr><call><name><name>s</name><operator>.</operator><name>lower_bound</name></name><argument_list>(<argument><expr><call><name>make_pair</name><argument_list>(<argument><expr><name>x</name></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+		<decl_stmt><decl><type><name>int</name></type> <name>br</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+		<if>if <condition>(<expr><name>it</name><operator>!=</operator><call><name><name>s</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call> <operator>and</operator> <name><name>it</name><operator>-&gt;</operator><name>first</name></name> <operator>==</operator> <name>x</name></expr>)</condition><then> <block>{
+			<expr_stmt><expr><name>br</name> <operator>+=</operator> <name><name>it</name><operator>-&gt;</operator><name>second</name></name></expr>;</expr_stmt>
+			<expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>erase</name></name><argument_list>(<argument><expr><name>it</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		}</block></then></if>
+		<expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>insert</name></name><argument_list>(<argument><expr><call><name>make_pair</name><argument_list>(<argument><expr><name>x</name></expr></argument>, <argument><expr><name>br</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	}</block></for>
+	<decl_stmt><decl><type><name>ll</name></type> <name>uk</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+	<while>while <condition>(<expr><literal type="number">1</literal></expr>)</condition> <block>{
+	<comment type="block">/*	cout &lt;&lt;"k="&lt;&lt;k&lt;&lt;endl;
+		for (set &lt;pair&lt;ll, int&gt; &gt; :: iterator it = s.begin() ; it!=s.end() ; it++) {
+			printf("(%I64d, %d) ", it-&gt;first, it-&gt;second);
+		}
+		printf("\n");*/</comment>
+		<if>if <condition>(<expr><call><name><name>s</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>==</operator> <literal type="number">1</literal></expr>)</condition><then> <block>{
+			<expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"0\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+			<return>return <expr><literal type="number">0</literal></expr>;</return>
+		}</block></then></if>
+		<decl_stmt><decl><type><name><name><name>set</name><argument_list type="generic">&lt;<argument><expr><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>ll</name></expr></argument>, <argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></expr></argument> &gt;</argument_list></name> <operator>::</operator> <name>iterator</name></name></type> <name>st</name> <init>= <expr><call><name><name>s</name><operator>.</operator><name>begin</name></name><argument_list>()</argument_list></call></expr></init></decl>, <decl><type ref="prev"/><name>en</name> <init>= <expr><call><name><name>s</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+		<expr_stmt><expr><name>en</name><operator>--</operator></expr>;</expr_stmt>
+		<if>if <condition>(<expr><name><name>st</name><operator>-&gt;</operator><name>second</name></name> <operator>&lt;=</operator> <name><name>en</name><operator>-&gt;</operator><name>second</name></name></expr>)</condition><then> <block>{
+			<decl_stmt><decl><type><name><name><name>set</name><argument_list type="generic">&lt;<argument><expr><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>ll</name></expr></argument>, <argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></expr></argument> &gt;</argument_list></name> <operator>::</operator> <name>iterator</name></name></type> <name>nxt</name> <init>= <expr><name>st</name></expr></init></decl>;</decl_stmt>
+			<expr_stmt><expr><name>nxt</name><operator>++</operator></expr>;</expr_stmt>
+			<decl_stmt><decl><type><name>ll</name></type> <name>cost</name> <init>= <expr><operator>(</operator><name><name>nxt</name><operator>-&gt;</operator><name>first</name></name> <operator>-</operator> <name><name>st</name><operator>-&gt;</operator><name>first</name></name><operator>)</operator> <operator>*</operator> <name><name>st</name><operator>-&gt;</operator><name>second</name></name></expr></init></decl>;</decl_stmt>
+			<if>if <condition>(<expr><name>cost</name><operator>&gt;</operator><name>k</name></expr>)</condition><then> <block>{
+				<decl_stmt><decl><type><name>ll</name></type> <name>move</name> <init>= <expr><name>k</name><operator>/</operator><operator>(</operator><name><name>st</name> <operator>-&gt;</operator> <name>second</name></name><operator>)</operator></expr></init></decl>;</decl_stmt>
+				<expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"%I64d\n"</literal></expr></argument>, <argument><expr><name><name>en</name><operator>-&gt;</operator><name>first</name></name> <operator>-</operator> <name><name>st</name><operator>-&gt;</operator><name>first</name></name> <operator>-</operator> <name>move</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+				<return>return <expr><literal type="number">0</literal></expr>;</return>
+			}</block></then></if>
+			<decl_stmt><decl><type><name>ll</name></type> <name>br</name> <init>= <expr><name><name>st</name> <operator>-&gt;</operator> <name>second</name></name> <operator>+</operator> <name><name>nxt</name> <operator>-&gt;</operator> <name>second</name></name></expr></init></decl>;</decl_stmt>
+			<decl_stmt><decl><type><name>ll</name></type> <name>val</name> <init>= <expr><name><name>nxt</name> <operator>-&gt;</operator> <name>first</name></name></expr></init></decl>;</decl_stmt>
+			<expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>erase</name></name><argument_list>(<argument><expr><name>st</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+			<expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>erase</name></name><argument_list>(<argument><expr><name>nxt</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+			<expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>insert</name></name><argument_list>(<argument><expr><call><name>make_pair</name><argument_list>(<argument><expr><name>val</name></expr></argument>, <argument><expr><name>br</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+			<expr_stmt><expr><name>k</name> <operator>-=</operator> <name>cost</name></expr>;</expr_stmt>
+		}</block></then> <else>else <block>{
+			<decl_stmt><decl><type><name><name><name>set</name><argument_list type="generic">&lt;<argument><expr><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>ll</name></expr></argument>, <argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></expr></argument> &gt;</argument_list></name> <operator>::</operator> <name>iterator</name></name></type> <name>prev</name> <init>= <expr><name>en</name></expr></init></decl>;</decl_stmt>
+			<expr_stmt><expr><name>prev</name><operator>--</operator></expr>;</expr_stmt>
+			<decl_stmt><decl><type><name>ll</name></type> <name>cost</name> <init>= <expr><operator>(</operator><name><name>en</name> <operator>-&gt;</operator> <name>first</name></name> <operator>-</operator> <name><name>prev</name> <operator>-&gt;</operator> <name>first</name></name><operator>)</operator> <operator>*</operator> <name><name>en</name> <operator>-&gt;</operator> <name>second</name></name></expr></init></decl>;</decl_stmt>
+			<if>if <condition>(<expr><name>cost</name><operator>&gt;</operator><name>k</name></expr>)</condition><then> <block>{
+				<decl_stmt><decl><type><name>ll</name></type> <name>move</name> <init>= <expr><name>k</name><operator>/</operator><operator>(</operator><name><name>en</name> <operator>-&gt;</operator> <name>second</name></name><operator>)</operator></expr></init></decl>;</decl_stmt>
+				<expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"%I64d\n"</literal></expr></argument>, <argument><expr><name><name>en</name><operator>-&gt;</operator><name>first</name></name> <operator>-</operator> <name><name>st</name><operator>-&gt;</operator><name>first</name></name> <operator>-</operator> <name>move</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+				<return>return <expr><literal type="number">0</literal></expr>;</return>
+			}</block></then></if>
+			<decl_stmt><decl><type><name>ll</name></type> <name>br</name> <init>= <expr><name><name>en</name> <operator>-&gt;</operator> <name>second</name></name> <operator>+</operator> <name><name>prev</name> <operator>-&gt;</operator> <name>second</name></name></expr></init></decl>;</decl_stmt>
+			<decl_stmt><decl><type><name>ll</name></type> <name>val</name> <init>= <expr><name><name>prev</name> <operator>-&gt;</operator> <name>first</name></name></expr></init></decl>;</decl_stmt>
+			<expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>erase</name></name><argument_list>(<argument><expr><name>en</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+			<expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>erase</name></name><argument_list>(<argument><expr><name>prev</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+			<expr_stmt><expr><call><name><name>s</name><operator>.</operator><name>insert</name></name><argument_list>(<argument><expr><call><name>make_pair</name><argument_list>(<argument><expr><name>val</name></expr></argument>, <argument><expr><name>br</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+			<expr_stmt><expr><name>k</name> <operator>-=</operator> <name>cost</name></expr>;</expr_stmt>
+		}</block></else></if>
+	}</block></while>
+	<decl_stmt><decl><type><name><name><name>set</name><argument_list type="generic">&lt;<argument><expr><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>ll</name></expr></argument>, <argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></expr></argument> &gt;</argument_list></name> <operator>::</operator> <name>iterator</name></name></type> <name>st</name> <init>= <expr><call><name><name>s</name><operator>.</operator><name>begin</name></name><argument_list>()</argument_list></call></expr></init></decl>, <decl><type ref="prev"/><name>en</name> <init>= <expr><call><name><name>s</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+	<expr_stmt><expr><name>en</name><operator>--</operator></expr>;</expr_stmt>
+	<expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"%I64d\n"</literal></expr></argument>, <argument><expr><name><name>en</name><operator>-&gt;</operator><name>first</name></name> <operator>-</operator> <name><name>st</name><operator>-&gt;</operator><name>first</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>

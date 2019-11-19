@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1248/all/29146637_63004655.cpp"><cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+
+<function><type><name>bool</name></type> <name>ReadChar</name><parameter_list>(<parameter><decl><type><name>void</name></type></decl></parameter>)</parameter_list><block>{
+    <decl_stmt><decl><type><name>char</name></type> <name>in</name></decl>;</decl_stmt>
+    <do>do <block type="pseudo"><expr_stmt><expr><name>in</name> <operator>=</operator> <call><name>getchar</name><argument_list>()</argument_list></call></expr>;</expr_stmt></block> while<condition>(<expr><name>in</name><operator>!=</operator><literal type="char">'('</literal> <operator>&amp;&amp;</operator> <name>in</name><operator>!=</operator><literal type="char">')'</literal></expr>)</condition>;</do>
+    <return>return <expr><name>in</name><operator>==</operator><literal type="char">'('</literal></expr>;</return>
+}</block></function>
+                 
+<decl_stmt><decl><specifier>constexpr</specifier> <type><name>auto</name></type> <name>MAXN</name> <init>= <expr><literal type="number">700</literal></expr></init></decl>;</decl_stmt>
+
+<decl_stmt><decl><type><name>bool</name></type> <name><name>st</name><index>[<expr><name>MAXN</name></expr>]</index></name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name><name>sum</name><index>[<expr><name>MAXN</name></expr>]</index></name></decl>;</decl_stmt>
+<function><type><name>int</name></type> <name>Sum</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>fr</name></decl></parameter>,<parameter><decl><type><name>int</name></type> <name>to</name></decl></parameter>)</parameter_list><block>{
+    <if>if<condition>(<expr><name>to</name> <operator>&lt;</operator> <literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><return>return <expr><literal type="number">0</literal></expr>;</return></block></then></if>
+    <if>if<condition>(<expr><name>fr</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><return>return <expr><name><name>sum</name><index>[<expr><name>to</name></expr>]</index></name></expr>;</return></block></then>
+    <else>else <block type="pseudo"><return>return <expr><name><name>sum</name><index>[<expr><name>to</name></expr>]</index></name><operator>-</operator><name><name>sum</name><index>[<expr><name>fr</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name></expr>;</return></block></else></if>
+}</block></function>
+<function><type><name>int</name></type> <name>Count</name><parameter_list>(<parameter><decl><type><name>bool</name><modifier>*</modifier></type> <name>s</name></decl></parameter>,<parameter><decl><type><specifier>const</specifier> <name>int</name><modifier>&amp;</modifier></type> <name>len</name></decl></parameter>)</parameter_list><block>{
+    <decl_stmt><decl><type><name>int</name></type> <name>lv</name><init>=<expr><literal type="number">0</literal></expr></init></decl>,<decl><type ref="prev"/><name>min</name><init>=<expr><literal type="number">0</literal></expr></init></decl>,<decl><type ref="prev"/><name>pos</name><init>=<expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>len</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control><block>{
+        <expr_stmt><expr><name>lv</name> <operator>+=</operator> <operator>(</operator><ternary><condition><expr><name><name>s</name><index>[<expr><name>i</name></expr>]</index></name></expr> ?</condition><then> <expr><literal type="number">1</literal></expr> </then><else>: <expr><operator>-</operator><literal type="number">1</literal></expr></else></ternary><operator>)</operator></expr>;</expr_stmt>
+        <if>if<condition>(<expr><name>lv</name> <operator>&lt;</operator> <name>min</name></expr>)</condition><then><block>{
+            <expr_stmt><expr><name>min</name> <operator>=</operator> <name>lv</name></expr>;</expr_stmt>
+            <expr_stmt><expr><name>pos</name> <operator>=</operator> <name>i</name></expr>;</expr_stmt>
+        }</block></then></if>
+    }</block></for>
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><name>pos</name><operator>+</operator><literal type="number">1</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>len</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block type="pseudo"><expr_stmt><expr><name><name>st</name><index>[<expr><name>i</name><operator>-</operator><name>pos</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name> <operator>=</operator> <name><name>s</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt></block></for>
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;=</operator><name>pos</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block type="pseudo"><expr_stmt><expr><name><name>st</name><index>[<expr><name>i</name><operator>+</operator><name>len</name><operator>-</operator><name>pos</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name> <operator>=</operator> <name><name>s</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt></block></for>
+
+    <decl_stmt><decl><type><name>int</name></type> <name>cnt</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt> <expr_stmt><expr><name>lv</name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>len</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control><block>{
+        <expr_stmt><expr><name>lv</name> <operator>+=</operator> <operator>(</operator><ternary><condition><expr><name><name>st</name><index>[<expr><name>i</name></expr>]</index></name></expr> ?</condition><then> <expr><literal type="number">1</literal></expr> </then><else>: <expr><operator>-</operator><literal type="number">1</literal></expr></else></ternary><operator>)</operator></expr>;</expr_stmt>
+        <if>if<condition>(<expr><name>lv</name> <operator>&lt;</operator> <literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><return>return <expr><literal type="number">0</literal></expr>;</return></block></then></if>
+        <if>if<condition>(<expr><name>lv</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><operator>++</operator><name>cnt</name></expr>;</expr_stmt></block></then></if>
+    }</block></for>
+    
+    <if>if<condition>(<expr><name>lv</name> <operator>!=</operator> <literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><return>return <expr><literal type="number">0</literal></expr>;</return></block></then>
+    <else>else <block type="pseudo"><return>return <expr><name>cnt</name></expr>;</return></block></else></if>
+}</block></function>
+
+<decl_stmt><decl><type><name>bool</name></type> <name><name>str</name><index>[<expr><name>MAXN</name></expr>]</index></name></decl>;</decl_stmt>
+
+<function><type><name>signed</name></type> <name>main</name><parameter_list>(<parameter><decl><type><name>void</name></type></decl></parameter>)</parameter_list>
+<block>{
+    <decl_stmt><decl><type><name>int</name></type> <name>totLen</name></decl>;</decl_stmt>
+
+    <expr_stmt><expr><name><name>std</name><operator>::</operator><name>cin</name></name><operator>&gt;&gt;</operator><name>totLen</name></expr>;</expr_stmt>
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>totLen</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block type="pseudo"><expr_stmt><expr><name><name>str</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <call><name>ReadChar</name><argument_list>()</argument_list></call></expr>;</expr_stmt></block></for>
+
+    <decl_stmt><decl><type><name>int</name></type> <name>cnttrue</name><init>=<expr><literal type="number">0</literal></expr></init></decl>,<decl><type ref="prev"/><name>cntfalse</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>totLen</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+        <block type="pseudo"><if>if<condition>(<expr><name><name>str</name><index>[<expr><name>i</name></expr>]</index></name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><operator>++</operator><name>cnttrue</name></expr>;</expr_stmt></block></then>
+        <else>else <block type="pseudo"><expr_stmt><expr><operator>++</operator><name>cntfalse</name></expr>;</expr_stmt></block></else></if></block></for>
+
+    <if>if<condition>(<expr><name>cnttrue</name> <operator>!=</operator> <name>cntfalse</name></expr>)</condition><then><block>{ <expr_stmt><expr><name><name>std</name><operator>::</operator><name>cout</name></name><operator>&lt;&lt;</operator><literal type="string">"0\n1 1"</literal><operator>&lt;&lt;</operator><name><name>std</name><operator>::</operator><name>endl</name></name></expr>;</expr_stmt> <return>return <expr><literal type="number">0</literal></expr>;</return> }</block></then></if>
+
+    <decl_stmt><decl><type><name>int</name></type> <name>max</name><init>=<expr><call><name>Count</name><argument_list>(<argument><expr><name>str</name></expr></argument>,<argument><expr><name>totLen</name></expr></argument>)</argument_list></call></expr></init></decl>,<decl><type ref="prev"/><name>dxmax</name></decl>;</decl_stmt> <decl_stmt><decl><type><name>int</name></type> <name>swp1</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>,<decl><type ref="prev"/><name>swp2</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>i</name><operator>&lt;</operator><name>totLen</name></expr>;</condition><incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+        <block type="pseudo"><for>for<control>(<init><decl><type><name>int</name></type> <name>j</name><init>=<expr><name>i</name><operator>+</operator><literal type="number">1</literal></expr></init></decl>;</init><condition><expr><name>j</name><operator>&lt;</operator><name>totLen</name></expr>;</condition><incr><expr><name>j</name><operator>++</operator></expr></incr>)</control><block>{
+            <expr_stmt><expr><call><name><name>std</name><operator>::</operator><name>swap</name></name><argument_list>(<argument><expr><name><name>str</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>,<argument><expr><name><name>str</name><index>[<expr><name>j</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><name>dxmax</name> <operator>=</operator> <call><name>Count</name><argument_list>(<argument><expr><name>str</name></expr></argument>,<argument><expr><name>totLen</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>std</name><operator>::</operator><name>swap</name></name><argument_list>(<argument><expr><name><name>str</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>,<argument><expr><name><name>str</name><index>[<expr><name>j</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <if>if<condition>(<expr><name>max</name> <operator>&lt;</operator> <name>dxmax</name></expr>)</condition><then><block>{
+                <expr_stmt><expr><name>max</name> <operator>=</operator> <name>dxmax</name></expr>;</expr_stmt> 
+                <expr_stmt><expr><name>swp1</name> <operator>=</operator> <name>i</name></expr>;</expr_stmt> <expr_stmt><expr><name>swp2</name> <operator>=</operator> <name>j</name></expr>;</expr_stmt>
+            }</block></then></if>
+        }</block></for></block></for>
+
+    <expr_stmt><expr><name><name>std</name><operator>::</operator><name>cout</name></name><operator>&lt;&lt;</operator><name>max</name><operator>&lt;&lt;</operator><name><name>std</name><operator>::</operator><name>endl</name></name><operator>&lt;&lt;</operator><name>swp1</name><operator>+</operator><literal type="number">1</literal><operator>&lt;&lt;</operator><literal type="char">' '</literal><operator>&lt;&lt;</operator><name>swp2</name><operator>+</operator><literal type="number">1</literal><operator>&lt;&lt;</operator><name><name>std</name><operator>::</operator><name>endl</name></name></expr>;</expr_stmt>
+    
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

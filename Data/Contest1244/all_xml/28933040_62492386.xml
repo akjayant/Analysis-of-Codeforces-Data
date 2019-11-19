@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1244/all/28933040_62492386.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>int</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<function><type><name>signed</name></type> <name>main</name><parameter_list>()</parameter_list><block>{
+    <expr_stmt><expr><call><name><name>ios_base</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt> <expr_stmt><expr><call><name><name>cin</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt> <expr_stmt><expr><call><name><name>cout</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>, <decl><type ref="prev"/><name>k</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name> <operator>&gt;&gt;</operator> <name>k</name></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name><name>map</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>, <argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>arr</name></decl>;</decl_stmt>
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>n</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control><block>{
+        <decl_stmt><decl><type><name>int</name></type> <name>x</name></decl>;</decl_stmt>
+        <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>x</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>arr</name><index>[<expr><name>x</name></expr>]</index></name><operator>++</operator></expr>;</expr_stmt>
+    }</block></for>
+    <while>while<condition>(<expr><name>k</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition><block>{
+        <comment type="block">/*cout &lt;&lt; "cur state: k = " &lt;&lt; k &lt;&lt; ", arr = ";
+        for(auto &amp;kv : arr){
+            cout &lt;&lt; "{" &lt;&lt; kv.first &lt;&lt; ", " &lt;&lt; kv.second &lt;&lt; "}, ";
+        }
+        cout &lt;&lt; endl;*/</comment>
+        <if>if<condition>(<expr><call><name><name>arr</name><operator>.</operator><name>begin</name></name><argument_list>()</argument_list></call><operator>-&gt;</operator><name>first</name> <operator>==</operator> <call><name><name>arr</name><operator>.</operator><name>rbegin</name></name><argument_list>()</argument_list></call><operator>-&gt;</operator><name>first</name></expr>)</condition><then>
+            <block type="pseudo"><break>break;</break></block></then></if>
+        <if>if<condition>(<expr><call><name><name>arr</name><operator>.</operator><name>begin</name></name><argument_list>()</argument_list></call><operator>-&gt;</operator><name>second</name> <operator>&lt;</operator> <call><name><name>arr</name><operator>.</operator><name>rbegin</name></name><argument_list>()</argument_list></call><operator>-&gt;</operator><name>second</name></expr>)</condition><then><block>{
+            <if>if<condition>(<expr><call><name><name>arr</name><operator>.</operator><name>begin</name></name><argument_list>()</argument_list></call><operator>-&gt;</operator><name>second</name> <operator>&gt;</operator> <name>k</name></expr>)</condition><then>
+                <block type="pseudo"><break>break;</break></block></then></if>
+            <decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>old_min</name> <init>= <expr><call><name><name>arr</name><operator>.</operator><name>begin</name></name><argument_list>()</argument_list></call><operator>-&gt;</operator><name>first</name></expr></init></decl>;</decl_stmt>
+            <decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>old_min_cnt</name> <init>= <expr><call><name><name>arr</name><operator>.</operator><name>begin</name></name><argument_list>()</argument_list></call><operator>-&gt;</operator><name>second</name></expr></init></decl>;</decl_stmt>
+            <decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>diff</name> <init>= <expr><operator>(</operator><operator>++</operator><call><name><name>arr</name><operator>.</operator><name>begin</name></name><argument_list>()</argument_list></call><operator>)</operator><operator>-&gt;</operator><name>first</name> <operator>-</operator> <call><name><name>arr</name><operator>.</operator><name>begin</name></name><argument_list>()</argument_list></call><operator>-&gt;</operator><name>first</name></expr></init></decl>;</decl_stmt>
+            <decl_stmt><decl><type><name>int</name></type> <name>plus_cnt</name></decl>;</decl_stmt>
+            <if>if<condition>(<expr><name>old_min_cnt</name> <operator>*</operator> <name>diff</name> <operator>&lt;=</operator> <name>k</name></expr>)</condition><then>
+                <block type="pseudo"><expr_stmt><expr><name>plus_cnt</name> <operator>=</operator> <name>diff</name></expr>;</expr_stmt></block></then>
+            <else>else
+                <block type="pseudo"><expr_stmt><expr><name>plus_cnt</name> <operator>=</operator> <name>k</name> <operator>/</operator> <name>old_min_cnt</name></expr>;</expr_stmt></block></else></if>
+            <expr_stmt><expr><name>k</name> <operator>-=</operator> <name>plus_cnt</name> <operator>*</operator> <name>old_min_cnt</name></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>arr</name><operator>.</operator><name>erase</name></name><argument_list>(<argument><expr><call><name><name>arr</name><operator>.</operator><name>begin</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><name><name>arr</name><index>[<expr><name>old_min</name> <operator>+</operator> <name>plus_cnt</name></expr>]</index></name> <operator>+=</operator> <name>old_min_cnt</name></expr>;</expr_stmt>
+        }</block></then>
+        <else>else<block>{
+            <if>if<condition>(<expr><call><name><name>arr</name><operator>.</operator><name>rbegin</name></name><argument_list>()</argument_list></call><operator>-&gt;</operator><name>second</name> <operator>&gt;</operator> <name>k</name></expr>)</condition><then>
+                <block type="pseudo"><break>break;</break></block></then></if>
+            <decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>old_min</name> <init>= <expr><call><name><name>arr</name><operator>.</operator><name>rbegin</name></name><argument_list>()</argument_list></call><operator>-&gt;</operator><name>first</name></expr></init></decl>;</decl_stmt>
+            <decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>old_min_cnt</name> <init>= <expr><call><name><name>arr</name><operator>.</operator><name>rbegin</name></name><argument_list>()</argument_list></call><operator>-&gt;</operator><name>second</name></expr></init></decl>;</decl_stmt>
+            <decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>diff</name> <init>= <expr><operator>-</operator><operator>(</operator><operator>++</operator><call><name><name>arr</name><operator>.</operator><name>rbegin</name></name><argument_list>()</argument_list></call><operator>)</operator><operator>-&gt;</operator><name>first</name> <operator>+</operator> <call><name><name>arr</name><operator>.</operator><name>rbegin</name></name><argument_list>()</argument_list></call><operator>-&gt;</operator><name>first</name></expr></init></decl>;</decl_stmt>
+            <decl_stmt><decl><type><name>int</name></type> <name>plus_cnt</name></decl>;</decl_stmt>
+            <if>if<condition>(<expr><name>old_min_cnt</name> <operator>*</operator> <name>diff</name> <operator>&lt;=</operator> <name>k</name></expr>)</condition><then>
+                <block type="pseudo"><expr_stmt><expr><name>plus_cnt</name> <operator>=</operator> <name>diff</name></expr>;</expr_stmt></block></then>
+            <else>else
+                <block type="pseudo"><expr_stmt><expr><name>plus_cnt</name> <operator>=</operator> <name>k</name> <operator>/</operator> <name>old_min_cnt</name></expr>;</expr_stmt></block></else></if>
+            <expr_stmt><expr><name>k</name> <operator>-=</operator> <name>plus_cnt</name> <operator>*</operator> <name>old_min_cnt</name></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>arr</name><operator>.</operator><name>erase</name></name><argument_list>(<argument><expr><operator>(</operator><operator>--</operator><call><name><name>arr</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call><operator>)</operator></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><name><name>arr</name><index>[<expr><name>old_min</name> <operator>-</operator> <name>plus_cnt</name></expr>]</index></name> <operator>+=</operator> <name>old_min_cnt</name></expr>;</expr_stmt>
+        }</block></else></if>
+    }</block></while>
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <call><name><name>arr</name><operator>.</operator><name>rbegin</name></name><argument_list>()</argument_list></call><operator>-&gt;</operator><name>first</name> <operator>-</operator> <call><name><name>arr</name><operator>.</operator><name>begin</name></name><argument_list>()</argument_list></call><operator>-&gt;</operator><name>first</name></expr>;</expr_stmt>
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

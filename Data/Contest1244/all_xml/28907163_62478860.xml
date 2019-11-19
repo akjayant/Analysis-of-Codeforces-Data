@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1244/all/28907163_62478860.cpp"><cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;cstdio&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ll</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<function><type><name>ll</name></type> <name>exgcd</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>a</name></decl></parameter>, <parameter><decl><type><name>ll</name></type> <name>b</name></decl></parameter>, <parameter><decl><type><name>ll</name> <modifier>&amp;</modifier></type><name>x</name></decl></parameter>, <parameter><decl><type><name>ll</name> <modifier>&amp;</modifier></type><name>y</name></decl></parameter>)</parameter_list><block>{
+    <decl_stmt><decl><type><name>ll</name></type> <name>ans</name> <init>= <expr><name>a</name></expr></init></decl>;</decl_stmt>
+    <if>if<condition>(<expr><name>b</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then><block>{
+        <expr_stmt><expr><name>x</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name>y</name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+    }</block></then><else>else<block>{
+        <expr_stmt><expr><name>ans</name> <operator>=</operator> <call><name>exgcd</name><argument_list>(<argument><expr><name>b</name></expr></argument>, <argument><expr><name>a</name> <operator>%</operator> <name>b</name></expr></argument>, <argument><expr><name>y</name></expr></argument>, <argument><expr><name>x</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name>y</name> <operator>-=</operator> <operator>(</operator><name>a</name> <operator>/</operator> <name>b</name><operator>)</operator> <operator>*</operator> <name>x</name></expr>;</expr_stmt>
+    }</block></else></if>
+    <return>return <expr><name>ans</name></expr>;</return>
+}</block></function>
+<function><type><name>ll</name></type> <name>fix_gcd</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>a</name></decl></parameter>, <parameter><decl><type><name>ll</name></type> <name>b</name></decl></parameter>, <parameter><decl><type><name>ll</name> <modifier>&amp;</modifier></type><name>x</name></decl></parameter>, <parameter><decl><type><name>ll</name> <modifier>&amp;</modifier></type> <name>y</name></decl></parameter>)</parameter_list><block>{
+    <decl_stmt><decl><type><name>ll</name></type> <name>ans</name> <init>= <expr><call><name>exgcd</name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><name>b</name></expr></argument>, <argument><expr><name>x</name></expr></argument>, <argument><expr><name>y</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if>if <condition>(<expr><name>a</name> <operator>*</operator> <name>x</name> <operator>+</operator> <name>b</name> <operator>*</operator> <name>y</name> <operator>==</operator> <operator>-</operator><literal type="number">1</literal></expr>)</condition><then><block>{
+        <expr_stmt><expr><name>x</name> <operator>=</operator> <operator>-</operator><name>x</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name>y</name> <operator>=</operator> <operator>-</operator><name>y</name></expr>;</expr_stmt>
+    }</block></then></if>
+    <return>return <expr><name>ans</name></expr>;</return>
+}</block></function>
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+	<decl_stmt><decl><type><name>ll</name></type> <name>n</name></decl>, <decl><type ref="prev"/><name>p</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>ll</name></type> <name>a</name></decl>, <decl><type ref="prev"/><name>b</name></decl>, <decl><type ref="prev"/><name>x</name></decl>, <decl><type ref="prev"/><name>y</name></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%lld%lld%lld%lld"</literal></expr></argument>, <argument><expr><operator>&amp;</operator><name>n</name></expr></argument>, <argument><expr><operator>&amp;</operator><name>p</name></expr></argument>, <argument><expr><operator>&amp;</operator><name>a</name></expr></argument>, <argument><expr><operator>&amp;</operator><name>b</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>ll</name></type> <name>res</name> <init>= <expr><call><name>fix_gcd</name><argument_list>(<argument><expr><name>a</name></expr></argument>, <argument><expr><name>b</name></expr></argument>, <argument><expr><name>x</name></expr></argument>, <argument><expr><name>y</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if>if<condition>(<expr><operator>!</operator><operator>(</operator><name>p</name> <operator>%</operator> <name>res</name> <operator>==</operator> <literal type="number">0</literal><operator>)</operator></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"-1\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then>
+    <else>else<block>{
+    	<decl_stmt><decl><type><name>ll</name></type> <name>cnt</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    	<while>while<condition>(<expr><name>p</name> <operator>%</operator> <name>a</name> <operator>!=</operator> <literal type="number">0</literal> <operator>&amp;&amp;</operator> <name>p</name> <operator>&gt;=</operator> <literal type="number">0</literal></expr>)</condition><block>{
+    		<expr_stmt><expr><name>p</name> <operator>-=</operator> <name>b</name></expr>;</expr_stmt>
+    		<expr_stmt><expr><name>cnt</name><operator>++</operator></expr>;</expr_stmt>
+		}</block></while>
+		<if>if<condition>(<expr><name>p</name> <operator>&lt;</operator> <literal type="number">0</literal></expr>)</condition><then><block>{
+			 <expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"-1\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		}</block></then><else>else<block>{
+			<decl_stmt><decl><type><name>ll</name></type> <name>aa</name> <init>= <expr><name>p</name> <operator>/</operator> <name>a</name></expr></init></decl>;</decl_stmt>
+			<decl_stmt><decl><type><name>ll</name></type> <name>sum</name> <init>= <expr><name>aa</name> <operator>+</operator> <name>cnt</name></expr></init></decl>;</decl_stmt>
+			<if>if<condition>(<expr><name>sum</name> <operator>&gt;</operator> <name>n</name></expr>)</condition><then>  <block type="pseudo"><expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"-1\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then>
+			<else>else<block>{
+				<expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"%lld %lld %lld\n"</literal></expr></argument>, <argument><expr><name>aa</name></expr></argument>, <argument><expr><name>cnt</name></expr></argument>, <argument><expr><name>n</name> <operator>-</operator> <name>sum</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+			}</block></else></if>
+		}</block></else></if>
+	}</block></else></if>
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>
