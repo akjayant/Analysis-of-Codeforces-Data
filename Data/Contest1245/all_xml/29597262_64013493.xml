@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29597262_64013493.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;list&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;map&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;set&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;deque&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;stack&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bitset&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;functional&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iomanip&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cstdio&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;cmath&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bitset&gt;</cpp:file></cpp:include>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ll</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<decl_stmt><decl><type><name>ll</name></type> <name><name>dp</name><index>[<expr><literal type="number">40</literal></expr>]</index><index>[<expr><literal type="number">2</literal></expr>]</index><index>[<expr><literal type="number">2</literal></expr>]</index><index>[<expr><literal type="number">2</literal></expr>]</index><index>[<expr><literal type="number">2</literal></expr>]</index></name></decl>;</decl_stmt>
+<function><type><name>ll</name></type> <name>Solve</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>l</name></decl></parameter>, <parameter><decl><type><name>ll</name></type> <name>r</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>bid</name></decl></parameter>, <parameter><decl><type><name>bool</name></type> <name>first_greater</name></decl></parameter>, <parameter><decl><type><name>bool</name></type> <name>first_less</name></decl></parameter>, <parameter><decl><type><name>bool</name></type> <name>second_greater</name></decl></parameter>, <parameter><decl><type><name>bool</name></type> <name>second_less</name></decl></parameter>)</parameter_list> <block>{
+    <if>if <condition>(<expr><name>bid</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+        <return>return <expr><literal type="number">1</literal></expr>;</return>
+    }</block></then></if>
+    
+    <if>if <condition>(<expr><name><name>dp</name><index>[<expr><name>bid</name></expr>]</index><index>[<expr><name>first_greater</name></expr>]</index><index>[<expr><name>first_less</name></expr>]</index><index>[<expr><name>second_greater</name></expr>]</index><index>[<expr><name>second_less</name></expr>]</index></name><operator>!=</operator><operator>-</operator><literal type="number">1</literal></expr>)</condition><then>
+        <block type="pseudo"><return>return <expr><name><name>dp</name><index>[<expr><name>bid</name></expr>]</index><index>[<expr><name>first_greater</name></expr>]</index><index>[<expr><name>first_less</name></expr>]</index><index>[<expr><name>second_greater</name></expr>]</index><index>[<expr><name>second_less</name></expr>]</index></name></expr>;</return></block></then></if>
+    
+    <decl_stmt><decl><type><name>int</name></type> <name>lb</name> <init>= <expr><operator>(</operator><name>l</name><operator>&gt;&gt;</operator><operator>(</operator><name>bid</name><operator>-</operator><literal type="number">1</literal><operator>)</operator><operator>)</operator><operator>&amp;</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>rb</name> <init>= <expr><operator>(</operator><name>r</name><operator>&gt;&gt;</operator><operator>(</operator><name>bid</name><operator>-</operator><literal type="number">1</literal><operator>)</operator><operator>)</operator><operator>&amp;</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>ll</name></type> <name>ans</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>b1</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>b1</name><operator>&lt;=</operator><literal type="number">1</literal></expr>;</condition><incr><expr><name>b1</name><operator>++</operator></expr></incr>)</control>
+        <block type="pseudo"><for>for<control>(<init><decl><type><name>int</name></type> <name>b2</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>b2</name><operator>&lt;=</operator><literal type="number">1</literal></expr>;</condition><incr><expr><name>b2</name><operator>++</operator></expr></incr>)</control> <block>{
+            <if>if <condition>(<expr><name>b1</name> <operator>==</operator> <literal type="number">1</literal> <operator>&amp;&amp;</operator> <name>b2</name> <operator>==</operator> <literal type="number">1</literal></expr>)</condition><then>
+                <block type="pseudo"><continue>continue;</continue></block></then></if>
+            <if>if <condition>(<expr><operator>!</operator><name>first_greater</name> <operator>&amp;&amp;</operator> <name>b1</name> <operator>&lt;</operator> <name>lb</name></expr>)</condition><then>
+                <block type="pseudo"><continue>continue;</continue></block></then></if>
+            <if>if <condition>(<expr><operator>!</operator><name>first_less</name> <operator>&amp;&amp;</operator> <name>b1</name> <operator>&gt;</operator> <name>rb</name></expr>)</condition><then>
+                <block type="pseudo"><continue>continue;</continue></block></then></if>
+            <if>if <condition>(<expr><operator>!</operator><name>second_greater</name> <operator>&amp;&amp;</operator> <name>b2</name> <operator>&lt;</operator> <name>lb</name></expr>)</condition><then>
+                <block type="pseudo"><continue>continue;</continue></block></then></if>
+            <if>if <condition>(<expr><operator>!</operator><name>second_less</name> <operator>&amp;&amp;</operator> <name>b2</name> <operator>&gt;</operator> <name>rb</name></expr>)</condition><then>
+                <block type="pseudo"><continue>continue;</continue></block></then></if>
+            <expr_stmt><expr><name>ans</name> <operator>+=</operator> <call><name>Solve</name><argument_list>(<argument><expr><name>l</name></expr></argument>, <argument><expr><name>r</name></expr></argument>, <argument><expr><name>bid</name><operator>-</operator><literal type="number">1</literal></expr></argument>,
+                         <argument><expr><name>first_greater</name> <operator>|</operator> <operator>(</operator><name>b1</name> <operator>&gt;</operator> <name>lb</name><operator>)</operator></expr></argument>,
+                         <argument><expr><name>first_less</name> <operator>|</operator> <operator>(</operator><name>b1</name> <operator>&lt;</operator> <name>rb</name><operator>)</operator></expr></argument>,
+                         <argument><expr><name>second_greater</name> <operator>|</operator> <operator>(</operator><name>b2</name> <operator>&gt;</operator> <name>lb</name><operator>)</operator></expr></argument>,
+                         <argument><expr><name>second_less</name> <operator>|</operator> <operator>(</operator><name>b2</name> <operator>&lt;</operator> <name>rb</name><operator>)</operator></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        }</block></for></block></for>
+    <return>return <expr><name><name>dp</name><index>[<expr><name>bid</name></expr>]</index><index>[<expr><name>first_greater</name></expr>]</index><index>[<expr><name>first_less</name></expr>]</index><index>[<expr><name>second_greater</name></expr>]</index><index>[<expr><name>second_less</name></expr>]</index></name><operator>=</operator><name>ans</name></expr>;</return>
+}</block></function>
+
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+    <decl_stmt><decl><type><name>int</name></type> <name>T</name></decl>;</decl_stmt>
+    <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>T</name></expr>;</expr_stmt>
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>t</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</init><condition><expr><name>t</name><operator>&lt;=</operator><name>T</name></expr>;</condition><incr><expr><name>t</name><operator>++</operator></expr></incr>)</control> <block>{
+        <decl_stmt><decl><type><name>ll</name></type> <name>L</name></decl>,<decl><type ref="prev"/><name>R</name></decl>;</decl_stmt>
+        <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>L</name><operator>&gt;&gt;</operator><name>R</name></expr>;</expr_stmt>
+        
+        <for>for<control>(<init><decl><type><name>int</name></type> <name>bid</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>bid</name><operator>&lt;=</operator><literal type="number">33</literal></expr>;</condition><incr><expr><name>bid</name><operator>++</operator></expr></incr>)</control>
+            <block type="pseudo"><for>for<control>(<init><decl><type><name>int</name></type> <name>first_greater</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>first_greater</name><operator>&lt;=</operator><literal type="number">1</literal></expr>;</condition><incr><expr><name>first_greater</name><operator>++</operator></expr></incr>)</control>
+                <block type="pseudo"><for>for<control>(<init><decl><type><name>int</name></type> <name>first_less</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>first_less</name><operator>&lt;=</operator><literal type="number">1</literal></expr>;</condition><incr><expr><name>first_less</name><operator>++</operator></expr></incr>)</control>
+                    <block type="pseudo"><for>for<control>(<init><decl><type><name>int</name></type> <name>second_greater</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>second_greater</name><operator>&lt;=</operator><literal type="number">1</literal></expr>;</condition><incr><expr><name>second_greater</name><operator>++</operator></expr></incr>)</control>
+                        <block type="pseudo"><for>for<control>(<init><decl><type><name>int</name></type> <name>second_less</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init><condition><expr><name>second_less</name><operator>&lt;=</operator><literal type="number">1</literal></expr>;</condition><incr><expr><name>second_less</name><operator>++</operator></expr></incr>)</control>
+                            <block type="pseudo"><expr_stmt><expr><name><name>dp</name><index>[<expr><name>bid</name></expr>]</index><index>[<expr><name>first_greater</name></expr>]</index><index>[<expr><name>first_less</name></expr>]</index><index>[<expr><name>second_greater</name></expr>]</index><index>[<expr><name>second_less</name></expr>]</index></name><operator>=</operator><operator>-</operator><literal type="number">1</literal></expr>;</expr_stmt></block></for></block></for></block></for></block></for></block></for>
+        
+        <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <call><name>Solve</name><argument_list>(<argument><expr><name>L</name></expr></argument>,<argument><expr><name>R</name></expr></argument>,<argument><expr><literal type="number">33</literal></expr></argument>,<argument><expr><literal type="number">0</literal></expr></argument>,<argument><expr><literal type="number">0</literal></expr></argument>,<argument><expr><literal type="number">0</literal></expr></argument>,<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+        
+    }</block></for>
+}</block></function>
+</unit>

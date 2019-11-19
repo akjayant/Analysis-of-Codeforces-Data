@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1243/all/29784419_64395598.cpp"><cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>ll</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<decl_stmt><decl><type><name>ll</name></type> <name><name>factor</name><index>[<expr><literal type="number">30</literal></expr>]</index></name></decl>, <decl><type ref="prev"/><name>f_sz</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>MAXSIZE</name> <init>= <expr><literal type="number">1E6</literal> <operator>+</operator> <literal type="number">100</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>bool</name></type> <name><name>Mark</name><index>[<expr><name>MAXSIZE</name></expr>]</index></name></decl>;</decl_stmt> <decl_stmt><decl><type><name>int</name></type> <name>ind</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt> <comment type="line">//prime[0]èµ· </comment>
+<decl_stmt><decl><type><name>int</name></type> <name><name>prime</name><index>[<expr><literal type="number">1000000</literal></expr>]</index></name></decl>;</decl_stmt>    <comment type="line">//å¤æ­æ¯å¦æ¯ä¸ä¸ªç´ æ°  Mark æ è®°æ°ç» ind ç´ æ°ä¸ªæ°</comment>
+<function><type><name>void</name></type> <name>Prime</name><parameter_list>()</parameter_list> <block>{ 
+    <expr_stmt><expr><name>ind</name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">2</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>MAXSIZE</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control><block>{
+        <if>if <condition>(<expr><name><name>Mark</name><index>[<expr><name>i</name></expr>]</index></name></expr>)</condition><then>  <block type="pseudo"><continue>continue;</continue></block></then></if>     <comment type="line">//å¦æ è®°åè·³è¿</comment>
+        <expr_stmt><expr><name><name>prime</name><index>[<expr><name>ind</name><operator>++</operator></expr>]</index></name> <operator>=</operator> <name>i</name></expr>;</expr_stmt> <comment type="line">//å¦åå¾å°ä¸ä¸ªç´ æ°</comment>
+        <for>for <control>(<init><decl><type><name>int</name></type> <name>j</name> <init>= <expr><name>i</name> <operator>+</operator> <name>i</name></expr></init></decl>;</init> <condition><expr><name>j</name> <operator>&lt;</operator> <name>MAXSIZE</name></expr>;</condition> <incr><expr><name>j</name> <operator>+=</operator> <name>i</name></expr></incr>)</control>  <block type="pseudo"><expr_stmt><expr><name><name>Mark</name><index>[<expr><name>j</name></expr>]</index></name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt></block></for> <comment type="line">//æ è®°ç®åå¾å°çç´ æ°çiåä¸ºéç´ æ°</comment>
+    }</block></for>
+}</block></function> 
+<function><type><name>void</name></type> <name>get_factor</name><parameter_list>(<parameter><decl><type><name>ll</name></type> <name>x</name></decl></parameter>)</parameter_list> <block>{
+    <expr_stmt><expr><name>f_sz</name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>ll</name></type> <name>t</name> <init>= <expr><call><name>sqrt</name><argument_list>(<argument><expr><name>x</name> <operator>+</operator> <literal type="number">0.5</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>ll</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name><name>prime</name><index>[<expr><name>i</name></expr>]</index></name> <operator>&lt;=</operator> <name>t</name></expr>;</condition> <incr><expr><operator>++</operator><name>i</name></expr></incr>)</control><block>{ 
+    	<if>if <condition>(<expr><name><name>prime</name><index>[<expr><name>i</name></expr>]</index></name> <operator>&gt;</operator> <name>x</name></expr>)</condition><then> <block type="pseudo"><break>break;</break></block></then></if> 
+        <if>if <condition>(<expr><name>x</name> <operator>%</operator> <name><name>prime</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+            <expr_stmt><expr><name><name>factor</name><index>[<expr><name>f_sz</name><operator>++</operator></expr>]</index></name> <operator>=</operator> <name><name>prime</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt>
+            <while>while <condition>(<expr><name>x</name> <operator>%</operator> <name><name>prime</name><index>[<expr><name>i</name></expr>]</index></name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition> <block type="pseudo"><expr_stmt><expr><name>x</name> <operator>/=</operator> <name><name>prime</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt></block></while>
+        }</block></then></if>
+    }</block></for> 
+    <if>if <condition>(<expr><name>x</name> <operator>&gt;</operator> <literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name><name>factor</name><index>[<expr><name>f_sz</name><operator>++</operator></expr>]</index></name> <operator>=</operator> <name>x</name></expr>;</expr_stmt></block></then></if>
+}</block></function> 
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+    <decl_stmt><decl><type><name>ll</name></type> <name>n</name></decl>;</decl_stmt> <expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%lld"</literal></expr></argument>,<argument><expr><operator>&amp;</operator><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>Prime</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>get_factor</name><argument_list>(<argument><expr><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <if>if<condition>(<expr><name>f_sz</name><operator>&gt;</operator><literal type="number">1</literal></expr>)</condition><then><block>{
+        <expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"1\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <return>return <expr><literal type="number">0</literal></expr>;</return>
+    }</block></then><else>else<block>{
+        <if>if<condition>(<expr><name>n</name><operator>==</operator><literal type="number">1</literal></expr>)</condition><then><block>{
+            <expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"1\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt> <return>return <expr><literal type="number">0</literal></expr>;</return>
+        }</block></then></if>
+        <if>if<condition>(<expr><name>f_sz</name><operator>==</operator><literal type="number">1</literal></expr>)</condition><then><block>{
+            <expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"%lld\n"</literal></expr></argument>,<argument><expr><name><name>factor</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt> <return>return <expr><literal type="number">0</literal></expr>;</return>
+        }</block></then></if>
+    }</block></else></if>
+
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29570576_64023878.cpp"><cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;cstdio&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;cstring&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;cassert&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>fo</name><parameter_list>(<parameter><type><name>i</name></type></parameter>,<parameter><type><name>l</name></type></parameter>,<parameter><type><name>r</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for (auto i=l,_end=r;i&lt;=_end;++i)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>fd</name><parameter_list>(<parameter><type><name>i</name></type></parameter>,<parameter><type><name>l</name></type></parameter>,<parameter><type><name>r</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for (auto i=l,_end=r;i&gt;=_end;--i)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>FI</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>freopen(x,"r",stdin)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>FO</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>freopen(x,"w",stdout)</cpp:value></cpp:define>
+<using>using <name>ll</name><init>=<type><name>long</name> <name>long</name></type></init>;</using>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>n</name><init>=<expr><literal type="number">10</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name><name>to</name><index>[<expr><name>n</name><operator>*</operator><name>n</name><operator>+</operator><literal type="number">10</literal></expr>]</index></name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>double</name></type> <name><name>f</name><index>[<expr><name>n</name><operator>*</operator><name>n</name><operator>+</operator><literal type="number">10</literal></expr>]</index></name></decl>;</decl_stmt>
+
+<function><type><name>int</name></type> <name>xy2i</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>x</name></decl></parameter>,<parameter><decl><type><name>int</name></type> <name>y</name></decl></parameter>)</parameter_list> <block>{
+	<return>return <expr><name>x</name><operator>*</operator><name>n</name><operator>+</operator><operator>(</operator><ternary><condition><expr><name>x</name><operator>&amp;</operator><literal type="number">1</literal></expr>?</condition><then><expr><name>n</name><operator>-</operator><name>y</name><operator>-</operator><literal type="number">1</literal></expr></then><else>:<expr><name>y</name></expr></else></ternary><operator>)</operator></expr>;</return>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+<comment type="line">//	FI("e.txt");</comment>
+	<macro><name>fo</name><argument_list>(<argument>x</argument>,<argument><literal type="number">0</literal></argument>,<argument>n-<literal type="number">1</literal></argument>)</argument_list></macro> <macro><name>fo</name><argument_list>(<argument>y</argument>,<argument><literal type="number">0</literal></argument>,<argument>n-<literal type="number">1</literal></argument>)</argument_list></macro> <block>{
+		<decl_stmt><decl><type><name>int</name></type> <name>a</name></decl>;</decl_stmt>
+		<expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%d"</literal></expr></argument>,<argument><expr><operator>&amp;</operator><name>a</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<expr_stmt><expr><call><name>assert</name><argument_list>(<argument><expr><name>a</name><operator>&lt;=</operator><name>x</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<expr_stmt><expr><name><name>to</name><index>[<expr><call><name>xy2i</name><argument_list>(<argument><expr><name>x</name></expr></argument>,<argument><expr><name>y</name></expr></argument>)</argument_list></call></expr>]</index></name><operator>=</operator><call><name>xy2i</name><argument_list>(<argument><expr><name>x</name><operator>-</operator><name>a</name></expr></argument>,<argument><expr><name>y</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	}</block>
+<comment type="line">//	fo(i,0,n-1) fo(j,0,n-1) printf("%2d%c",xy2i(i,j)," \n"[j==n-1]);</comment>
+	<expr_stmt><expr><name><name>f</name><index>[<expr><literal type="number">0</literal></expr>]</index></name><operator>=</operator><literal type="number">0.</literal></expr>;</expr_stmt>
+	<macro><name>fo</name><argument_list>(<argument>i</argument>,<argument><literal type="number">1</literal></argument>,<argument><literal type="number">6</literal></argument>)</argument_list></macro> <expr_stmt><expr><name><name>f</name><index>[<expr><name>i</name></expr>]</index></name><operator>=</operator><literal type="number">6</literal></expr>;</expr_stmt>
+	<comment type="block">/*fo(i,1,6) {
+		f[i]=6;
+		fo(j,0,i-1) f[i]+=f[j];
+		f[i]/=i;
+		printf("f[%d]=%lf\n",i,f[i]);
+	}*/</comment>
+	<macro><name>fo</name><argument_list>(<argument>i</argument>,<argument><literal type="number">7</literal></argument>,<argument>n*n-<literal type="number">1</literal></argument>)</argument_list></macro> <block>{
+		<expr_stmt><expr><name><name>f</name><index>[<expr><name>i</name></expr>]</index></name><operator>=</operator><literal type="number">6</literal></expr>;</expr_stmt>
+		<macro><name>fo</name><argument_list>(<argument>j</argument>,<argument><literal type="number">1</literal></argument>,<argument><literal type="number">6</literal></argument>)</argument_list></macro> <expr_stmt><expr><name><name>f</name><index>[<expr><name>i</name></expr>]</index></name><operator>+=</operator><call><name>min</name><argument_list>(<argument><expr><name><name>f</name><index>[<expr><name>i</name><operator>-</operator><name>j</name></expr>]</index></name></expr></argument>,<argument><expr><name><name>f</name><index>[<expr><name><name>to</name><index>[<expr><name>i</name><operator>-</operator><name>j</name></expr>]</index></name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		<expr_stmt><expr><name><name>f</name><index>[<expr><name>i</name></expr>]</index></name><operator>/=</operator><literal type="number">6</literal></expr>;</expr_stmt>
+	}</block>
+	<expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"%.10lf\n"</literal></expr></argument>,<argument><expr><name><name>f</name><index>[<expr><name>n</name><operator>*</operator><name>n</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+}</block></function>
+
+
+</unit>

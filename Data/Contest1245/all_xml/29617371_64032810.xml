@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29617371_64032810.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>N</name> <init>= <expr><literal type="number">50</literal></expr></init></decl>;</decl_stmt>
+
+<decl_stmt><decl><type><name>long</name> <name>long</name></type> <name><name>d</name><index>[<expr><name>N</name></expr>]</index><index>[<expr><literal type="number">2</literal></expr>]</index><index>[<expr><literal type="number">2</literal></expr>]</index><index>[<expr><literal type="number">2</literal></expr>]</index><index>[<expr><literal type="number">2</literal></expr>]</index><index>[<expr><literal type="number">2</literal></expr>]</index></name></decl>;</decl_stmt><comment type="line">//N - bits, same as l for a, same as r for a, same for b, add 1 to bit</comment>
+
+<decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>l</name></decl>, <decl><type ref="prev"/><name>r</name></decl>;</decl_stmt>
+
+<function><type><name>void</name></type> <name>prepare</name><parameter_list>()</parameter_list> <block>{
+	
+}</block></function>
+
+<function><type><name>long</name> <name>long</name></type> <name>get_bit</name><parameter_list>(<parameter><decl><type><name>long</name> <name>long</name></type> <name>mask</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>bit_id</name></decl></parameter>)</parameter_list> <block>{
+	<return>return <expr><operator>(</operator><literal type="number">1LL</literal> <operator>&lt;&lt;</operator> <name>bit_id</name><operator>)</operator> <operator>&amp;</operator> <name>mask</name></expr>;</return>
+}</block></function>
+
+<function><type><name>void</name></type> <name>read</name><parameter_list>()</parameter_list> <block>{
+	<expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%lld %lld"</literal></expr></argument>, <argument><expr><operator>&amp;</operator><name>l</name></expr></argument>, <argument><expr><operator>&amp;</operator><name>r</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<expr_stmt><expr><name>l</name><operator>--</operator></expr><operator>,</operator> <expr><name>r</name><operator>++</operator></expr>;</expr_stmt>	
+}</block></function>
+
+<function><type><name>void</name></type> <name>solve</name><parameter_list>()</parameter_list> <block>{	
+	<decl_stmt><decl><type><name>bool</name></type> <name>l_zero</name> <init>= <expr><operator>(</operator><ternary><condition><expr><name>l</name> <operator>&lt;</operator> <literal type="number">0</literal></expr> ?</condition><then> <expr><literal type="boolean">true</literal></expr> </then><else>: <expr><literal type="boolean">false</literal></expr></else></ternary><operator>)</operator></expr></init></decl>;</decl_stmt>
+	<expr_stmt><expr><name>l</name> <operator>=</operator> <call><name>max</name><argument_list>(<argument><expr><name>l</name></expr></argument>, <argument><expr><literal type="number">0LL</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<expr_stmt><expr><call><name>memset</name><argument_list>(<argument><expr><name>d</name></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><sizeof>sizeof<argument_list>(<argument><expr><name>d</name></expr></argument>)</argument_list></sizeof></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<expr_stmt><expr><name><name>d</name><index>[<expr><name>N</name> <operator>-</operator> <literal type="number">1</literal></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+	<decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>answer</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+	<for>for <control>(<init><decl><type><name>int</name></type> <name>bit</name> <init>= <expr><name>N</name> <operator>-</operator> <literal type="number">1</literal></expr></init></decl>;</init> <condition><expr><name>bit</name> <operator>&gt;=</operator> <literal type="number">0</literal></expr>;</condition> <incr><expr><name>bit</name><operator>--</operator></expr></incr>)</control> <block>{
+		<decl_stmt><decl><type><name>bool</name></type> <name>bit_l</name> <init>= <expr><operator>(</operator><name>bool</name><operator>)</operator> <call><name>get_bit</name><argument_list>(<argument><expr><name>l</name></expr></argument>, <argument><expr><name>bit</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+		<decl_stmt><decl><type><name>bool</name></type> <name>bit_r</name> <init>= <expr><operator>(</operator><name>bool</name><operator>)</operator> <call><name>get_bit</name><argument_list>(<argument><expr><name>r</name></expr></argument>, <argument><expr><name>bit</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+<comment type="line">//		fprintf(stderr, "bit_l = %d bit_r =%d\n", bit_l, bit_r);</comment>
+		<for>for <control>(<init><decl><type><name>int</name></type> <name>same_al</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>same_al</name> <operator>&lt;=</operator> <literal type="number">1</literal></expr>;</condition> <incr><expr><name>same_al</name><operator>++</operator></expr></incr>)</control> <block>{
+			<for>for <control>(<init><decl><type><name>int</name></type> <name>same_ar</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>same_ar</name> <operator>&lt;=</operator> <literal type="number">1</literal></expr>;</condition> <incr><expr><name>same_ar</name><operator>++</operator></expr></incr>)</control> <block>{
+				<for>for <control>(<init><decl><type><name>int</name></type> <name>same_bl</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>same_bl</name> <operator>&lt;=</operator> <literal type="number">1</literal></expr>;</condition> <incr><expr><name>same_bl</name><operator>++</operator></expr></incr>)</control> <block>{
+					<for>for <control>(<init><decl><type><name>int</name></type> <name>same_br</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>same_br</name> <operator>&lt;=</operator> <literal type="number">1</literal></expr>;</condition> <incr><expr><name>same_br</name><operator>++</operator></expr></incr>)</control> <block>{
+						<for>for <control>(<init><decl><type><name>int</name></type> <name>add_one</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>add_one</name> <operator>&lt;=</operator> <literal type="number">1</literal></expr>;</condition> <incr><expr><name>add_one</name><operator>++</operator></expr></incr>)</control> <block>{
+							<decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>ways</name> <init>= <expr><name><name>d</name><index>[<expr><name>bit</name></expr>]</index><index>[<expr><name>same_al</name></expr>]</index><index>[<expr><name>same_ar</name></expr>]</index><index>[<expr><name>same_bl</name></expr>]</index><index>[<expr><name>same_br</name></expr>]</index><index>[<expr><name>add_one</name></expr>]</index></name></expr></init></decl>;</decl_stmt>
+							<if>if <condition>(<expr><name>ways</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><continue>continue;</continue></block></then></if>							
+							<for>for <control>(<init><decl><type><name>int</name></type> <name>bit_a</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>bit_a</name> <operator>&lt;=</operator> <literal type="number">1</literal></expr>;</condition> <incr><expr><name>bit_a</name><operator>++</operator></expr></incr>)</control> <block>{
+								<for>for <control>(<init><decl><type><name>int</name></type> <name>bit_b</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>bit_b</name> <operator>&lt;=</operator> <literal type="number">1</literal></expr>;</condition> <incr><expr><name>bit_b</name><operator>++</operator></expr></incr>)</control> <block>{
+									<for>for <control>(<init><decl><type><name>int</name></type> <name>new_add_one</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>new_add_one</name> <operator>&lt;=</operator> <literal type="number">1</literal></expr>;</condition> <incr><expr><name>new_add_one</name><operator>++</operator></expr></incr>)</control> <block>{										
+<comment type="line">//										fprintf(stderr, "A bit = %d sal = %d sar = %d sbl = %d sbr = %d ao = %d nao = %d ba = %d bb = %d\n", bit, same_al, same_ar, same_bl, same_br, add_one, new_add_one, bit_a, bit_b);</comment>
+										<if>if <condition>( <expr><operator>(</operator><name>bit_a</name> <operator>+</operator> <name>bit_b</name><operator>)</operator> <operator>/</operator> <literal type="number">2</literal> <operator>!=</operator> <name>add_one</name></expr>)</condition><then> <block type="pseudo"><continue>continue;</continue></block></then></if>									
+<comment type="line">//										fprintf(stderr, "B bit = %d sal = %d sar = %d sbl = %d sbr = %d ao = %d nao = %d ba = %d bb = %d\n", bit, same_al, same_ar, same_bl, same_br, add_one, new_add_one, bit_a, bit_b);</comment>
+										<if>if <condition>(<expr><name>same_al</name> <operator>&amp;&amp;</operator> <name>bit_l</name> <operator>&gt;</operator> <name>bit_a</name></expr>)</condition><then> <block type="pseudo"><continue>continue;</continue></block></then></if>
+										<if>if <condition>(<expr><name>same_ar</name> <operator>&amp;&amp;</operator> <name>bit_r</name> <operator>&lt;</operator> <name>bit_a</name></expr>)</condition><then> <block type="pseudo"><continue>continue;</continue></block></then></if>
+										<if>if <condition>(<expr><name>same_bl</name> <operator>&amp;&amp;</operator> <name>bit_l</name> <operator>&gt;</operator> <name>bit_b</name></expr>)</condition><then> <block type="pseudo"><continue>continue;</continue></block></then></if>
+										<if>if <condition>(<expr><name>same_br</name> <operator>&amp;&amp;</operator> <name>bit_r</name> <operator>&lt;</operator> <name>bit_b</name></expr>)</condition><then> <block type="pseudo"><continue>continue;</continue></block></then></if>
+<comment type="line">//										fprintf(stderr, "C bit = %d sal = %d sar = %d sbl = %d sbr = %d ao = %d nao = %d ba = %d bb = %d\n", bit, same_al, same_ar, same_bl, same_br, add_one, new_add_one, bit_a, bit_b);</comment>
+
+										<decl_stmt><decl><type><name>int</name></type> <name>plus_value</name> <init>= <expr><operator>(</operator><name>bit_a</name> <operator>+</operator> <name>bit_b</name> <operator>+</operator> <name>new_add_one</name><operator>)</operator> <operator>%</operator> <literal type="number">2</literal></expr></init></decl>;</decl_stmt>
+										<decl_stmt><decl><type><name>int</name></type> <name>xor_value</name> <init>= <expr><name>bit_a</name> <operator>^</operator> <name>bit_b</name></expr></init></decl>;</decl_stmt>
+										<if>if <condition>(<expr><name>plus_value</name> <operator>!=</operator> <name>xor_value</name></expr>)</condition><then> <block type="pseudo"><continue>continue;</continue></block></then></if>
+										
+
+										<decl_stmt><decl><type><name>int</name></type> <name>new_same_al</name> <init>= <expr><operator>(</operator><name>same_al</name> <operator>&amp;&amp;</operator> <name>bit_a</name> <operator>==</operator> <name>bit_l</name><operator>)</operator></expr></init></decl>;</decl_stmt>
+										<decl_stmt><decl><type><name>int</name></type> <name>new_same_ar</name> <init>= <expr><operator>(</operator><name>same_ar</name> <operator>&amp;&amp;</operator> <name>bit_a</name> <operator>==</operator> <name>bit_r</name><operator>)</operator></expr></init></decl>;</decl_stmt>
+										<decl_stmt><decl><type><name>int</name></type> <name>new_same_bl</name> <init>= <expr><operator>(</operator><name>same_bl</name> <operator>&amp;&amp;</operator> <name>bit_b</name> <operator>==</operator> <name>bit_l</name><operator>)</operator></expr></init></decl>;</decl_stmt>
+										<decl_stmt><decl><type><name>int</name></type> <name>new_same_br</name> <init>= <expr><operator>(</operator><name>same_br</name> <operator>&amp;&amp;</operator> <name>bit_b</name> <operator>==</operator> <name>bit_r</name><operator>)</operator></expr></init></decl>;</decl_stmt>										
+										<if>if <condition>(<expr><name>bit</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+											<expr_stmt><expr><name><name>d</name><index>[<expr><name>bit</name> <operator>-</operator> <literal type="number">1</literal></expr>]</index><index>[<expr><name>new_same_al</name></expr>]</index><index>[<expr><name>new_same_ar</name></expr>]</index><index>[<expr><name>new_same_bl</name></expr>]</index><index>[<expr><name>new_same_br</name></expr>]</index><index>[<expr><name>new_add_one</name></expr>]</index></name> <operator>+=</operator> <name>ways</name></expr>;</expr_stmt>											
+										}</block></then> <else>else <block>{
+											<if>if <condition>(<expr><name>new_same_al</name> <operator>+</operator> <name>new_same_ar</name> <operator>+</operator> <name>new_same_bl</name> <operator>+</operator> <name>new_same_br</name> <operator>+</operator> <name>new_add_one</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+												<expr_stmt><expr><name>answer</name> <operator>+=</operator> <name>ways</name></expr>;</expr_stmt>
+											}</block></then></if>
+										}</block></else></if>
+									}</block></for>
+								}</block></for>
+							}</block></for>
+						}</block></for>
+					}</block></for>
+				}</block></for>
+			}</block></for>
+		}</block></for>
+	}</block></for>
+	<if>if <condition>(<expr><name>l_zero</name></expr>)</condition><then> <block>{		
+		<expr_stmt><expr><name>answer</name> <operator>+=</operator> <operator>(</operator><name>r</name> <operator>-</operator> <literal type="number">1</literal> <operator>+</operator> <literal type="number">1</literal><operator>)</operator> <operator>*</operator> <literal type="number">2</literal> <operator>-</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+	}</block></then></if>
+	<expr_stmt><expr><call><name>printf</name><argument_list>(<argument><expr><literal type="string">"%lld\n"</literal></expr></argument>, <argument><expr><name>answer</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+<comment type="line">//	freopen("input.txt", "r", stdin);</comment>
+<comment type="line">//	freopen("output.txt", "w", stdout);</comment>
+
+	<expr_stmt><expr><call><name>prepare</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+	<decl_stmt><decl><type><name>int</name></type> <name>test</name></decl>;</decl_stmt>
+	<expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%d"</literal></expr></argument>, <argument><expr><operator>&amp;</operator><name>test</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<for>for <control>(<init><decl><type><name>int</name></type> <name>t</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>t</name> <operator>&lt;</operator> <name>test</name></expr>;</condition> <incr><expr><name>t</name><operator>++</operator></expr></incr>)</control> <block>{
+		<expr_stmt><expr><call><name>read</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+		<expr_stmt><expr><call><name>solve</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+	}</block></for>
+		
+	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+
+
+
+</unit>

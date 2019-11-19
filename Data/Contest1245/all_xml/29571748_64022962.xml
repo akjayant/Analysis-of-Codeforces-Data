@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29571748_64022962.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<typedef>typedef <type><name>unsigned</name> <name>int</name></type> <name>uint</name>;</typedef>
+<typedef>typedef <type><name>long</name> <name>long</name></type> <name>ll</name>;</typedef>
+<typedef>typedef <type><name>unsigned</name> <name>long</name> <name>long</name></type> <name>ull</name>;</typedef>
+
+<decl_stmt><decl><type><name>mt19937</name></type> <name>gen</name><argument_list>(<argument><expr><operator>(</operator><name>uint</name><operator>)</operator> <call><name><name>chrono</name><operator>::</operator><name>high_resolution_clock</name><operator>::</operator><name>now</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>time_since_epoch</name><argument_list>()</argument_list></call><operator>.</operator><call><name>count</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></decl>;</decl_stmt>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>N</name> <init>= <expr><literal type="number">2100</literal></expr></init></decl>;</decl_stmt>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>INF</name> <init>= <expr><literal type="number">1</literal><literal type="char">'000'</literal><literal type="number">000</literal><literal type="char">'</literal></expr></init></decl></decl_stmt>000;
+const ll LLINF = 4LL * INF * INF;
+
+ll x[N];
+ll y[N];
+ll g[N][N];
+ll dist[N];
+ll placeCost[N];
+ll lenCost[N];
+int p[N];
+char used[N];
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+
+	int n;
+	cin &gt;&gt; n;
+
+	fill(dist, dist + n + 1, LLINF);
+	fill(p, p + n + 1, -1);
+
+	for (int i = 0; i &lt; n; i++) {
+		cin &gt;&gt; x[i] &gt;&gt; y[i];
+	}
+
+	for (int i = 0; i &lt; n; i++) {
+		cin &gt;&gt; placeCost[i];
+	}
+
+	for (int i = 0; i &lt; n; i++) {
+		cin &gt;&gt; lenCost[i];
+		g[n][i] = g[i][n] = placeCost[i];
+
+		for (int j = 0; j &lt; i; j++) {
+			ll d = abs(x[i] - x[j]) + abs(y[i] - y[j]);
+			g[i][j] = g[j][i] = d * (lenCost[i] + lenCost[j]);
+		}
+	}
+
+	ll res = 0;
+	dist[n] = 0;
+
+	vector&lt;int&gt; place;
+	vector&lt;pair&lt;int, int&gt;&gt; edges;
+
+	for (int i = 0; i &lt;= n; i++) {
+		int v = -1;
+
+		for (int j = 0; j &lt;= n; j++) {
+			if (!used[j] &amp;&amp; (v == -1 || dist[j] &lt; dist[v])) {
+				v = j;
+			}
+		}
+
+		assert(v != -1);
+		used[v] = 1;
+
+		if (p[v] != -1) {
+			res += g[p[v]][v];
+
+			if (p[v] == n) {
+				place.push_back(v + 1);
+				assert(v != n);
+			} else {
+				edges.push_back({v + 1, p[v] + 1});
+				assert(v != n &amp;&amp; p[v] != n);
+			}
+		}
+
+		for (int j = 0; j &lt;= n; j++) {
+			if (g[v][j] &lt; dist[j]) {
+				dist[j] = g[v][j];
+				p[j] = v;
+			}
+		}
+	}
+
+	cout &lt;&lt; res &lt;&lt; "\n";
+	cout &lt;&lt; place.size() &lt;&lt; "\n";
+
+	for (int id : place) {
+		cout &lt;&lt; id &lt;&lt; "\n";
+	}
+
+	cout &lt;&lt; edges.size() &lt;&lt; "\n";
+
+	for (auto p : edges) {
+		cout &lt;&lt; p.first &lt;&lt; " " &lt;&lt; p.second &lt;&lt; "\n";
+	}
+
+	return 0;
+}</unit>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1243/all/29761380_64405373.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;ext/pb_ds/assoc_container.hpp&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;ext/pb_ds/tree_policy.hpp&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>__gnu_pbds</name>;</namespace></using>
+
+<typedef>typedef <type><name>long</name> <name>long</name></type> <name>ll</name>;</typedef>
+
+<function><template>template<parameter_list>&lt;<parameter><type><name>typename</name></type> <name>T</name></parameter>&gt;</parameter_list></template>
+<type><name>void</name></type> <name>out</name><parameter_list>(<parameter><decl><type><name>T</name></type> <name>x</name></decl></parameter>)</parameter_list> <block>{ <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>x</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt> <expr_stmt><expr><call><name>exit</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt> }</block></function>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>watch</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>cout &lt;&lt; (#x) &lt;&lt; " is " &lt;&lt; (x) &lt;&lt; endl</cpp:value></cpp:define>
+
+<typedef>typedef <type><name><name>tree</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>, <argument><expr><name>null_type</name></expr></argument>, <argument><expr><name><name>less</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></expr></argument>, <argument><expr><name>rb_tree_tag</name></expr></argument>, <argument><expr><name>tree_order_statistics_node_update</name></expr></argument>&gt;</argument_list></name></type> <name>ordered_set</name>;</typedef>
+<comment type="line">//*find_by_order</comment>
+<comment type="line">//order_of_key</comment>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>maxn</name> <init>= <expr><literal type="number">1e6</literal> <operator>+</operator> <literal type="number">5</literal></expr></init></decl>;</decl_stmt>
+
+<decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>,<decl><type ref="prev"/><name>m</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name>ans</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><name><name>set</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name><name>g</name><index>[<expr><name>maxn</name></expr>]</index></name></decl>;</decl_stmt>
+
+<decl_stmt><decl><type><name><name>set</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>notviz</name></decl>;</decl_stmt>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+  <expr_stmt><expr><call><name><name>ios_base</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt> <expr_stmt><expr><call><name><name>cin</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>  <expr_stmt><expr><call><name><name>cout</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+  <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>n</name><operator>&gt;&gt;</operator><name>m</name></expr>;</expr_stmt>
+  <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name><operator>&lt;</operator><name>m</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{
+    <decl_stmt><decl><type><name>int</name></type> <name>x</name></decl>,<decl><type ref="prev"/><name>y</name></decl>;</decl_stmt> <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>x</name><operator>&gt;&gt;</operator><name>y</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>g</name><index>[<expr><name>x</name></expr>]</index></name><operator>.</operator><call><name>insert</name><argument_list>(<argument><expr><name>y</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>g</name><index>[<expr><name>y</name></expr>]</index></name><operator>.</operator><call><name>insert</name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  }</block></for>
+  
+  <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</init> <condition><expr><name>i</name><operator>&lt;=</operator><name>n</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{
+    <expr_stmt><expr><call><name><name>notviz</name><operator>.</operator><name>insert</name></name><argument_list>(<argument><expr><name>i</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  }</block></for>
+
+  <decl_stmt><decl><type><name><name>set</name><argument_list type="generic">&lt;<argument><expr><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>,<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></expr></argument>&gt;</argument_list></name></type> <name>q</name></decl>;</decl_stmt>
+  <expr_stmt><expr><call><name><name>q</name><operator>.</operator><name>insert</name></name><argument_list>(<argument><expr><block>{<expr><literal type="number">0</literal></expr>,<expr><literal type="number">1</literal></expr>}</block></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+  <while>while <condition>(<expr><operator>!</operator><call><name><name>q</name><operator>.</operator><name>empty</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{
+    
+    <decl_stmt><decl><type><name>auto</name></type> <name>cur</name> <init>= <expr><operator>*</operator><call><name><name>q</name><operator>.</operator><name>begin</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>q</name><operator>.</operator><name>erase</name></name><argument_list>(<argument><expr><call><name><name>q</name><operator>.</operator><name>begin</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>ans</name> <operator>+=</operator> <name><name>cur</name><operator>.</operator><name>first</name></name></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>at</name> <init>= <expr><name><name>cur</name><operator>.</operator><name>second</name></name></expr></init></decl>;</decl_stmt>
+
+    <if>if <condition>(<expr><call><name><name>notviz</name><operator>.</operator><name>find</name></name><argument_list>(<argument><expr><name>at</name></expr></argument>)</argument_list></call> <operator>!=</operator> <call><name><name>notviz</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call></expr>)</condition><then> <block>{
+      <expr_stmt><expr><call><name><name>notviz</name><operator>.</operator><name>erase</name></name><argument_list>(<argument><expr><call><name><name>notviz</name><operator>.</operator><name>find</name></name><argument_list>(<argument><expr><name>at</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    }</block></then></if>
+
+    <decl_stmt><decl><type><name><name>set</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>toerase</name></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>to</name><range>: <expr><name>notviz</name></expr></range></decl></init>)</control> <block>{
+      <decl_stmt><decl><type><name>int</name></type> <name>cost</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+      <if>if <condition>(<expr><name><name>g</name><index>[<expr><name>at</name></expr>]</index></name><operator>.</operator><call><name>count</name><argument_list>(<argument><expr><name>to</name></expr></argument>)</argument_list></call></expr>)</condition><then> <block>{
+	<expr_stmt><expr><name>cost</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+      }</block></then></if>
+      <if>if <condition>(<expr><name>cost</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+	<if>if <condition>(<expr><call><name><name>q</name><operator>.</operator><name>count</name></name><argument_list>(<argument><expr><block>{<expr><literal type="number">1</literal></expr>,<expr><name>to</name></expr>}</block></expr></argument>)</argument_list></call></expr>)</condition><then> <block>{
+	  <expr_stmt><expr><call><name><name>q</name><operator>.</operator><name>erase</name></name><argument_list>(<argument><expr><block>{<expr><literal type="number">1</literal></expr>,<expr><name>to</name></expr>}</block></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	}</block></then></if>
+	<expr_stmt><expr><call><name><name>toerase</name><operator>.</operator><name>insert</name></name><argument_list>(<argument><expr><name>to</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<expr_stmt><expr><call><name><name>q</name><operator>.</operator><name>insert</name></name><argument_list>(<argument><expr><block>{<expr><literal type="number">0</literal></expr>,<expr><name>to</name></expr>}</block></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      }</block></then> <else>else <block>{
+	<comment type="line">//cost == 1</comment>
+	<if>if <condition>(<expr><call><name><name>q</name><operator>.</operator><name>count</name></name><argument_list>(<argument><expr><block>{<expr><literal type="number">0</literal></expr>,<expr><name>to</name></expr>}</block></expr></argument>)</argument_list></call><operator>==</operator><literal type="number">0</literal></expr>)</condition><then> <block>{
+	  <expr_stmt><expr><call><name><name>q</name><operator>.</operator><name>insert</name></name><argument_list>(<argument><expr><block>{<expr><literal type="number">1</literal></expr>,<expr><name>to</name></expr>}</block></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	}</block></then></if>
+      }</block></else></if>
+    }</block></for>
+
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>x</name><range>: <expr><name>toerase</name></expr></range></decl></init>)</control> <block>{
+      <if>if <condition>(<expr><call><name><name>notviz</name><operator>.</operator><name>count</name></name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call></expr>)</condition><then> <block>{
+	<expr_stmt><expr><call><name><name>notviz</name><operator>.</operator><name>erase</name></name><argument_list>(<argument><expr><name>x</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+      }</block></then></if>
+    }</block></for>
+  }</block></while>
+
+  <expr_stmt><expr><call><name>out</name><argument_list>(<argument><expr><name>ans</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

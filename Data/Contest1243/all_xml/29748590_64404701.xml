@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1243/all/29748590_64404701.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>endl</name></cpp:macro> <cpp:value>'\n'</cpp:value></cpp:define>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pb</name></cpp:macro> <cpp:value>push_back</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>f</name></cpp:macro> <cpp:value>first</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>s</name></cpp:macro> <cpp:value>second</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>BUFF</name></cpp:macro> <cpp:value>ios::sync_with_stdio(false);</cpp:value></cpp:define>
+
+<typedef>typedef <type><name>long</name> <name>long</name> <name>int</name></type> <name>ll</name>;</typedef>
+<typedef>typedef <type><name>long</name> <name>double</name></type> <name>ld</name>;</typedef>
+<typedef>typedef <type><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>,<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>pii</name>;</typedef>
+<typedef>typedef <type><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>ll</name></expr></argument>,<argument><expr><name>ll</name></expr></argument>&gt;</argument_list></name></type> <name>pll</name>;</typedef>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>INF</name> <init>= <expr><literal type="number">0x3f3f3f3f</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><specifier>const</specifier> <name>ll</name></type> <name>LINF</name> <init>= <expr><literal type="number">0x3f3f3f3f3f3f3f3fll</literal></expr></init></decl>;</decl_stmt>
+
+<decl_stmt><decl><type><name>mt19937</name></type> <name>rng</name><argument_list>(<argument><expr><operator>(</operator><name>int</name><operator>)</operator> <call><name><name>chrono</name><operator>::</operator><name>steady_clock</name><operator>::</operator><name>now</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>time_since_epoch</name><argument_list>()</argument_list></call><operator>.</operator><call><name>count</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></decl>;</decl_stmt>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>MAX</name> <init>= <expr><operator>(</operator><name>int</name><operator>)</operator><literal type="number">1e5</literal><operator>+</operator><literal type="number">10</literal></expr></init></decl>;</decl_stmt>
+
+<decl_stmt><decl><type><name>int</name></type> <name>tot</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><name><name>set</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>to_visit</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name><name>set</name><argument_list type="generic">&lt;<argument><expr><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>, <argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></expr></argument>&gt;</argument_list></name></type> <name>edges</name></decl>;</decl_stmt>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list><block>{
+
+  <expr_stmt><expr><name>BUFF</name></expr>;</expr_stmt>
+
+  <decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>, <decl><type ref="prev"/><name>m</name></decl>;</decl_stmt> <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name> <operator>&gt;&gt;</operator> <name>m</name></expr>;</expr_stmt>
+
+  <for>for<control>( <init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name><operator>&lt;</operator><name>m</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr> )</control><block>{
+	  <decl_stmt><decl><type><name>int</name></type> <name>a</name></decl>, <decl><type ref="prev"/><name>b</name></decl>;</decl_stmt> <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>a</name> <operator>&gt;&gt;</operator> <name>b</name></expr>;</expr_stmt>
+	  <expr_stmt><expr><call><name><name>edges</name><operator>.</operator><name>insert</name></name><argument_list>(<argument><expr><block>{<expr><name>a</name></expr>, <expr><name>b</name></expr>}</block></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	  <expr_stmt><expr><call><name><name>edges</name><operator>.</operator><name>insert</name></name><argument_list>(<argument><expr><block>{<expr><name>b</name></expr>, <expr><name>a</name></expr>}</block></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  }</block></for>
+
+  <for>for<control>( <init><decl><type><name>int</name></type> <name>i</name><init>=<expr><literal type="number">1</literal></expr></init></decl>;</init> <condition><expr><name>i</name><operator>&lt;=</operator><name>n</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr> )</control><block>{
+	  <expr_stmt><expr><call><name><name>to_visit</name><operator>.</operator><name>insert</name></name><argument_list>(<argument><expr><name>i</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  }</block></for>
+
+
+  <decl_stmt><decl><type><name><name>queue</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>q</name></decl>;</decl_stmt>
+
+  <while>while<condition>( <expr><call><name><name>to_visit</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr> )</condition><block>{
+  
+  <expr_stmt><expr><call><name><name>q</name><operator>.</operator><name>push</name></name><argument_list>(<argument><expr><operator>*</operator><call><name><name>to_visit</name><operator>.</operator><name>begin</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><call><name><name>to_visit</name><operator>.</operator><name>erase</name></name><argument_list>(<argument><expr><call><name><name>to_visit</name><operator>.</operator><name>begin</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  <expr_stmt><expr><name>tot</name><operator>++</operator></expr>;</expr_stmt>
+
+  <while>while<condition>( <expr><call><name><name>q</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr> )</condition><block>{
+
+	  <decl_stmt><decl><type><name>int</name></type> <name>at</name> <init>= <expr><call><name><name>q</name><operator>.</operator><name>front</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+	  <expr_stmt><expr><call><name><name>q</name><operator>.</operator><name>pop</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+      <decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>rem</name></decl>;</decl_stmt>
+	  <for>for<control>( <init><decl><type><name>int</name></type> <name>e</name> <range>: <expr><name>to_visit</name></expr></range></decl></init> )</control><block>{
+		  <if>if<condition>( <expr><operator>!</operator><call><name><name>edges</name><operator>.</operator><name>count</name></name><argument_list>(<argument><expr><block>{<expr><name>at</name></expr>, <expr><name>e</name></expr>}</block></expr></argument>)</argument_list></call></expr> )</condition><then><block>{
+			  <expr_stmt><expr><call><name><name>rem</name><operator>.</operator><name>pb</name></name><argument_list>(<argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		  }</block></then></if>
+	  }</block></for>
+
+	  <for>for<control>( <init><decl><type><name>int</name></type> <name>e</name> <range>: <expr><name>rem</name></expr></range></decl></init> )</control><block>{
+		  <expr_stmt><expr><call><name><name>to_visit</name><operator>.</operator><name>erase</name></name><argument_list>(<argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+		  <expr_stmt><expr><call><name><name>q</name><operator>.</operator><name>push</name></name><argument_list>(<argument><expr><name>e</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	  }</block></for>
+  }</block></while>
+  
+  }</block></while>
+
+  <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>tot</name><operator>-</operator><literal type="number">1</literal> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+
+
+  <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

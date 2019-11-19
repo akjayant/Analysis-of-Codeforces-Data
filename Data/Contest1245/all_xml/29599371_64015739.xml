@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29599371_64015739.cpp"><cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;stdio.h&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;queue&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;map&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;set&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;utility&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;stack&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;string&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;string.h&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;assert.h&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive><cpp:file>&lt;iomanip&gt;</cpp:file></cpp:include>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>F</name></cpp:macro> <cpp:value>first</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>S</name></cpp:macro> <cpp:value>second</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pb</name></cpp:macro> <cpp:value>push_back</cpp:value></cpp:define>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<typedef>typedef <type><name>long</name> <name>long</name></type> <name>ll</name>;</typedef>
+<typedef>typedef <type><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>ll</name></expr></argument>,<argument><expr><name>ll</name></expr></argument>&gt;</argument_list></name></type> <name>ii</name>;</typedef>
+
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>N</name> <init>= <expr><literal type="number">32</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><specifier>const</specifier> <name>int</name></type> <name>LOG</name> <init>= <expr><literal type="number">30</literal></expr></init></decl>;</decl_stmt>
+
+<decl_stmt><decl><type><name>int</name></type> <name>L</name></decl>, <decl><type ref="prev"/><name>R</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>ll</name></type> <name><name>dp</name><index>[<expr><name>N</name></expr>]</index><index>[<expr><literal type="number">2</literal></expr>]</index><index>[<expr><literal type="number">2</literal></expr>]</index></name></decl>;</decl_stmt>
+
+<function><type><name>ll</name></type> <name>rec</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>bit</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>fa</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>fb</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>val</name></decl></parameter>)</parameter_list><block>{
+    <if>if<condition>(<expr><name>bit</name> <operator>==</operator> <operator>-</operator><literal type="number">1</literal></expr>)</condition><then><block type="pseudo"><return>return <expr><literal type="number">1</literal></expr>;</return></block></then></if>
+    <if>if<condition>(<expr><name><name>dp</name><index>[<expr><name>bit</name></expr>]</index><index>[<expr><name>fa</name></expr>]</index><index>[<expr><name>fb</name></expr>]</index></name> <operator>!=</operator> <operator>-</operator><literal type="number">1</literal></expr>)</condition><then><block type="pseudo"><return>return <expr><name><name>dp</name><index>[<expr><name>bit</name></expr>]</index><index>[<expr><name>fa</name></expr>]</index><index>[<expr><name>fb</name></expr>]</index></name></expr>;</return></block></then></if>
+    <decl_stmt><decl><type><name>ll</name></type> <name>res</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+
+    <decl_stmt><decl><type><name>int</name></type> <name>mxa</name> <init>= <expr><literal type="number">2</literal></expr></init></decl>, <decl><type ref="prev"/><name>mxb</name> <init>= <expr><literal type="number">2</literal></expr></init></decl>;</decl_stmt>
+    <if>if<condition>(<expr><name>fa</name> <operator>==</operator> <literal type="number">1</literal></expr>)</condition><then><block>{
+        <if>if<condition>(<expr><name>val</name> <operator>&amp;</operator> <name>L</name></expr>)</condition><then><block type="pseudo"><expr_stmt><expr><name>mxa</name> <operator>=</operator> <literal type="number">2</literal></expr>;</expr_stmt></block></then>
+        <else>else <block type="pseudo"><expr_stmt><expr><name>mxa</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt></block></else></if>
+    }</block></then></if>
+    <if>if<condition>(<expr><name>fb</name> <operator>==</operator> <literal type="number">1</literal></expr>)</condition><then><block>{
+        <if>if<condition>(<expr><name>val</name> <operator>&amp;</operator> <name>R</name></expr>)</condition><then><block type="pseudo"><expr_stmt><expr><name>mxb</name> <operator>=</operator> <literal type="number">2</literal></expr>;</expr_stmt></block></then>
+        <else>else <block type="pseudo"><expr_stmt><expr><name>mxb</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt></block></else></if>
+    }</block></then></if>
+    <for>for<control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>mxa</name></expr>;</condition> <incr><expr><operator>++</operator><name>i</name></expr></incr>)</control><block>{
+        <for>for<control>(<init><decl><type><name>int</name></type> <name>j</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>j</name> <operator>&lt;</operator> <name>mxb</name></expr>;</condition> <incr><expr><operator>++</operator><name>j</name></expr></incr>)</control><block>{
+            <if>if<condition>(<expr><name>i</name> <operator>+</operator> <name>j</name> <operator>==</operator> <operator>(</operator><name>i</name> <operator>^</operator> <name>j</name><operator>)</operator></expr>)</condition><then>
+                <block type="pseudo"><expr_stmt><expr><name>res</name> <operator>+=</operator> <call><name>rec</name><argument_list>(<argument><expr><name>bit</name> <operator>-</operator> <literal type="number">1</literal></expr></argument>, <argument><expr><operator>(</operator><name>fa</name> <operator>==</operator> <literal type="number">1</literal><operator>)</operator> <operator>&amp;&amp;</operator> <operator>(</operator><name>i</name> <operator>+</operator> <literal type="number">1</literal> <operator>==</operator> <name>mxa</name><operator>)</operator></expr></argument>, <argument><expr><operator>(</operator><name>fb</name> <operator>==</operator> <literal type="number">1</literal><operator>)</operator> <operator>&amp;&amp;</operator> <operator>(</operator><name>j</name> <operator>+</operator> <literal type="number">1</literal> <operator>==</operator> <name>mxb</name><operator>)</operator></expr></argument>, <argument><expr><name>val</name> <operator>/</operator> <literal type="number">2</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></then></if>
+        }</block></for>
+    }</block></for>
+    <comment type="line">// cout &lt;&lt; bit &lt;&lt; " " &lt;&lt; fa &lt;&lt; " " &lt;&lt; fb &lt;&lt; " " &lt;&lt; res &lt;&lt; endl;</comment>
+    <return>return <expr><name><name>dp</name><index>[<expr><name>bit</name></expr>]</index><index>[<expr><name>fa</name></expr>]</index><index>[<expr><name>fb</name></expr>]</index></name> <operator>=</operator> <name>res</name></expr>;</return>
+
+    <comment type="line">// if(fa == 1){ </comment>
+    <comment type="line">//     if(fb == 1){ // restricted</comment>
+    <comment type="line">//         if(val &amp; L){</comment>
+    <comment type="line">//             if(val &amp; R){ // boleh nyala 2-2nya</comment>
+    <comment type="line">//                 res += rec(bit - 1, fa, 0, val / 2);</comment>
+    <comment type="line">//                 res += rec(bit - 1, 0, fb, val / 2);</comment>
+    <comment type="line">//                 res += rec(bit - 1, 0, 0, val / 2);</comment>
+    <comment type="line">//             }else{ // boleh nyala a</comment>
+    <comment type="line">//                 res += rec(bit - 1, fa, fb, val / 2);</comment>
+    <comment type="line">//                 res += rec(bit - 1, 0, fb, val / 2);</comment>
+    <comment type="line">//             }</comment>
+    <comment type="line">//         }else{</comment>
+    <comment type="line">//             if(val &amp; R){ // boleh nyala b</comment>
+    <comment type="line">//                 res += rec(bit - 1, fa, fb, val / 2);</comment>
+    <comment type="line">//                 res += rec(bit - 1, fa, 0, val / 2);</comment>
+    <comment type="line">//             }else{</comment>
+    <comment type="line">//                 res += rec(bit - 1, fa, fb, val / 2);</comment>
+    <comment type="line">//             }</comment>
+    <comment type="line">//         }</comment>
+    <comment type="line">//     }else{ // b bebas</comment>
+    <comment type="line">//         if(val &amp; L){ // a restricted</comment>
+    <comment type="line">//             res += rec(bit - 1, fa, 0, val / 2); // a nyala -&gt; b mati</comment>
+    <comment type="line">//             res += rec(bit - 1, 0, 0, val / 2) * 2; // a mati -&gt; b boleh mati/nyala</comment>
+    <comment type="line">//         }else{ // a harus mati</comment>
+    <comment type="line">//             res += rec(bit - 1, 0, 0, val / 2) * 2; // a mati -&gt; b boleh mati/nyala</comment>
+    <comment type="line">//         }</comment>
+    <comment type="line">//     }</comment>
+    <comment type="line">// }else{</comment>
+    <comment type="line">//     if(fb == 1){ // b restricted</comment>
+    <comment type="line">//         if(val &amp; R){</comment>
+    <comment type="line">//             res += rec(bit - 1, 0, fb, val / 2);</comment>
+    <comment type="line">//             res += rec(bit - 1, 0, 0, val / 2) * 2;</comment>
+    <comment type="line">//         }else{</comment>
+    <comment type="line">//             res += rec(bit - 1, 0, 0, val / 2) * 2;</comment>
+    <comment type="line">//         }</comment>
+    <comment type="line">//     }else{</comment>
+    <comment type="line">//         res = rec(bit - 1, fa, fb, val / 2) * 3;</comment>
+    <comment type="line">//     }</comment>
+    <comment type="line">// }</comment>
+
+    
+}</block></function>
+
+<function><type><name>ll</name></type> <name>solve</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>l</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>r</name></decl></parameter>)</parameter_list><block>{
+    <if>if<condition>(<expr><name>r</name> <operator>&lt;</operator> <literal type="number">0</literal> <operator>||</operator> <name>l</name> <operator>&lt;</operator> <literal type="number">0</literal></expr>)</condition><then><block type="pseudo"><return>return <expr><literal type="number">0</literal></expr>;</return></block></then></if>
+    <expr_stmt><expr><call><name>memset</name><argument_list>(<argument><expr><name>dp</name></expr></argument>, <argument><expr><operator>-</operator><literal type="number">1</literal></expr></argument>, <argument><expr><sizeof>sizeof <name>dp</name></sizeof></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>L</name> <operator>=</operator> <name>l</name></expr><operator>,</operator> <expr><name>R</name> <operator>=</operator> <name>r</name></expr>;</expr_stmt>
+    <comment type="line">// ll bf = 0;</comment>
+    <comment type="line">// for(int i = 0; i &lt;= l; ++i){</comment>
+    <comment type="line">//     for(int j = 0; j &lt;= r; ++j){</comment>
+    <comment type="line">//         if(i + j == (i ^ j))bf++;</comment>
+    <comment type="line">//     }</comment>
+    <comment type="line">// }</comment>
+    <comment type="line">// cout &lt;&lt; "Solve " &lt;&lt; L &lt;&lt; " " &lt;&lt; R &lt;&lt; " = " &lt;&lt; rec(LOG, 1, 1, 1&lt;&lt;LOG) &lt;&lt; " " &lt;&lt; bf &lt;&lt; endl;</comment>
+    <return>return <expr><call><name>rec</name><argument_list>(<argument><expr><name>LOG</name></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">1</literal> <operator>&lt;&lt;</operator> <name>LOG</name></expr></argument>)</argument_list></call></expr>;</return>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list><block>{
+    <expr_stmt><expr><call><name><name>ios</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt> <expr_stmt><expr><call><name><name>cin</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt> <expr_stmt><expr><call><name><name>cout</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>t</name></decl>;</decl_stmt> <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>t</name></expr>;</expr_stmt>
+    <while>while<condition>(<expr><name>t</name><operator>--</operator></expr>)</condition><block>{
+        <decl_stmt><decl><type><name>int</name></type> <name>l</name></decl>, <decl><type ref="prev"/><name>r</name></decl>;</decl_stmt> <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>l</name> <operator>&gt;&gt;</operator> <name>r</name></expr>;</expr_stmt>
+        <decl_stmt><decl><type><name>ll</name></type> <name>ans</name> <init>= <expr><call><name>solve</name><argument_list>(<argument><expr><name>r</name></expr></argument>, <argument><expr><name>r</name></expr></argument>)</argument_list></call> <operator>-</operator> <call><name>solve</name><argument_list>(<argument><expr><name>r</name></expr></argument>, <argument><expr><name>l</name> <operator>-</operator> <literal type="number">1</literal></expr></argument>)</argument_list></call> <operator>-</operator> <call><name>solve</name><argument_list>(<argument><expr><name>l</name> <operator>-</operator> <literal type="number">1</literal></expr></argument>, <argument><expr><name>r</name></expr></argument>)</argument_list></call> <operator>+</operator> <call><name>solve</name><argument_list>(<argument><expr><name>l</name> <operator>-</operator> <literal type="number">1</literal></expr></argument>, <argument><expr><name>l</name> <operator>-</operator> <literal type="number">1</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>ans</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+    }</block></while>
+}</block></function></unit>

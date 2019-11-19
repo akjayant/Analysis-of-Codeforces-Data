@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29615931_64035727.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<class>class <name>DSU</name> <block>{<private type="default">
+    </private><private>private:
+        <decl_stmt><decl><type><name>int</name><modifier>*</modifier></type> <name>id</name></decl>;</decl_stmt> 
+        <decl_stmt><decl><type><name>int</name><modifier>*</modifier></type> <name>size</name></decl>;</decl_stmt> 
+        <decl_stmt><decl><type><name>int</name><modifier>*</modifier></type> <name>stations_id</name></decl>;</decl_stmt> 
+        <decl_stmt><decl><type><name>int</name><modifier>*</modifier></type> <name>costs</name></decl>;</decl_stmt> 
+        
+    </private><public>public:
+        <constructor><name>DSU</name> <parameter_list>( <parameter><decl><type><name>int</name></type> <name>vertices</name></decl></parameter>, <parameter><decl><type><name>long</name> <name>long</name><modifier>*</modifier></type> <name>c</name></decl></parameter>)</parameter_list> <block>{
+            <expr_stmt><expr><name>id</name> <operator>=</operator> <operator>new</operator> <name><name>int</name><index>[ <expr><name>vertices</name></expr> ]</index></name></expr>;</expr_stmt>
+            <expr_stmt><expr><name>size</name> <operator>=</operator> <operator>new</operator> <name><name>int</name><index>[ <expr><name>vertices</name></expr> ]</index></name></expr>;</expr_stmt> 
+            <expr_stmt><expr><name>stations_id</name> <operator>=</operator> <operator>new</operator> <name><name>int</name><index>[ <expr><name>vertices</name></expr> ]</index></name></expr>;</expr_stmt> 
+            <expr_stmt><expr><name>costs</name> <operator>=</operator> <operator>new</operator> <name><name>int</name><index>[ <expr><name>vertices</name></expr> ]</index></name></expr>;</expr_stmt> 
+            <for>for <control>( <init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>vertices</name></expr>;</condition> <incr><expr><operator>++</operator><name>i</name></expr></incr> )</control> <block>{
+                <expr_stmt><expr><name><name>id</name><index>[ <expr><name>i</name></expr> ]</index></name> <operator>=</operator> <name>i</name></expr>;</expr_stmt> 
+                <expr_stmt><expr><name><name>size</name><index>[ <expr><name>i</name></expr> ]</index></name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt> 
+                <expr_stmt><expr><name><name>stations_id</name><index>[ <expr><name>i</name></expr> ]</index></name> <operator>=</operator> <name>i</name></expr>;</expr_stmt> 
+                <expr_stmt><expr><name><name>costs</name><index>[ <expr><name>i</name></expr> ]</index></name> <operator>=</operator> <name><name>c</name><index>[ <expr><name>i</name></expr> ]</index></name></expr>;</expr_stmt> 
+            }</block></for>
+        }</block></constructor>
+        
+        <function><type><name>int</name></type> <name>find_parent</name> <parameter_list>( <parameter><decl><type><name>int</name></type> <name>v</name></decl></parameter> )</parameter_list> <block>{
+            <if>if <condition>( <expr><name><name>id</name><index>[ <expr><name>v</name></expr> ]</index></name> <operator>==</operator> <name>v</name></expr> )</condition><then> <block>{
+                <return>return <expr><name>v</name></expr>;</return> 
+            }</block></then></if>
+            
+            <decl_stmt><decl><type><name>int</name></type> <name>parent_v</name> <init>= <expr><call><name>find_parent</name><argument_list>( <argument><expr><name><name>id</name><index>[ <expr><name>v</name></expr> ]</index></name></expr></argument> )</argument_list></call></expr></init></decl>;</decl_stmt> 
+            <expr_stmt><expr><name><name>id</name><index>[ <expr><name>v</name></expr> ]</index></name> <operator>=</operator> <name>parent_v</name></expr>;</expr_stmt> 
+            <return>return <expr><name><name>id</name><index>[ <expr><name>v</name></expr> ]</index></name></expr>;</return> 
+        }</block></function>  
+        
+        <function><type><name>int</name></type> <name>get_size</name> <parameter_list>( <parameter><decl><type><name>int</name></type> <name>u</name></decl></parameter> )</parameter_list> <block>{
+            <return>return <expr><name><name>size</name><index>[ <expr><call><name>find_parent</name><argument_list>( <argument><expr><name>u</name></expr></argument> )</argument_list></call></expr> ]</index></name></expr>;</return> 
+        }</block></function>
+        
+        <function><type><name>int</name></type> <name>get_cost</name> <parameter_list>( <parameter><decl><type><name>int</name></type> <name>u</name></decl></parameter> )</parameter_list> <block>{
+            <return>return <expr><name><name>costs</name><index>[ <expr><call><name>find_parent</name><argument_list>( <argument><expr><name>u</name></expr></argument> )</argument_list></call></expr> ]</index></name></expr>;</return> 
+        }</block></function>
+        
+        <function><type><name>int</name></type> <name>get_station_id</name> <parameter_list>( <parameter><decl><type><name>int</name></type> <name>u</name></decl></parameter> )</parameter_list> <block>{
+            <return>return <expr><name><name>stations_id</name><index>[ <expr><call><name>find_parent</name><argument_list>( <argument><expr><name>u</name></expr></argument> )</argument_list></call></expr> ]</index></name></expr>;</return>
+        }</block></function>
+        <function><type><name>bool</name></type> <name>are_connected</name> <parameter_list>( <parameter><decl><type><name>int</name></type> <name>u</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>v</name></decl></parameter> )</parameter_list> <block>{
+           <return>return <expr><call><name>find_parent</name><argument_list>( <argument><expr><name>u</name></expr></argument> )</argument_list></call> <operator>==</operator> <call><name>find_parent</name><argument_list>( <argument><expr><name>v</name></expr></argument> )</argument_list></call></expr>;</return>     
+        }</block></function>
+        
+        <function><type><name>void</name></type> <name>merge</name> <parameter_list>( <parameter><decl><type><name>int</name></type> <name>u</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>v</name></decl></parameter> )</parameter_list> <block>{
+            <decl_stmt><decl><type><name>int</name></type> <name>parent_u</name> <init>= <expr><call><name>find_parent</name><argument_list>( <argument><expr><name>u</name></expr></argument> )</argument_list></call></expr></init></decl>;</decl_stmt>
+            <decl_stmt><decl><type><name>int</name></type> <name>parent_v</name> <init>= <expr><call><name>find_parent</name><argument_list>( <argument><expr><name>v</name></expr></argument> )</argument_list></call></expr></init></decl>;</decl_stmt> 
+            <decl_stmt><decl><type><name>int</name></type> <name>new_station_id</name></decl>;</decl_stmt> 
+            <decl_stmt><decl><type><name>int</name></type> <name>new_station_cost</name></decl>;</decl_stmt> 
+            <if>if <condition>( <expr><call><name>get_cost</name><argument_list>( <argument><expr><name>u</name></expr></argument> )</argument_list></call> <operator>&lt;</operator> <call><name>get_cost</name><argument_list>( <argument><expr><name>v</name></expr></argument> )</argument_list></call></expr> )</condition><then> <block>{
+                <expr_stmt><expr><name>new_station_id</name> <operator>=</operator> <call><name>get_station_id</name><argument_list>( <argument><expr><name>u</name></expr></argument> )</argument_list></call></expr>;</expr_stmt> 
+                <expr_stmt><expr><name>new_station_cost</name> <operator>=</operator> <call><name>get_cost</name><argument_list>( <argument><expr><name>u</name></expr></argument> )</argument_list></call></expr>;</expr_stmt> 
+            }</block></then> <else>else <block>{
+                <expr_stmt><expr><name>new_station_id</name> <operator>=</operator> <call><name>get_station_id</name><argument_list>( <argument><expr><name>v</name></expr></argument> )</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><name>new_station_cost</name> <operator>=</operator> <call><name>get_cost</name><argument_list>( <argument><expr><name>v</name></expr></argument> )</argument_list></call></expr>;</expr_stmt> 
+            }</block></else></if>
+            
+            <if>if <condition>( <expr><name><name>size</name><index>[ <expr><name>parent_u</name></expr> ]</index></name> <operator>&lt;</operator> <name><name>size</name><index>[ <expr><name>parent_v</name></expr> ]</index></name></expr> )</condition><then> <block>{
+                <expr_stmt><expr><name><name>id</name><index>[ <expr><name>parent_u</name></expr> ]</index></name> <operator>=</operator> <name>parent_v</name></expr>;</expr_stmt> 
+                <expr_stmt><expr><name><name>size</name><index>[ <expr><name>parent_v</name></expr> ]</index></name> <operator>+=</operator> <name><name>size</name><index>[ <expr><name>parent_u</name></expr> ]</index></name></expr>;</expr_stmt> 
+                <expr_stmt><expr><name><name>stations_id</name><index>[ <expr><name>parent_v</name></expr> ]</index></name> <operator>=</operator> <name>new_station_id</name></expr>;</expr_stmt>
+                <expr_stmt><expr><name><name>costs</name><index>[ <expr><name>parent_v</name></expr> ]</index></name> <operator>=</operator> <name>new_station_cost</name></expr>;</expr_stmt>
+            }</block></then> <else>else <block>{
+                <expr_stmt><expr><name><name>id</name><index>[ <expr><name>parent_v</name></expr> ]</index></name> <operator>=</operator> <name>parent_u</name></expr>;</expr_stmt> 
+                <expr_stmt><expr><name><name>size</name><index>[ <expr><name>parent_u</name></expr> ]</index></name> <operator>+=</operator> <name><name>size</name><index>[ <expr><name>parent_v</name></expr> ]</index></name></expr>;</expr_stmt> 
+                <expr_stmt><expr><name><name>stations_id</name><index>[ <expr><name>parent_u</name></expr> ]</index></name> <operator>=</operator> <name>new_station_id</name></expr>;</expr_stmt>
+                <expr_stmt><expr><name><name>costs</name><index>[ <expr><name>parent_u</name></expr> ]</index></name> <operator>=</operator> <name>new_station_cost</name></expr>;</expr_stmt>
+            }</block></else></if>
+        }</block></function>
+</public>}</block>;</class>
+
+<struct>struct <name>Edge</name> <block>{<public type="default">
+    <decl_stmt><decl><type><name>int</name></type> <name>u</name></decl>;</decl_stmt> 
+    <decl_stmt><decl><type><name>int</name></type> <name>v</name></decl>;</decl_stmt> 
+    <decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>weight</name></decl>;</decl_stmt> 
+    
+    <function type="operator"><type><name>bool</name></type> <name>operator <name>&lt;</name></name> <parameter_list>( <parameter><decl><type><name>Edge</name> <modifier>&amp;</modifier></type><name>other</name></decl></parameter> )</parameter_list> <block>{
+        <return>return <expr><name><name>this</name><operator>-&gt;</operator><name>weight</name></name> <operator>&lt;</operator> <name><name>other</name><operator>.</operator><name>weight</name></name></expr>;</return>
+    }</block></function>
+</public>}</block>;</struct>
+
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+    <decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>;</decl_stmt> 
+    <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name></expr>;</expr_stmt>
+    
+    <decl_stmt><decl><type><name>long</name> <name>long</name></type> <name><name>x</name><index>[ <expr><name>n</name></expr> ]</index></name></decl>;</decl_stmt> 
+    <decl_stmt><decl><type><name>long</name> <name>long</name></type> <name><name>y</name><index>[ <expr><name>n</name></expr> ]</index></name></decl>;</decl_stmt> 
+    <for>for <control>( <init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>n</name></expr>;</condition> <incr><expr><operator>++</operator><name>i</name></expr></incr> )</control> <block>{
+        <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name><name>x</name><index>[ <expr><name>i</name></expr> ]</index></name> <operator>&gt;&gt;</operator> <name><name>y</name><index>[ <expr><name>i</name></expr> ]</index></name></expr>;</expr_stmt> 
+    }</block></for>
+    <decl_stmt><decl><type><name>long</name> <name>long</name></type> <name><name>c</name><index>[ <expr><name>n</name></expr> ]</index></name></decl>;</decl_stmt> 
+    <for>for <control>( <init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>n</name></expr>;</condition> <incr><expr><operator>++</operator><name>i</name></expr></incr> )</control> <block>{
+        <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name><name>c</name><index>[ <expr><name>i</name></expr> ]</index></name></expr>;</expr_stmt> 
+    }</block></for>
+    <decl_stmt><decl><type><name>long</name> <name>long</name></type> <name><name>k</name><index>[ <expr><name>n</name></expr> ]</index></name></decl>;</decl_stmt> 
+    <for>for <control>( <init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>n</name></expr>;</condition> <incr><expr><operator>++</operator><name>i</name></expr></incr> )</control> <block>{
+        <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name><name>k</name><index>[ <expr><name>i</name></expr> ]</index></name></expr>;</expr_stmt> 
+    }</block></for>
+    
+    <decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>Edge</name></expr></argument>&gt;</argument_list></name></type> <name>edges</name></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>edges</name><operator>.</operator><name>reserve</name></name><argument_list>( <argument><expr><name>n</name><operator>*</operator><operator>(</operator><name>n</name> <operator>-</operator> <literal type="number">1</literal><operator>)</operator><operator>/</operator><literal type="number">2</literal></expr></argument> )</argument_list></call></expr>;</expr_stmt>
+    <for>for <control>( <init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>n</name></expr>;</condition> <incr><expr><operator>++</operator><name>i</name></expr></incr> )</control> <block>{
+        <for>for <control>( <init><decl><type><name>int</name></type> <name>j</name> <init>= <expr><name>i</name> <operator>+</operator> <literal type="number">1</literal></expr></init></decl>;</init> <condition><expr><name>j</name> <operator>&lt;</operator> <name>n</name></expr>;</condition> <incr><expr><operator>++</operator><name>j</name></expr></incr> )</control> <block>{
+            <decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>cost</name> <init>= <expr><operator>(</operator><call><name>abs</name><argument_list>(<argument><expr><name><name>x</name><index>[<expr><name>i</name></expr>]</index></name> <operator>-</operator> <name><name>x</name><index>[<expr><name>j</name></expr>]</index></name></expr></argument>)</argument_list></call> <operator>+</operator> <call><name>abs</name><argument_list>(<argument><expr><name><name>y</name><index>[<expr><name>i</name></expr>]</index></name> <operator>-</operator> <name><name>y</name><index>[<expr><name>j</name></expr>]</index></name></expr></argument>)</argument_list></call><operator>)</operator><operator>*</operator><operator>(</operator><name><name>k</name><index>[<expr><name>i</name></expr>]</index></name> <operator>+</operator> <name><name>k</name><index>[<expr><name>j</name></expr>]</index></name><operator>)</operator></expr></init></decl>;</decl_stmt>
+            <expr_stmt><expr><call><name><name>edges</name><operator>.</operator><name>push_back</name></name><argument_list>( <argument><expr><block>{<expr><name>i</name></expr>, <expr><name>j</name></expr>, <expr><name>cost</name></expr>}</block></expr></argument> )</argument_list></call></expr>;</expr_stmt> 
+        }</block></for>
+    }</block></for>
+    <expr_stmt><expr><call><name>sort</name><argument_list>( <argument><expr><call><name><name>edges</name><operator>.</operator><name>begin</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>edges</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call></expr></argument> )</argument_list></call></expr>;</expr_stmt> 
+    
+    <decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>total_cost</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt> 
+    <for>for <control>( <init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>n</name></expr>;</condition> <incr><expr><operator>++</operator><name>i</name></expr></incr> )</control> <block>{
+        <expr_stmt><expr><name>total_cost</name> <operator>+=</operator> <name><name>c</name><index>[ <expr><name>i</name></expr> ]</index></name></expr>;</expr_stmt> 
+    }</block></for>
+    
+    <decl_stmt><decl><type><name>DSU</name></type> <name>disjoint_set</name><argument_list>( <argument><expr><name>n</name></expr></argument>, <argument><expr><name>c</name></expr></argument> )</argument_list></decl>;</decl_stmt> 
+    <decl_stmt><decl><type><name>bool</name></type> <name><name>added_edges</name><index>[ <expr><call><name><name>edges</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr> ]</index></name> <init>= <expr><block>{ <expr><literal type="boolean">false</literal></expr> }</block></expr></init></decl>;</decl_stmt> 
+    <decl_stmt><decl><type><name>int</name></type> <name>components</name> <init>= <expr><name>n</name></expr></init></decl>;</decl_stmt> 
+    <decl_stmt><decl><type><name>int</name></type> <name>connections</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt> 
+    <for>for <control>( <init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <call><name><name>edges</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr>;</condition> <incr><expr><operator>++</operator><name>i</name></expr></incr> )</control> <block>{
+        <decl_stmt><decl><type><name>int</name></type> <name>u</name> <init>= <expr><name><name>edges</name><index>[ <expr><name>i</name></expr> ]</index></name><operator>.</operator><name>u</name></expr></init></decl>;</decl_stmt> 
+        <decl_stmt><decl><type><name>int</name></type> <name>v</name> <init>= <expr><name><name>edges</name><index>[ <expr><name>i</name></expr> ]</index></name><operator>.</operator><name>v</name></expr></init></decl>;</decl_stmt> 
+        <decl_stmt><decl><type><name>long</name> <name>long</name></type> <name>weight</name> <init>= <expr><name><name>edges</name><index>[ <expr><name>i</name></expr> ]</index></name><operator>.</operator><name>weight</name></expr></init></decl>;</decl_stmt> 
+        <if>if <condition>( <expr><operator>!</operator><call><name><name>disjoint_set</name><operator>.</operator><name>are_connected</name></name><argument_list>( <argument><expr><name>u</name></expr></argument>, <argument><expr><name>v</name></expr></argument> )</argument_list></call>  <operator>&amp;&amp;</operator>  
+        <name>weight</name> <operator>&lt;</operator> <call><name>max</name><argument_list>( <argument><expr><call><name><name>disjoint_set</name><operator>.</operator><name>get_cost</name></name><argument_list>( <argument><expr><name>u</name></expr></argument> )</argument_list></call></expr></argument>, <argument><expr><call><name><name>disjoint_set</name><operator>.</operator><name>get_cost</name></name><argument_list>( <argument><expr><name>v</name></expr></argument> )</argument_list></call></expr></argument> )</argument_list></call></expr> )</condition><then> <block>{
+            <expr_stmt><expr><name>total_cost</name> <operator>-=</operator> <call><name>max</name><argument_list>( <argument><expr><call><name><name>disjoint_set</name><operator>.</operator><name>get_cost</name></name><argument_list>( <argument><expr><name>u</name></expr></argument> )</argument_list></call></expr></argument>, <argument><expr><call><name><name>disjoint_set</name><operator>.</operator><name>get_cost</name></name><argument_list>( <argument><expr><name>v</name></expr></argument> )</argument_list></call></expr></argument> )</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><name>total_cost</name> <operator>+=</operator> <name>weight</name></expr>;</expr_stmt> 
+            <expr_stmt><expr><call><name><name>disjoint_set</name><operator>.</operator><name>merge</name></name><argument_list>( <argument><expr><name>u</name></expr></argument>, <argument><expr><name>v</name></expr></argument> )</argument_list></call></expr>;</expr_stmt> 
+            <expr_stmt><expr><name><name>added_edges</name><index>[ <expr><name>i</name></expr> ]</index></name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+            <expr_stmt><expr><name>components</name><operator>--</operator></expr>;</expr_stmt>
+            <expr_stmt><expr><name>connections</name><operator>++</operator></expr>;</expr_stmt> 
+        }</block></then></if>
+    }</block></for>
+    
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>total_cost</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt> 
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>components</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt> 
+    <decl_stmt><decl><type><name>bool</name></type> <name><name>printed</name><index>[ <expr><name>n</name></expr> ]</index></name> <init>= <expr><block>{ <expr><literal type="boolean">false</literal></expr> }</block></expr></init></decl>;</decl_stmt> 
+    <for>for <control>( <init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <name>n</name></expr>;</condition> <incr><expr><operator>++</operator><name>i</name></expr></incr> )</control> <block>{
+        <if>if <condition>( <expr><operator>!</operator><name><name>printed</name><index>[ <expr><call><name><name>disjoint_set</name><operator>.</operator><name>get_station_id</name></name><argument_list>( <argument><expr><name>i</name></expr></argument> )</argument_list></call></expr> ]</index></name></expr> )</condition><then> <block>{
+            <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <call><name><name>disjoint_set</name><operator>.</operator><name>get_station_id</name></name><argument_list>( <argument><expr><name>i</name></expr></argument> )</argument_list></call> <operator>+</operator> <literal type="number">1</literal> <operator>&lt;&lt;</operator> <literal type="string">" "</literal></expr>;</expr_stmt>
+            <expr_stmt><expr><name><name>printed</name><index>[ <expr><call><name><name>disjoint_set</name><operator>.</operator><name>get_station_id</name></name><argument_list>( <argument><expr><name>i</name></expr></argument> )</argument_list></call></expr> ]</index></name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt> 
+        }</block></then></if>
+    }</block></for>
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+    
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>connections</name> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt> 
+    <for>for <control>( <init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <call><name><name>edges</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr>;</condition> <incr><expr><operator>++</operator><name>i</name></expr></incr> )</control> <block>{
+        <if>if <condition>( <expr><name><name>added_edges</name><index>[ <expr><name>i</name></expr> ]</index></name></expr> )</condition><then> <block>{
+            <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name><name>edges</name><index>[ <expr><name>i</name></expr> ]</index></name><operator>.</operator><name>u</name> <operator>+</operator> <literal type="number">1</literal> <operator>&lt;&lt;</operator> <literal type="string">" "</literal> <operator>&lt;&lt;</operator> <name><name>edges</name><index>[ <expr><name>i</name></expr> ]</index></name><operator>.</operator><name>v</name> <operator>+</operator> <literal type="number">1</literal> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+        }</block></then></if>
+    }</block></for>
+    
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1243/all/29783933_64389292.cpp"><comment type="line">// I am grateful to everyone who taught or motivated me to code.</comment>
+<comment type="line">// Without your support, nothing would have been done.</comment>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iomanip&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;fstream&gt;</cpp:file></cpp:include>
+<cpp:ifdef>#<cpp:directive>ifdef</cpp:directive> <name>SEM_LOCAL</name></cpp:ifdef>
+<decl_stmt><decl><type><name>bool</name></type> <name>DEBUG</name> <init>= <expr><literal type="boolean">true</literal></expr></init></decl>;</decl_stmt>
+<cpp:else>#<cpp:directive>else</cpp:directive></cpp:else>
+<decl_stmt><decl><type><name>bool</name></type> <name>DEBUG</name> <init>= <expr><literal type="boolean">false</literal></expr></init></decl>;</decl_stmt>
+<cpp:endif>#<cpp:directive>endif</cpp:directive></cpp:endif>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>FAST</name></cpp:macro> <cpp:value>{ios::sync_with_stdio(0);cin.tie(0);cout&lt;&lt;setprecision(30)&lt;&lt;fixed;}</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>FOR</name><parameter_list>(<parameter><type><name>a</name></type></parameter>,<parameter><type><name>b</name></type></parameter>,<parameter><type><name>c</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for(int a=(b); a&lt;(int)(c); ++a)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>DB</name><parameter_list>(<parameter><type><name>a</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>if(DEBUG) cerr&lt;&lt;#a&lt;&lt;" "&lt;&lt;a&lt;&lt; "\n";</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>all</name><parameter_list>(<parameter><type><name>v</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>(v).begin(),(v).end()</cpp:value></cpp:define>
+<using>using <name>ll</name> <init>= <type><name>long</name> <name>long</name></type></init>;</using>
+<using>using <name>ull</name> <init>= <type><name>unsigned</name> <name>long</name> <name>long</name></type></init>;</using>
+<decl_stmt><decl><type><name>int</name></type> <name>MAXINT</name><init>=<expr><literal type="number">2e9</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>ll</name></type> <name>MAXLL</name><init>=<expr><literal type="number">9e18</literal></expr></init></decl>;</decl_stmt>
+
+<comment type="line">// Includes</comment>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;map&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;set&gt;</cpp:file></cpp:include>
+
+<comment type="line">// Variables</comment>
+<struct>struct <name>stk</name>
+<block>{<public type="default">
+    <decl_stmt><decl><type><name>int</name></type> <name>sn</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>pos</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+</public>}</block>;</struct>
+
+<function type="operator"><type><name>bool</name></type> <name>operator<name>&lt;</name></name> <parameter_list>(<parameter><decl><type><name>stk</name></type> <name>a</name></decl></parameter>, <parameter><decl><type><name>stk</name></type> <name>b</name></decl></parameter>)</parameter_list>
+<block>{
+    <if>if <condition>(<expr><name><name>a</name><operator>.</operator><name>sn</name></name> <operator>==</operator> <name><name>b</name><operator>.</operator><name>sn</name></name></expr>)</condition><then>
+        <block type="pseudo"><return>return <expr><name><name>a</name><operator>.</operator><name>pos</name></name> <operator>&lt;</operator> <name><name>b</name><operator>.</operator><name>pos</name></name></expr>;</return></block></then></if>
+    <return>return <expr><name><name>a</name><operator>.</operator><name>sn</name></name> <operator>&lt;</operator> <name><name>b</name><operator>.</operator><name>sn</name></name></expr>;</return>
+}</block></function>
+
+<comment type="line">// Functions</comment>
+<decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name><name>set</name><argument_list type="generic">&lt;<argument><expr><name>stk</name></expr></argument>&gt;</argument_list></name></expr></argument>&gt;</argument_list></name></type> <name>where</name></decl>;</decl_stmt>
+
+<comment type="line">// Main</comment>
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+    <cpp:ifdef>#<cpp:directive>ifdef</cpp:directive> <name>SEM_LOCAL</name></cpp:ifdef>
+        <decl_stmt><decl><type><name>ifstream</name></type> <name>cin</name><argument_list>(<argument><expr><literal type="string">"sis.txt"</literal></expr></argument>)</argument_list></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name>ofstream</name></type> <name>cout</name><argument_list>(<argument><expr><literal type="string">"val.txt"</literal></expr></argument>)</argument_list></decl>;</decl_stmt>
+    <cpp:endif>#<cpp:directive>endif</cpp:directive></cpp:endif>
+    <decl_stmt><decl><type><name>FAST</name>
+    <comment type="line">//</comment>
+    <name>ll</name></type> <name>n</name></decl>;</decl_stmt> <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name></expr>;</expr_stmt>
+
+         <if>if <condition>(<expr><name>n</name><operator>==</operator><literal type="number">1</literal></expr>)</condition><then>
+        <block type="pseudo"><expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="number">1</literal></expr>;</expr_stmt></block></then>
+    <elseif>else <if>if <condition>(<expr><name>n</name><operator>==</operator><literal type="number">2</literal></expr>)</condition><then>
+        <block type="pseudo"><expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="number">2</literal></expr>;</expr_stmt></block></then></if></elseif>
+    <elseif>else <if>if <condition>(<expr><name>n</name><operator>==</operator><literal type="number">3</literal></expr>)</condition><then>
+        <block type="pseudo"><expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="number">3</literal></expr>;</expr_stmt></block></then></if></elseif>
+    <elseif>else <if>if <condition>(<expr><name>n</name><operator>==</operator><literal type="number">4</literal></expr>)</condition><then>
+        <block type="pseudo"><expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="number">2</literal></expr>;</expr_stmt></block></then></if></elseif>
+    <elseif>else <if>if <condition>(<expr><name>n</name><operator>==</operator><literal type="number">5</literal></expr>)</condition><then>
+        <block type="pseudo"><expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="number">5</literal></expr>;</expr_stmt></block></then></if></elseif>
+    <elseif>else <if>if <condition>(<expr><name>n</name><operator>==</operator><literal type="number">6</literal></expr>)</condition><then>
+        <block type="pseudo"><expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="number">1</literal></expr>;</expr_stmt></block></then></if></elseif>
+    <elseif>else <if>if <condition>(<expr><name>n</name><operator>==</operator><literal type="number">7</literal></expr>)</condition><then>
+        <block type="pseudo"><expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="number">7</literal></expr>;</expr_stmt></block></then></if></elseif>
+    <elseif>else <if>if <condition>(<expr><name>n</name><operator>==</operator><literal type="number">9</literal></expr>)</condition><then>
+        <block type="pseudo"><expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="number">3</literal></expr>;</expr_stmt></block></then></if></elseif>
+    <else>else <block>{
+        <decl_stmt><decl><type><name><name>map</name><argument_list type="generic">&lt;<argument><expr><name>ll</name></expr></argument>,<argument><expr><name>ll</name></expr></argument>&gt;</argument_list></name></type> <name>div</name></decl>;</decl_stmt>
+        <for>for<control>(<init><decl><type><name>ll</name></type> <name>i</name> <init>= <expr><literal type="number">2</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <literal type="number">2e6</literal></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+        <block>{
+            <while>while <condition>(<expr><name>n</name><operator>%</operator><name>i</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition> <block>{
+                <expr_stmt><expr><name><name>div</name><index>[<expr><name>i</name></expr>]</index></name><operator>++</operator></expr>;</expr_stmt>
+                <expr_stmt><expr><name>n</name> <operator>/=</operator> <name>i</name></expr>;</expr_stmt>
+            }</block></while>
+        }</block></for>
+        <if>if <condition>(<expr><name>n</name> <operator>!=</operator> <literal type="number">1</literal></expr>)</condition><then>
+        <block>{
+            <expr_stmt><expr><name><name>div</name><index>[<expr><name>n</name></expr>]</index></name><operator>++</operator></expr>;</expr_stmt>
+        }</block></then></if>
+    
+        <if>if <condition>(<expr><call><name><name>div</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>==</operator> <literal type="number">1</literal></expr>)</condition><then>
+        <block>{
+            <for>for<control>(<init><decl><type><name>auto</name></type> <name>a</name> <range>: <expr><name>div</name></expr></range></decl></init>)</control>
+            <block>{
+                <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name><name>a</name><operator>.</operator><name>first</name></name></expr>;</expr_stmt>
+                <break>break;</break>
+            }</block></for>
+        }</block></then> <else>else <block type="pseudo"><expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="char">'1'</literal></expr>;</expr_stmt></block></else></if>
+    }</block></else></if>
+}</block></function>
+</unit>

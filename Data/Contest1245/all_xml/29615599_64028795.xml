@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29615599_64028795.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<typedef>typedef <type><name>long</name> <name>double</name></type> <name>dbl</name>;</typedef>
+
+<function><type><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>, <argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>_get</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>x</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>y</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>k</name></decl></parameter>)</parameter_list> <block>{
+	<if>if <condition>(<expr><name>k</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><return>return <expr><block>{<expr><name>x</name></expr>, <expr><name>y</name></expr>}</block></expr>;</return></block></then></if>
+	<if>if <condition>(<expr><name>x</name><operator>&amp;</operator><literal type="number">1</literal></expr>)</condition><then> <block>{	
+		<if>if <condition>(<expr><name>y</name> <operator>&lt;</operator> <literal type="number">9</literal></expr>)</condition><then> <block>{
+			<return>return <expr><call><name>_get</name><argument_list>(<argument><expr><name>x</name></expr></argument>, <argument><expr><name>y</name> <operator>+</operator> <literal type="number">1</literal></expr></argument>, <argument><expr><name>k</name><operator>-</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</return>
+		}</block></then> <else>else <block>{
+			<return>return <expr><call><name>_get</name><argument_list>(<argument><expr><name>x</name> <operator>-</operator> <literal type="number">1</literal></expr></argument>, <argument><expr><name>y</name></expr></argument>, <argument><expr><name>k</name><operator>-</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</return>
+		}</block></else></if> 
+	}</block></then> <else>else <block>{
+		<if>if <condition>(<expr><name>y</name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+			<return>return <expr><call><name>_get</name><argument_list>(<argument><expr><name>x</name></expr></argument>, <argument><expr><name>y</name> <operator>-</operator> <literal type="number">1</literal></expr></argument>, <argument><expr><name>k</name> <operator>-</operator> <literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</return>
+		}</block></then> <else>else <block>{
+			<return>return <expr><call><name>_get</name><argument_list>(<argument><expr><name>x</name> <operator>-</operator> <literal type="number">1</literal></expr></argument>, <argument><expr><name>y</name></expr></argument>, <argument><expr><name>k</name> <operator>-</operator> <literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</return>
+		}</block></else></if>
+	}</block></else></if>
+}</block></function>
+
+<decl_stmt><decl><type><name>int</name></type> <name><name>h</name><index>[<expr><literal type="number">20</literal></expr>]</index><index>[<expr><literal type="number">20</literal></expr>]</index></name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>dbl</name></type> <name><name>memo</name><index>[<expr><literal type="number">20</literal></expr>]</index><index>[<expr><literal type="number">20</literal></expr>]</index></name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>bool</name></type> <name><name>vis</name><index>[<expr><literal type="number">20</literal></expr>]</index><index>[<expr><literal type="number">20</literal></expr>]</index></name></decl>;</decl_stmt>
+<function><type><name>dbl</name></type> <name>dp</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>x</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>y</name></decl></parameter>)</parameter_list> <block>{
+	<if>if <condition>(<expr><name>x</name> <operator>==</operator> <literal type="number">0</literal> <operator>and</operator> <name>y</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><return>return <expr><literal type="number">0</literal></expr>;</return></block></then></if>
+	<if>if <condition>(<expr><name><name>vis</name><index>[<expr><name>x</name></expr>]</index><index>[<expr><name>y</name></expr>]</index></name></expr>)</condition><then> <block type="pseudo"><return>return <expr><name><name>memo</name><index>[<expr><name>x</name></expr>]</index><index>[<expr><name>y</name></expr>]</index></name></expr>;</return></block></then></if>
+	<expr_stmt><expr><name><name>vis</name><index>[<expr><name>x</name></expr>]</index><index>[<expr><name>y</name></expr>]</index></name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+	<if>if <condition>(<expr><name>x</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+		<decl_stmt><decl><type><name>int</name></type> <name>den</name> <init>= <expr><literal type="number">6</literal></expr></init></decl>;</decl_stmt>
+		<decl_stmt><decl><type><name>dbl</name></type> <name>num</name> <init>= <expr><literal type="number">6</literal></expr></init></decl>;</decl_stmt>
+		<for>for <control>(<init><decl><type><name>int</name></type> <name>k</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</init> <condition><expr><name>k</name> <operator>&lt;=</operator> <literal type="number">6</literal></expr>;</condition> <incr><expr><operator>++</operator><name>k</name></expr></incr>)</control> <block>{
+			<if>if <condition>(<expr><name>y</name> <operator>-</operator> <name>k</name> <operator>&lt;</operator> <literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>den</name> <operator>-=</operator> <literal type="number">1</literal></expr>;</expr_stmt></block></then>
+			<else>else <block type="pseudo"><expr_stmt><expr><name>num</name> <operator>+=</operator> <call><name>dp</name><argument_list>(<argument><expr><name>x</name></expr></argument>, <argument><expr><name>y</name> <operator>-</operator> <name>k</name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></else></if>
+		}</block></for>
+		<return>return <expr><name><name>memo</name><index>[<expr><name>x</name></expr>]</index><index>[<expr><name>y</name></expr>]</index></name> <operator>=</operator> <name>num</name> <operator>/</operator> <name>den</name></expr>;</return>
+	}</block></then> <else>else <block>{
+		<decl_stmt><decl><type><name>int</name></type> <name>den</name> <init>= <expr><literal type="number">6</literal></expr></init></decl>;</decl_stmt>
+		<decl_stmt><decl><type><name>dbl</name></type> <name>num</name> <init>= <expr><literal type="number">6</literal></expr></init></decl>;</decl_stmt>		
+		<for>for <control>(<init><decl><type><name>int</name></type> <name>k</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</init> <condition><expr><name>k</name> <operator>&lt;=</operator> <literal type="number">6</literal></expr>;</condition> <incr><expr><operator>++</operator><name>k</name></expr></incr>)</control> <block>{		
+			<decl_stmt><decl><type><name>auto</name></type> <name>q</name> <init>= <expr><call><name>_get</name><argument_list>(<argument><expr><name>x</name></expr></argument>, <argument><expr><name>y</name></expr></argument>, <argument><expr><name>k</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+			<decl_stmt><decl><type><name>dbl</name></type> <name>temp</name> <init>= <expr><call><name>dp</name><argument_list>(<argument><expr><name><name>q</name><operator>.</operator><name>first</name></name></expr></argument>, <argument><expr><name><name>q</name><operator>.</operator><name>second</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+			<if>if <condition>(<expr><name><name>h</name><index>[<expr><name><name>q</name><operator>.</operator><name>first</name></name></expr>]</index><index>[<expr><name><name>q</name><operator>.</operator><name>second</name></name></expr>]</index></name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+				<decl_stmt><decl><type><name>int</name></type> <name>up</name> <init>= <expr><name><name>h</name><index>[<expr><name><name>q</name><operator>.</operator><name>first</name></name></expr>]</index><index>[<expr><name><name>q</name><operator>.</operator><name>second</name></name></expr>]</index></name></expr></init></decl>;</decl_stmt>
+				<expr_stmt><expr><name>temp</name> <operator>=</operator> <call><name>min</name><argument_list>(<argument><expr><name>temp</name></expr></argument>, <argument><expr><call><name>dp</name><argument_list>(<argument><expr><name><name>q</name><operator>.</operator><name>first</name></name> <operator>-</operator> <name>up</name></expr></argument>, <argument><expr><name><name>q</name><operator>.</operator><name>second</name></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+				<comment type="line">//temp /= 2;</comment>
+			}</block></then></if>
+			<expr_stmt><expr><name>num</name> <operator>+=</operator> <name>temp</name></expr>;</expr_stmt>
+		}</block></for>
+		<return>return <expr><name><name>memo</name><index>[<expr><name>x</name></expr>]</index><index>[<expr><name>y</name></expr>]</index></name> <operator>=</operator> <name>num</name> <operator>/</operator> <name>den</name></expr>;</return>
+	}</block></else></if>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+	<for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <literal type="number">10</literal></expr>;</condition> <incr><expr><operator>++</operator><name>i</name></expr></incr>)</control> <block>{
+		<for>for <control>(<init><decl><type><name>int</name></type> <name>j</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>j</name> <operator>&lt;</operator> <literal type="number">10</literal></expr>;</condition> <incr><expr><operator>++</operator><name>j</name></expr></incr>)</control> <block>{
+			<expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name><name>h</name><index>[<expr><name>i</name></expr>]</index><index>[<expr><name>j</name></expr>]</index></name></expr>;</expr_stmt>
+		}</block></for>
+	}</block></for>
+	<expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>fixed</name> <operator>&lt;&lt;</operator> <call><name>setprecision</name><argument_list>(<argument><expr><literal type="number">9</literal></expr></argument>)</argument_list></call> <operator>&lt;&lt;</operator> <call><name>dp</name><argument_list>(<argument><expr><literal type="number">9</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>

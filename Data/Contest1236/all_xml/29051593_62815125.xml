@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1236/all/29051593_62815125.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+<typedef>typedef <type><name>long</name> <name>long</name> <name>int</name></type> <name>ll</name>;</typedef>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>frac</name></cpp:macro> <cpp:value>pair&lt;ll, ll&gt;</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>t_trials</name></cpp:macro> <cpp:value>for (cin &gt;&gt; _; _; _--)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>rep</name><parameter_list>(<parameter><type><name>i</name></type></parameter>, <parameter><type><name>l</name></type></parameter>, <parameter><type><name>r</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for (ll i = (l); i &lt; (r); ++i)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>N</name></cpp:macro> <cpp:value>200005</cpp:value></cpp:define>
+<decl_stmt><decl><type><specifier>const</specifier> <name>ll</name></type> <name>inf</name> <init>= <expr><literal type="number">1e9</literal> <operator>+</operator> <literal type="number">7</literal></expr></init></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>ll</name></type> <name><name>arr</name><index>[<expr><name>N</name></expr>]</index></name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>ll</name></type> <name>n</name></decl>, <decl><type ref="prev"/><name>m</name></decl>, <decl><type ref="prev"/><name>k</name></decl>, <decl><type ref="prev"/><name>t</name></decl>, <decl><type ref="prev"/><name>t1</name></decl>, <decl><type ref="prev"/><name>t2</name></decl>, <decl><type ref="prev"/><name>t3</name></decl>, <decl><type ref="prev"/><name>t4</name></decl>, <decl><type ref="prev"/><name>t5</name></decl>, <decl><type ref="prev"/><name>t6</name></decl>, <decl><type ref="prev"/><name>_</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>ll</name></type> <name>removed_rows</name></decl>, <decl><type ref="prev"/><name>removed_col</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>string</name></type> <name>s</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>bool</name></type> <name><name>cr</name><index>[<expr><name>N</name></expr>]</index></name></decl>, <decl><type ref="prev"/><name><name>cc</name><index>[<expr><name>N</name></expr>]</index></name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>ll</name></expr></argument>&gt;</argument_list></name></type> <name><name>points_in_row</name><index>[<expr><name>N</name></expr>]</index></name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>ll</name></expr></argument>&gt;</argument_list></name></type> <name><name>points_in_col</name><index>[<expr><name>N</name></expr>]</index></name></decl>;</decl_stmt>
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+
+    <expr_stmt><expr><call><name><name>ios_base</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>cin</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><name>NULL</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name> <operator>&gt;&gt;</operator> <name>m</name> <operator>&gt;&gt;</operator> <name>k</name></expr>;</expr_stmt>
+    <expr_stmt><expr><name>t</name> <operator>=</operator> <name>n</name> <operator>*</operator> <name>m</name> <operator>-</operator> <name>k</name></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>ll</name></type> <name>x</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>, <decl><type ref="prev"/><name>y</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>, <decl><type ref="prev"/><name>face</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>ll</name></type> <name>min_visited_col</name> <init>= <expr><name>m</name> <operator>+</operator> <literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>ll</name></type> <name>max_visited_col</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>ll</name></type> <name>min_visited_row</name> <init>= <expr><name>n</name> <operator>+</operator> <literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>ll</name></type> <name>max_visited_row</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+    <macro><name>rep</name><argument_list>(<argument>i</argument>, <argument><literal type="number">0</literal></argument>, <argument>k</argument>)</argument_list></macro>
+    <block>{
+        <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>t1</name> <operator>&gt;&gt;</operator> <name>t2</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>points_in_row</name><index>[<expr><name>t1</name></expr>]</index></name><operator>.</operator><call><name>push_back</name><argument_list>(<argument><expr><name>t2</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>points_in_col</name><index>[<expr><name>t2</name></expr>]</index></name><operator>.</operator><call><name>push_back</name><argument_list>(<argument><expr><name>t1</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    }</block>
+    <decl_stmt><decl><type><name>ll</name></type> <name>ans</name> <init>= <expr><literal type="boolean">true</literal></expr></init></decl>;</decl_stmt>
+    <macro><name>rep</name><argument_list>(<argument>i</argument>, <argument><literal type="number">1</literal></argument>, <argument>n + <literal type="number">1</literal></argument>)</argument_list></macro>
+    <block>{
+        <expr_stmt><expr><name><name>cr</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>points_in_row</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>push_back</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>points_in_row</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>push_back</name><argument_list>(<argument><expr><name>m</name> <operator>+</operator> <literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name>sort</name><argument_list>(<argument><expr><name><name>points_in_row</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>begin</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name><name>points_in_row</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>end</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    }</block>
+    <macro><name>rep</name><argument_list>(<argument>i</argument>, <argument><literal type="number">1</literal></argument>, <argument>m + <literal type="number">1</literal></argument>)</argument_list></macro>
+    <block>{
+        <expr_stmt><expr><name><name>cc</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>points_in_col</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>push_back</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>points_in_col</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>push_back</name><argument_list>(<argument><expr><name>n</name> <operator>+</operator> <literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name>sort</name><argument_list>(<argument><expr><name><name>points_in_col</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>begin</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name><name>points_in_col</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>end</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    }</block>
+    <expr_stmt><expr><name>t1</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+    <while>while <condition>(<expr><literal type="number">1</literal></expr>)</condition>
+    <block>{
+        <if>if <condition>(<expr><name>face</name> <operator>&amp;</operator> <literal type="number">1</literal></expr>)</condition><then>
+        <block>{
+            <if>if <condition>(<expr><name><name>cr</name><index>[<expr><name>x</name></expr>]</index></name></expr>)</condition><then>
+            <block>{
+                <break>break;</break>
+            }</block></then></if>
+        }</block></then>
+        <else>else
+        <block>{
+            <if>if <condition>(<expr><name><name>cc</name><index>[<expr><name>y</name></expr>]</index></name></expr>)</condition><then>
+            <block>{
+                <break>break;</break>
+            }</block></then></if>
+        }</block></else></if>
+        <if>if <condition>(<expr><name>face</name> <operator>==</operator> <literal type="number">1</literal></expr>)</condition><then>
+        <block>{
+            <expr_stmt><expr><name>t2</name> <operator>=</operator> <operator>(</operator><operator>*</operator><call><name>upper_bound</name><argument_list>(<argument><expr><name><name>points_in_row</name><index>[<expr><name>x</name></expr>]</index></name><operator>.</operator><call><name>begin</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name><name>points_in_row</name><index>[<expr><name>x</name></expr>]</index></name><operator>.</operator><call><name>end</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>y</name></expr></argument>)</argument_list></call><operator>)</operator></expr>;</expr_stmt>
+            <expr_stmt><expr><name>t2</name> <operator>=</operator> <call><name>min</name><argument_list>(<argument><expr><name>min_visited_col</name></expr></argument>, <argument><expr><name>t2</name></expr></argument>)</argument_list></call> <operator>-</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+            <expr_stmt><expr><name>t1</name> <operator>+=</operator> <operator>(</operator><name>t2</name> <operator>-</operator> <name>y</name><operator>)</operator></expr>;</expr_stmt>
+            <expr_stmt><expr><name>y</name> <operator>=</operator> <name>t2</name></expr>;</expr_stmt>
+            <expr_stmt><expr><name><name>cr</name><index>[<expr><name>x</name></expr>]</index></name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+            <comment type="line">// min_visited_row = min(min_visited_row, x);</comment>
+            <expr_stmt><expr><name>max_visited_row</name> <operator>=</operator> <call><name>max</name><argument_list>(<argument><expr><name>max_visited_row</name></expr></argument>, <argument><expr><name>x</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        }</block></then></if>
+        <if>if <condition>(<expr><name>face</name> <operator>==</operator> <literal type="number">3</literal></expr>)</condition><then>
+        <block>{
+            <expr_stmt><expr><name>t2</name> <operator>=</operator> <operator>(</operator><operator>*</operator><operator>(</operator><call><name>upper_bound</name><argument_list>(<argument><expr><name><name>points_in_row</name><index>[<expr><name>x</name></expr>]</index></name><operator>.</operator><call><name>begin</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name><name>points_in_row</name><index>[<expr><name>x</name></expr>]</index></name><operator>.</operator><call><name>end</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>y</name></expr></argument>)</argument_list></call> <operator>-</operator> <literal type="number">1</literal><operator>)</operator><operator>)</operator></expr>;</expr_stmt>
+            <expr_stmt><expr><name>t2</name> <operator>=</operator> <call><name>max</name><argument_list>(<argument><expr><name>max_visited_col</name></expr></argument>, <argument><expr><name>t2</name></expr></argument>)</argument_list></call> <operator>+</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+            <expr_stmt><expr><name>t1</name> <operator>+=</operator> <operator>(</operator><name>y</name> <operator>-</operator> <name>t2</name><operator>)</operator></expr>;</expr_stmt>
+            <expr_stmt><expr><name>y</name> <operator>=</operator> <name>t2</name></expr>;</expr_stmt>
+            <expr_stmt><expr><name><name>cr</name><index>[<expr><name>x</name></expr>]</index></name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+            <expr_stmt><expr><name>min_visited_row</name> <operator>=</operator> <call><name>min</name><argument_list>(<argument><expr><name>min_visited_row</name></expr></argument>, <argument><expr><name>x</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <comment type="line">// max_visited_row = max(max_visited_row, x);</comment>
+        }</block></then></if>
+        <if>if <condition>(<expr><name>face</name> <operator>==</operator> <literal type="number">2</literal></expr>)</condition><then>
+        <block>{
+            <expr_stmt><expr><name>t2</name> <operator>=</operator> <operator>(</operator><operator>*</operator><operator>(</operator><call><name>upper_bound</name><argument_list>(<argument><expr><name><name>points_in_col</name><index>[<expr><name>y</name></expr>]</index></name><operator>.</operator><call><name>begin</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name><name>points_in_col</name><index>[<expr><name>y</name></expr>]</index></name><operator>.</operator><call><name>end</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>x</name></expr></argument>)</argument_list></call><operator>)</operator><operator>)</operator></expr>;</expr_stmt>
+            <expr_stmt><expr><name>t2</name> <operator>=</operator> <call><name>min</name><argument_list>(<argument><expr><name>min_visited_row</name></expr></argument>, <argument><expr><name>t2</name></expr></argument>)</argument_list></call> <operator>-</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+            <expr_stmt><expr><name>t1</name> <operator>+=</operator> <operator>(</operator><name>t2</name> <operator>-</operator> <name>x</name><operator>)</operator></expr>;</expr_stmt>
+            <expr_stmt><expr><name>x</name> <operator>=</operator> <name>t2</name></expr>;</expr_stmt>
+            <expr_stmt><expr><name><name>cc</name><index>[<expr><name>y</name></expr>]</index></name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+            <expr_stmt><expr><name>min_visited_col</name> <operator>=</operator> <call><name>min</name><argument_list>(<argument><expr><name>min_visited_col</name></expr></argument>, <argument><expr><name>y</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <comment type="line">// max_visited_col = max(max_visited_col, y);</comment>
+        }</block></then></if>
+        <if>if <condition>(<expr><name>face</name> <operator>==</operator> <literal type="number">4</literal></expr>)</condition><then>
+        <block>{
+            <expr_stmt><expr><name>t2</name> <operator>=</operator> <operator>(</operator><operator>*</operator><operator>(</operator><call><name>upper_bound</name><argument_list>(<argument><expr><name><name>points_in_col</name><index>[<expr><name>y</name></expr>]</index></name><operator>.</operator><call><name>begin</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name><name>points_in_col</name><index>[<expr><name>y</name></expr>]</index></name><operator>.</operator><call><name>end</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>x</name></expr></argument>)</argument_list></call> <operator>-</operator> <literal type="number">1</literal><operator>)</operator><operator>)</operator></expr>;</expr_stmt>
+            <expr_stmt><expr><name>t2</name> <operator>=</operator> <call><name>max</name><argument_list>(<argument><expr><name>max_visited_row</name></expr></argument>,<argument><expr><name>t2</name></expr></argument>)</argument_list></call> <operator>+</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+            <expr_stmt><expr><name>t1</name> <operator>+=</operator> <operator>(</operator><name>x</name> <operator>-</operator> <name>t2</name><operator>)</operator></expr>;</expr_stmt>
+            <expr_stmt><expr><name>x</name> <operator>=</operator> <name>t2</name></expr>;</expr_stmt>
+            <expr_stmt><expr><name><name>cc</name><index>[<expr><name>y</name></expr>]</index></name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+            <comment type="line">// min_visited_col = min(min_visited_col, y);</comment>
+            <expr_stmt><expr><name>max_visited_col</name> <operator>=</operator> <call><name>max</name><argument_list>(<argument><expr><name>max_visited_col</name></expr></argument>, <argument><expr><name>y</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        }</block></then></if>
+        <comment type="line">// cout &lt;&lt; x &lt;&lt; " " &lt;&lt; y &lt;&lt; " " &lt;&lt; t1 &lt;&lt; endl;</comment>
+        <expr_stmt><expr><name>face</name><operator>++</operator></expr>;</expr_stmt>
+        <if>if <condition>(<expr><name>face</name> <operator>==</operator> <literal type="number">5</literal></expr>)</condition><then>
+        <block>{
+            <expr_stmt><expr><name>face</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+        }</block></then></if>
+    }</block></while>
+
+    <if>if <condition>(<expr><name>t1</name> <operator>==</operator> <name>t</name></expr>)</condition><then>
+    <block>{
+        <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"Yes\n"</literal></expr>;</expr_stmt>
+    }</block></then>
+    <else>else
+    <block>{
+        <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="string">"No\n"</literal></expr>;</expr_stmt>
+    }</block></else></if>
+    <return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function></unit>

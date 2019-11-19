@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1243/all/29779938_64403718.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;math.h&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;string&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;queue&gt;</cpp:file></cpp:include>
+
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>_GLIBCXX_DEBUG</name></cpp:macro></cpp:define>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>FOR</name><parameter_list>(<parameter><type><name>i</name></type></parameter>, <parameter><type><name>L</name></type></parameter>, <parameter><type><name>R</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for (int i = (L); i &lt; (R); i++)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>FR</name><parameter_list>(<parameter><type><name>i</name></type></parameter>, <parameter><type><name>n</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>for (int i = 0; i &lt; (n); i++)</cpp:value></cpp:define>
+
+<typedef>typedef <type><name>long</name> <name>long</name></type> <name>ll</name>;</typedef>
+<typedef>typedef <type><name><name>pair</name> <argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>, <argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>pii</name>;</typedef>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+
+	<expr_stmt><expr><call><name><name>ios_base</name><operator>::</operator><name>sync_with_stdio</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<expr_stmt><expr><call><name><name>cin</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><name>NULL</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+	<expr_stmt><expr><call><name><name>cout</name><operator>.</operator><name>tie</name></name><argument_list>(<argument><expr><name>NULL</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+	<decl_stmt><decl><type><name>ll</name></type> <name>n</name></decl>;</decl_stmt> <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name></expr>;</expr_stmt> <decl_stmt><decl><type><name>ll</name></type> <name>N</name> <init>= <expr><name>n</name></expr></init></decl>;</decl_stmt>
+
+	<comment type="block">/*ll dlt = 1;
+
+	ll i = 2;
+	bool ans = 1;
+	while (i * i &lt;= n) {
+		
+		if (n % i == 0 &amp;&amp; (dlt == 1 || dlt == i))
+			dlt = i, n /= i;
+		else if (n % i == 0) ans = 0, i++;
+		else i++;
+
+	}
+
+	if (n != 1) {
+		
+		if (dlt != 1 &amp;&amp; n != dlt &amp;&amp; n != 1) ans = 0;
+
+	}
+
+	if (!ans) cout &lt;&lt; 1;
+	else cout &lt;&lt; N / dlt;*/</comment>
+
+	<decl_stmt><decl><type><name>ll</name></type> <name>dlt</name> <init>= <expr><operator>-</operator><literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+	<decl_stmt><decl><type><name>ll</name></type> <name>i</name> <init>= <expr><literal type="number">2</literal></expr></init></decl>;</decl_stmt>
+
+	<while>while <condition>(<expr><name>i</name> <operator>*</operator> <name>i</name> <operator>&lt;=</operator> <name>n</name></expr>)</condition> <block>{
+	
+		<if>if <condition>(<expr><name>n</name> <operator>%</operator> <name>i</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block>{
+			
+			<expr_stmt><expr><name>dlt</name> <operator>=</operator> <name>i</name></expr>;</expr_stmt>
+			<break>break;</break>
+
+		}</block></then></if>
+
+		<expr_stmt><expr><name>i</name><operator>++</operator></expr>;</expr_stmt>
+
+	}</block></while>
+
+	<if>if <condition>(<expr><name>dlt</name> <operator>==</operator> <operator>-</operator><literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>N</name></expr>;</expr_stmt></block></then>
+	<else>else <block>{
+		<while>while <condition>(<expr><name>n</name> <operator>%</operator> <name>dlt</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition> <block type="pseudo"><expr_stmt><expr><name>n</name> <operator>/=</operator> <name>dlt</name></expr>;</expr_stmt></block></while>
+
+		<if>if <condition>(<expr><name>n</name> <operator>!=</operator> <literal type="number">1</literal></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <literal type="number">1</literal></expr>;</expr_stmt></block></then>
+		<else>else <block type="pseudo"><expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <name>dlt</name></expr>;</expr_stmt></block></else></if>
+	}</block></else></if>
+
+	<return>return <expr><literal type="number">0</literal></expr>;</return>
+}</block></function>
+</unit>

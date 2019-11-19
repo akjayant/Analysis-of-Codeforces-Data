@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1243/all/29767785_64409692.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;iostream&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;algorithm&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;vector&gt;</cpp:file></cpp:include>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;set&gt;</cpp:file></cpp:include>
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<decl_stmt><decl><type><name>int</name></type> <name>n</name></decl>, <decl><type ref="prev"/><name>m</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>int</name></type> <name>u</name></decl>, <decl><type ref="prev"/><name>v</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt; <argument><expr><name><name>set</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></expr></argument> &gt;</argument_list></name></type> <name>adjList</name></decl>;</decl_stmt>
+
+<decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt; <argument><expr><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>,<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></expr></argument> &gt;</argument_list></name></type> <name>deg</name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>ds</name></decl>;</decl_stmt>
+
+<decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>processed</name></decl>;</decl_stmt>
+
+<function><type><name>int</name></type> <name>parent</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>u</name></decl></parameter>)</parameter_list> <block>{
+    <if>if <condition>(<expr><name><name>ds</name><index>[<expr><name>u</name></expr>]</index></name> <operator>==</operator> <name>u</name></expr>)</condition><then> <block type="pseudo"><return>return <expr><name>u</name></expr>;</return></block></then></if>
+    <return>return <expr><name><name>ds</name><index>[<expr><name>u</name></expr>]</index></name> <operator>=</operator> <call><name>parent</name><argument_list>(<argument><expr><name><name>ds</name><index>[<expr><name>u</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</return>
+}</block></function>
+
+<function><type><name>void</name></type> <name>mergeSet</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>u</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>v</name></decl></parameter>)</parameter_list> <block>{
+    <decl_stmt><decl><type><name>int</name></type> <name>uu</name> <init>= <expr><call><name>parent</name><argument_list>(<argument><expr><name>u</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>vv</name> <init>= <expr><call><name>parent</name><argument_list>(<argument><expr><name>v</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if>if <condition>(<expr><name>uu</name> <operator>!=</operator> <name>vv</name></expr>)</condition><then> <block type="pseudo"><expr_stmt><expr><name><name>ds</name><index>[<expr><name>uu</name></expr>]</index></name> <operator>=</operator> <name>vv</name></expr>;</expr_stmt></block></then></if>
+}</block></function>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list> <block>{
+    <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>n</name> <operator>&gt;&gt;</operator> <name>m</name></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>adjList</name><operator>.</operator><name>assign</name></name><argument_list>(<argument><expr><name>n</name><operator>+</operator><literal type="number">1</literal></expr></argument>, <argument><expr><call><name><name>set</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>ds</name><operator>.</operator><name>assign</name></name><argument_list>(<argument><expr><name>n</name><operator>+</operator><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>processed</name><operator>.</operator><name>assign</name></name><argument_list>(<argument><expr><name>n</name><operator>+</operator><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    
+    <while>while <condition>(<expr><name>m</name><operator>--</operator></expr>)</condition> <block>{
+        <expr_stmt><expr><name>cin</name> <operator>&gt;&gt;</operator> <name>u</name> <operator>&gt;&gt;</operator> <name>v</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>adjList</name><index>[<expr><name>u</name></expr>]</index></name><operator>.</operator><call><name>insert</name><argument_list>(<argument><expr><name>v</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>adjList</name><index>[<expr><name>v</name></expr>]</index></name><operator>.</operator><call><name>insert</name><argument_list>(<argument><expr><name>u</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    }</block></while>
+    
+<comment type="line">//    cout &lt;&lt; "output" &lt;&lt; endl;</comment>
+    
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;=</operator> <name>n</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{
+        <expr_stmt><expr><call><name><name>deg</name><operator>.</operator><name>push_back</name></name><argument_list>(<argument><expr><call><name>make_pair</name><argument_list>(<argument><expr><operator>(</operator><name>int</name><operator>)</operator><name><name>adjList</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>size</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>i</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>ds</name><index>[<expr><name>i</name></expr>]</index></name> <operator>=</operator> <name>i</name></expr>;</expr_stmt>
+<comment type="line">//        cout &lt;&lt; i &lt;&lt; ' ' &lt;&lt; (int)adjList[i].size() &lt;&lt; endl;</comment>
+    }</block></for>
+    
+    <expr_stmt><expr><call><name>sort</name><argument_list>(<argument><expr><call><name><name>deg</name><operator>.</operator><name>begin</name></name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><call><name><name>deg</name><operator>.</operator><name>end</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>ix</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>ix</name> <operator>&lt;</operator> <name>n</name></expr>;</condition> <incr><expr><name>ix</name><operator>++</operator></expr></incr>)</control> <block>{
+        <expr_stmt><expr><name>u</name> <operator>=</operator> <name><name>deg</name><index>[<expr><name>ix</name></expr>]</index></name><operator>.</operator><name>second</name></expr>;</expr_stmt>
+<comment type="line">//        cout &lt;&lt; u &lt;&lt; ' ' &lt;&lt; deg[ix].first &lt;&lt; endl;</comment>
+        <if>if <condition>(<expr><name><name>processed</name><index>[<expr><name>u</name></expr>]</index></name> <operator>&gt;=</operator> <literal type="number">3</literal></expr>)</condition><then> <block type="pseudo"><continue>continue;</continue></block></then></if>
+        <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;=</operator> <name>n</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{
+            <if>if <condition>(<expr><name>i</name> <operator>==</operator> <name>u</name></expr>)</condition><then> <block type="pseudo"><continue>continue;</continue></block></then></if>
+            <if>if <condition>(<expr><name><name>adjList</name><index>[<expr><name>u</name></expr>]</index></name><operator>.</operator><call><name>find</name><argument_list>(<argument><expr><name>i</name></expr></argument>)</argument_list></call> <operator>==</operator> <name><name>adjList</name><index>[<expr><name>u</name></expr>]</index></name><operator>.</operator><call><name>end</name><argument_list>()</argument_list></call></expr>)</condition><then> <block>{
+                <expr_stmt><expr><call><name>mergeSet</name><argument_list>(<argument><expr><name>u</name></expr></argument>, <argument><expr><name>i</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><name><name>processed</name><index>[<expr><name>u</name></expr>]</index></name><operator>++</operator></expr>;</expr_stmt>
+                <expr_stmt><expr><name><name>processed</name><index>[<expr><name>i</name></expr>]</index></name><operator>++</operator></expr>;</expr_stmt>
+            }</block></then></if>
+        }</block></for>
+    }</block></for>
+    
+    <decl_stmt><decl><type><name><name>set</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type> <name>ans</name></decl>;</decl_stmt>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">1</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;=</operator> <name>n</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{
+<comment type="line">//        cout &lt;&lt; i &lt;&lt; ' ' &lt;&lt; parent(i) &lt;&lt; endl;</comment>
+        <expr_stmt><expr><call><name><name>ans</name><operator>.</operator><name>insert</name></name><argument_list>(<argument><expr><call><name>parent</name><argument_list>(<argument><expr><name>i</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    }</block></for>
+    
+    <expr_stmt><expr><name>cout</name> <operator>&lt;&lt;</operator> <operator>(</operator><name>int</name><operator>)</operator><call><name><name>ans</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call> <operator>-</operator> <literal type="number">1</literal> <operator>&lt;&lt;</operator> <name>endl</name></expr>;</expr_stmt>
+}</block></function>
+</unit>

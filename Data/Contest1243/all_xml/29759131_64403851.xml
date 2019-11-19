@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1243/all/29759131_64403851.cpp"><comment type="line">// Add a number in range</comment>
+<comment type="line">// Query min of range, the leftmost/rightmost array index where number &lt;= target</comment>
+
+<comment type="line">// AC CF</comment>
+
+
+<comment type="line">// Bismillahir Rahmanir Rahim</comment>
+<cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>double</name></cpp:macro> <cpp:value>long double</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>Long</name></cpp:macro> <cpp:value>long long</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>EPS</name></cpp:macro> <cpp:value>1e-12</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>PI</name></cpp:macro> <cpp:value>acos(-1.0)</cpp:value></cpp:define>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>MAX</name></cpp:macro> <cpp:value>300000</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>MOD</name></cpp:macro> <cpp:value>1000000007</cpp:value></cpp:define>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>POS_INF</name></cpp:macro> <cpp:value>(1LL &lt;&lt; 60)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>NEG_INF</name></cpp:macro> <cpp:value>(-(1LL &lt;&lt; 60))</cpp:value></cpp:define>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>RIGHT_MOST_INDEX</name></cpp:macro> <cpp:value>(1 &lt;&lt; 30)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>LEFT_MOST_INDEX</name></cpp:macro> <cpp:value>(-(1 &lt;&lt; 30))</cpp:value></cpp:define>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>MEMSET</name><parameter_list>(<parameter><type><name>x</name></type></parameter>,<parameter><type><name>y</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>memset(x, y, sizeof(x))</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>PB</name></cpp:macro> <cpp:value>push_back</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>MP</name></cpp:macro> <cpp:value>make_pair</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>SORT</name><parameter_list>(<parameter><type><name>A</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>sort(A.begin(), A.end());</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>REVERSE</name><parameter_list>(<parameter><type><name>A</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>reverse(A.begin(), A.end());</cpp:value></cpp:define>
+
+<decl_stmt><decl><type><name>Long</name></type> <name><name>seg_tree</name><index>[<expr><name>MAX</name> <operator>*</operator> <literal type="number">10</literal> <operator>+</operator> <literal type="number">9</literal></expr>]</index></name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name>Long</name></type> <name><name>lazy</name><index>[<expr><name>MAX</name> <operator>*</operator> <literal type="number">10</literal> <operator>+</operator> <literal type="number">9</literal></expr>]</index></name></decl>;</decl_stmt>
+
+<function><type><name>void</name></type> <name>init_tree</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>node</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>beg</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>end</name></decl></parameter>)</parameter_list>
+<block>{
+    <if>if<condition>(<expr><name>beg</name> <operator>==</operator> <name>end</name></expr>)</condition><then>
+    <block>{
+        <expr_stmt><expr><name><name>seg_tree</name><index>[<expr><name>node</name></expr>]</index></name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>lazy</name><index>[<expr><name>node</name></expr>]</index></name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+        <return>return;</return>
+    }</block></then></if>
+
+    <decl_stmt><decl><type><name>int</name></type> <name>mid</name> <init>= <expr><operator>(</operator><name>beg</name> <operator>+</operator> <name>end</name><operator>)</operator> <operator>&gt;&gt;</operator> <literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+
+    <expr_stmt><expr><call><name>init_tree</name><argument_list>(<argument><expr><operator>(</operator><name>node</name> <operator>&lt;&lt;</operator> <literal type="number">1</literal><operator>)</operator></expr></argument>, <argument><expr><name>beg</name></expr></argument>, <argument><expr><name>mid</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>init_tree</name><argument_list>(<argument><expr><operator>(</operator><name>node</name> <operator>&lt;&lt;</operator> <literal type="number">1</literal><operator>)</operator> <operator>|</operator> <literal type="number">1</literal></expr></argument>, <argument><expr><name>mid</name> <operator>+</operator> <literal type="number">1</literal></expr></argument>, <argument><expr><name>end</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><name><name>seg_tree</name><index>[<expr><name>node</name></expr>]</index></name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>lazy</name><index>[<expr><name>node</name></expr>]</index></name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+}</block></function>
+
+<function><specifier>inline</specifier> <type><name>void</name></type> <name>split_node</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>node</name></decl></parameter>)</parameter_list>
+<block>{
+    <if>if<condition>(<expr><name><name>lazy</name><index>[<expr><name>node</name></expr>]</index></name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><return>return;</return></block></then></if>
+
+    <expr_stmt><expr><name><name>seg_tree</name><index>[<expr><operator>(</operator><name>node</name> <operator>&lt;&lt;</operator> <literal type="number">1</literal><operator>)</operator></expr>]</index></name> <operator>+=</operator> <name><name>lazy</name><index>[<expr><name>node</name></expr>]</index></name></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>lazy</name><index>[<expr><operator>(</operator><name>node</name> <operator>&lt;&lt;</operator> <literal type="number">1</literal><operator>)</operator></expr>]</index></name> <operator>+=</operator> <name><name>lazy</name><index>[<expr><name>node</name></expr>]</index></name></expr>;</expr_stmt>
+
+    <expr_stmt><expr><name><name>seg_tree</name><index>[<expr><operator>(</operator><name>node</name> <operator>&lt;&lt;</operator> <literal type="number">1</literal><operator>)</operator> <operator>|</operator> <literal type="number">1</literal></expr>]</index></name> <operator>+=</operator> <name><name>lazy</name><index>[<expr><name>node</name></expr>]</index></name></expr>;</expr_stmt>
+    <expr_stmt><expr><name><name>lazy</name><index>[<expr><operator>(</operator><name>node</name> <operator>&lt;&lt;</operator> <literal type="number">1</literal><operator>)</operator> <operator>|</operator> <literal type="number">1</literal></expr>]</index></name> <operator>+=</operator> <name><name>lazy</name><index>[<expr><name>node</name></expr>]</index></name></expr>;</expr_stmt>
+
+    <expr_stmt><expr><name><name>lazy</name><index>[<expr><name>node</name></expr>]</index></name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+}</block></function>
+
+<function><specifier>inline</specifier> <type><name>void</name></type> <name>merge_node</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>node</name></decl></parameter>)</parameter_list>
+<block>{
+    <expr_stmt><expr><name><name>seg_tree</name><index>[<expr><name>node</name></expr>]</index></name> <operator>=</operator> <call><name>min</name><argument_list>(<argument><expr><name><name>seg_tree</name><index>[<expr><operator>(</operator><name>node</name> <operator>&lt;&lt;</operator> <literal type="number">1</literal><operator>)</operator></expr>]</index></name></expr></argument>, <argument><expr><name><name>seg_tree</name><index>[<expr><operator>(</operator><name>node</name> <operator>&lt;&lt;</operator> <literal type="number">1</literal><operator>)</operator> <operator>|</operator> <literal type="number">1</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+}</block></function>
+
+<function><type><name>void</name></type> <name>update</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>node</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>beg</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>end</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>i</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>j</name></decl></parameter>, <parameter><decl><type><name>Long</name></type> <name>value</name></decl></parameter>)</parameter_list>
+<block>{
+    <if>if<condition>(<expr><name>beg</name> <operator>&gt;</operator> <name>j</name> <operator>||</operator> <name>end</name> <operator>&lt;</operator> <name>i</name></expr>)</condition><then> <block type="pseudo"><return>return;</return></block></then></if>
+    <if>if<condition>(<expr><name>beg</name> <operator>&gt;=</operator> <name>i</name> <operator>&amp;&amp;</operator> <name>end</name> <operator>&lt;=</operator> <name>j</name></expr>)</condition><then>
+    <block>{
+        <expr_stmt><expr><name><name>seg_tree</name><index>[<expr><name>node</name></expr>]</index></name> <operator>+=</operator> <name>value</name></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>lazy</name><index>[<expr><name>node</name></expr>]</index></name> <operator>+=</operator> <name>value</name></expr>;</expr_stmt>
+        <return>return ;</return>
+    }</block></then></if>
+
+    <expr_stmt><expr><call><name>split_node</name><argument_list>(<argument><expr><name>node</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>mid</name> <init>= <expr><operator>(</operator><name>beg</name> <operator>+</operator> <name>end</name><operator>)</operator> <operator>&gt;&gt;</operator> <literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+
+    <expr_stmt><expr><call><name>update</name><argument_list>(<argument><expr><operator>(</operator><name>node</name> <operator>&lt;&lt;</operator> <literal type="number">1</literal><operator>)</operator></expr></argument>, <argument><expr><name>beg</name></expr></argument>, <argument><expr><name>mid</name></expr></argument>, <argument><expr><name>i</name></expr></argument>, <argument><expr><name>j</name></expr></argument>, <argument><expr><name>value</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>update</name><argument_list>(<argument><expr><operator>(</operator><name>node</name> <operator>&lt;&lt;</operator> <literal type="number">1</literal><operator>)</operator> <operator>|</operator> <literal type="number">1</literal></expr></argument>, <argument><expr><name>mid</name> <operator>+</operator> <literal type="number">1</literal></expr></argument>, <argument><expr><name>end</name></expr></argument>, <argument><expr><name>i</name></expr></argument>, <argument><expr><name>j</name></expr></argument>, <argument><expr><name>value</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>merge_node</name><argument_list>(<argument><expr><name>node</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+}</block></function>
+
+<function><type><name>int</name></type> <name>query_leftmost</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>node</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>beg</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>end</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>i</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>j</name></decl></parameter>, <parameter><decl><type><name>Long</name></type> <name>target</name></decl></parameter>)</parameter_list>
+<block>{
+    <if>if<condition>(<expr><name>i</name> <operator>&gt;</operator> <name>end</name> <operator>||</operator> <name>j</name> <operator>&lt;</operator> <name>beg</name></expr>)</condition><then> <block type="pseudo"><return>return <expr><name>RIGHT_MOST_INDEX</name></expr>;</return></block></then></if>
+    <if>if<condition>(<expr><name><name>seg_tree</name><index>[<expr><name>node</name></expr>]</index></name> <operator>&gt;</operator> <name>target</name></expr>)</condition><then> <block type="pseudo"><return>return <expr><name>RIGHT_MOST_INDEX</name></expr>;</return></block></then></if>
+    <if>if<condition>(<expr><name>beg</name> <operator>==</operator> <name>end</name></expr>)</condition><then> <block type="pseudo"><return>return <expr><name>beg</name></expr>;</return></block></then></if>
+
+    <expr_stmt><expr><call><name>split_node</name><argument_list>(<argument><expr><name>node</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <decl_stmt><decl><type><name>int</name></type> <name>mid</name> <init>= <expr><operator>(</operator><name>beg</name> <operator>+</operator> <name>end</name><operator>)</operator> <operator>&gt;&gt;</operator> <literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+
+    <decl_stmt><decl><type><name>int</name></type> <name>ind</name> <init>= <expr><call><name>query_leftmost</name><argument_list>(<argument><expr><operator>(</operator><name>node</name> <operator>&lt;&lt;</operator> <literal type="number">1</literal><operator>)</operator></expr></argument>, <argument><expr><name>beg</name></expr></argument>, <argument><expr><name>mid</name></expr></argument>, <argument><expr><name>i</name></expr></argument>, <argument><expr><name>j</name></expr></argument>, <argument><expr><name>target</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if>if<condition>(<expr><name>ind</name> <operator>!=</operator> <name>RIGHT_MOST_INDEX</name></expr>)</condition><then> <block type="pseudo"><return>return <expr><name>ind</name></expr>;</return></block></then></if>
+
+    <return>return <expr><call><name>query_leftmost</name><argument_list>(<argument><expr><operator>(</operator><operator>(</operator><name>node</name> <operator>&lt;&lt;</operator> <literal type="number">1</literal><operator>)</operator> <operator>|</operator> <literal type="number">1</literal><operator>)</operator></expr></argument>, <argument><expr><name>mid</name> <operator>+</operator> <literal type="number">1</literal></expr></argument>, <argument><expr><name>end</name></expr></argument>, <argument><expr><name>i</name></expr></argument>, <argument><expr><name>j</name></expr></argument>, <argument><expr><name>target</name></expr></argument>)</argument_list></call></expr>;</return>
+}</block></function>
+
+<function><type><name>int</name></type> <name>query_rightmost</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>node</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>beg</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>end</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>i</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>j</name></decl></parameter>, <parameter><decl><type><name>Long</name></type> <name>target</name></decl></parameter>)</parameter_list>
+<block>{
+    <if>if<condition>(<expr><name>i</name> <operator>&gt;</operator> <name>end</name> <operator>||</operator> <name>j</name> <operator>&lt;</operator> <name>beg</name></expr>)</condition><then> <block type="pseudo"><return>return <expr><name>LEFT_MOST_INDEX</name></expr>;</return></block></then></if>
+    <if>if<condition>(<expr><name><name>seg_tree</name><index>[<expr><name>node</name></expr>]</index></name> <operator>&gt;</operator> <name>target</name></expr>)</condition><then> <block type="pseudo"><return>return <expr><name>LEFT_MOST_INDEX</name></expr>;</return></block></then></if>
+    <if>if<condition>(<expr><name>beg</name> <operator>==</operator> <name>end</name></expr>)</condition><then> <block type="pseudo"><return>return <expr><name>beg</name></expr>;</return></block></then></if>
+
+    <expr_stmt><expr><call><name>split_node</name><argument_list>(<argument><expr><name>node</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <decl_stmt><decl><type><name>int</name></type> <name>mid</name> <init>= <expr><operator>(</operator><name>beg</name> <operator>+</operator> <name>end</name><operator>)</operator> <operator>&gt;&gt;</operator> <literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+
+    <decl_stmt><decl><type><name>int</name></type> <name>ind</name> <init>= <expr><call><name>query_rightmost</name><argument_list>(<argument><expr><operator>(</operator><operator>(</operator><name>node</name> <operator>&lt;&lt;</operator> <literal type="number">1</literal><operator>)</operator> <operator>|</operator> <literal type="number">1</literal><operator>)</operator></expr></argument>, <argument><expr><name>mid</name> <operator>+</operator> <literal type="number">1</literal></expr></argument>, <argument><expr><name>end</name></expr></argument>, <argument><expr><name>i</name></expr></argument>, <argument><expr><name>j</name></expr></argument>, <argument><expr><name>target</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if>if<condition>(<expr><name>ind</name> <operator>!=</operator> <name>LEFT_MOST_INDEX</name></expr>)</condition><then> <block type="pseudo"><return>return <expr><name>ind</name></expr>;</return></block></then></if>
+
+    <return>return <expr><call><name>query_rightmost</name><argument_list>(<argument><expr><operator>(</operator><name>node</name> <operator>&lt;&lt;</operator> <literal type="number">1</literal><operator>)</operator></expr></argument>, <argument><expr><name>beg</name></expr></argument>, <argument><expr><name>mid</name></expr></argument>, <argument><expr><name>i</name></expr></argument>, <argument><expr><name>j</name></expr></argument>, <argument><expr><name>target</name></expr></argument>)</argument_list></call></expr>;</return>
+}</block></function>
+
+<function><type><name>Long</name></type> <name>query</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>node</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>beg</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>end</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>i</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>j</name></decl></parameter>)</parameter_list>
+<block>{
+    <if>if<condition>(<expr><name>i</name> <operator>&gt;</operator> <name>end</name> <operator>||</operator> <name>j</name> <operator>&lt;</operator> <name>beg</name></expr>)</condition><then> <block type="pseudo"><return>return <expr><name>POS_INF</name></expr>;</return></block></then></if>
+    <if>if<condition>(<expr><name>beg</name> <operator>&gt;=</operator> <name>i</name> <operator>&amp;&amp;</operator> <name>end</name> <operator>&lt;=</operator> <name>j</name></expr>)</condition><then> <block type="pseudo"><return>return <expr><name><name>seg_tree</name><index>[<expr><name>node</name></expr>]</index></name></expr>;</return></block></then></if>
+
+    <expr_stmt><expr><call><name>split_node</name><argument_list>(<argument><expr><name>node</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <decl_stmt><decl><type><name>int</name></type> <name>mid</name> <init>= <expr><operator>(</operator><name>beg</name> <operator>+</operator> <name>end</name><operator>)</operator> <operator>&gt;&gt;</operator> <literal type="number">1</literal></expr></init></decl>;</decl_stmt>
+
+    <decl_stmt><decl><type><name>Long</name></type> <name>leftnode</name> <init>= <expr><call><name>query</name><argument_list>(<argument><expr><operator>(</operator><name>node</name> <operator>&lt;&lt;</operator> <literal type="number">1</literal><operator>)</operator></expr></argument>, <argument><expr><name>beg</name></expr></argument>, <argument><expr><name>mid</name></expr></argument>, <argument><expr><name>i</name></expr></argument>, <argument><expr><name>j</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><name>Long</name></type> <name>rightnode</name> <init>= <expr><call><name>query</name><argument_list>(<argument><expr><operator>(</operator><operator>(</operator><name>node</name> <operator>&lt;&lt;</operator> <literal type="number">1</literal><operator>)</operator> <operator>|</operator> <literal type="number">1</literal><operator>)</operator></expr></argument>, <argument><expr><name>mid</name> <operator>+</operator> <literal type="number">1</literal></expr></argument>, <argument><expr><name>end</name></expr></argument>, <argument><expr><name>i</name></expr></argument>, <argument><expr><name>j</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <return>return <expr><call><name>min</name><argument_list>(<argument><expr><name>leftnode</name></expr></argument>, <argument><expr><name>rightnode</name></expr></argument>)</argument_list></call></expr>;</return>
+}</block></function>
+
+<decl_stmt><decl><type><name><name>vector</name><argument_list type="generic">&lt;<argument><expr><name>Long</name></expr></argument>&gt;</argument_list></name></type> <name><name>adj</name><index>[<expr><name>MAX</name><operator>+</operator><literal type="number">9</literal></expr>]</index></name></decl>;</decl_stmt>
+<decl_stmt><decl><type><name><name>queue</name><argument_list type="generic">&lt;<argument><expr><name>Long</name></expr></argument>&gt;</argument_list></name></type> <name>qu</name></decl>;</decl_stmt>
+
+<function><type><name>int</name></type> <name>main</name><parameter_list>()</parameter_list>
+<block>{
+    <decl_stmt><decl><type><name>Long</name></type> <name>i</name></decl>,<decl><type ref="prev"/><name>j</name></decl>,<decl><type ref="prev"/><name>k</name></decl>,<decl><type ref="prev"/><name>l</name></decl>,<decl><type ref="prev"/><name>n</name></decl>,<decl><type ref="prev"/><name>m</name><init>=<expr><literal type="number">0</literal></expr></init></decl>,<decl><type ref="prev"/><name>tot</name></decl>,<decl><type ref="prev"/><name>temp</name></decl>,<decl><type ref="prev"/><name>curr</name></decl>,<decl><type ref="prev"/><name>val</name></decl>,<decl><type ref="prev"/><name>prev</name></decl>,<decl><type ref="prev"/><name>a</name></decl>,<decl><type ref="prev"/><name>b</name></decl>,<decl><type ref="prev"/><name>c</name></decl>,<decl><type ref="prev"/><name>t</name></decl>,<decl><type ref="prev"/><name>ans</name></decl>,<decl><type ref="prev"/><name>child</name></decl>,<decl><type ref="prev"/><name>flag</name></decl>,<decl><type ref="prev"/><name>x</name></decl>,<decl><type ref="prev"/><name>y</name></decl>,<decl><type ref="prev"/><name>siz</name></decl>,<decl><type ref="prev"/><name>w</name></decl>,<decl><type ref="prev"/><name>h</name></decl>,<decl><type ref="prev"/><name>d</name></decl>,<decl><type ref="prev"/><name>ii</name></decl>,<decl><type ref="prev"/><name>jj</name></decl>,<decl><type ref="prev"/><name>xx</name></decl>,<decl><type ref="prev"/><name>yy</name></decl>,<decl><type ref="prev"/><name>ind</name></decl>,<decl><type ref="prev"/><name>len</name></decl>,<decl><type ref="prev"/><name>max_n</name></decl>,<decl><type ref="prev"/><name>q</name></decl>;</decl_stmt>
+
+    <expr_stmt><expr><name>cin</name><operator>&gt;&gt;</operator><name>n</name><operator>&gt;&gt;</operator><name>m</name></expr>;</expr_stmt>
+    <for>for<control>(<init><expr><name>i</name><operator>=</operator><literal type="number">1</literal></expr>;</init> <condition><expr><name>i</name><operator>&lt;=</operator><name>n</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block type="pseudo"><expr_stmt><expr><name><name>adj</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>PB</name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></for>
+    <for>for<control>(<init><expr><name>i</name><operator>=</operator><literal type="number">1</literal></expr>;</init> <condition><expr><name>i</name><operator>&lt;=</operator><name>n</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block type="pseudo"><expr_stmt><expr><name><name>adj</name><index>[<expr><name>i</name></expr>]</index></name><operator>.</operator><call><name>PB</name><argument_list>(<argument><expr><name>n</name><operator>+</operator><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></for>
+
+    <for>for<control>(<init><expr><name>i</name><operator>=</operator><literal type="number">1</literal></expr>;</init> <condition><expr><name>i</name><operator>&lt;=</operator><name>m</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+    <block>{
+        <expr_stmt><expr><call><name>scanf</name><argument_list>(<argument><expr><literal type="string">"%lld%lld"</literal></expr></argument>, <argument><expr><operator>&amp;</operator><name>j</name></expr></argument>, <argument><expr><operator>&amp;</operator><name>k</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>adj</name><index>[<expr><name>j</name></expr>]</index></name><operator>.</operator><call><name>PB</name><argument_list>(<argument><expr><name>k</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>adj</name><index>[<expr><name>k</name></expr>]</index></name><operator>.</operator><call><name>PB</name><argument_list>(<argument><expr><name>j</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    }</block></for>
+
+    <for>for<control>(<init><expr><name>i</name><operator>=</operator><literal type="number">1</literal></expr>;</init> <condition><expr><name>i</name><operator>&lt;=</operator><name>n</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block type="pseudo"><expr_stmt><expr><call><name>SORT</name><argument_list>(<argument><expr><name><name>adj</name><index>[<expr><name>i</name></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt></block></for>
+
+    <expr_stmt><expr><call><name>init_tree</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><name>n</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><name>ans</name> <operator>=</operator> <operator>-</operator><literal type="number">1</literal></expr>;</expr_stmt>
+    <for>for<control>(<init><expr><name>i</name><operator>=</operator><literal type="number">1</literal></expr>;</init> <condition><expr><name>i</name><operator>&lt;=</operator><name>n</name></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control>
+    <block>{
+        <if>if<condition>(<expr><call><name>query</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><name>n</name></expr></argument>, <argument><expr><name>i</name></expr></argument>, <argument><expr><name>i</name></expr></argument>)</argument_list></call> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then>
+        <block>{
+            <expr_stmt><expr><name>ans</name><operator>++</operator></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name><name>qu</name><operator>.</operator><name>push</name></name><argument_list>(<argument><expr><name>i</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><call><name>update</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><name>n</name></expr></argument>, <argument><expr><name>i</name></expr></argument>, <argument><expr><name>i</name></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+            <comment type="line">//cout&lt;&lt;i&lt;&lt;" new\n";</comment>
+
+            <while>while<condition>(<expr><operator>!</operator><call><name><name>qu</name><operator>.</operator><name>empty</name></name><argument_list>()</argument_list></call></expr>)</condition>
+            <block>{
+                <expr_stmt><expr><name>curr</name> <operator>=</operator> <call><name><name>qu</name><operator>.</operator><name>front</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><call><name><name>qu</name><operator>.</operator><name>pop</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+                <for>for<control>(<init><expr><name>j</name><operator>=</operator><literal type="number">1</literal></expr>;</init> <condition><expr><name>j</name><operator>&lt;</operator><name><name>adj</name><index>[<expr><name>curr</name></expr>]</index></name><operator>.</operator><call><name>size</name><argument_list>()</argument_list></call></expr>;</condition> <incr><expr><name>j</name><operator>++</operator></expr></incr>)</control>
+                <block>{
+                    <expr_stmt><expr><name>a</name> <operator>=</operator> <name><name>adj</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><name>j</name><operator>-</operator><literal type="number">1</literal></expr>]</index></name></expr>;</expr_stmt>
+                    <expr_stmt><expr><name>b</name> <operator>=</operator> <name><name>adj</name><index>[<expr><name>curr</name></expr>]</index><index>[<expr><name>j</name></expr>]</index></name></expr>;</expr_stmt>
+
+                    <comment type="line">//cout&lt;&lt;a&lt;&lt;" ff "&lt;&lt;b&lt;&lt;endl;</comment>
+
+                    <while>while<condition>(<expr><literal type="number">1</literal></expr>)</condition>
+                    <block>{
+                        <expr_stmt><expr><name>flag</name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+                        <expr_stmt><expr><name>child</name> <operator>=</operator> <call><name>query_leftmost</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><name>n</name></expr></argument>, <argument><expr><name>a</name><operator>+</operator><literal type="number">1</literal></expr></argument>, <argument><expr><name>b</name><operator>-</operator><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                        <if>if<condition>(<expr><name>child</name> <operator>!=</operator> <name>RIGHT_MOST_INDEX</name></expr>)</condition><then>
+                        <block>{
+                            <if>if<condition>(<expr><call><name>query</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><name>n</name></expr></argument>, <argument><expr><name>child</name></expr></argument>, <argument><expr><name>child</name></expr></argument>)</argument_list></call> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then>
+                            <block>{
+                                <comment type="line">//cout&lt;&lt;"take "&lt;&lt;child&lt;&lt;endl;</comment>
+                                <expr_stmt><expr><name>flag</name> <operator>=</operator> <literal type="number">1</literal></expr>;</expr_stmt>
+                                <expr_stmt><expr><call><name><name>qu</name><operator>.</operator><name>push</name></name><argument_list>(<argument><expr><name>child</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                                <expr_stmt><expr><call><name>update</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><name>n</name></expr></argument>, <argument><expr><name>child</name></expr></argument>, <argument><expr><name>child</name></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                            }</block></then></if>
+                        }</block></then></if>
+
+                        <if>if<condition>(<expr><name>flag</name> <operator>==</operator> <literal type="number">0</literal></expr>)</condition><then> <block type="pseudo"><break>break;</break></block></then></if>
+                    }</block></while>
+                }</block></for>
+            }</block></while>
+        }</block></then></if>
+    }</block></for>
+
+    <expr_stmt><expr><name>cout</name><operator>&lt;&lt;</operator><name>ans</name><operator>&lt;&lt;</operator><name>endl</name></expr>;</expr_stmt>
+}</block></function>
+</unit>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="0.9.5" language="C++" filename="Data/Contest1245/all/29581575_64021243.cpp"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>&lt;bits/stdc++.h&gt;</cpp:file></cpp:include>
+
+<using>using <namespace>namespace <name>std</name>;</namespace></using>
+
+<using>using <name>ll</name> <init>= <type><name>long</name> <name>long</name></type></init>;</using>
+<using>using <name>ld</name> <init>= <type><name>long</name> <name>double</name></type></init>;</using>
+
+<using>using <name>pii</name> <init>= <type><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>int</name></expr></argument>, <argument><expr><name>int</name></expr></argument>&gt;</argument_list></name></type></init>;</using>
+<using>using <name>pll</name> <init>= <type><name><name>pair</name><argument_list type="generic">&lt;<argument><expr><name>ll</name></expr></argument>, <argument><expr><name>ll</name></expr></argument>&gt;</argument_list></name></type></init>;</using>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>mp</name></cpp:macro> <cpp:value>make_pair</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>mt</name></cpp:macro> <cpp:value>make_tuple</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>pb</name></cpp:macro> <cpp:value>push_back</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>eb</name></cpp:macro> <cpp:value>emplace_back</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>all</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>(x).begin(), (x).end()</cpp:value></cpp:define>
+
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>X</name></cpp:macro> <cpp:value>first</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>Y</name></cpp:macro> <cpp:value>second</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>A</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>get&lt;0&gt;(x)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>B</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>get&lt;1&gt;(x)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>C</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>get&lt;2&gt;(x)</cpp:value></cpp:define>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>D</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>get&lt;3&gt;(x)</cpp:value></cpp:define>
+
+<decl_stmt><decl><type><name>mt19937</name></type> <name>gen</name><argument_list>(<argument><expr><literal type="number">228</literal></expr></argument>)</argument_list></decl>;</decl_stmt>
+
+<cpp:ifdef>#<cpp:directive>ifdef</cpp:directive> <name>DEBUG</name></cpp:ifdef>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>dbg</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>cout &lt;&lt; "[dbg " &lt;&lt; __LINE__ &lt;&lt; "] " &lt;&lt; x &lt;&lt; endl</cpp:value></cpp:define>
+<cpp:else>#<cpp:directive>else</cpp:directive></cpp:else>
+<cpp:define>#<cpp:directive>define</cpp:directive> <cpp:macro><name>dbg</name><parameter_list>(<parameter><type><name>x</name></type></parameter>)</parameter_list></cpp:macro> <cpp:value>((void)0)</cpp:value></cpp:define>
+<cpp:endif>#<cpp:directive>endif</cpp:directive></cpp:endif>
+
+<decl_stmt><decl><specifier>constexpr</specifier> <type><name>ll</name></type> <name>MOD</name> <init>= <expr><literal type="number">1</literal><literal type="char">'000'</literal><literal type="number">000</literal><literal type="char">'</literal></expr></init></decl></decl_stmt>007;
+
+constexpr int N = 2005;
+
+pii cities [N];
+vector&lt;pair&lt;ll, int&gt;&gt; g [2*N];
+int c [N];
+int k [N];
+
+bool ok [N];
+
+template &lt;size_t MAXN&gt;
+struct dsu {
+    int parent[MAXN], size[MAXN];
+    bool has_station[MAXN];
+
+    dsu() {
+        for (int i = 0; i &lt; MAXN; i++) {
+            init(i);
+        }
+    }
+
+    void init(int i) {
+        parent[i] = i;
+        size[i] = 1;
+    }
+
+    int get_parent(int i) {
+        if (i == parent[i]) return i;
+        parent[i] = get_parent(parent[i]);
+        return parent[i];
+    }
+
+    int get_size(int i) {
+        return size[get_parent(i)];
+    }
+
+    bool station(int i) {
+        return has_station[get_parent(i)];
+    }
+
+    bool set_station(int i, bool st) {
+        has_station[get_parent(i)] = st;
+    }
+
+    void set_union(int i, int j) {
+        i = get_parent(i);
+        j = get_parent(j);
+
+        if (i != j) {
+            if (size[i] &lt; size[j])
+                swap(i, j);
+
+            parent[j] = i;
+            size[i] += size[j];
+            has_station[i] = has_station[i] || has_station[j];
+        }
+    }
+};
+
+dsu&lt;N&gt; dd;
+
+int main(void) {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+
+    int n;
+    cin &gt;&gt; n;
+
+    for (int i = 0; i &lt; n; i++) {
+        cin &gt;&gt; cities[i].X &gt;&gt; cities[i].Y;
+    }
+
+    for (int i = 0; i &lt; n; i++) {
+        cin &gt;&gt; c[i];
+    }
+
+    for (int i = 0; i &lt; n; i++) {
+        cin &gt;&gt; k[i];
+    }
+
+    vector&lt;pair&lt;ll, tuple&lt;int, int, int&gt;&gt;&gt; e;
+
+    for (int i = 0; i &lt; n; i++) {
+        e.pb({c[i], {0, i, i}});
+    }
+
+    for (int i = 0; i &lt; n; i++) {
+        for (int j = i+1; j &lt; n; j++) {
+            ll cost = (abs(cities[i].X - cities[j].X) + abs(cities[i].Y - cities[j].Y)) * 1LL * (k[i] + k[j]);
+            e.pb({cost, {1, i, j}});
+            //e.pb({cost, {1, j, i}});
+        }
+    }
+
+    sort(all(e));
+
+    vector&lt;int&gt; stations;
+    vector&lt;pii&gt; edges;
+    ll total = 0;
+
+    for (auto [cost, tt] : e) {
+        auto [type, u, v] = tt;
+
+        if (type == 0) {
+            if (!dd.station(u)) {
+                stations.pb(u);
+                dd.set_station(u, true);
+                total += cost;
+            }
+        } else {
+            if ((!dd.station(u) || !dd.station(v)) &amp;&amp; dd.get_parent(u) != dd.get_parent(v)) {
+                dd.set_union(u, v);
+                total += cost;
+                edges.pb({u, v});
+            }
+        }
+
+        dbg(type &lt;&lt; " " &lt;&lt; cost &lt;&lt; " " &lt;&lt; total);
+    }
+
+    cout &lt;&lt; total &lt;&lt; "\n";
+
+    cout &lt;&lt; stations.size() &lt;&lt; "\n";
+    for (auto s : stations) {
+        cout &lt;&lt; s+1 &lt;&lt; " ";
+    }
+
+    cout &lt;&lt; "\n";
+
+    cout &lt;&lt; edges.size() &lt;&lt; "\n";
+    for (auto [u, v] : edges) {
+        cout &lt;&lt; u+1 &lt;&lt; " " &lt;&lt; v+1 &lt;&lt; "\n";
+    }
+
+    return 0;
+}</unit>
