@@ -97,22 +97,53 @@ def downloadContest(contest_id, problem_ids, topk=5):
             print()
 
 ### download Data for contest 1245
-# contest_id = "1245"
+contest_id = "1245"
 # problemA_id = "456074"
 # problemB_id = "456075"
 # problemC_id = "456076"
-# downloadContest(contest_id, [problemA_id, problemB_id, problemC_id])
+problemD_id = "456077"
+problemE_id = "456078"
+problemF_id = "456079"
+downloadContest(contest_id, [problemD_id, problemE_id, problemF_id])
 
-### download Data for contest 1245
-# contest_id = "1236"
+### download Data for contest 1236
+contest_id = "1236"
 # problemA_id = "442393"
 # problemB_id = "442394"
 # problemC_id = "442395"
-# downloadContest(contest_id, [problemA_id, problemB_id, problemC_id])
-#
-# ### download Data for contest 1245
-# contest_id = "1243"
+problemD_id = "442396"
+problemE_id = "442397"
+problemF_id = "442398"
+downloadContest(contest_id, [problemD_id, problemE_id, problemF_id])
+
+# ### download Data for contest 1243
+contest_id = "1243"
 # problemA_id = "461411"
 # problemB_id = "461412"
 # problemC_id = "461413"
-# downloadContest(contest_id, [problemA_id, problemB_id, problemC_id])
+problemD_id = "461414"
+problemE_id = "461415"
+problemF_id = "461416"
+downloadContest(contest_id, [problemD_id, problemE_id, problemF_id])
+
+# ### download Data for contest 1244
+contest_id = "1244"
+problemA_id = "438880"
+problemB_id = "438881"
+problemC_id = "438882"
+problemD_id = "438883"
+problemE_id = "438884"
+problemF_id = "438885"
+problemG_id = "438886"
+downloadContest(contest_id, [problemA_id, problemB_id, problemC_id, problemD_id, problemE_id, problemF_id, problemG_id])
+
+# ### download Data for contest 1248
+contest_id = "1248"
+problemA_id = "445483"
+problemB_id = "445264"
+problemC_id = "445265"
+problemD_id = "445481"
+problemE_id = "445266"
+problemF_id = "445267"
+problemG_id = "445268"
+downloadContest(contest_id, [problemA_id, problemB_id, problemC_id, problemD_id, problemE_id, problemF_id, problemG_id])

@@ -56,7 +56,15 @@ def generateSourceCodeStatistics(contest_id, standings, participant_id, submissi
 def generateStandingStatistics(contest_id, problem_ids, topk=5):
     contest_id_dir = "Contest"+contest_id
     fw = open(contest_id_dir+"/standings_statistics", 'w') ## write to statistics file
-    fw.write("ParticipantID\tRank\tCountry\tProblemA_id\tProblemA_memory\tProblemA_time\tProblemA_language\tProblemB_id\tProblemB_memory\tProblemB_time\tProblemB_language\tProblemC_id\tProblemC_memory\tProblemC_time\tProblemC_language\n")
+    fw2 = open(contest_id_dir+"/problem_statistics", 'w') ## problem specific statistics file
+
+    header = "ParticipantID\tColor\tRank\tCountry"
+    for i in range(len(problem_ids)):
+        problemID = "Problem"+str(i+1)
+        header += ("\t"+problemID+"_id\t"+problemID+"_memory\t"+problemID+"_time\t"+problemID+"_language")
+    fw.write(header+"\n")
+
+    fw2.write("SubmissionID\tProblem_index\tParticipant_country\tParticipant_color\tLanguage\tTime\tMemory\n")
 
     for i in range(topk):
         f = open(contest_id_dir+"/standings_"+str(i+1), 'r')
@@ -76,10 +84,12 @@ def generateStandingStatistics(contest_id, problem_ids, topk=5):
             line += participant_id
             rank = tds[0].get_text().lstrip().split('\n')[0]
             country = '-'
+            color = '-'
             if len(tds[1].find_all('img')) != 0:
                 country = tds[1].find_all('img')[0]['title']
-            line += ('\t' + rank + '\t' + country)
-            print(line)
+            if len(tds[1].find_all('a')) != 0:
+                color = tds[1].find_all('a')[0]['class'][1].split('-')[1]
+            line += ('\t' + color + '\t' + rank + '\t' + country)
 
             for pid in problem_ids:
                 found = False
@@ -92,6 +102,7 @@ def generateStandingStatistics(contest_id, problem_ids, topk=5):
                                 accepted_submission_id = elem['acceptedsubmissionid']
                                 submissionid, langauge, time, memory = generateSourceCodeStatistics(contest_id, str(i+1), participant_id, accepted_submission_id)
                                 line += ('\t' + submissionid+"\t"+memory+"\t"+time+"\t"+langauge)
+                                fw2.write(participant_id+"_"+accepted_submission_id+"\t"+str(problem_ids.index(pid)+1)+"\t"+country+"\t"+color+"\t"+langauge+"\t"+time+"\t"+memory+"\n")
                             else:
                                 line += ('\t' + "NO\t-\t-\t-")
 
@@ -100,24 +111,61 @@ def generateStandingStatistics(contest_id, problem_ids, topk=5):
             fw.write(line+"\n")
 
     fw.close()
+    fw2.close()
 
-### preprocess data for contest 1245
-# contest_id = "1245"
-# problemA_id = "456074"
-# problemB_id = "456075"
-# problemC_id = "456076"
-# generateStandingStatistics(contest_id, [problemA_id, problemB_id, problemC_id])
+### download Data for contest 1245
+contest_id = "1245"
+problemA_id = "456074"
+problemB_id = "456075"
+problemC_id = "456076"
+problemD_id = "456077"
+problemE_id = "456078"
+problemF_id = "456079"
+generateStandingStatistics(contest_id, [problemA_id, problemB_id, problemC_id, problemD_id, problemE_id, problemF_id])
+print("Processed "+contest_id+"...")
 
-### preprocess data for contest 1245
-# contest_id = "1236"
-# problemA_id = "442393"
-# problemB_id = "442394"
-# problemC_id = "442395"
-# generateStandingStatistics(contest_id, [problemA_id, problemB_id, problemC_id])
-#
-# ### preprocess data for contest 1245
-# contest_id = "1243"
-# problemA_id = "461411"
-# problemB_id = "461412"
-# problemC_id = "461413"
-# generateStandingStatistics(contest_id, [problemA_id, problemB_id, problemC_id])
+### download Data for contest 1236
+contest_id = "1236"
+problemA_id = "442393"
+problemB_id = "442394"
+problemC_id = "442395"
+problemD_id = "442396"
+problemE_id = "442397"
+problemF_id = "442398"
+generateStandingStatistics(contest_id, [problemA_id, problemB_id, problemC_id, problemD_id, problemE_id, problemF_id])
+print("Processed "+contest_id+"...")
+
+# ### download Data for contest 1243
+contest_id = "1243"
+problemA_id = "461411"
+problemB_id = "461412"
+problemC_id = "461413"
+problemD_id = "461414"
+problemE_id = "461415"
+problemF_id = "461416"
+generateStandingStatistics(contest_id, [problemA_id, problemB_id, problemC_id, problemD_id, problemE_id, problemF_id])
+print("Processed "+contest_id+"...")
+
+# ### download Data for contest 1244
+contest_id = "1244"
+problemA_id = "438880"
+problemB_id = "438881"
+problemC_id = "438882"
+problemD_id = "438883"
+problemE_id = "438884"
+problemF_id = "438885"
+problemG_id = "438886"
+generateStandingStatistics(contest_id, [problemA_id, problemB_id, problemC_id, problemD_id, problemE_id, problemF_id, problemG_id])
+print("Processed "+contest_id+"...")
+
+# ### download Data for contest 1248
+contest_id = "1248"
+problemA_id = "445483"
+problemB_id = "445264"
+problemC_id = "445265"
+problemD_id = "445481"
+problemE_id = "445266"
+problemF_id = "445267"
+problemG_id = "445268"
+generateStandingStatistics(contest_id, [problemA_id, problemB_id, problemC_id, problemD_id, problemE_id, problemF_id, problemG_id])
+print("Processed "+contest_id+"...")
