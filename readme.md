@@ -1,15 +1,18 @@
-### Problem Statement: To analyze correlation between coding style and cod-
+### Problem Statement: 
+To analyze correlation between coding style and cod-
 ing proficiency, and whether coding styles show regional variations.
 Data sets: Data for top 1000 performers in 5 Division-2 contests was scraped
 from Codeforces, a competitive coding platform. Total number of datapoints
 is ∼ 18000 codes.
-### Abstract: An important employability indicator in software field is coding
+### Abstract: 
+An important employability indicator in software field is coding
 proficiency. Codeforces is a popular platform enabling one to practice coding
 skills through regular contests. It also assigns a proficiency rating to every
 user based on contest performances. Performing such an analysis can help
 in giving better feedback to novices in what structure they should use and
 which APIs they should use more often.
-### Approach: Approaches taken in increasing complexity:
+### Approach: 
+Approaches taken in increasing complexity:
 a) Extracting simple features like function calls, variables declared, num-
 ber of macros etc.
 b) Using tree edit distance between abstract syntax trees of two different
