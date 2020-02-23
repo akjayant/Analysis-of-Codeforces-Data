@@ -19,7 +19,8 @@ b) Using tree edit distance between abstract syntax trees of two different
 codebases to identify coding style similarity.
 c) Extracting features: low level- tokens used, and high level- code struc-
 ture via doc2vec embedding of the abstract syntax tree.
-Conclusion: We analyze correlation between coding style and coding pro-
+### Conclusion: 
+We analyze correlation between coding style and coding pro-
 ficiency and whether coding styles varies across regions. We are able to find
 coding style difference across regions but are unable to find any significant
 correlation between coding proficiency and coding style. We also provide
